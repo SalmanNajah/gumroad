@@ -73,7 +73,6 @@ export default {
         background: "rgb(var(--filled))",
         foreground: "rgb(var(--color))",
         border: "rgb(var(--color) / var(--border-alpha))",
-        accent: "rgb(var(--accent))",
         warning: "rgb(var(--warning))",
       },
       boxShadow: {
