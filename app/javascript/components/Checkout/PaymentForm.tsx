@@ -1237,7 +1237,7 @@ export const PaymentForm = ({
             <div className="paragraphs">
               <h4>Pay with</h4>
               {state.availablePaymentMethods.length > 1 ? (
-                <Tabs>
+                <Tabs className="flex-col md:flex-row">
                   {state.availablePaymentMethods.map((method) => (
                     <React.Fragment key={method.type}>{method.button}</React.Fragment>
                   ))}
