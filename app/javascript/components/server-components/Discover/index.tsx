@@ -48,11 +48,11 @@ const ProductsCarousel = ({ products, title }: { products: CardProduct[]; title:
       <header className="flex items-center justify-between">
         <h2>{title}</h2>
         <div className="flex items-center gap-2">
-          <button onClick={() => setActive((active + products.length - 1) % products.length)}>
+          <button className="h-5 w-5" onClick={() => setActive((active + products.length - 1) % products.length)}>
             <Icon name="arrow-left" />
           </button>
           {active + 1} / {products.length}
-          <button onClick={() => setActive((active + products.length + 1) % products.length)}>
+          <button className="h-5 w-5" onClick={() => setActive((active + products.length + 1) % products.length)}>
             <Icon name="arrow-right" />
           </button>
         </div>
