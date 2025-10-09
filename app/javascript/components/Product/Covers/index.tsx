@@ -1,7 +1,6 @@
 import cx from "classnames";
 import * as React from "react";
 
-
 import { AssetPreview } from "$app/parsers/product";
 
 import { useElementDimensions } from "$app/components/useElementDimensions";
