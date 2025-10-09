@@ -65,10 +65,11 @@ export const Covers = ({
         ))}
       </div>
       {covers.length > 1 && activeCover?.type !== "oembed" && activeCover?.type !== "video" ? (
-        <div aria-label="Select a cover" className="absolute bottom-0 w-full flex justify-center gap-2 p-3 flex-wrap">
+        <div role="tablist" aria-label="Select a cover" className="absolute bottom-0 w-full flex justify-center gap-2 p-3 flex-wrap">
           {covers.map((cover, i) => (
             <div
               key={i}
+              role="tab"
               aria-label={`Show cover ${i + 1}`}
               aria-selected={i === activeCoverIndex}
               aria-controls={cover.id}
