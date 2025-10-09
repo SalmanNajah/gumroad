@@ -20,7 +20,7 @@ export const SalesQuickStats = ({ total }: { total: AnalyticsTotal | undefined }
     <Stats
       title={
         <>
-          <Icon name="circle-fill" className="text-foreground-muted" />
+          <Icon name="circle-fill" className="text-muted-foreground" />
           Views
         </>
       }
