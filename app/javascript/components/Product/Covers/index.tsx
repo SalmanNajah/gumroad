@@ -1,5 +1,4 @@
 import * as React from "react";
-import { CSSProperties } from "react";
 
 import { AssetPreview } from "$app/parsers/product";
 
@@ -22,7 +21,6 @@ export const Covers = ({
   closeButton,
   className,
   isThumbnail,
-  style,
 }: {
   covers: AssetPreview[];
   activeCoverId: string | null;
@@ -30,7 +28,6 @@ export const Covers = ({
   closeButton?: React.ReactNode;
   className?: string;
   isThumbnail?: boolean;
-  style?: CSSProperties;
 }) => {
   useOnChange(() => {
     if (!covers.some((cover) => cover.id === activeCoverId)) setActiveCoverId(covers[0]?.id ?? null);
@@ -51,7 +48,7 @@ export const Covers = ({
   );
 
   return (
-    <figure className={classNames("relative group col-[1/-1]", className)} aria-label="Product preview" style={style}>
+    <figure className={classNames("relative group col-[1/-1]", className)} aria-label="Product preview">
       {closeButton}
       {prevCover ? <PreviewArrow direction="previous" onClick={() => setActiveCoverId(prevCover.id)} /> : null}
       {nextCover ? <PreviewArrow direction="next" onClick={() => setActiveCoverId(nextCover.id)} /> : null}
