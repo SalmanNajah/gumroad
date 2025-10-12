@@ -78,7 +78,7 @@ export const Covers = ({
                 setActiveCoverId(cover.id);
               }}
               className={classNames(
-                "block border border-current p-2 rounded-[10rem] bg-background",
+                "block border border-current p-2 rounded-full bg-background",
                 i === activeCoverIndex && "bg-current"
               )}
             />
