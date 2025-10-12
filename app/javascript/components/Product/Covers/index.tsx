@@ -96,7 +96,7 @@ const PreviewArrow = ({ direction, onClick }: { direction: "previous" | "next"; 
   return (
     <button
       className={classNames(
-        "p-3 hidden absolute top-1/2 -translate-y-1/2 items-center justify-center z-[1]",
+        "p-3 hidden absolute top-1/2 -translate-y-1/2 items-center justify-center z-1",
         "group-hover:flex",
         positionClass
       )}
