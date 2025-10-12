@@ -96,7 +96,8 @@ const PreviewArrow = ({ direction, onClick }: { direction: "previous" | "next"; 
   return (
     <button
       className={classNames(
-        "p-3 hidden absolute top-1/2 -translate-y-1/2 items-center justify-center z-1",
+        "mx-3 w-8 h-8 hidden absolute top-1/2 -translate-y-1/2 items-center justify-center",
+        "bg-background border border-border rounded-full",
         "group-hover:flex",
         positionClass
       )}
@@ -106,9 +107,7 @@ const PreviewArrow = ({ direction, onClick }: { direction: "previous" | "next"; 
       }}
       aria-label={direction === "previous" ? "Show previous cover" : "Show next cover"}
     >
-      <span className="block p-4 bg-background border border-border rounded-full relative">
-        <Icon name={iconName} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-      </span>
+        <Icon name={iconName} />
     </button>
   );
 };
