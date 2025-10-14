@@ -1,12 +1,12 @@
 import * as React from "react";
 
 import { AssetPreview } from "$app/parsers/product";
+import { classNames } from "$app/utils/classNames";
 
 import { Icon } from "$app/components/Icons";
 import { useElementDimensions } from "$app/components/useElementDimensions";
 import { useOnChange } from "$app/components/useOnChange";
 import { useScrollableCarousel } from "$app/components/useScrollableCarousel";
-import { classNames } from "$app/utils/classNames";
 
 import { Embed } from "./Embed";
 import { Image } from "./Image";
@@ -48,12 +48,12 @@ export const Covers = ({
   );
 
   return (
-    <figure className={classNames("relative group col-[1/-1]", className)} aria-label="Product preview">
+    <figure className={classNames("group relative col-[1/-1]", className)} aria-label="Product preview">
       {closeButton}
       {prevCover ? <PreviewArrow direction="previous" onClick={() => setActiveCoverId(prevCover.id)} /> : null}
       {nextCover ? <PreviewArrow direction="next" onClick={() => setActiveCoverId(nextCover.id)} /> : null}
       <div
-        className="flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden items-center h-full"
+        className="flex h-full snap-x snap-mandatory items-center overflow-x-scroll overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         ref={itemsRef}
         style={{
           aspectRatio,
@@ -65,7 +65,11 @@ export const Covers = ({
         ))}
       </div>
       {covers.length > 1 && activeCover?.type !== "oembed" && activeCover?.type !== "video" ? (
-        <div role="tablist" aria-label="Select a cover" className="absolute bottom-0 w-full flex justify-center gap-2 p-3 flex-wrap">
+        <div
+          role="tablist"
+          aria-label="Select a cover"
+          className="absolute bottom-0 flex w-full flex-wrap justify-center gap-2 p-3"
+        >
           {covers.map((cover, i) => (
             <div
               key={i}
@@ -78,8 +82,8 @@ export const Covers = ({
                 setActiveCoverId(cover.id);
               }}
               className={classNames(
-                "block border border-current p-2 rounded-full bg-background",
-                i === activeCoverIndex && "bg-current"
+                "block rounded-full border border-current bg-background p-2",
+                i === activeCoverIndex && "bg-current",
               )}
             />
           ))}
@@ -96,10 +100,10 @@ const PreviewArrow = ({ direction, onClick }: { direction: "previous" | "next"; 
   return (
     <button
       className={classNames(
-        "mx-3 w-8 h-8 hidden absolute top-1/2 -translate-y-1/2 items-center justify-center z-1",
-        "bg-background border border-border rounded-full",
+        "absolute top-1/2 z-1 mx-3 hidden h-8 w-8 -translate-y-1/2 items-center justify-center",
+        "rounded-full border border-border bg-background",
         "group-hover:flex",
-        positionClass
+        positionClass,
       )}
       onClick={(e) => {
         e.preventDefault();
@@ -107,7 +111,7 @@ const PreviewArrow = ({ direction, onClick }: { direction: "previous" | "next"; 
       }}
       aria-label={direction === "previous" ? "Show previous cover" : "Show next cover"}
     >
-        <Icon name={iconName} />
+      <Icon name={iconName} />
     </button>
   );
 };
@@ -148,7 +152,13 @@ const CoverItem = ({ cover }: { cover: AssetPreview }) => {
   }
 
   return (
-    <div key={cover.id} ref={containerRef} role="tabpanel" id={cover.id} className="snap-start flex flex-[1_0_100%] min-h-[1px] justify-center !p-0 !mt-0 !border-0">
+    <div
+      key={cover.id}
+      ref={containerRef}
+      role="tabpanel"
+      id={cover.id}
+      className="!mt-0 flex min-h-[1px] flex-[1_0_100%] snap-start justify-center !border-0 !p-0"
+    >
       {coverComponent}
     </div>
   );
