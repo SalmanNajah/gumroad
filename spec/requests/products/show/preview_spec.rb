@@ -21,12 +21,12 @@ describe("Product page previews", js: true, type: :system) do
       expect(page).to have_selector("img[src*='#{PUBLIC_STORAGE_S3_BUCKET}']")
       expect(page).to have_selector("iframe", visible: false)
       expect(page).to have_selector("video[src*='#{PUBLIC_STORAGE_S3_BUCKET}']", visible: false)
-      expect(page).to have_button("Show next cover", visible: :all)
+      expect(page).to have_button("Show next cover")
       expect(page).to have_tablist("Select a cover")
     end
 
     within preview do
-      expect(page).to have_button("Show next cover", visible: :all)
+      expect(page).to have_button("Show next cover")
       expect(page).to have_tablist("Select a cover")
 
       select_tab "Show cover 2"
@@ -34,7 +34,7 @@ describe("Product page previews", js: true, type: :system) do
       expect(page).to have_selector("iframe")
       expect(page).to have_selector("video[src*='#{PUBLIC_STORAGE_S3_BUCKET}']", visible: false)
 
-      find_button("Show next cover", visible: :all).click
+      find_button("Show next cover").click
       expect(page).to have_selector("img[src*='#{PUBLIC_STORAGE_S3_BUCKET}']", visible: false)
       expect(page).to have_selector("iframe", visible: false)
       expect(page).to have_selector("video[src*='#{PUBLIC_STORAGE_S3_BUCKET}']")
@@ -49,10 +49,10 @@ describe("Product page previews", js: true, type: :system) do
       within preview do
         expect(page).to have_selector("img[src*='#{PUBLIC_STORAGE_S3_BUCKET}']")
         expect(page).to have_tablist("Select a cover")
-        find_button("Show next cover", visible: :all).click
+        find_button("Show next cover").click
         expect(page).to have_selector("iframe[src*='https://www.youtube.com/embed/5Bcpj-q0Snc?feature=oembed&showinfo=0&controls=0&rel=0&enablejsapi=1']")
         expect(page).to_not have_tablist("Select a cover")
-        find_button("Show next cover", visible: :all).click
+        find_button("Show next cover").click
         expect(page).to have_selector("video[src*='#{PUBLIC_STORAGE_S3_BUCKET}']")
         expect(page).to_not have_tablist("Select a cover")
       end
@@ -73,15 +73,15 @@ describe("Product page previews", js: true, type: :system) do
 
       find("[aria-label='Product preview']").hover
 
-      find_button("Show next cover", visible: :all).click
+      find_button("Show next cover").click
       scroll_to previews[2]
-      expect(page).to_not have_button("Show next cover", visible: :all)
-      expect(page).to have_button("Show previous cover", visible: :all)
+      expect(page).to_not have_button("Show next cover")
+      expect(page).to have_button("Show previous cover")
 
-      find_button("Show previous cover", visible: :all).click
+      find_button("Show previous cover").click
       scroll_to previews[0]
-      expect(page).to have_button("Show next cover", visible: :all)
-      expect(page).to_not have_button("Show previous cover", visible: :all)
+      expect(page).to have_button("Show next cover")
+      expect(page).to_not have_button("Show previous cover")
     end
   end
 end
