@@ -10,6 +10,8 @@
 @source "../../views/**/*.erb";
 @source "../../../public/help/**/*.html";
 
+@custom-variant hover (&:hover);
+
 @theme {
   --color-black: #000000;
   --color-white: #ffffff;
@@ -96,13 +98,4 @@
   100% {
     transform: translateX(0);
   }
-}
-
-/* Preview hover behavior - parent-child relationship for Capybara compatibility */
-.preview-container .preview-arrow {
-  display: none;
-}
-
-.preview-container:hover .preview-arrow {
-  display: flex;
 }
