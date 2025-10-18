@@ -48,7 +48,7 @@ export const Covers = ({
   );
 
   return (
-    <figure className={classNames("group relative col-[1/-1]", className)} aria-label="Product preview">
+    <figure className={classNames("preview-container relative col-[1/-1]", className)} aria-label="Product preview">
       {closeButton}
       {prevCover ? <PreviewArrow direction="previous" onClick={() => setActiveCoverId(prevCover.id)} /> : null}
       {nextCover ? <PreviewArrow direction="next" onClick={() => setActiveCoverId(nextCover.id)} /> : null}
@@ -102,7 +102,7 @@ const PreviewArrow = ({ direction, onClick }: { direction: "previous" | "next"; 
       className={classNames(
         "absolute top-1/2 z-1 mx-3 h-8 w-8 -translate-y-1/2 items-center justify-center",
         "rounded-full border border-border bg-background",
-        "flex opacity-0 group-hover:opacity-100",
+        "preview-arrow",
         positionClass,
       )}
       onClick={(e) => {

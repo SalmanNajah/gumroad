@@ -97,3 +97,12 @@
     transform: translateX(0);
   }
 }
+
+/* Preview hover behavior - parent-child relationship for Capybara compatibility */
+.preview-container .preview-arrow {
+  display: none;
+}
+
+.preview-container:hover .preview-arrow {
+  display: flex;
+}
