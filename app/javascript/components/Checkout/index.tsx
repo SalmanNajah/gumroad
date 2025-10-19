@@ -217,7 +217,7 @@ export const Checkout = ({
         <div className="grid gap-8 p-4 md:p-8">
           <div className="grid grid-cols-1 items-start gap-x-16 gap-y-8 lg:grid-cols-[2fr_minmax(26rem,1fr)]">
             <div className="grid gap-6">
-              <div className="cart" role="list">
+              <div className="bg-background border border-border rounded" role="list">
                 {cart.items.map((item) => (
                   <CartItemComponent
                     key={`${item.product.permalink}${item.option_id ? `_${item.option_id}` : ""}`}
@@ -227,34 +227,34 @@ export const Checkout = ({
                     updateCart={updateCart}
                   />
                 ))}
-                <div className="cart-summary">
+                <div className="p-4 grid gap-4 border-t border-border">
                   {state.surcharges.type === "loaded" ? (
                     <>
-                      <div>
-                        <h4>Subtotal</h4>
+                      <div className="grid grid-flow-col gap-4 justify-between">
+                        <h4 className="inline-flex flex-wrap gap-2">Subtotal</h4>
                         <div>{formatPrice(subtotal)}</div>
                       </div>
                       {tip ? (
-                        <div>
-                          <h4>Tip</h4>
+                        <div className="grid grid-flow-col gap-4 justify-between">
+                          <h4 className="inline-flex flex-wrap gap-2">Tip</h4>
                           <div>{formatPrice(tip)}</div>
                         </div>
                       ) : null}
                       {state.surcharges.result.tax_included_cents ? (
-                        <div>
-                          <h4>{nameOfSalesTaxForCountry(state.country)} (included)</h4>
+                        <div className="grid grid-flow-col gap-4 justify-between">
+                          <h4 className="inline-flex flex-wrap gap-2">{nameOfSalesTaxForCountry(state.country)} (included)</h4>
                           <div>{formatPrice(state.surcharges.result.tax_included_cents)}</div>
                         </div>
                       ) : null}
                       {state.surcharges.result.tax_cents ? (
-                        <div>
-                          <h4>{nameOfSalesTaxForCountry(state.country)}</h4>
+                        <div className="grid grid-flow-col gap-4 justify-between">
+                          <h4 className="inline-flex flex-wrap gap-2">{nameOfSalesTaxForCountry(state.country)}</h4>
                           <div>{formatPrice(state.surcharges.result.tax_cents)}</div>
                         </div>
                       ) : null}
                       {state.surcharges.result.shipping_rate_cents ? (
-                        <div>
-                          <h4>Shipping rate</h4>
+                        <div className="grid grid-flow-col gap-4 justify-between">
+                          <h4 className="inline-flex flex-wrap gap-2">Shipping rate</h4>
                           <div>{formatPrice(state.surcharges.result.shipping_rate_cents)}</div>
                         </div>
                       ) : null}
@@ -317,27 +317,27 @@ export const Checkout = ({
                 </div>
                 {total != null ? (
                   <>
-                    <footer>
-                      <h4>Total</h4>
-                      <div>{formatPrice(total)}</div>
+                    <footer className="flex items-center justify-between p-4 border-t border-border">
+                      <h4 className="text-xl leading-tight">Total</h4>
+                      <div className="text-xl leading-tight">{formatPrice(total)}</div>
                     </footer>
                     {commissionCompletionTotal > 0 || futureInstallmentsWithoutTipsTotal > 0 ? (
-                      <div className="cart-summary">
-                        <div>
-                          <h4>Payment today</h4>
+                      <div className="p-4 grid gap-4">
+                        <div className="grid grid-flow-col gap-4 justify-between">
+                          <h4 className="inline-flex flex-wrap gap-2">Payment today</h4>
                           <div>
                             {formatPrice(total - commissionCompletionTotal - futureInstallmentsWithoutTipsTotal)}
                           </div>
                         </div>
                         {commissionCompletionTotal > 0 ? (
-                          <div>
-                            <h4>Payment after completion</h4>
+                          <div className="grid grid-flow-col gap-4 justify-between">
+                            <h4 className="inline-flex flex-wrap gap-2">Payment after completion</h4>
                             <div>{formatPrice(commissionCompletionTotal)}</div>
                           </div>
                         ) : null}
                         {futureInstallmentsWithoutTipsTotal > 0 ? (
-                          <div>
-                            <h4>Future installments</h4>
+                          <div className="grid grid-flow-col gap-4 justify-between">
+                            <h4 className="inline-flex flex-wrap gap-2">Future installments</h4>
                             <div>{formatPrice(futureInstallmentsWithoutTipsTotal)}</div>
                           </div>
                         ) : null}
@@ -436,20 +436,22 @@ const CartItemComponent = ({
   const price = hasFreeTrial(item, isGift) ? 0 : item.price * item.quantity;
 
   return (
-    <div role="listitem">
-      <section>
-        <figure>
+    <div role="listitem" className="grid border-t border-border first:border-t-0">
+      <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
+        <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-r sm:border-border sm:border-0 sm:rounded-none">
           <a href={item.product.url}>
-            <Thumbnail url={item.product.thumbnail_url} nativeType={item.product.native_type} />
+            <Thumbnail url={item.product.thumbnail_url} nativeType={item.product.native_type} className="w-full h-full object-cover" />
           </a>
         </figure>
-        <section>
-          <a href={item.product.url}>
-            <h4>{item.product.name}</h4>
-          </a>
-          <a href={item.product.creator.profile_url}>{item.product.creator.name}</a>
+        <section className="flex flex-col gap-1 sm:py-4 justify-between">
+          <div>
+            <a href={item.product.url}>
+              <h4 className="font-bold line-clamp-2">{item.product.name}</h4>
+            </a>
+            <a href={item.product.creator.profile_url}>{item.product.creator.name}</a>
+          </div>
           <footer>
-            <ul>
+            <ul className="grid gap-1 gap-x-4 p-0 list-none sm:flex sm:flex-wrap">
               <li>
                 <strong>{item.product.is_multiseat_license ? "Seats:" : "Qty:"}</strong> {item.quantity}
               </li>
@@ -471,7 +473,7 @@ const CartItemComponent = ({
             </ul>
           </footer>
         </section>
-        <section>
+        <section className="flex flex-col gap-1 sm:py-4 justify-between items-end">
           <span className="current-price" aria-label="Price">
             {formatPrice(convertToUSD(item, price))}
           </span>
@@ -499,7 +501,7 @@ const CartItemComponent = ({
             )
           ) : null}
           <footer>
-            <ul>
+            <ul className="flex justify-end list-none">
               {(item.product.rental && !item.product.rental.rent_only) ||
               item.product.is_quantity_enabled ||
               item.product.recurrences ||
@@ -565,19 +567,19 @@ const CartItemComponent = ({
         </section>
       </section>
       {item.product.bundle_products.length > 0 ? (
-        <section className="footer">
+        <section className="grid gap-4 p-4 border-t border-border">
           <h4>This bundle contains...</h4>
-          <div role="list" className="cart">
+          <div role="list" className="bg-background border border-border rounded">
             {item.product.bundle_products.map((bundleProduct) => (
-              <div role="listitem" key={bundleProduct.product_id}>
-                <section>
-                  <figure>
-                    <Thumbnail url={bundleProduct.thumbnail_url} nativeType={bundleProduct.native_type} />
+              <div role="listitem" key={bundleProduct.product_id} className="grid">
+                <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[6.5rem_1fr_auto] sm:p-0 sm:pr-4">
+                  <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-0 sm:border-r sm:border-border sm:rounded-l sm:rounded-r-none sm:h-full">
+                    <Thumbnail url={bundleProduct.thumbnail_url} nativeType={bundleProduct.native_type} className="w-full h-full object-cover" />
                   </figure>
-                  <section>
+                  <section className="flex flex-col gap-1 sm:py-4">
                     <h4>{bundleProduct.name}</h4>
-                    <footer>
-                      <ul>
+                    <footer className="mt-auto border-border border-t">
+                      <ul className="grid gap-1 gap-x-4 p-0 list-none sm:flex sm:flex-wrap">
                         <li>
                           <strong>Qty:</strong> {bundleProduct.quantity}
                         </li>
