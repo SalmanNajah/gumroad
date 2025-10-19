@@ -645,17 +645,17 @@ const AbandonedCartProductListNodeView = (props: NodeViewProps) => {
     <NodeViewWrapper className="paragraphs" style={isPreview ? {} : { userSelect: "none", cursor: "not-allowed" }}>
       <div className="has-tooltip top" aria-describedby={tooltipUid} style={{ display: "grid" }}>
         {abandonedCartProducts.length > 0 ? (
-          <div className="cart" role="list">
+          <div className="bg-background border border-border rounded" role="list">
             {abandonedCartProducts.slice(0, shownProductCount).map((product) => (
-              <div role="listitem" key={product.unique_permalink} style={isPreview ? {} : { pointerEvents: "none" }}>
-                <section>
-                  <figure style={{ margin: 0 }}>
+              <div role="listitem" key={product.unique_permalink} className="grid border-t border-border first:border-t-0" style={isPreview ? {} : { pointerEvents: "none" }}>
+                <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
+                  <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square overflow-hidden rounded sm:rounded-none sm:border-r sm:border-border" style={{ margin: 0 }}>
                     {product.thumbnail_url ? (
-                      <img src={product.thumbnail_url} style={{ objectFit: "initial", borderRadius: 0 }} />
+                      <img src={product.thumbnail_url} className="w-full h-full !object-cover rounded sm:!rounded-none" />
                     ) : null}
                   </figure>
-                  <section>
-                    <h4>
+                  <section className="flex flex-col gap-1 sm:py-4">
+                    <h4 className="font-bold line-clamp-2">
                       <a
                         href={product.url}
                         target="_blank"
@@ -665,7 +665,7 @@ const AbandonedCartProductListNodeView = (props: NodeViewProps) => {
                         {product.name}
                       </a>
                     </h4>
-                    <footer>
+                    <footer className="mt-auto">
                       <SellerByLine isPreview={isPreview} />
                     </footer>
                   </section>
