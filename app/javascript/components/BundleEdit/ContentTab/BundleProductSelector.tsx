@@ -2,8 +2,6 @@ import * as React from "react";
 
 import { BundleProduct } from "$app/components/BundleEdit/state";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
-import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
-
 export const BundleProductSelector = ({
   bundleProduct,
   selected,
@@ -13,24 +11,23 @@ export const BundleProductSelector = ({
   selected?: boolean;
   onToggle: () => void;
 }) => {
-  const isDesktop = useIsAboveBreakpoint("sm");
 
   return (
-    <label role="listitem">
-      <section style={{ gridTemplateColumns: isDesktop ? "5rem 1fr auto" : undefined }}>
-        <figure>
-          <Thumbnail url={bundleProduct.thumbnail_url} nativeType={bundleProduct.native_type} />
+    <label role="listitem" className="grid border-t border-border first:border-t-0">
+      <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[5rem_1fr_auto] sm:p-0 sm:pr-4">
+        <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-0 sm:border-r sm:border-border sm:rounded-l-sm sm:rounded-r-none sm:h-full relative w-full">
+            <Thumbnail url={bundleProduct.thumbnail_url} nativeType={bundleProduct.native_type} className="w-full h-full object-cover" />
         </figure>
-        <section>
-          <h4>{bundleProduct.name}</h4>
+        <section className="flex flex-col gap-1 sm:py-4">
+          <h4 className="font-bold line-clamp-2">{bundleProduct.name}</h4>
           {bundleProduct.variants ? (
-            <footer>
+            <footer className="mt-auto">
               {bundleProduct.variants.list.length} {bundleProduct.variants.list.length === 1 ? "version" : "versions"}{" "}
               available
             </footer>
           ) : null}
         </section>
-        <section style={{ justifyContent: "center" }}>
+        <section className="flex flex-col gap-1 sm:py-4 last:items-end justify-center">
           <input type="checkbox" checked={!!selected} onChange={onToggle} />
         </section>
       </section>

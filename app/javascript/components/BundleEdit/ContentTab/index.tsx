@@ -114,7 +114,7 @@ export const ContentTab = () => {
                 </label>
               </header>
               {bundle.products.length > 0 ? (
-                <div className="cart" role="list" aria-label="Bundle products">
+                <div className="bg-background border border-border rounded" role="list" aria-label="Bundle products">
                   {bundle.products.map((bundleProduct, idx) => (
                     <BundleProductItem
                       key={bundleProduct.id}
@@ -153,7 +153,7 @@ export const ContentTab = () => {
                     <Progress width="1em" />
                   </div>
                 ) : results.length > 0 ? (
-                  <div className="cart" role="list">
+                  <div className="bg-background border border-border rounded" role="list">
                     {results.map((bundleProduct) => {
                       const selected = bundle.products.some(({ id }) => id === bundleProduct.id);
                       return (
