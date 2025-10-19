@@ -10,16 +10,18 @@ export const Thumbnail = ({
   url,
   nativeType,
   eager,
+  className,
 }: {
   url: string | null;
   nativeType: ProductNativeType;
   eager?: boolean | undefined;
+  className?: string | undefined;
 }) => {
   const lazyLoadingProps = useLazyLoadingProps({ eager });
 
   return url ? (
-    <img src={url} {...lazyLoadingProps} />
+    <img src={url} className={className} {...lazyLoadingProps} />
   ) : (
-    <img src={cast(nativeTypeThumbnails(`./${nativeType}.svg`))} {...lazyLoadingProps} />
+    <img src={cast(nativeTypeThumbnails(`./${nativeType}.svg`))} className={className} {...lazyLoadingProps} />
   );
 };
