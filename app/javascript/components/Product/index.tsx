@@ -372,20 +372,20 @@ export const Product = ({
         {isBundle ? (
           <section>
             <h2>This bundle contains...</h2>
-            <div className="cart" role="list">
+            <div className="bg-background border border-border rounded" role="list">
               {product.bundle_products.map((bundleProduct) => {
                 const price = formatPriceCentsWithCurrencySymbol(bundleProduct.currency_code, bundleProduct.price, {
                   symbolFormat: "long",
                 });
                 return (
-                  <div role="listitem" key={bundleProduct.id}>
-                    <section>
-                      <figure>
-                        <Thumbnail url={bundleProduct.thumbnail_url} nativeType={bundleProduct.native_type} />
+                  <div role="listitem" key={bundleProduct.id} className="grid border-t border-border first:border-t-0">
+                    <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
+                      <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-0 sm:border-r sm:border-border sm:rounded-l-sm sm:rounded-r-none sm:h-full relative">
+                          <Thumbnail url={bundleProduct.thumbnail_url} nativeType={bundleProduct.native_type} className="w-full h-full object-cover" />
                       </figure>
-                      <section>
+                      <section className="flex flex-col gap-1 sm:py-4">
                         <a href={bundleProduct.url}>
-                          <h4>{bundleProduct.name}</h4>
+                          <h4 className="font-bold line-clamp-2">{bundleProduct.name}</h4>
                         </a>
                         {bundleProduct.ratings ? (
                           <section className="flex shrink-0 items-center gap-1" aria-label="Rating">
@@ -393,8 +393,8 @@ export const Product = ({
                             {`${bundleProduct.ratings.average.toFixed(1)} (${bundleProduct.ratings.count})`}
                           </section>
                         ) : null}
-                        <footer>
-                          <ul>
+                        <footer className="mt-auto">
+                          <ul className="grid gap-1 gap-x-4 p-0 list-none sm:flex sm:flex-wrap">
                             <li>
                               <strong>Qty:</strong> {bundleProduct.quantity}
                             </li>
@@ -406,8 +406,8 @@ export const Product = ({
                           </ul>
                         </footer>
                       </section>
-                      <section>
-                        <span className="current-price" aria-label="Price">
+                      <section className="flex flex-col gap-1 sm:py-4 justify-between items-end">
+                        <span aria-label="Price">
                           {discountedPriceCents < basePriceCents ? <s>{price}</s> : price}
                         </span>
                       </section>

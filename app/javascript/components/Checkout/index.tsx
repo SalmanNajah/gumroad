@@ -474,7 +474,7 @@ const CartItemComponent = ({
           </footer>
         </section>
         <section className="flex flex-col gap-1 sm:py-4 justify-between items-end">
-          <span className="current-price" aria-label="Price">
+          <span aria-label="Price">
             {formatPrice(convertToUSD(item, price))}
           </span>
           {hasFreeTrial(item, isGift) && item.product.free_trial ? (
