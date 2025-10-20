@@ -74,21 +74,21 @@ const ReviewsPage = ({
           <h2>{`${purchases.length} ${purchases.length === 1 ? "product" : "products"} awaiting review`}</h2>
           <div className="grid gap-4 @xl:grid-cols-2 @4xl:grid-cols-3">
             {purchases.map((purchase) => (
-              <div className="cart h-min" role="list" key={purchase.id}>
-                <div key={purchase.id} role="listitem">
-                  <section>
-                    <figure>
-                      <Thumbnail url={purchase.product.thumbnail_url} nativeType={purchase.product.native_type} />
+              <div className="bg-background border border-border rounded h-min" role="list" key={purchase.id}>
+                <div key={purchase.id} role="listitem" className="grid border-t-0 border-border">
+                  <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
+                    <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-0 sm:border-r sm:border-border sm:rounded-tl-sm sm:rounded-r-none sm:rounded-bl-none sm:h-full">
+                        <Thumbnail url={purchase.product.thumbnail_url} nativeType={purchase.product.native_type} className="w-full h-full object-cover" />
                     </figure>
-                    <section>
+                    <section className="flex flex-col gap-1 sm:py-4">
                       <a href={purchase.product.url}>
-                        <h4>{purchase.product.name}</h4>
+                        <h4 className="font-bold line-clamp-2">{purchase.product.name}</h4>
                       </a>
                       <a href={purchase.product.seller.url}>{purchase.product.seller.name}</a>
                     </section>
                     <section />
                   </section>
-                  <section className="footer">
+                  <section className="grid gap-4 p-4 border-t border-border">
                     <ReviewForm
                       permalink={purchase.product.permalink}
                       purchaseId={purchase.id}
