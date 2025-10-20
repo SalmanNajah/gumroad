@@ -407,7 +407,7 @@ export const Product = ({
                         </footer>
                       </section>
                       <section className="flex flex-col gap-1 sm:py-4 justify-between items-end">
-                        <span aria-label="Price">
+                        <span className="current-price" aria-label="Price">
                           {discountedPriceCents < basePriceCents ? <s>{price}</s> : price}
                         </span>
                       </section>
