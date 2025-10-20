@@ -501,13 +501,13 @@ const CartItemComponent = ({
             )
           ) : null}
           <footer>
-            <ul className="flex justify-end list-none">
+            <ul className="grid gap-1 gap-x-4 p-0 list-none sm:flex sm:flex-wrap">
               {(item.product.rental && !item.product.rental.rent_only) ||
               item.product.is_quantity_enabled ||
               item.product.recurrences ||
               item.product.options.length > 0 ||
               item.product.installment_plan ||
-              isPWYW ? (
+              !isPWYW ? (
                 <li>
                   <Popover
                     trigger={<span className="link">Configure</span>}
