@@ -436,7 +436,7 @@ const CartItemComponent = ({
   const price = hasFreeTrial(item, isGift) ? 0 : item.price * item.quantity;
 
   return (
-    <div role="listitem" className="grid border-t border-border first:border-t-0">
+    <div role="listitem" className="grid not-first:border-t border-border">
       <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
         <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-r sm:border-border sm:border-0 sm:rounded-none">
           <a href={item.product.url}>
@@ -571,7 +571,7 @@ const CartItemComponent = ({
           <h4>This bundle contains...</h4>
           <div role="list" className="bg-background border border-border rounded">
             {item.product.bundle_products.map((bundleProduct) => (
-              <div role="listitem" key={bundleProduct.product_id} className="grid border-t border-border first:border-t-0">
+              <div role="listitem" key={bundleProduct.product_id} className="grid not-first:border-t border-border">
                 <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
                   <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-0 sm:border-r sm:border-border sm:rounded-none sm:h-full">
                     <Thumbnail url={bundleProduct.thumbnail_url} nativeType={bundleProduct.native_type} className="w-full h-full" />
