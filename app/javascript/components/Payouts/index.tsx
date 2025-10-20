@@ -815,9 +815,9 @@ const Payouts = ({
               </fieldset>
               <fieldset>
                 <legend>Payout details</legend>
-                <div className="cart">
-                  <div className="cart-summary">
-                    <div>
+                <div className="bg-background border border-border rounded">
+                  <div className="p-4 grid gap-4">
+                    <div className="grid grid-flow-col gap-4 justify-between">
                       <p>Sent to</p>
                       <div>
                         {instant_payout.bank_account_type === "CARD" ? (
@@ -839,11 +839,11 @@ const Payouts = ({
                         )}
                       </div>
                     </div>
-                    <div>
+                    <div className="grid grid-flow-col gap-4 justify-between">
                       <p>Amount</p>
                       <div>${formatPriceCentsWithoutCurrencySymbol("usd", instantPayoutAmountCents)}</div>
                     </div>
-                    <div>
+                    <div className="grid grid-flow-col gap-4 justify-between">
                       <p>Instant payout fee ({INSTANT_PAYOUT_FEE_PERCENTAGE * 100}%)</p>
                       <div>
                         -$
@@ -851,10 +851,8 @@ const Payouts = ({
                       </div>
                     </div>
                   </div>
-                  <footer>
-                    <p>
-                      <strong>You'll receive</strong>
-                    </p>
+                  <footer className="flex items-center justify-between p-4 border-border border-t">
+                    <h4 className="font-bold">You'll receive</h4>
                     <div>
                       ${formatPriceCentsWithoutCurrencySymbol("usd", instantPayoutAmountCents - instantPayoutFee)}
                     </div>
