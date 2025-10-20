@@ -19,6 +19,7 @@ import {
 } from "$app/data/workflows";
 import { assert, assertDefined } from "$app/utils/assert";
 import { ALLOWED_EXTENSIONS } from "$app/utils/file";
+import { classNames } from "$app/utils/classNames";
 import GuidGenerator from "$app/utils/guid_generator";
 import { asyncVoid } from "$app/utils/promise";
 import { assertResponseError, request } from "$app/utils/request";
@@ -647,9 +648,9 @@ const AbandonedCartProductListNodeView = (props: NodeViewProps) => {
         {abandonedCartProducts.length > 0 ? (
           <div className="bg-background border border-border rounded" role="list">
             {abandonedCartProducts.slice(0, shownProductCount).map((product) => (
-              <div role="listitem" key={product.unique_permalink} className="grid border-t border-border first:border-t-0" style={isPreview ? {} : { pointerEvents: "none" }}>
+              <div role="listitem" key={product.unique_permalink} className={classNames("grid border-t border-border first:border-t-0", { "pointer-events-none": !isPreview })}>
                 <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
-                  <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square overflow-hidden rounded sm:rounded-none sm:border-r sm:border-border" style={{ margin: 0 }}>
+                  <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border sm:border-0 sm:border-r overflow-hidden rounded sm:rounded-none !m-0">
                     {product.thumbnail_url ? (
                       <img src={product.thumbnail_url} className="w-full h-full !object-cover rounded sm:!rounded-none" />
                     ) : null}
