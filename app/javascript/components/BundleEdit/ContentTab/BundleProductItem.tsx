@@ -54,7 +54,7 @@ export const BundleProductItem = ({
         </section>
         <section className="flex flex-col gap-1 sm:py-4 last:items-end">
           <footer className="mt-auto">
-            <ul className="flex justify-end list-none">
+            <ul className="grid gap-1 gap-x-4 p-0 list-none sm:flex sm:flex-wrap">
               {bundleProduct.is_quantity_enabled || bundleProduct.variants ? (
                 <li>
                   <Popover
