@@ -507,7 +507,7 @@ const CartItemComponent = ({
               item.product.recurrences ||
               item.product.options.length > 0 ||
               item.product.installment_plan ||
-              !isPWYW ? (
+              isPWYW ? (
                 <li>
                   <Popover
                     trigger={<span className="link">Configure</span>}
