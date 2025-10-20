@@ -851,8 +851,8 @@ const Payouts = ({
                       </div>
                     </div>
                   </div>
-                  <footer className="flex items-center justify-between p-4 border-border border-t">
-                    <h4 className="font-bold">You'll receive</h4>
+                  <footer className="flex items-center justify-between p-4 border-border border-t text-lg">
+                    <p className="font-bold">You'll receive</p>
                     <div>
                       ${formatPriceCentsWithoutCurrencySymbol("usd", instantPayoutAmountCents - instantPayoutFee)}
                     </div>
