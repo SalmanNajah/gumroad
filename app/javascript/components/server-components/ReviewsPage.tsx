@@ -78,7 +78,7 @@ const ReviewsPage = ({
                 <div key={purchase.id} role="listitem" className="grid border-t-0 border-border">
                   <section className="grid grid-cols-[3.625rem_1fr_auto] gap-4 p-4 sm:grid-cols-[8.5rem_1fr_auto] sm:p-0 sm:pr-4">
                     <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-center bg-cover aspect-square border border-border rounded overflow-hidden sm:border-0 sm:border-r sm:border-border sm:rounded-tl-sm sm:rounded-r-none sm:rounded-bl-none sm:h-full">
-                        <Thumbnail url={purchase.product.thumbnail_url} nativeType={purchase.product.native_type} className="w-full h-full" />
+                      <Thumbnail url={purchase.product.thumbnail_url} nativeType={purchase.product.native_type} className="w-full h-full" />
                     </figure>
                     <section className="flex flex-col gap-1 sm:py-4">
                       <a href={purchase.product.url}>
