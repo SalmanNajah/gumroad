@@ -157,7 +157,7 @@ const CoverItem = ({ cover }: { cover: AssetPreview }) => {
       ref={containerRef}
       role="tabpanel"
       id={cover.id}
-      className="!mt-0 flex min-h-[1px] flex-[1_0_100%] snap-start justify-center !border-0 !p-0"
+      className="mt-0! flex min-h-[1px] flex-[1_0_100%] snap-start justify-center border-0! p-0!"
     >
       {coverComponent}
     </div>
