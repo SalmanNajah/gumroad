@@ -1,27 +1,5 @@
 @use "sass:math";
 
-.product-cta {
-  @include bg-color(filled);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: spacer(4);
-  padding: spacer(4);
-
-  h3 {
-    display: none;
-    flex: 1;
-
-    @include breakpoint-up(lg) {
-      display: unset;
-    }
-  }
-
-  @include breakpoint-up(lg) {
-    padding: spacer(4) $body-padding-desktop-center;
-  }
-}
-
 article {
   &.product-card,
   &.product {

@@ -276,7 +276,7 @@ const CtaBar = ({
     >
       <div
         ref={ref}
-        className="product-cta"
+        className="bg-background flex justify-between items-center gap-4 p-4 lg:px-8 lg:py-4"
         style={{
           transition: "var(--transition-duration)",
           marginTop: visible || !isDesktop ? undefined : -height,
@@ -299,7 +299,7 @@ const CtaBar = ({
           isSalesLimited={product.is_sales_limited}
           creatorName={product.seller?.name}
         />
-        <h3>{product.name}</h3>
+        <h3 className="hidden lg:block flex-1">{product.name}</h3>
         {product.ratings != null && product.ratings.count > 0 ? (
           <RatingsSummary className="hidden lg:flex" ratings={product.ratings} />
         ) : null}
