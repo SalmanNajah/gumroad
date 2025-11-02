@@ -276,7 +276,7 @@ const CtaBar = ({
     >
       <div
         ref={ref}
-        className="bg-background flex justify-between items-center gap-4 p-4 lg:px-8 lg:py-4"
+        className="bg-background flex justify-between items-center gap-4 p-4 lg:px-body-padding-desktop-center lg:py-4"
         style={{
           transition: "var(--transition-duration)",
           marginTop: visible || !isDesktop ? undefined : -height,
