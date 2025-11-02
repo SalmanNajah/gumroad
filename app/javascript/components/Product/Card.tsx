@@ -64,7 +64,7 @@ export const Card = ({
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
   <article className={classNames(
     "relative bg-background border border-border rounded grid transition-all duration-transition-duration ease-out hover:shadow-[0.25rem_0.25rem_0_var(--color-foreground)]",
-    "lg:grid-cols-[auto_1fr]"
+    "grid-rows-[auto_1fr_auto] lg:grid-rows-none lg:grid-cols-[auto_1fr]"
   )}>
     <figure className={classNames(
       "aspect-square border-b border-border",
@@ -90,7 +90,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
           )}
         </a>
         <small className={classNames(
-          "text-muted overflow-hidden whitespace-nowrap text-ellipsis",
+          "hidden lg:block text-muted overflow-hidden whitespace-nowrap text-ellipsis",
           big && "lg:line-clamp-4"
         )}>
           {product.description}
