@@ -673,8 +673,8 @@ export const CrossSellModal = ({
     <>
       <div className="grid gap-4">
         <h4 dangerouslySetInnerHTML={{ __html: crossSell.description }} />
-        <article className="relative grid grid-rows-[auto_1fr_auto] overflow-hidden rounded-lg border border-border bg-background transition-all hover:shadow-md lg:grid-cols-[auto_1fr] lg:grid-rows-none">
-          <figure className="aspect-square overflow-hidden border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover lg:rounded-l-lg lg:rounded-tr-none lg:border-b-0 lg:border-r">
+        <article className="relative grid grid-rows-[auto_1fr_auto] overflow-hidden rounded border border-border bg-background transition-all hover:shadow-md lg:grid-cols-[auto_1fr] lg:grid-rows-none">
+          <figure className="aspect-square overflow-hidden border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover lg:rounded-l lg:rounded-tr-none lg:border-b-0 lg:border-r">
             {product.thumbnail_url ? (
               <img src={product.thumbnail_url} className="h-full w-full object-cover lg:h-0 lg:min-h-full" />
             ) : null}
@@ -690,14 +690,14 @@ export const CrossSellModal = ({
                 avatarUrl={product.creator.avatar_url}
               />
             </header>
-            <footer className="flex text-sm items-center">
+            <footer className="flex items-center">
               {crossSell.ratings ? (
                 <div className="flex flex-[1_0_max-content] items-center gap-1 p-4 lg:p-0">
                   <span className="rating-average">{crossSell.ratings.average.toFixed(1)}</span>
                   <span>{`(${formatOrderOfMagnitude(crossSell.ratings.count, 1)})`}</span>
                 </div>
               ) : null}
-              <div className="flex-1 p-4 lg:flex-none lg:ml-auto lg:p-0 border-border border-l lg:border-0">
+              <div className="p-4 lg:flex-none lg:ml-auto lg:p-0 border-border border-l lg:border-0">
                 <PriceTag
                   currencyCode={product.currency_code}
                   oldPrice={
