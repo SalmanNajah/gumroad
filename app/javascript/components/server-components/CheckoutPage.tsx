@@ -673,12 +673,16 @@ export const CrossSellModal = ({
     <>
       <div className="grid gap-4">
         <h4 dangerouslySetInnerHTML={{ __html: crossSell.description }} />
-        <article className="product-card horizontal">
-          <figure>{product.thumbnail_url ? <img src={product.thumbnail_url} /> : null}</figure>
-          <section>
-            <header>
+        <article className="relative grid grid-rows-[auto_1fr_auto] overflow-hidden rounded-lg border border-border bg-background transition-all hover:shadow-md lg:grid-cols-[auto_1fr] lg:grid-rows-none">
+          <figure className="aspect-square overflow-hidden border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover lg:rounded-l-lg lg:rounded-tr-none lg:border-b-0 lg:border-r">
+            {product.thumbnail_url ? (
+              <img src={product.thumbnail_url} className="h-full w-full object-cover lg:h-0 lg:min-h-full" />
+            ) : null}
+          </figure>
+          <section className="grid grid-rows-[1fr_auto] lg:gap-6 lg:p-5">
+            <header className="grid gap-3 border-b border-border p-4 lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
               <a className="stretched-link" href={product.url} target="_blank" rel="noreferrer">
-                <h3>{option ? `${product.name} - ${option.name}` : product.name}</h3>
+                <h3 className="truncate">{option ? `${product.name} - ${option.name}` : product.name}</h3>
               </a>
               <AuthorByline
                 name={product.creator.name}
@@ -686,14 +690,14 @@ export const CrossSellModal = ({
                 avatarUrl={product.creator.avatar_url}
               />
             </header>
-            <footer>
+            <footer className="flex text-sm items-center">
               {crossSell.ratings ? (
-                <div className="flex shrink-0 items-center gap-1">
+                <div className="flex flex-[1_0_max-content] items-center gap-1 p-4 lg:p-0">
                   <span className="rating-average">{crossSell.ratings.average.toFixed(1)}</span>
                   <span>{`(${formatOrderOfMagnitude(crossSell.ratings.count, 1)})`}</span>
                 </div>
               ) : null}
-              <div>
+              <div className="flex-1 p-4 lg:flex-none lg:ml-auto lg:p-0 border-border border-l lg:border-0">
                 <PriceTag
                   currencyCode={product.currency_code}
                   oldPrice={
