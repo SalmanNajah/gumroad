@@ -81,11 +81,11 @@ export const Card = ({
   const name = purchase.variants ? `${product.name} - ${purchase.variants}` : product.name;
 
   return (
-    <article className="product-card relative">
-      <figure>
-        <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} />
+    <article className="relative grid grid-rows-[auto_1fr_auto] rounded-md border border-border bg-filled transition-all hover:shadow-[0.25rem_0.25rem_0_var(--color-foreground)]">
+      <figure className="aspect-square overflow-hidden rounded-t border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover">
+        <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} className="w-full h-full object-cover" />
       </figure>
-      <header>
+      <header className="grid grid-rows-[1fr] gap-3 border-b border-border p-4">
         {purchase.download_url ? (
           <a href={purchase.download_url} className="stretched-link" aria-label={name}>
             <h3 itemProp="name">{name}</h3>
@@ -94,33 +94,37 @@ export const Card = ({
           <h3 itemProp="name">{name}</h3>
         )}
       </header>
-      <footer className="relative">
-        {product.creator ? (
-          <AuthorByline
-            name={product.creator.name}
-            profileUrl={product.creator.profile_url}
-            avatarUrl={product.creator.avatar_url ?? undefined}
-          />
-        ) : (
-          <div className="user" />
-        )}
-        <Popover
-          aria-label="Open product action menu"
-          trigger={<Icon name="three-dots" />}
-          open={isPopoverOpen}
-          onToggle={setIsPopoverOpen}
-        >
-          <div role="menu">
-            <div role="menuitem" onClick={toggleArchived}>
-              <Icon name="archive" />
-              &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
+      <footer className="relative flex">
+        <div className="flex flex-1 items-center gap-2 p-4">
+          {product.creator ? (
+            <AuthorByline
+              name={product.creator.name}
+              profileUrl={product.creator.profile_url}
+              avatarUrl={product.creator.avatar_url ?? undefined}
+            />
+          ) : (
+            <div className="flex items-center gap-2" />
+          )}
+        </div>
+        <div className="shrink-0 border-l border-border p-4">
+          <Popover
+            aria-label="Open product action menu"
+            trigger={<Icon name="three-dots" />}
+            open={isPopoverOpen}
+            onToggle={setIsPopoverOpen}
+          >
+            <div role="menu">
+              <div role="menuitem" onClick={toggleArchived}>
+                <Icon name="archive" />
+                &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
+              </div>
+              <div className="danger" role="menuitem" onClick={() => onDelete()}>
+                <Icon name="trash2" />
+                &ensp;Delete permanently
+              </div>
             </div>
-            <div className="danger" role="menuitem" onClick={() => onDelete()}>
-              <Icon name="trash2" />
-              &ensp;Delete permanently
-            </div>
-          </div>
-        </Popover>
+          </Popover>
+        </div>
       </footer>
     </article>
   );
