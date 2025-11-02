@@ -7,7 +7,7 @@ import { PoweredByFooter } from "$app/components/PoweredByFooter";
 import { Layout, Props } from "$app/components/Product/Layout";
 
 const ProductPage = (props: Props) => (
-  <div className="product">
+  <div>
     <Layout {...props} />
     <PoweredByFooter />
   </div>
