@@ -321,8 +321,6 @@ export const Product = ({
     !product.rental?.rent_only &&
     (basePriceCents !== 0 || product.pwyw);
 
-  const onlyTwoChildren = showPrice && sellerByline && !(product.ratings != null && product.ratings.count > 0);
-
   return (
     <article className="relative bg-background border border-border rounded grid lg:grid-cols-[2fr_1fr]">
       <Covers covers={product.covers} mainCoverId={product.main_cover_id} />
@@ -349,7 +347,7 @@ export const Product = ({
             <div className={classNames(
               "p-4 px-5 outline outline-border outline-offset-0 flex items-center gap-2 flex-wrap",
               !showPrice && "col-span-full sm:col-auto",
-              onlyTwoChildren && "sm:col-[2/-1]"
+              (showPrice && sellerByline && !(product.ratings != null && product.ratings.count > 0)) && "sm:col-[2/-1]"
             )}>
               {product.collaborating_user ? (
                 <>
