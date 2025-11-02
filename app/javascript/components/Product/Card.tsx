@@ -70,8 +70,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
       "aspect-square border-b border-border",
       "lg:aspect-auto lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none"
     )}>
-      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full rounded-t lg:rounded-l lg:rounded-tr-none"
-      />
+      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full rounded-t lg:rounded-l lg:rounded-tr-none" />
     </figure>
     <Ribbon quantityRemaining={product.quantity_remaining} />
     <section className="grid grid-rows-[1fr_auto] lg:gap-6 lg:p-4 lg:px-5">
