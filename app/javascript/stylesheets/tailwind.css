@@ -44,6 +44,8 @@
   --shadow: 0.25rem 0.25rem 0 currentColor;
   --shadow-lg: 0.5rem 0.5rem 0 currentColor;
 
+  --transition-duration: 0.14s;
+
   --spacing-product-page: 75.25rem;
   --spacing-body-max-width: 71.25rem;
   --spacing-body-padding-desktop: 4rem;
