@@ -103,11 +103,11 @@ const Card = ({
   nativeType: ProductNativeType;
   creator: Creator | null;
 }) => (
-  <article className="product-card relative">
-    <figure>
-      <Thumbnail url={thumbnailUrl} nativeType={nativeType} />
+  <article className="relative bg-background border border-border rounded transition-all duration-transition-duration ease-out grid grid-rows-[auto_1fr_auto] hover:shadow">
+    <figure className="aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t border-b border-border overflow-hidden">
+      <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="w-full h-full object-cover" />
     </figure>
-    <header>
+    <header className="p-4 grid grid-rows-[1fr] gap-3 border-b border-border">
       {contentUrl ? (
         <a href={contentUrl} className="stretched-link" aria-label={name}>
           <h3 itemProp="name">{name}</h3>
@@ -116,11 +116,13 @@ const Card = ({
         <h3 itemProp="name">{name}</h3>
       )}
     </header>
-    <footer className="relative">
+    <footer className="relative flex">
       {creator ? (
-        <AuthorByline name={creator.name} profileUrl={creator.profile_url} avatarUrl={creator.avatar_url} />
+        <div className="p-4 flex-1 flex items-center gap-2">
+          <AuthorByline name={creator.name} profileUrl={creator.profile_url} avatarUrl={creator.avatar_url} />
+        </div>
       ) : (
-        <div className="user" />
+        <div className="p-4 flex-1 flex items-center gap-2" />
       )}
     </footer>
   </article>
