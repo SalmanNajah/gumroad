@@ -54,10 +54,10 @@ type UpsellCardHeaderProps = {
 };
 
 const UpsellCardHeader = ({ product, variant }: UpsellCardHeaderProps) => (
-  <header>
-    <h3>
+  <header className="grid p-4 lg:p-0 border-b border-border lg:border-0">
+    <h3 className="truncate">
       {product.name}
-      {variant ? <span className="ml-2 text-muted">({variant.name})</span> : null}
+      {variant ? <span className="ml-2 text-muted truncate">({variant.name})</span> : null}
     </h3>
   </header>
 );
@@ -172,12 +172,13 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
         {isLoading ? (
           <div className="dummy h-32"></div>
         ) : product ? (
-          <article className="product-card horizontal">
-            <figure>
-              <Thumbnail url={null} nativeType={product.native_type} />
+          <article className="bg-background text-foreground border border-border rounded grid grid-rows-[auto_1fr_auto] lg:grid-cols-[auto_1fr] hover:shadow transition-all"
+          >
+            <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-cover m-0 aspect-square overflow-hidden border-b border-border lg:aspect-auto lg:h-full lg:border-b-0 lg:border-r lg:border-border lg:rounded-l rounded-t lg:rounded-none">
+              <Thumbnail url={null} nativeType={product.native_type} className="w-full h-full object-cover lg:h-0 lg:min-h-full" />
             </figure>
 
-            <section>
+            <section className="grid grid-rows-[1fr_auto] gap-0 p-0 lg:gap-8 lg:px-6 lg:py-4">
               {isEditable ? (
                 <UpsellCardHeader product={product} variant={variant} />
               ) : (
@@ -185,17 +186,17 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                   <UpsellCardHeader product={product} variant={variant} />
                 </a>
               )}
-              <footer className="text-base">
+              <footer className="flex text-base">
                 {product.review_count > 0 ? (
-                  <div className="flex shrink-0 items-center gap-1">
+                  <div className="flex items-center gap-1 p-4 border-r border-border flex-1 lg:p-0 lg:border-0">
                     <Icon name="solid-star" />
                     <span className="rating-average">{product.average_rating.toFixed(1)}</span>
                     <span>{`(${formatOrderOfMagnitude(product.review_count, 1)})`}</span>
                   </div>
                 ) : (
-                  <div>No reviews</div>
+                  <div className="p-4 border-r border-border flex-1 lg:p-0 lg:border-0">No reviews</div>
                 )}
-                <div>
+                <div className="p-4 lg:p-0">
                   <PriceTag
                     currencyCode={product.currency_code}
                     oldPrice={oldPrice}
