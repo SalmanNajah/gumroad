@@ -9,6 +9,7 @@ import { getCssVariable } from "$app/utils/styles";
 import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { useFollowWishlist } from "$app/components/Wishlist/FollowButton";
+import { classNames } from "$app/utils/classNames";
 
 const nativeTypeThumbnails = require.context("$assets/images/native_types/thumbnails/");
 
@@ -70,25 +71,36 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
   }, [thumbnailUrl]);
 
   return (
-    <article className="product-card horizontal">
-      <figure className="thumbnails" style={{ backgroundColor }}>
+    <article className="relative bg-filled border border-border rounded transition-all duration-transition-duration ease-out hover:shadow grid grid-rows-[auto_1fr_auto] lg:flex lg:flex-row">
+      <figure
+        className={classNames(
+          "aspect-square bg-accent border-b border-border overflow-hidden rounded-t grid gap-1 p-2 bg-no-repeat lg:h-full lg:flex-[1] lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none",
+          wishlist.thumbnails.length >= 2 && "grid-cols-2",
+        )}
+        style={{ backgroundColor }}
+      >
         {wishlist.thumbnails.map(({ url, native_type }, index) => (
           <img
             key={index}
             src={url ?? cast(nativeTypeThumbnails(`./${native_type}.svg`))}
             role="presentation"
             crossOrigin="anonymous"
+            className="aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded border border-border w-full h-full object-cover"
             {...lazyLoadingProps}
           />
         ))}
-        {wishlist.thumbnails.length === 0 ? <img role="presentation" /> : null}
+        {wishlist.thumbnails.length === 0 ? <img role="presentation" className="w-full h-full object-cover" /> : null}
       </figure>
-      <section>
-        <header>
-          <a className="stretched-link" href={wishlist.url}>
-            <h3>{wishlist.name}</h3>
+      <section className="grid grid-rows-[1fr_auto] lg:flex-[2] lg:gap-8 lg:py-4 lg:px-6">
+        <header className="p-4 grid grid-rows-1 gap-3 border-b border-border lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
+          <a className="stretched-link no-underline" href={wishlist.url}>
+            <h3 className="truncate">{wishlist.name}</h3>
           </a>
-          {wishlist.description ? <small>{wishlist.description}</small> : null}
+          {wishlist.description ? (
+            <small className="hidden lg:block text-muted truncate">
+              {wishlist.description}
+            </small>
+          ) : null}
           {hideSeller ? null : (
             <AuthorByline
               name={wishlist.seller.name}
@@ -97,9 +109,9 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
             />
           )}
         </header>
-        <footer>
-          <div className="metrics">
-            <span className="detail">
+        <footer className="flex">
+          <div className="p-4 flex-1 flex items-center gap-3 lg:p-0">
+            <span className="hidden lg:inline">
               <span className="icon icon-file-text-fill" /> {wishlist.product_count}{" "}
               {wishlist.product_count === 1 ? "product" : "products"}
             </span>
@@ -108,8 +120,14 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
               {wishlist.follower_count === 1 ? "follower" : "followers"}
             </span>
           </div>
+          {/* // need to check this part  */}
           {wishlist.can_follow ? (
-            <a onClick={() => void toggleFollowing()} className="actions" role="button" aria-disabled={isLoading}>
+            <a
+              onClick={() => void toggleFollowing()}
+              className="p-4 text-xl border-r border-border last:border-r-0 lg:p-0"
+              role="button"
+              aria-disabled={isLoading}
+            >
               <Icon name={isFollowing ? "bookmark-check-fill" : "bookmark-plus"} />
             </a>
           ) : null}
@@ -118,6 +136,8 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
     </article>
   );
 };
+
+// once verify all the above ones with product.scss and after this think of putting the article and figure into one component instead of repeating the same code again and again
 
 export const CardGrid = ({ children }: { children: React.ReactNode }) => (
   <div className="@container">
