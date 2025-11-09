@@ -46,15 +46,13 @@
   --shadow-lg: 0.5rem 0.5rem 0 currentColor;
 
   --spacing-product-page: 75.25rem;
-  --spacing-body-max-width: 71.25rem;
-  --spacing-body-padding-desktop: 4rem;
   --spacing-body-padding-desktop-center: max((100% - 71.25rem) / 2, 4rem);
   --grid-cols-sidebar: 1fr 3fr;
 
   --loading-spinner: url("~images/loading-rainbow.svg");
   --animate-fade-in-down-out-up: fade-in-down-out-up 5s both;
   --transition-duration: 0.14s;
-  
+
   @keyframes fade-in-down-out-up {
     0% {
       transform: translateY(-100%);
