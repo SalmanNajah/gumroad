@@ -525,7 +525,39 @@ $accent-color: map-get($colors, "pink"); // [1]
 }
 
 .product-card {
-  @extend article;
+  // Base article styles (was @extend article)
+  position: relative;
+  @include bg-color(filled);
+  border: $border;
+  border-radius: border-radius(1);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  > figure {
+    background: url("~images/placeholders/product-cover.png");
+    background-size: cover;
+    border-radius: border-radius(1) border-radius(1) 0 0;
+    border-bottom: $border;
+    overflow: hidden;
+    aspect-ratio: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: spacer(2);
+    @include font-size(1);
+  }
+
+  .rating {
+    @include font-size(1);
+  }
 
   .carousel {
     background: none;
@@ -544,7 +576,13 @@ $accent-color: map-get($colors, "pink"); // [1]
 
   // [6]
   .header {
-    @extend header;
+    // Base header styles (was @extend header)
+    padding: spacer(4);
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: spacer(3);
+    border-bottom: $border;
+
     display: block; // [5]
 
     & > :not(:last-child) {
@@ -552,11 +590,26 @@ $accent-color: map-get($colors, "pink"); // [1]
       padding-bottom: spacer(2);
     }
 
+    h4 {
+      @include max-lines(4);
+
+      @include breakpoint-up(lg) {
+        @include font-size(3);
+      }
+    }
+
+    small {
+      @include text-muted;
+      @include text-singleline;
+    }
+
     .rating {
+      @include font-size(1);
       padding-top: spacer(2); // [5]
     }
 
     .user {
+      @include font-size(1);
       display: inline;
 
       & > :last-child {
@@ -571,7 +624,43 @@ $accent-color: map-get($colors, "pink"); // [1]
   }
 
   .footer {
-    @extend footer;
+    // Base footer styles (was @extend footer)
+    display: flex;
+
+    & > * {
+      padding: spacer(4);
+
+      &:not(:last-child) {
+        border-right: $border;
+      }
+    }
+
+    & > * :first-child {
+      flex: 1;
+
+      &.rating {
+        flex: 1 0 max-content;
+      }
+    }
+
+    & > details {
+      padding: 0;
+      flex-shrink: 0;
+
+      & > summary {
+        padding: spacer(4);
+      }
+    }
+
+    & > .metrics {
+      display: flex;
+      align-items: center;
+      gap: var(--spacer-3);
+    }
+
+    & > .actions {
+      font-size: var(--big-icon-size);
+    }
   }
 
   &.horizontal {
@@ -579,6 +668,8 @@ $accent-color: map-get($colors, "pink"); // [1]
     display: table;
     table-layout: fixed;
     width: 100%;
+    border: $border;
+    border-radius: border-radius(1);
 
     // [6]
     .figure,
@@ -595,10 +686,13 @@ $accent-color: map-get($colors, "pink"); // [1]
       display: block;
       text-align: center;
       background-color: $accent-color; // [1]
+      padding: spacer(2);
 
       > * {
         display: inline-block;
         width: 100%;
+        border: $border;
+        border-radius: border-radius(1);
       }
 
       > :not(:only-child) {
