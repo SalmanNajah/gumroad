@@ -118,11 +118,11 @@ const Card = ({
     </header>
     <footer className="relative flex">
       {creator ? (
-        <div className="p-4 flex-1 flex items-center gap-2">
+        <div className="p-4 flex flex-1">
           <AuthorByline name={creator.name} profileUrl={creator.profile_url} avatarUrl={creator.avatar_url} />
         </div>
       ) : (
-        <div className="p-4 flex-1 flex items-center gap-2" />
+        <div className="p-4 flex flex-1 items-center gap-2" />
       )}
     </footer>
   </article>
