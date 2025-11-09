@@ -103,11 +103,11 @@ const Card = ({
   nativeType: ProductNativeType;
   creator: Creator | null;
 }) => (
-  <article className="relative bg-background border border-border rounded transition-all duration-transition-duration ease-out grid grid-rows-[auto_1fr_auto] hover:shadow">
+  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-transition-duration transition-all hover:shadow">
     <figure className="aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t border-b border-border overflow-hidden">
       <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="w-full h-full object-cover" />
     </figure>
-    <header className="p-4 grid grid-rows-[1fr] gap-3 border-b border-border">
+    <header className="p-4 grid grid-rows-1 gap-3 border-b border-border">
       {contentUrl ? (
         <a href={contentUrl} className="stretched-link" aria-label={name}>
           <h3 itemProp="name">{name}</h3>

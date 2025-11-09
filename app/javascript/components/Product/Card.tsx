@@ -21,14 +21,14 @@ export const Card = ({
   footerAction?: React.ReactNode;
   eager?: boolean | undefined;
 }) => (
-  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] transition-all duration-transition-duration ease-out hover:shadow-[0.25rem_0.25rem_0_var(--color-foreground)]">
-    <figure className="aspect-square rounded-t">
-      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="h-full w-full object-cover rounded-t" />
+  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-transition-duration transition-all hover:shadow">
+    <figure className="aspect-square rounded-t bg-[url('~images/placeholders/product-cover.png')] bg-cover border-b border-border overflow-hidden">
+      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="h-full w-full object-cover" />
     </figure>
     <Ribbon quantityRemaining={product.quantity_remaining} />
     <header className="p-4 grid grid-rows-1 gap-3 border-b border-border">
       <a href={product.url} className="stretched-link">
-        <h4 itemProp="name" className="line-clamp-4 lg:text-[1.25rem] lg:leading-[1.3]">
+        <h4 itemProp="name" className="line-clamp-4 lg:text-xl">
           {product.name}
         </h4>
       </a>
@@ -42,7 +42,7 @@ export const Card = ({
       {product.ratings?.count ? <Rating ratings={product.ratings} /> : null}
     </header>
     <footer className="flex">
-      <div className={classNames("p-4 flex-1", footerAction && "border-r border-border")}>
+      <div className="p-4 flex-1 border-r border-border">
         <PriceTag
           url={product.url}
           currencyCode={product.currency_code}
@@ -62,35 +62,33 @@ export const Card = ({
 );
 
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
-  <article className={classNames(
-    "relative bg-background border border-border rounded grid transition-all duration-transition-duration ease-out hover:shadow-[0.25rem_0.25rem_0_var(--color-foreground)]",
-    "grid-rows-[auto_1fr_auto] lg:grid-rows-none lg:grid-cols-[auto_1fr]"
+  <article className={classNames("relative bg-background border border-border rounded grid duration-transition-duration transition-all hover:shadow",
+    "lg:grid-rows-none lg:grid-cols-[auto_1fr]"
   )}>
     <figure className={classNames(
-      "aspect-square border-b border-border",
-      "lg:aspect-auto lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none"
+      "aspect-square border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t overflow-hidden",
+      "lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none"
     )}>
-      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full rounded-t lg:rounded-l lg:rounded-tr-none" />
+      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full object-cover" />
     </figure>
     <Ribbon quantityRemaining={product.quantity_remaining} />
     <section className="grid grid-rows-[1fr_auto] lg:gap-6 lg:p-4 lg:px-5">
-      <header className={classNames(
-        "p-4 grid grid-rows-1 gap-3 border-b border-border",
+      <header className={classNames("p-4 grid grid-rows-1 gap-3 border-b border-border",
         "lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0"
       )}>
         <a href={product.url} className="stretched-link" draggable="false">
           {big ? (
-            <h2 itemProp="name" className="line-clamp-3">
+            <h2 itemProp="name" className="line-clamp-3 gap-3">
               {product.name}
             </h2>
           ) : (
-            <h3 itemProp="name" className="overflow-hidden whitespace-nowrap text-ellipsis">
+            <h3 itemProp="name" className="truncate">
               {product.name}
             </h3>
           )}
         </a>
         <small className={classNames(
-          "hidden lg:block text-muted overflow-hidden whitespace-nowrap text-ellipsis",
+          "hidden lg:block text-muted truncate",
           big && "lg:line-clamp-4"
         )}>
           {product.description}
