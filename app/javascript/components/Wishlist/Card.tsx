@@ -110,7 +110,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
           )}
         </header>
         <footer className="flex">
-          <div className="p-4 flex-1 flex items-center gap-3 lg:p-0">
+          <div className="p-4 flex-1 flex items-center gap-3 lg:p-0 not-last:border-r lg:not-last:border-r-0">
             <span className="hidden lg:inline">
               <span className="icon icon-file-text-fill" /> {wishlist.product_count}{" "}
               {wishlist.product_count === 1 ? "product" : "products"}
@@ -120,11 +120,10 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
               {wishlist.follower_count === 1 ? "follower" : "followers"}
             </span>
           </div>
-          {/* // need to check this part  */}
           {wishlist.can_follow ? (
             <a
               onClick={() => void toggleFollowing()}
-              className="p-4 text-xl border-r border-border last:border-r-0 lg:p-0"
+              className="p-4 text-xl lg:p-0"
               role="button"
               aria-disabled={isLoading}
             >
@@ -136,8 +135,6 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
     </article>
   );
 };
-
-// once verify all the above ones with product.scss and after this think of putting the article and figure into one component instead of repeating the same code again and again
 
 export const CardGrid = ({ children }: { children: React.ReactNode }) => (
   <div className="@container">
