@@ -71,7 +71,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
   }, [thumbnailUrl]);
 
   return (
-    <article className="relative bg-filled border border-border rounded transition-all duration-transition-duration ease-out hover:shadow grid grid-rows-[auto_1fr_auto] lg:flex lg:flex-row">
+    <article className="relative bg-filled border border-border rounded transition-all duration-150 ease-out hover:shadow grid grid-rows-[auto_1fr_auto] lg:flex lg:flex-row">
       <figure
         className={classNames(
           "aspect-square bg-accent border-b border-border overflow-hidden rounded-t grid gap-1 p-2 bg-no-repeat lg:h-full lg:flex-[1] lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none",

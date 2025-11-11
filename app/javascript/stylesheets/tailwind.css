@@ -51,7 +51,6 @@
 
   --loading-spinner: url("~images/loading-rainbow.svg");
   --animate-fade-in-down-out-up: fade-in-down-out-up 5s both;
-  --transition-duration: 0.14s;
 
   @keyframes fade-in-down-out-up {
     0% {

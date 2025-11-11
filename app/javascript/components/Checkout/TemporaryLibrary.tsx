@@ -103,7 +103,7 @@ const Card = ({
   nativeType: ProductNativeType;
   creator: Creator | null;
 }) => (
-  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-transition-duration transition-all hover:shadow">
+  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow">
     <figure className="aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t border-b border-border overflow-hidden">
       <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="w-full h-full object-cover" />
     </figure>

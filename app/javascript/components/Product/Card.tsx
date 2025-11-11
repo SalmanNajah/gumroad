@@ -21,7 +21,7 @@ export const Card = ({
   footerAction?: React.ReactNode;
   eager?: boolean | undefined;
 }) => (
-  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-transition-duration transition-all hover:shadow">
+  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow">
     <figure className="aspect-square rounded-t bg-[url('~images/placeholders/product-cover.png')] bg-cover border-b border-border overflow-hidden">
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="h-full w-full object-cover" />
     </figure>
@@ -62,7 +62,7 @@ export const Card = ({
 );
 
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
-  <article className={classNames("relative bg-background border border-border rounded grid duration-transition-duration transition-all hover:shadow",
+  <article className={classNames("relative bg-background border border-border rounded grid duration-150 transition-all hover:shadow",
     "lg:grid-rows-none lg:grid-cols-[auto_1fr]"
   )}>
     <figure className={classNames(
