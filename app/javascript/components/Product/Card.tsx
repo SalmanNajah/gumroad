@@ -62,7 +62,7 @@ export const Card = ({
 );
 
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
-  <article className={classNames("relative bg-background border border-border rounded grid duration-150 transition-all hover:shadow",
+  <article className={classNames("relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow",
     "lg:grid-rows-none lg:grid-cols-[auto_1fr]"
   )}>
     <figure className={classNames(

@@ -54,7 +54,7 @@ type UpsellCardHeaderProps = {
 };
 
 const UpsellCardHeader = ({ product, variant }: UpsellCardHeaderProps) => (
-  <header className="grid p-4 lg:p-0 border-b border-border lg:border-0">
+  <header className="grid gap-3 p-4 lg:p-0 border-b border-border lg:border-0">
     <h3 className="truncate">
       {product.name}
       {variant ? <span className="ml-2 text-muted truncate">({variant.name})</span> : null}
@@ -172,9 +172,9 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
         {isLoading ? (
           <div className="dummy h-32"></div>
         ) : product ? (
-          <article className="bg-background text-foreground border border-border rounded grid grid-rows-[auto_1fr_auto] lg:grid-cols-[auto_1fr] hover:shadow transition-all"
+          <article className="bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] lg:grid-cols-[auto_1fr] duration-150 transition-all hover:shadow"
           >
-            <figure className="bg-[url('~images/placeholders/product-cover.png')] bg-cover m-0 aspect-square overflow-hidden border-b border-border lg:aspect-auto lg:h-full lg:border-b-0 lg:border-r lg:border-border lg:rounded-l rounded-t lg:rounded-none">
+            <figure className="aspect-square border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t overflow-hidden lg:aspect-auto lg:h-full lg:border-b-0 lg:border-r lg:rounded-l lg:rounded-none">
               <Thumbnail url={null} nativeType={product.native_type} className="w-full h-full object-cover lg:h-0 lg:min-h-full" />
             </figure>
 
@@ -186,7 +186,7 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                   <UpsellCardHeader product={product} variant={variant} />
                 </a>
               )}
-              <footer className="flex text-base">
+              <footer className="flex">
                 {product.review_count > 0 ? (
                   <div className="flex items-center gap-1 p-4 border-r border-border flex-1 lg:p-0 lg:border-0">
                     <Icon name="solid-star" />
