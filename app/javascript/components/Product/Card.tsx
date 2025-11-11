@@ -72,7 +72,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full object-cover" />
     </figure>
     <Ribbon quantityRemaining={product.quantity_remaining} />
-    <section className="grid grid-rows-[1fr_auto] lg:gap-6 lg:p-4 lg:px-5">
+    <section className="grid grid-rows-[1fr_auto] gap-0 p-0 lg:gap-8 lg:px-6 lg:py-4">
       <header className={classNames("p-4 grid grid-rows-1 gap-3 border-b border-border",
         "lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0"
       )}>
