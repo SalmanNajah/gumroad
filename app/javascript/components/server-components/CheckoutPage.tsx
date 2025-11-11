@@ -697,7 +697,7 @@ export const CrossSellModal = ({
                   <span>{`(${formatOrderOfMagnitude(crossSell.ratings.count, 1)})`}</span>
                 </div>
               ) : null}
-              <div className="p-4 lg:flex-none lg:ml-auto lg:p-0 border-border border-l lg:border-0">
+              <div className="p-4 lg:p-0 border-border border-l lg:border-0">
                 <PriceTag
                   currencyCode={product.currency_code}
                   oldPrice={
