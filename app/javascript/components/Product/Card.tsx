@@ -41,8 +41,8 @@ export const Card = ({
       ) : null}
       {product.ratings?.count ? <Rating ratings={product.ratings} /> : null}
     </header>
-    <footer className="flex">
-      <div className="p-4 flex-1 border-r border-border">
+    <footer className="flex *:p-4 *:not-last:border-r *:not-last:border-border">
+      <div className="flex-1">
         <PriceTag
           url={product.url}
           currencyCode={product.currency_code}
