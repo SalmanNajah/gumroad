@@ -71,11 +71,11 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
   }, [thumbnailUrl]);
 
   return (
-    <article className="relative bg-filled border border-border rounded transition-all duration-150 ease-out hover:shadow grid grid-rows-[auto_1fr_auto] lg:flex lg:flex-row">
-      <figure
-        className={classNames(
-          "aspect-square bg-accent border-b border-border overflow-hidden rounded-t grid gap-1 p-2 bg-no-repeat lg:h-full lg:flex-[1] lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none",
+    <article className="relative bg-background border border-border rounded transition-all duration-150 hover:shadow grid grid-rows-[auto_1fr_auto] lg:flex lg:flex-row">
+      <figure className={classNames("aspect-square border-b border-border overflow-hidden rounded-t bg-[url('~images/placeholders/product-cover.png')] bg-cover",
+          wishlist.thumbnails.length > 0 && "!bg-none bg-accent grid gap-1 p-2",
           wishlist.thumbnails.length >= 2 && "grid-cols-2",
+          "lg:h-full lg:flex-[1] lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none"
         )}
         style={{ backgroundColor }}
       >
@@ -85,7 +85,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
             src={url ?? cast(nativeTypeThumbnails(`./${native_type}.svg`))}
             role="presentation"
             crossOrigin="anonymous"
-            className="aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded border border-border w-full h-full object-cover"
+            className="bg-cover rounded border w-full h-full object-cover"
             {...lazyLoadingProps}
           />
         ))}
