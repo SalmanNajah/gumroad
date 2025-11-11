@@ -673,14 +673,14 @@ export const CrossSellModal = ({
     <>
       <div className="grid gap-4">
         <h4 dangerouslySetInnerHTML={{ __html: crossSell.description }} />
-        <article className="relative grid grid-rows-[auto_1fr_auto] overflow-hidden rounded border border-border bg-background transition-all hover:shadow-md lg:grid-cols-[auto_1fr] lg:grid-rows-none">
+        <article className="bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] lg:grid-cols-[auto_1fr] duration-150 transition-all hover:shadow">
           <figure className="aspect-square overflow-hidden border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover lg:rounded-l lg:rounded-tr-none lg:border-b-0 lg:border-r">
             {product.thumbnail_url ? (
               <img src={product.thumbnail_url} className="h-full w-full object-cover lg:h-0 lg:min-h-full" />
             ) : null}
           </figure>
-          <section className="grid grid-rows-[1fr_auto] lg:gap-6 lg:p-5">
-            <header className="grid gap-3 border-b border-border p-4 lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
+          <section className="grid grid-rows-[1fr_auto] gap-0 p-0 lg:gap-8 lg:px-6 lg:py-4">
+            <header className="p-4 grid grid-rows-1 gap-3 border-b border-border lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-0">
               <a className="stretched-link" href={product.url} target="_blank" rel="noreferrer">
                 <h3 className="truncate">{option ? `${product.name} - ${option.name}` : product.name}</h3>
               </a>
