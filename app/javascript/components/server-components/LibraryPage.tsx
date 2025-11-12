@@ -81,8 +81,8 @@ export const Card = ({
   const name = purchase.variants ? `${product.name} - ${purchase.variants}` : product.name;
 
   return (
-    <article className="relative grid grid-rows-[auto_1fr_auto] rounded-md border border-border bg-filled transition-all hover:shadow-[0.25rem_0.25rem_0_var(--color-foreground)]">
-      <figure className="aspect-square overflow-hidden rounded-t border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover">
+    <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow">
+      <figure className="aspect-square rounded-t bg-[url('~images/placeholders/product-cover.png')] bg-cover border-b border-border overflow-hidden">
         <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} className="w-full h-full object-cover" />
       </figure>
       <header className="grid grid-rows-[1fr] gap-3 border-b border-border p-4">
@@ -94,8 +94,8 @@ export const Card = ({
           <h3 itemProp="name">{name}</h3>
         )}
       </header>
-      <footer className="relative flex">
-        <div className="flex flex-1 items-center gap-2 p-4">
+      <footer className="relative flex *:p-4 *:not-last:border-r *:not-last:border-border">
+        <div className="flex flex-1 items-center gap-2">
           {product.creator ? (
             <AuthorByline
               name={product.creator.name}
@@ -106,25 +106,23 @@ export const Card = ({
             <div className="flex items-center gap-2" />
           )}
         </div>
-        <div className="shrink-0 border-l border-border p-4">
-          <Popover
-            aria-label="Open product action menu"
-            trigger={<Icon name="three-dots" />}
-            open={isPopoverOpen}
-            onToggle={setIsPopoverOpen}
-          >
-            <div role="menu">
-              <div role="menuitem" onClick={toggleArchived}>
-                <Icon name="archive" />
-                &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
-              </div>
-              <div className="danger" role="menuitem" onClick={() => onDelete()}>
-                <Icon name="trash2" />
-                &ensp;Delete permanently
-              </div>
+        <Popover
+          aria-label="Open product action menu"
+          trigger={<Icon name="three-dots" />}
+          open={isPopoverOpen}
+          onToggle={setIsPopoverOpen}
+        >
+          <div role="menu">
+            <div role="menuitem" onClick={toggleArchived}>
+              <Icon name="archive" />
+              &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
             </div>
-          </Popover>
-        </div>
+            <div className="danger" role="menuitem" onClick={() => onDelete()}>
+              <Icon name="trash2" />
+              &ensp;Delete permanently
+            </div>
+          </div>
+        </Popover>
       </footer>
     </article>
   );
