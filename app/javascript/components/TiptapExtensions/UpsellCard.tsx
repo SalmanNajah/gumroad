@@ -184,14 +184,14 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
             </ProductCardFigure>
 
             <ProductCardSection>
-                {isEditable ? (
+              {isEditable ? (
+                <UpsellCardHeader product={product} variant={variant} />
+              ) : (
+                <a href={getUpsellUrl(id ?? "", product.permalink)} className="stretched-link">
                   <UpsellCardHeader product={product} variant={variant} />
-                ) : (
-                  <a href={getUpsellUrl(id ?? "", product.permalink)} className="stretched-link">
-                    <UpsellCardHeader product={product} variant={variant} />
-                  </a>
-                )}
-                <footer className="flex text-base *:p-4 *:not-last:border-r *:not-last:border-border lg:*:p-0 lg:*:not-last:border-r-0">
+                </a>
+              )}
+              <footer className="flex text-base *:p-4 *:not-last:border-r *:not-last:border-border lg:*:p-0 lg:*:not-last:border-r-0">
                 {product.review_count > 0 ? (
                   <div className="flex items-center gap-1 flex-[1_0_max-content]">
                     <Icon name="solid-star" />
