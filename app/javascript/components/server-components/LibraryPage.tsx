@@ -18,6 +18,11 @@ import { Layout } from "$app/components/Library/Layout";
 import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
+import {
+  ProductCardArticle,
+  ProductCardFigure,
+  ProductCardHeader,
+} from "$app/components/Product/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
@@ -81,11 +86,11 @@ export const Card = ({
   const name = purchase.variants ? `${product.name} - ${purchase.variants}` : product.name;
 
   return (
-    <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow">
-      <figure className="aspect-square rounded-t bg-[url('~images/placeholders/product-cover.png')] bg-cover border-b border-border overflow-hidden">
+    <ProductCardArticle>
+      <ProductCardFigure>
         <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} className="w-full h-full object-cover" />
-      </figure>
-      <header className="grid grid-rows-[1fr] gap-3 border-b border-border p-4">
+      </ProductCardFigure>
+      <ProductCardHeader>
         {purchase.download_url ? (
           <a href={purchase.download_url} className="stretched-link" aria-label={name}>
             <h3 itemProp="name">{name}</h3>
@@ -93,7 +98,7 @@ export const Card = ({
         ) : (
           <h3 itemProp="name">{name}</h3>
         )}
-      </header>
+      </ProductCardHeader>
       <footer className="relative flex *:p-4 *:not-last:border-r *:not-last:border-border">
         <div className="flex flex-1 items-center gap-2">
           {product.creator ? (
@@ -124,7 +129,7 @@ export const Card = ({
           </div>
         </Popover>
       </footer>
-    </article>
+    </ProductCardArticle>
   );
 };
 

@@ -11,6 +11,12 @@ import { assertResponseError, request } from "$app/utils/request";
 
 import { Icon } from "$app/components/Icons";
 import { PriceTag } from "$app/components/Product/PriceTag";
+import {
+  ProductCardArticle,
+  ProductCardFigure,
+  ProductCardHeader,
+  ProductCardSection,
+} from "$app/components/Product/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
 import { useRunOnce } from "$app/components/useRunOnce";
@@ -54,12 +60,12 @@ type UpsellCardHeaderProps = {
 };
 
 const UpsellCardHeader = ({ product, variant }: UpsellCardHeaderProps) => (
-  <header className="p-4 grid grid-rows-1 gap-3 border-b border-border lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-0">
+  <ProductCardHeader variant="horizontal">
     <h3 className="truncate">
       {product.name}
       {variant ? <span className="ml-2 text-muted truncate">({variant.name})</span> : null}
     </h3>
-  </header>
+  </ProductCardHeader>
 );
 
 export const UpsellCard = TiptapNode.create({
@@ -172,21 +178,20 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
         {isLoading ? (
           <div className="dummy h-32"></div>
         ) : product ? (
-          <article className="bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] lg:grid-cols-[auto_1fr] duration-150 transition-all hover:shadow"
-          >
-            <figure className="aspect-square border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t overflow-hidden lg:aspect-auto lg:h-full lg:border-b-0 lg:border-r lg:rounded-l lg:rounded-none">
+          <ProductCardArticle variant="horizontal">
+            <ProductCardFigure variant="horizontal" className="lg:aspect-auto lg:h-full">
               <Thumbnail url={null} nativeType={product.native_type} className="w-full h-full object-cover lg:h-0 lg:min-h-full" />
-            </figure>
+            </ProductCardFigure>
 
-            <section className="grid grid-rows-[1fr_auto] gap-0 p-0 lg:gap-8 lg:px-6 lg:py-4">
-              {isEditable ? (
-                <UpsellCardHeader product={product} variant={variant} />
-              ) : (
-                <a href={getUpsellUrl(id ?? "", product.permalink)} className="stretched-link">
+            <ProductCardSection>
+                {isEditable ? (
                   <UpsellCardHeader product={product} variant={variant} />
-                </a>
-              )}
-              <footer className="flex text-base *:p-4 *:not-last:border-r *:not-last:border-border lg:*:p-0 lg:*:not-last:border-r-0">
+                ) : (
+                  <a href={getUpsellUrl(id ?? "", product.permalink)} className="stretched-link">
+                    <UpsellCardHeader product={product} variant={variant} />
+                  </a>
+                )}
+                <footer className="flex text-base *:p-4 *:not-last:border-r *:not-last:border-border lg:*:p-0 lg:*:not-last:border-r-0">
                 {product.review_count > 0 ? (
                   <div className="flex items-center gap-1 flex-[1_0_max-content]">
                     <Icon name="solid-star" />
@@ -206,8 +211,8 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                   />
                 </div>
               </footer>
-            </section>
-          </article>
+            </ProductCardSection>
+          </ProductCardArticle>
         ) : null}
       </div>
       <NodeViewContent />

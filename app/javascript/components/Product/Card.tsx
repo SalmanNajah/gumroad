@@ -7,6 +7,12 @@ import { formatOrderOfMagnitude } from "$app/utils/formatOrderOfMagnitude";
 import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { PriceTag } from "$app/components/Product/PriceTag";
+import {
+  ProductCardArticle,
+  ProductCardFigure,
+  ProductCardHeader,
+  ProductCardSection,
+} from "$app/components/Product/ProductCard";
 import { Ribbon } from "$app/components/Product/Ribbon";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 
@@ -21,12 +27,12 @@ export const Card = ({
   footerAction?: React.ReactNode;
   eager?: boolean | undefined;
 }) => (
-  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow">
-    <figure className="aspect-square rounded-t bg-[url('~images/placeholders/product-cover.png')] bg-cover border-b border-border overflow-hidden">
+  <ProductCardArticle>
+    <ProductCardFigure>
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="h-full w-full object-cover" />
-    </figure>
+    </ProductCardFigure>
     <Ribbon quantityRemaining={product.quantity_remaining} />
-    <header className="p-4 grid grid-rows-1 gap-3 border-b border-border">
+    <ProductCardHeader>
       <a href={product.url} className="stretched-link">
         <h4 itemProp="name" className="line-clamp-4 lg:text-xl">
           {product.name}
@@ -40,7 +46,7 @@ export const Card = ({
         />
       ) : null}
       {product.ratings?.count ? <Rating ratings={product.ratings} /> : null}
-    </header>
+    </ProductCardHeader>
     <footer className="flex *:p-4 *:not-last:border-r *:not-last:border-border">
       <div className="flex-1">
         <PriceTag
@@ -58,24 +64,17 @@ export const Card = ({
       {footerAction}
     </footer>
     {badge}
-  </article>
+  </ProductCardArticle>
 );
 
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
-  <article className={classNames("relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow",
-    "lg:grid-rows-none lg:grid-cols-[auto_1fr]"
-  )}>
-    <figure className={classNames(
-      "aspect-square border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t overflow-hidden",
-      "lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none"
-    )}>
+  <ProductCardArticle variant="horizontal">
+    <ProductCardFigure variant="horizontal">
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full object-cover" />
-    </figure>
+    </ProductCardFigure>
     <Ribbon quantityRemaining={product.quantity_remaining} />
-    <section className="grid grid-rows-[1fr_auto] gap-0 p-0 lg:gap-8 lg:px-6 lg:py-4">
-      <header className={classNames("p-4 grid grid-rows-1 gap-3 border-b border-border",
-        "lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0"
-      )}>
+    <ProductCardSection>
+      <ProductCardHeader variant="horizontal">
         <a href={product.url} className="stretched-link" draggable="false">
           {big ? (
             <h2 itemProp="name" className="line-clamp-3 gap-3">
@@ -100,7 +99,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
             avatarUrl={product.seller.avatar_url ?? undefined}
           />
         ) : null}
-      </header>
+      </ProductCardHeader>
       <footer className="flex items-center">
         <div className="p-4 border-r border-border flex-1 lg:p-0 lg:border-r-0">
           <PriceTag
@@ -121,8 +120,8 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
           </div>
         ) : null}
       </footer>
-    </section>
-  </article>
+    </ProductCardSection>
+  </ProductCardArticle>
 );
 
 const Rating = ({ ratings, style }: { ratings: Ratings; style?: React.CSSProperties }) => (

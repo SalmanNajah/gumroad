@@ -8,6 +8,12 @@ import { getCssVariable } from "$app/utils/styles";
 
 import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
+import {
+  ProductCardArticle,
+  ProductCardFigure,
+  ProductCardHeader,
+  ProductCardSection,
+} from "$app/components/Product/ProductCard";
 import { useFollowWishlist } from "$app/components/Wishlist/FollowButton";
 import { classNames } from "$app/utils/classNames";
 
@@ -71,11 +77,12 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
   }, [thumbnailUrl]);
 
   return (
-    <article className="relative bg-background border border-border rounded transition-all duration-150 hover:shadow grid grid-rows-[auto_1fr_auto] lg:grid-rows-none lg:grid-cols-[1fr_2fr]">
-      <figure className={classNames("aspect-square border-b border-border overflow-hidden rounded-t bg-[url('~images/placeholders/product-cover.png')] bg-cover",
+    <ProductCardArticle variant="horizontal" className="lg:grid-cols-[1fr_2fr]">
+      <ProductCardFigure
+        variant="horizontal"
+        className={classNames(
           wishlist.thumbnails.length > 0 && "!bg-none bg-accent grid gap-1 p-2",
-          wishlist.thumbnails.length >= 2 && "grid-cols-2",
-          "lg:border-r lg:border-b-0 lg:rounded-l lg:rounded-tr-none"
+          wishlist.thumbnails.length >= 2 && "grid-cols-2"
         )}
         style={{ backgroundColor }}
       >
@@ -90,9 +97,9 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
           />
         ))}
         {wishlist.thumbnails.length === 0 ? <img role="presentation" className="w-full h-full object-cover" /> : null}
-      </figure>
-      <section className="grid grid-rows-[1fr_auto] gap-0 p-0 lg:gap-6 lg:px-5 lg:py-4">
-        <header className="p-4 grid grid-rows-1 gap-3 border-b border-border lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
+      </ProductCardFigure>
+      <ProductCardSection>
+        <ProductCardHeader variant="horizontal">
           <a className="stretched-link no-underline" href={wishlist.url}>
             <h3 className="truncate">{wishlist.name}</h3>
           </a>
@@ -108,7 +115,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
               avatarUrl={wishlist.seller.avatar_url}
             />
           )}
-        </header>
+        </ProductCardHeader>
         <footer className="flex">
           <div className="p-4 flex-1 flex items-center gap-3 lg:p-0 not-last:border-r lg:not-last:border-r-0">
             <span className="hidden lg:inline">
@@ -131,8 +138,8 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
             </a>
           ) : null}
         </footer>
-      </section>
-    </article>
+      </ProductCardSection>
+    </ProductCardArticle>
   );
 };
 

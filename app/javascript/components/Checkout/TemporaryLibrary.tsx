@@ -7,6 +7,11 @@ import { useState } from "$app/components/Checkout/payment";
 import { CreateAccountForm } from "$app/components/Checkout/Receipt";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
+import {
+  ProductCardArticle,
+  ProductCardFigure,
+  ProductCardHeader,
+} from "$app/components/Product/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Result } from "$app/components/server-components/CheckoutPage";
@@ -103,11 +108,11 @@ const Card = ({
   nativeType: ProductNativeType;
   creator: Creator | null;
 }) => (
-  <article className="relative bg-background border border-border rounded grid grid-rows-[auto_1fr_auto] duration-150 transition-all hover:shadow">
-    <figure className="aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover rounded-t border-b border-border overflow-hidden">
+  <ProductCardArticle>
+    <ProductCardFigure>
       <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="w-full h-full object-cover" />
-    </figure>
-    <header className="p-4 grid grid-rows-1 gap-3 border-b border-border">
+    </ProductCardFigure>
+    <ProductCardHeader>
       {contentUrl ? (
         <a href={contentUrl} className="stretched-link" aria-label={name}>
           <h3 itemProp="name">{name}</h3>
@@ -115,7 +120,7 @@ const Card = ({
       ) : (
         <h3 itemProp="name">{name}</h3>
       )}
-    </header>
+    </ProductCardHeader>
     <footer className="relative flex">
       {creator ? (
         <div className="p-4 flex flex-1">
@@ -125,5 +130,5 @@ const Card = ({
         <div className="p-4 flex flex-1 items-center gap-2" />
       )}
     </footer>
-  </article>
+  </ProductCardArticle>
 );
