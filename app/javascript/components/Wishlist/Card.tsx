@@ -117,7 +117,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
           )}
         </ProductCardHeader>
         <footer className="flex">
-          <div className="p-4 flex-1 flex items-center gap-3 lg:p-0 not-last:border-r lg:not-last:border-r-0">
+          <div className="p-4 flex-1 flex items-center gap-3 lg:p-0">
             <span className="hidden lg:inline">
               <span className="icon icon-file-text-fill" /> {wishlist.product_count}{" "}
               {wishlist.product_count === 1 ? "product" : "products"}
@@ -130,7 +130,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
           {wishlist.can_follow ? (
             <a
               onClick={() => void toggleFollowing()}
-              className="p-4 text-xl lg:p-0"
+              className="p-4 border-l border-border text-xl lg:p-0 lg:border-l-0"
               role="button"
               aria-disabled={isLoading}
             >
