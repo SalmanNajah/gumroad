@@ -99,8 +99,8 @@ export const Card = ({
           <h3 itemProp="name">{name}</h3>
         )}
       </ProductCardHeader>
-      <footer className="relative flex">
-        <div className="p-4 flex flex-1 items-center gap-2">
+      <footer className="relative flex *:p-4 *:not-last:border-r *:not-last:border-border">
+        <div className="flex flex-1 items-center gap-2">
           {product.creator ? (
             <AuthorByline
               name={product.creator.name}
@@ -111,25 +111,23 @@ export const Card = ({
             <div className="flex items-center gap-2" />
           )}
         </div>
-        <div className="p-4 border-l border-border">
-          <Popover
-            aria-label="Open product action menu"
-            trigger={<Icon name="three-dots" />}
-            open={isPopoverOpen}
-            onToggle={setIsPopoverOpen}
-          >
-            <div role="menu">
-              <div role="menuitem" onClick={toggleArchived}>
-                <Icon name="archive" />
-                &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
-              </div>
-              <div className="danger" role="menuitem" onClick={() => onDelete()}>
-                <Icon name="trash2" />
-                &ensp;Delete permanently
-              </div>
+        <Popover
+          aria-label="Open product action menu"
+          trigger={<Icon name="three-dots" />}
+          open={isPopoverOpen}
+          onToggle={setIsPopoverOpen}
+        >
+          <div role="menu">
+            <div role="menuitem" onClick={toggleArchived}>
+              <Icon name="archive" />
+              &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
             </div>
-          </Popover>
-        </div>
+            <div className="danger" role="menuitem" onClick={() => onDelete()}>
+              <Icon name="trash2" />
+              &ensp;Delete permanently
+            </div>
+          </div>
+        </Popover>
       </footer>
     </ProductCardArticle>
   );

@@ -47,8 +47,8 @@ export const Card = ({
       ) : null}
       {product.ratings?.count ? <Rating ratings={product.ratings} /> : null}
     </ProductCardHeader>
-    <footer className="flex">
-      <div className="p-4 flex-1">
+    <footer className="flex *:p-4 *:not-last:border-r *:not-last:border-border">
+      <div className="flex-1">
         <PriceTag
           url={product.url}
           currencyCode={product.currency_code}
@@ -61,9 +61,7 @@ export const Card = ({
           creatorName={product.seller?.name}
         />
       </div>
-        <div className="border-l border-border flex items-center">
-          {footerAction}
-        </div>
+      {footerAction}
     </footer>
     {badge}
   </ProductCardArticle>
@@ -103,7 +101,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
         ) : null}
       </ProductCardHeader>
       <footer className="flex items-center">
-        <div className="p-4 flex-1 lg:p-0">
+        <div className="p-4 border-r border-border flex-1 lg:p-0 lg:border-r-0">
           <PriceTag
             url={product.url}
             currencyCode={product.currency_code}
@@ -117,7 +115,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
           />
         </div>
         {product.ratings?.count ? (
-          <div className="p-4 border-l border-border lg:p-0 lg:border-l-0">
+          <div className="p-4 lg:p-0">
             <Rating ratings={product.ratings} />
           </div>
         ) : null}
