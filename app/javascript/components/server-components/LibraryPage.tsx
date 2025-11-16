@@ -99,8 +99,8 @@ export const Card = ({
           <h3 itemProp="name">{name}</h3>
         )}
       </ProductCardHeader>
-      <footer className="relative flex *:p-4">
-        <div className="flex-1 border-r border-border">
+      <footer className="relative flex">
+        <div className="flex-1 p-4 border-r border-border">
           {product.creator ? (
             <AuthorByline
               name={product.creator.name}
@@ -111,23 +111,25 @@ export const Card = ({
             <div className="flex items-center gap-2" />
           )}
         </div>
-        <Popover
-          aria-label="Open product action menu"
-          trigger={<Icon name="three-dots" />}
-          open={isPopoverOpen}
-          onToggle={setIsPopoverOpen}
-        >
-          <div role="menu">
-            <div role="menuitem" onClick={toggleArchived}>
-              <Icon name="archive" />
-              &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
+        <div className="p-4">
+          <Popover
+            aria-label="Open product action menu"
+            trigger={<Icon name="three-dots" />}
+            open={isPopoverOpen}
+            onToggle={setIsPopoverOpen}
+          >
+            <div role="menu">
+              <div role="menuitem" onClick={toggleArchived}>
+                <Icon name="archive" />
+                &ensp;{purchase.is_archived ? "Unarchive" : "Archive"}
+              </div>
+              <div className="danger" role="menuitem" onClick={() => onDelete()}>
+                <Icon name="trash2" />
+                &ensp;Delete permanently
+              </div>
             </div>
-            <div className="danger" role="menuitem" onClick={() => onDelete()}>
-              <Icon name="trash2" />
-              &ensp;Delete permanently
-            </div>
-          </div>
-        </Popover>
+          </Popover>
+        </div>
       </footer>
     </ProductCardArticle>
   );
