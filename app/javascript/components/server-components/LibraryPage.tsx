@@ -99,8 +99,8 @@ export const Card = ({
           <h3 itemProp="name">{name}</h3>
         )}
       </ProductCardHeader>
-      <footer className="relative flex *:p-4 *:not-last:border-r *:not-last:border-border">
-        <div className="flex flex-1 items-center gap-2">
+      <footer className="relative flex *:p-4">
+        <div className="flex-1 border-r border-border">
           {product.creator ? (
             <AuthorByline
               name={product.creator.name}
