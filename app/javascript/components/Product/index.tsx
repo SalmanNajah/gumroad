@@ -324,9 +324,7 @@ export const Product = ({
   return (
     <article className="relative bg-background border border-border rounded grid lg:grid-cols-[2fr_1fr]">
       <Covers covers={product.covers} mainCoverId={product.main_cover_id} />
-      {product.quantity_remaining !== null ? (
-        <Ribbon>{product.quantity_remaining} left</Ribbon>
-      ) : null}
+      {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
       <section className="lg:border-r">
         <header className="p-5 grid gap-4 not-first:border-t">
           <h1 itemProp="name">{product.name}</h1>

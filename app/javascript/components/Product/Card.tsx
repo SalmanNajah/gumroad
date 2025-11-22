@@ -31,9 +31,7 @@ export const Card = ({
     <ProductCardFigure>
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="h-full w-full object-cover" />
     </ProductCardFigure>
-    {product.quantity_remaining !== null ? (
-      <Ribbon>{product.quantity_remaining} left</Ribbon>
-    ) : null}
+    {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
     <ProductCardHeader>
       <a href={product.url} className="stretched-link">
         <h4 itemProp="name" className="line-clamp-4 lg:text-xl">
@@ -74,9 +72,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
     <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full object-cover" />
     </ProductCardFigure>
-    {product.quantity_remaining !== null ? (
-      <Ribbon>{product.quantity_remaining} left</Ribbon>
-    ) : null}
+    {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
     <ProductCardSection>
       <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
         <a href={product.url} className="stretched-link" draggable="false">
