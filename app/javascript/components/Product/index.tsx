@@ -324,7 +324,9 @@ export const Product = ({
   return (
     <article className="relative bg-background border border-border rounded grid lg:grid-cols-[2fr_1fr]">
       <Covers covers={product.covers} mainCoverId={product.main_cover_id} />
-      <Ribbon quantityRemaining={product.quantity_remaining} />
+      {product.quantity_remaining !== null ? (
+        <Ribbon>{product.quantity_remaining} left</Ribbon>
+      ) : null}
       <section className="lg:border-r">
         <ProductSection as="header">
           <h1 itemProp="name">{product.name}</h1>
@@ -455,18 +457,17 @@ export const Product = ({
                 <div role="status" className="success">
                   <div className="flex flex-col gap-4">
                     {discountCode.discount.minimum_quantity
-                      ? `Get ${
-                          discountCode.discount.type === "percent"
-                            ? `${discountCode.discount.percents}%`
-                            : formatPriceCentsWithCurrencySymbol(product.currency_code, discountCode.discount.cents, {
-                                symbolFormat: "long",
-                              })
-                        } off when you buy ${discountCode.discount.minimum_quantity} or more (Code ${discountCode.code.toUpperCase()})`
+                      ? `Get ${discountCode.discount.type === "percent"
+                        ? `${discountCode.discount.percents}%`
+                        : formatPriceCentsWithCurrencySymbol(product.currency_code, discountCode.discount.cents, {
+                          symbolFormat: "long",
+                        })
+                      } off when you buy ${discountCode.discount.minimum_quantity} or more (Code ${discountCode.code.toUpperCase()})`
                       : discountCode.discount.type === "percent"
                         ? `${discountCode.discount.percents}% off will be applied at checkout (Code ${discountCode.code.toUpperCase()})`
                         : `${formatPriceCentsWithCurrencySymbol(product.currency_code, discountCode.discount.cents, {
-                            symbolFormat: "long",
-                          })} off will be applied at checkout (Code ${discountCode.code.toUpperCase()})`}
+                          symbolFormat: "long",
+                        })} off will be applied at checkout (Code ${discountCode.code.toUpperCase()})`}
                     {discountCode.discount.duration_in_billing_cycles && product.is_tiered_membership ? (
                       <div>This discount will only apply to the first payment of your subscription.</div>
                     ) : null}
@@ -474,19 +475,18 @@ export const Product = ({
                       <div>
                         {(discountCode.discount.product_ids?.length ?? 0) === 1
                           ? `This discount will apply when you spend ${formatPriceCentsWithCurrencySymbol(
-                              product.currency_code,
-                              discountCode.discount.minimum_amount_cents,
-                              { symbolFormat: "short" },
-                            )} or more.`
+                            product.currency_code,
+                            discountCode.discount.minimum_amount_cents,
+                            { symbolFormat: "short" },
+                          )} or more.`
                           : `This discount will apply when you spend ${formatPriceCentsWithCurrencySymbol(
-                              product.currency_code,
-                              discountCode.discount.minimum_amount_cents,
-                              { symbolFormat: "short" },
-                            )} or more in ${
-                              !discountCode.discount.product_ids && product.seller
-                                ? `${product.seller.name}'s`
-                                : "selected"
-                            } products.`}
+                            product.currency_code,
+                            discountCode.discount.minimum_amount_cents,
+                            { symbolFormat: "short" },
+                          )} or more in ${!discountCode.discount.product_ids && product.seller
+                            ? `${product.seller.name}'s`
+                            : "selected"
+                          } products.`}
                       </div>
                     ) : null}
                     {discountCode.discount.expires_at ? (

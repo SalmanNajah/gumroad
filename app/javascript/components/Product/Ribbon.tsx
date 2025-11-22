@@ -1,7 +1,6 @@
 import * as React from "react";
 
-export const Ribbon = ({ quantityRemaining }: { quantityRemaining: number | null }) => {
-  if (quantityRemaining === null) return null;
+export const Ribbon = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div
@@ -10,7 +9,7 @@ export const Ribbon = ({ quantityRemaining }: { quantityRemaining: number | null
         clipPath: 'polygon(calc(1lh + 2 * var(--border-width)) 0, calc(100% - (1lh + 2 * var(--border-width))) 0, 100% 100%, 0 100%)'
       }}
     >
-      {quantityRemaining} left
+      {children}
     </div>
   );
 };
