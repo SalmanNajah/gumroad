@@ -8,10 +8,10 @@ import { CreateAccountForm } from "$app/components/Checkout/Receipt";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import {
-  ProductCardArticle,
+  ProductCard,
   ProductCardFigure,
   ProductCardHeader,
-} from "$app/components/Product/ProductCard";
+} from "$app/components/ui/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Result } from "$app/components/server-components/CheckoutPage";
@@ -108,7 +108,7 @@ const Card = ({
   nativeType: ProductNativeType;
   creator: Creator | null;
 }) => (
-  <ProductCardArticle>
+  <ProductCard>
     <ProductCardFigure>
       <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="w-full h-full object-cover" />
     </ProductCardFigure>
@@ -130,5 +130,5 @@ const Card = ({
         <div className="p-4 flex flex-1 items-center gap-2" />
       )}
     </footer>
-  </ProductCardArticle>
+  </ProductCard>
 );

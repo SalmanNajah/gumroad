@@ -1,20 +1,17 @@
 import { classNames } from "$app/utils/classNames";
 import * as React from "react";
 
-export const ProductCardArticle = ({
+export const ProductCard = ({
   children,
   className,
-  variant = "vertical",
   ...props
 }: {
   children: React.ReactNode;
   className?: string;
-  variant?: "vertical" | "horizontal";
 } & React.HTMLAttributes<HTMLElement>) => (
   <article
     className={classNames(
       "relative bg-background border border-border rounded duration-150 transition-all hover:shadow grid grid-rows-[auto_1fr_auto]",
-      variant === "horizontal" && "lg:grid-rows-none lg:grid-cols-[auto_1fr]",
       className,
     )}
     {...props}
@@ -26,22 +23,16 @@ export const ProductCardArticle = ({
 export const ProductCardFigure = ({
   children,
   className,
-  variant = "vertical",
-  style,
   ...props
 }: {
   children?: React.ReactNode;
   className?: string;
-  variant?: "vertical" | "horizontal";
-  style?: React.CSSProperties;
 } & React.HTMLAttributes<HTMLElement>) => (
   <figure
     className={classNames(
       "aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover overflow-hidden rounded-t border-b border-border",
-      variant === "horizontal" && "lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0",
       className,
     )}
-    style={style}
     {...props}
   >
     {children}
@@ -51,17 +42,14 @@ export const ProductCardFigure = ({
 export const ProductCardHeader = ({
   children,
   className,
-  variant = "vertical",
   ...props
 }: {
   children: React.ReactNode;
   className?: string;
-  variant?: "vertical" | "horizontal";
 } & React.HTMLAttributes<HTMLElement>) => (
   <header
     className={classNames(
       "p-4 grid grid-rows-1 gap-3 border-b border-border",
-      variant === "horizontal" && "lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0",
       className,
     )}
     {...props}

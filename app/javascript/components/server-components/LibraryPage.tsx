@@ -19,10 +19,10 @@ import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import {
-  ProductCardArticle,
+  ProductCard,
   ProductCardFigure,
   ProductCardHeader,
-} from "$app/components/Product/ProductCard";
+} from "$app/components/ui/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
@@ -86,7 +86,7 @@ export const Card = ({
   const name = purchase.variants ? `${product.name} - ${purchase.variants}` : product.name;
 
   return (
-    <ProductCardArticle>
+    <ProductCard>
       <ProductCardFigure>
         <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} className="w-full h-full object-cover" />
       </ProductCardFigure>
@@ -131,7 +131,7 @@ export const Card = ({
           </Popover>
         </div>
       </footer>
-    </ProductCardArticle>
+    </ProductCard>
   );
 };
 

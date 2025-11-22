@@ -52,11 +52,11 @@ import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { computeOptionPrice, OptionRadioButton, Option } from "$app/components/Product/ConfigurationSelector";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import {
-  ProductCardArticle,
+  ProductCard,
   ProductCardFigure,
   ProductCardHeader,
   ProductCardSection,
-} from "$app/components/Product/ProductCard";
+} from "$app/components/ui/ProductCard";
 import { showAlert } from "$app/components/server-components/Alert";
 import { useAddThirdPartyAnalytics } from "$app/components/useAddThirdPartyAnalytics";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
@@ -679,14 +679,14 @@ export const CrossSellModal = ({
     <>
       <div className="grid gap-4">
         <h4 dangerouslySetInnerHTML={{ __html: crossSell.description }} />
-        <ProductCardArticle variant="horizontal">
-          <ProductCardFigure variant="horizontal">
+        <ProductCard className="lg:grid-rows-none lg:grid-cols-[auto_1fr]">
+          <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
             {product.thumbnail_url ? (
               <img src={product.thumbnail_url} className="h-full w-full object-cover lg:h-0 lg:min-h-full" />
             ) : null}
           </ProductCardFigure>
           <ProductCardSection>
-            <ProductCardHeader variant="horizontal">
+            <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
               <a className="stretched-link" href={product.url} target="_blank" rel="noreferrer">
                 <h3 className="truncate">{option ? `${product.name} - ${option.name}` : product.name}</h3>
               </a>
@@ -726,7 +726,7 @@ export const CrossSellModal = ({
               </div>
             </footer>
           </ProductCardSection>
-        </ProductCardArticle>
+        </ProductCard>
       </div>
       <footer style={{ display: "grid", gap: "var(--spacer-4)", gridTemplateColumns: "1fr 1fr" }}>
         <Button onClick={decline}>

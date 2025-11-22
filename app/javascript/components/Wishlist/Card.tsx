@@ -9,11 +9,11 @@ import { getCssVariable } from "$app/utils/styles";
 import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import {
-  ProductCardArticle,
+  ProductCard,
   ProductCardFigure,
   ProductCardHeader,
   ProductCardSection,
-} from "$app/components/Product/ProductCard";
+} from "$app/components/ui/ProductCard";
 import { useFollowWishlist } from "$app/components/Wishlist/FollowButton";
 import { classNames } from "$app/utils/classNames";
 
@@ -77,10 +77,10 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
   }, [thumbnailUrl]);
 
   return (
-    <ProductCardArticle variant="horizontal" className="lg:grid-cols-[1fr_2fr]">
+    <ProductCard className="lg:grid-cols-[1fr_2fr]">
       <ProductCardFigure
-        variant="horizontal"
         className={classNames(
+          "lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0",
           wishlist.thumbnails.length > 0 && "!bg-none bg-accent grid gap-1 p-2",
           wishlist.thumbnails.length >= 2 && "grid-cols-2"
         )}
@@ -99,7 +99,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
         {wishlist.thumbnails.length === 0 ? <img role="presentation" className="w-full h-full object-cover" /> : null}
       </ProductCardFigure>
       <ProductCardSection>
-        <ProductCardHeader variant="horizontal">
+        <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
           <a className="stretched-link no-underline" href={wishlist.url}>
             <h3 className="truncate">{wishlist.name}</h3>
           </a>
@@ -139,7 +139,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
           ) : null}
         </footer>
       </ProductCardSection>
-    </ProductCardArticle>
+    </ProductCard>
   );
 };
 

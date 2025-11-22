@@ -12,11 +12,11 @@ import { assertResponseError, request } from "$app/utils/request";
 import { Icon } from "$app/components/Icons";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import {
-  ProductCardArticle,
+  ProductCard,
   ProductCardFigure,
   ProductCardHeader,
   ProductCardSection,
-} from "$app/components/Product/ProductCard";
+} from "$app/components/ui/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
 import { useRunOnce } from "$app/components/useRunOnce";
@@ -60,7 +60,7 @@ type UpsellCardHeaderProps = {
 };
 
 const UpsellCardHeader = ({ product, variant }: UpsellCardHeaderProps) => (
-  <ProductCardHeader variant="horizontal">
+  <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
     <h3 className="truncate">
       {product.name}
       {variant ? <span className="ml-2 text-muted truncate">({variant.name})</span> : null}
@@ -178,8 +178,8 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
         {isLoading ? (
           <div className="dummy h-32"></div>
         ) : product ? (
-          <ProductCardArticle variant="horizontal">
-            <ProductCardFigure variant="horizontal" className="lg:aspect-auto lg:h-full">
+          <ProductCard className="lg:grid-rows-none lg:grid-cols-[auto_1fr]">
+            <ProductCardFigure className="lg:aspect-auto lg:h-full lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
               <Thumbnail url={null} nativeType={product.native_type} className="w-full h-full object-cover lg:h-0 lg:min-h-full" />
             </ProductCardFigure>
 
@@ -212,7 +212,7 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                 </div>
               </footer>
             </ProductCardSection>
-          </ProductCardArticle>
+          </ProductCard>
         ) : null}
       </div>
       <NodeViewContent />

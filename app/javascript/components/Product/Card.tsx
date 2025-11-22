@@ -8,11 +8,11 @@ import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import {
-  ProductCardArticle,
+  ProductCard,
   ProductCardFigure,
   ProductCardHeader,
   ProductCardSection,
-} from "$app/components/Product/ProductCard";
+} from "$app/components/ui/ProductCard";
 import { Ribbon } from "$app/components/Product/Ribbon";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 
@@ -27,7 +27,7 @@ export const Card = ({
   footerAction?: React.ReactNode;
   eager?: boolean | undefined;
 }) => (
-  <ProductCardArticle>
+  <ProductCard>
     <ProductCardFigure>
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="h-full w-full object-cover" />
     </ProductCardFigure>
@@ -64,17 +64,17 @@ export const Card = ({
       {footerAction}
     </footer>
     {badge}
-  </ProductCardArticle>
+  </ProductCard>
 );
 
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
-  <ProductCardArticle variant="horizontal">
-    <ProductCardFigure variant="horizontal">
+  <ProductCard className="lg:grid-rows-none lg:grid-cols-[auto_1fr]">
+    <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full object-cover" />
     </ProductCardFigure>
     <Ribbon quantityRemaining={product.quantity_remaining} />
     <ProductCardSection>
-      <ProductCardHeader variant="horizontal">
+      <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
         <a href={product.url} className="stretched-link" draggable="false">
           {big ? (
             <h2 itemProp="name" className="line-clamp-3 gap-3">
@@ -121,7 +121,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
         ) : null}
       </footer>
     </ProductCardSection>
-  </ProductCardArticle>
+  </ProductCard>
 );
 
 const Rating = ({ ratings, style }: { ratings: Ratings; style?: React.CSSProperties }) => (
