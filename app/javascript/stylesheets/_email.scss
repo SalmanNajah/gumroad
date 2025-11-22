@@ -578,9 +578,6 @@ $accent-color: map-get($colors, "pink"); // [1]
   .header {
     // Base header styles (was @extend header)
     padding: spacer(4);
-    display: grid;
-    grid-template-rows: 1fr;
-    gap: spacer(3);
     border-bottom: $border;
 
     display: block; // [5]
@@ -596,11 +593,6 @@ $accent-color: map-get($colors, "pink"); // [1]
       @include breakpoint-up(lg) {
         @include font-size(3);
       }
-    }
-
-    small {
-      @include text-muted;
-      @include text-singleline;
     }
 
     .rating {
@@ -635,7 +627,7 @@ $accent-color: map-get($colors, "pink"); // [1]
       }
     }
 
-    & > * :first-child {
+    & > *:first-child {
       flex: 1;
 
       &.rating {
@@ -668,8 +660,6 @@ $accent-color: map-get($colors, "pink"); // [1]
     display: table;
     table-layout: fixed;
     width: 100%;
-    border: $border;
-    border-radius: border-radius(1);
 
     // [6]
     .figure,
