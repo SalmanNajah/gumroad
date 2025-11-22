@@ -328,9 +328,9 @@ export const Product = ({
         <Ribbon>{product.quantity_remaining} left</Ribbon>
       ) : null}
       <section className="lg:border-r">
-        <ProductSection as="header">
+        <header className="p-5 grid gap-4 not-first:border-t">
           <h1 itemProp="name">{product.name}</h1>
-        </ProductSection>
+        </header>
         <section className="grid grid-cols-[auto_1fr] gap-[1px] p-0 sm:grid-cols-[auto_auto_minmax(max-content,1fr)]">
           {showPrice ? (
             <div className="py-4 px-5 outline outline-border outline-offset-0">
@@ -381,7 +381,7 @@ export const Product = ({
           />
         ) : null}
         {isBundle ? (
-          <ProductSection>
+          <section className="p-5 border-t border-border">
             <h2>This bundle contains...</h2>
             <div className="cart" role="list">
               {product.bundle_products.map((bundleProduct) => {
@@ -427,9 +427,9 @@ export const Product = ({
                 );
               })}
             </div>
-          </ProductSection>
+          </section>
         ) : null}
-        <ProductSection>
+        <section className="p-5 border-t border-border">
           {pageLoaded ? (
             <PublicFilesSettingsContext.Provider value={publicFilesSettings}>
               <EditorContent className="rich-text" editor={descriptionEditor} />
@@ -437,10 +437,10 @@ export const Product = ({
           ) : (
             <div className="rich-text" dangerouslySetInnerHTML={{ __html: product.description_html ?? "" }} />
           )}
-        </ProductSection>
+        </section>
       </section>
       <section>
-        <ProductSection>
+        <section className="p-5 grid gap-4 not-first:border-t">
           {notForSaleMessage ? (
             <div role="status" className="warning">
               {notForSaleMessage}
@@ -604,7 +604,7 @@ export const Product = ({
           {product.refund_policy ? (
             <RefundPolicyInfo refundPolicy={product.refund_policy} permalink={product.permalink} />
           ) : null}
-        </ProductSection>
+        </section>
         {product.ratings ? <Reviews ratings={product.ratings} productId={product.id} seller={product.seller} /> : null}
       </section>
     </article>
@@ -655,7 +655,7 @@ const ExistingPurchaseStack = ({
   if (!purchase.should_show_receipt) return null;
 
   return (
-    <ProductSection>
+    <section className="p-5 border-t border-border">
       <div className="stack">
         {purchase.membership ? (
           <>
@@ -702,7 +702,7 @@ const ExistingPurchaseStack = ({
           />
         ) : null}
       </div>
-    </ProductSection>
+    </section>
   );
 };
 
@@ -750,7 +750,7 @@ const Reviews = ({
   if (ratings.count === 0) return null;
 
   return (
-    <ProductSection>
+    <section className="p-5 grid gap-4 not-first:border-t">
       <header className="flex justify-between items-center">
         <h3>Ratings</h3>
         <div className="flex shrink-0 items-center gap-1">
@@ -786,7 +786,7 @@ const Reviews = ({
           ) : null}
         </section>
       ) : null}
-    </ProductSection>
+    </section>
   );
 };
 
@@ -871,23 +871,5 @@ const RefundPolicyInfo = ({ refundPolicy, permalink }: { refundPolicy: RefundPol
         </Modal>
       ) : null}
     </>
-  );
-};
-
-const ProductSection = ({
-  children,
-  as: Component = "section",
-  className,
-  ...props
-}: {
-  children: React.ReactNode;
-  as?: "section" | "header";
-  className?: string;
-} & React.HTMLAttributes<HTMLElement>) => {
-  const Tag = Component;
-  return (
-    <Tag className={classNames("p-5 grid gap-4 not-first:border-t", className)} {...props}>
-      {children}
-    </Tag>
   );
 };
