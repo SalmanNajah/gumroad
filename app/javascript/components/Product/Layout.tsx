@@ -253,7 +253,7 @@ const CtaBar = ({
   return (
     <section
       aria-label="Product information bar"
-      className="border-0"
+      className="border-0 bg-background"
       style={{
         overflow: "hidden",
         padding: 0,
@@ -276,7 +276,7 @@ const CtaBar = ({
     >
       <div
         ref={ref}
-        className="bg-background flex justify-between items-center gap-4 p-4 lg:px-body-padding-desktop-center lg:py-4"
+        className="flex justify-between items-center gap-4 p-4 mx-auto max-w-product-page lg:px-8 lg:py-4"
         style={{
           transition: "var(--transition-duration)",
           marginTop: visible || !isDesktop ? undefined : -height,
