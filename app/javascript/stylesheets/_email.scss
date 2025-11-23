@@ -634,25 +634,6 @@ $accent-color: map-get($colors, "pink"); // [1]
         flex: 1 0 max-content;
       }
     }
-
-    & > details {
-      padding: 0;
-      flex-shrink: 0;
-
-      & > summary {
-        padding: spacer(4);
-      }
-    }
-
-    & > .metrics {
-      display: flex;
-      align-items: center;
-      gap: var(--spacer-3);
-    }
-
-    & > .actions {
-      font-size: var(--big-icon-size);
-    }
   }
 
   &.horizontal {
