@@ -594,12 +594,10 @@ $accent-color: map-get($colors, "pink"); // [1]
     }
 
     .rating {
-      @include font-size(1);
       padding-top: spacer(2); // [5]
     }
 
     .user {
-      @include font-size(1);
       display: inline;
 
       & > :last-child {
