@@ -344,11 +344,13 @@ export const Product = ({
             </div>
           ) : null}
           {sellerByline ? (
-            <div className={classNames(
-              "py-4 px-5 outline outline-border outline-offset-0 flex items-center gap-2 flex-wrap",
-              !showPrice && "col-span-full sm:col-auto",
-              (showPrice && sellerByline && !(product.ratings != null && product.ratings.count > 0)) && "sm:col-[2/-1]"
-            )}>
+            <div
+              className={classNames(
+                "flex flex-wrap items-center gap-2 px-5 py-4 outline outline-offset-0 outline-border",
+                !showPrice && "col-span-full sm:col-auto",
+                showPrice && !(product.ratings != null && product.ratings.count > 0) && "sm:col-[2/-1]",
+              )}
+            >
               {product.collaborating_user ? (
                 <>
                   {sellerByline} with{" "}
