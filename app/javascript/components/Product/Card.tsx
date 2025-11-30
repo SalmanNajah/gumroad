@@ -1,20 +1,15 @@
-import { classNames } from "$app/utils/classNames";
 import * as React from "react";
 
 import { CardProduct, Ratings } from "$app/parsers/product";
+import { classNames } from "$app/utils/classNames";
 import { formatOrderOfMagnitude } from "$app/utils/formatOrderOfMagnitude";
 
 import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { PriceTag } from "$app/components/Product/PriceTag";
-import {
-  ProductCard,
-  ProductCardFigure,
-  ProductCardHeader,
-  ProductCardSection,
-} from "$app/components/ui/ProductCard";
 import { Ribbon } from "$app/components/Product/Ribbon";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
 
 export const Card = ({
   product,
@@ -29,7 +24,12 @@ export const Card = ({
 }) => (
   <ProductCard>
     <ProductCardFigure>
-      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="h-full w-full object-cover" />
+      <Thumbnail
+        url={product.thumbnail_url}
+        nativeType={product.native_type}
+        eager={eager}
+        className="h-full w-full object-cover"
+      />
     </ProductCardFigure>
     {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
     <ProductCardHeader>
@@ -68,13 +68,18 @@ export const Card = ({
 );
 
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
-  <ProductCard className="lg:grid-rows-none lg:grid-cols-[auto_1fr]">
+  <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
     <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
-      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} className="lg:h-0 lg:min-h-full w-full object-cover" />
+      <Thumbnail
+        url={product.thumbnail_url}
+        nativeType={product.native_type}
+        eager={eager}
+        className="w-full object-cover lg:h-0 lg:min-h-full"
+      />
     </ProductCardFigure>
     {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
     <ProductCardSection>
-      <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
+      <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
         <a href={product.url} className="stretched-link" draggable="false">
           {big ? (
             <h2 itemProp="name" className="line-clamp-3 gap-3">
@@ -86,10 +91,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
             </h3>
           )}
         </a>
-        <small className={classNames(
-          "hidden lg:block text-muted truncate",
-          big && "lg:line-clamp-4"
-        )}>
+        <small className={classNames("hidden truncate text-muted lg:block", big && "lg:line-clamp-4")}>
           {product.description}
         </small>
         {product.seller ? (
@@ -101,7 +103,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
         ) : null}
       </ProductCardHeader>
       <footer className="flex items-center">
-        <div className="flex-1 p-4 border-r border-border lg:p-0 lg:border-r-0">
+        <div className="flex-1 border-r border-border p-4 lg:border-r-0 lg:p-0">
           <PriceTag
             url={product.url}
             currencyCode={product.currency_code}
@@ -109,7 +111,9 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
             isPayWhatYouWant={product.is_pay_what_you_want}
             isSalesLimited={product.is_sales_limited}
             recurrence={
-              product.recurrence ? { id: product.recurrence, duration_in_months: product.duration_in_months } : undefined
+              product.recurrence
+                ? { id: product.recurrence, duration_in_months: product.duration_in_months }
+                : undefined
             }
             creatorName={product.seller?.name}
           />

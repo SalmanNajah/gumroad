@@ -1,5 +1,6 @@
-import { classNames } from "$app/utils/classNames";
 import * as React from "react";
+
+import { classNames } from "$app/utils/classNames";
 
 type BaseProps = {
   children: React.ReactNode;
@@ -9,7 +10,7 @@ type BaseProps = {
 export const ProductCard = ({ children, className, ...props }: BaseProps) => (
   <article
     className={classNames(
-      "relative bg-background border border-border rounded duration-150 transition-all hover:shadow grid grid-rows-[auto_1fr_auto]",
+      "relative grid grid-rows-[auto_1fr_auto] rounded border border-border bg-background transition-all duration-150 hover:shadow",
       className,
     )}
     {...props}
@@ -21,7 +22,7 @@ export const ProductCard = ({ children, className, ...props }: BaseProps) => (
 export const ProductCardFigure = ({ children, className, ...props }: BaseProps) => (
   <figure
     className={classNames(
-      "aspect-square bg-[url('~images/placeholders/product-cover.png')] bg-cover overflow-hidden rounded-t border-b border-border",
+      "aspect-square overflow-hidden rounded-t border-b border-border bg-[url('~images/placeholders/product-cover.png')] bg-cover",
       className,
     )}
     {...props}
@@ -31,13 +32,7 @@ export const ProductCardFigure = ({ children, className, ...props }: BaseProps) 
 );
 
 export const ProductCardHeader = ({ children, className, ...props }: BaseProps) => (
-  <header
-    className={classNames(
-      "p-4 grid grid-rows-1 gap-3 border-b border-border",
-      className,
-    )}
-    {...props}
-  >
+  <header className={classNames("grid grid-rows-1 gap-3 border-b border-border p-4", className)} {...props}>
     {children}
   </header>
 );

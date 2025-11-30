@@ -51,13 +51,8 @@ import { Modal } from "$app/components/Modal";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { computeOptionPrice, OptionRadioButton, Option } from "$app/components/Product/ConfigurationSelector";
 import { PriceTag } from "$app/components/Product/PriceTag";
-import {
-  ProductCard,
-  ProductCardFigure,
-  ProductCardHeader,
-  ProductCardSection,
-} from "$app/components/ui/ProductCard";
 import { showAlert } from "$app/components/server-components/Alert";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
 import { useAddThirdPartyAnalytics } from "$app/components/useAddThirdPartyAnalytics";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange, useOnChangeSync } from "$app/components/useOnChange";
@@ -679,14 +674,14 @@ export const CrossSellModal = ({
     <>
       <div className="grid gap-4">
         <h4 dangerouslySetInnerHTML={{ __html: crossSell.description }} />
-        <ProductCard className="lg:grid-rows-none lg:grid-cols-[auto_1fr]">
+        <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
           <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
             {product.thumbnail_url ? (
               <img src={product.thumbnail_url} className="h-full w-full object-cover lg:h-0 lg:min-h-full" />
             ) : null}
           </ProductCardFigure>
           <ProductCardSection>
-            <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
+            <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
               <a className="stretched-link" href={product.url} target="_blank" rel="noreferrer">
                 <h3 className="truncate">{option ? `${product.name} - ${option.name}` : product.name}</h3>
               </a>
@@ -703,7 +698,7 @@ export const CrossSellModal = ({
                   <span>{`(${formatOrderOfMagnitude(crossSell.ratings.count, 1)})`}</span>
                 </div>
               ) : null}
-              <div className="p-4 lg:p-0 border-border border-l lg:border-0">
+              <div className="border-l border-border p-4 lg:border-0 lg:p-0">
                 <PriceTag
                   currencyCode={product.currency_code}
                   oldPrice={

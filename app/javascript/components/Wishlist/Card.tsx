@@ -3,19 +3,14 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import useLazyLoadingProps from "$app/hooks/useLazyLoadingProps";
+import { classNames } from "$app/utils/classNames";
 import { formatOrderOfMagnitude } from "$app/utils/formatOrderOfMagnitude";
 import { getCssVariable } from "$app/utils/styles";
 
 import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
-import {
-  ProductCard,
-  ProductCardFigure,
-  ProductCardHeader,
-  ProductCardSection,
-} from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
 import { useFollowWishlist } from "$app/components/Wishlist/FollowButton";
-import { classNames } from "$app/utils/classNames";
 
 const nativeTypeThumbnails = require.context("$assets/images/native_types/thumbnails/");
 
@@ -81,8 +76,8 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
       <ProductCardFigure
         className={classNames(
           "lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0",
-          wishlist.thumbnails.length > 0 && "!bg-none bg-accent grid gap-1 p-2",
-          wishlist.thumbnails.length >= 2 && "grid-cols-2"
+          wishlist.thumbnails.length > 0 && "grid gap-1 bg-accent !bg-none p-2",
+          wishlist.thumbnails.length >= 2 && "grid-cols-2",
         )}
         style={{ backgroundColor }}
       >
@@ -92,21 +87,19 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
             src={url ?? cast(nativeTypeThumbnails(`./${native_type}.svg`))}
             role="presentation"
             crossOrigin="anonymous"
-            className="bg-cover rounded border w-full h-full object-cover"
+            className="h-full w-full rounded border bg-cover object-cover"
             {...lazyLoadingProps}
           />
         ))}
-        {wishlist.thumbnails.length === 0 ? <img role="presentation" className="w-full h-full object-cover" /> : null}
+        {wishlist.thumbnails.length === 0 ? <img role="presentation" className="h-full w-full object-cover" /> : null}
       </ProductCardFigure>
       <ProductCardSection>
-        <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
+        <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
           <a className="stretched-link no-underline" href={wishlist.url}>
             <h3 className="truncate">{wishlist.name}</h3>
           </a>
           {wishlist.description ? (
-            <small className="hidden lg:block text-muted truncate">
-              {wishlist.description}
-            </small>
+            <small className="hidden truncate text-muted lg:block">{wishlist.description}</small>
           ) : null}
           {hideSeller ? null : (
             <AuthorByline
@@ -117,7 +110,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
           )}
         </ProductCardHeader>
         <footer className="flex">
-          <div className="p-4 flex-1 flex items-center gap-3 lg:p-0">
+          <div className="flex flex-1 items-center gap-3 p-4 lg:p-0">
             <span className="hidden lg:inline">
               <span className="icon icon-file-text-fill" /> {wishlist.product_count}{" "}
               {wishlist.product_count === 1 ? "product" : "products"}
@@ -130,7 +123,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
           {wishlist.can_follow ? (
             <a
               onClick={() => void toggleFollowing()}
-              className="p-4 border-l border-border text-xl lg:p-0 lg:border-l-0"
+              className="border-l border-border p-4 text-xl lg:border-l-0 lg:p-0"
               role="button"
               aria-disabled={isLoading}
             >

@@ -18,15 +18,11 @@ import { Layout } from "$app/components/Library/Layout";
 import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
-import {
-  ProductCard,
-  ProductCardFigure,
-  ProductCardHeader,
-} from "$app/components/ui/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import Placeholder from "$app/components/ui/Placeholder";
+import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
 import { useAddThirdPartyAnalytics } from "$app/components/useAddThirdPartyAnalytics";
 import { useGlobalEventListener } from "$app/components/useGlobalEventListener";
@@ -88,7 +84,11 @@ export const Card = ({
   return (
     <ProductCard>
       <ProductCardFigure>
-        <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} className="w-full h-full object-cover" />
+        <Thumbnail
+          url={product.thumbnail_url}
+          nativeType={product.native_type}
+          className="h-full w-full object-cover"
+        />
       </ProductCardFigure>
       <ProductCardHeader>
         {purchase.download_url ? (
@@ -100,7 +100,7 @@ export const Card = ({
         )}
       </ProductCardHeader>
       <footer className="relative flex">
-        <div className="flex-1 p-4 border-r border-border">
+        <div className="flex-1 border-r border-border p-4">
           {product.creator ? (
             <AuthorByline
               name={product.creator.name}

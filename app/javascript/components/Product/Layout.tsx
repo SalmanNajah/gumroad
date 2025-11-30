@@ -276,7 +276,7 @@ const CtaBar = ({
     >
       <div
         ref={ref}
-        className="flex justify-between items-center gap-4 p-4 mx-auto max-w-product-page lg:px-8 lg:py-4"
+        className="mx-auto flex max-w-product-page items-center justify-between gap-4 p-4 lg:px-8 lg:py-4"
         style={{
           transition: "var(--transition-duration)",
           marginTop: visible || !isDesktop ? undefined : -height,
@@ -299,7 +299,7 @@ const CtaBar = ({
           isSalesLimited={product.is_sales_limited}
           creatorName={product.seller?.name}
         />
-        <h3 className="hidden lg:block flex-1">{product.name}</h3>
+        <h3 className="hidden flex-1 lg:block">{product.name}</h3>
         {product.ratings != null && product.ratings.count > 0 ? (
           <RatingsSummary className="hidden lg:flex" ratings={product.ratings} />
         ) : null}

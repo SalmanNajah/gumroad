@@ -7,15 +7,11 @@ import { useState } from "$app/components/Checkout/payment";
 import { CreateAccountForm } from "$app/components/Checkout/Receipt";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
-import {
-  ProductCard,
-  ProductCardFigure,
-  ProductCardHeader,
-} from "$app/components/ui/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Result } from "$app/components/server-components/CheckoutPage";
 import { PageHeader } from "$app/components/ui/PageHeader";
+import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -110,7 +106,7 @@ const Card = ({
 }) => (
   <ProductCard>
     <ProductCardFigure>
-      <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="w-full h-full object-cover" />
+      <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="h-full w-full object-cover" />
     </ProductCardFigure>
     <ProductCardHeader>
       {contentUrl ? (
@@ -123,11 +119,11 @@ const Card = ({
     </ProductCardHeader>
     <footer className="relative flex">
       {creator ? (
-        <div className="p-4 flex flex-1">
+        <div className="flex flex-1 p-4">
           <AuthorByline name={creator.name} profileUrl={creator.profile_url} avatarUrl={creator.avatar_url} />
         </div>
       ) : (
-        <div className="p-4 flex flex-1 items-center gap-2" />
+        <div className="flex flex-1 items-center gap-2 p-4" />
       )}
     </footer>
   </ProductCard>

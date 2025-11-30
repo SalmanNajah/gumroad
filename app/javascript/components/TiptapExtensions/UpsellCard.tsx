@@ -11,14 +11,9 @@ import { assertResponseError, request } from "$app/utils/request";
 
 import { Icon } from "$app/components/Icons";
 import { PriceTag } from "$app/components/Product/PriceTag";
-import {
-  ProductCard,
-  ProductCardFigure,
-  ProductCardHeader,
-  ProductCardSection,
-} from "$app/components/ui/ProductCard";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 declare module "@tiptap/core" {
@@ -60,10 +55,10 @@ type UpsellCardHeaderProps = {
 };
 
 const UpsellCardHeader = ({ product, variant }: UpsellCardHeaderProps) => (
-  <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:p-0 lg:border-b-0">
+  <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
     <h3 className="truncate">
       {product.name}
-      {variant ? <span className="ml-2 text-muted truncate">({variant.name})</span> : null}
+      {variant ? <span className="ml-2 truncate text-muted">({variant.name})</span> : null}
     </h3>
   </ProductCardHeader>
 );
@@ -178,9 +173,13 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
         {isLoading ? (
           <div className="dummy h-32"></div>
         ) : product ? (
-          <ProductCard className="lg:grid-rows-none lg:grid-cols-[auto_1fr]">
+          <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
             <ProductCardFigure className="lg:aspect-auto lg:h-full lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
-              <Thumbnail url={null} nativeType={product.native_type} className="w-full h-full object-cover lg:h-0 lg:min-h-full" />
+              <Thumbnail
+                url={null}
+                nativeType={product.native_type}
+                className="h-full w-full object-cover lg:h-0 lg:min-h-full"
+              />
             </ProductCardFigure>
 
             <ProductCardSection>
@@ -193,13 +192,15 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
               )}
               <footer className="flex">
                 {product.review_count > 0 ? (
-                  <div className="flex p-4 items-center gap-1 flex-[1_0_max-content] lg:p-0 border-r border-border lg:border-r-0">
+                  <div className="flex flex-[1_0_max-content] items-center gap-1 border-r border-border p-4 lg:border-r-0 lg:p-0">
                     <Icon name="solid-star" />
                     <span className="rating-average">{product.average_rating.toFixed(1)}</span>
                     <span>{`(${formatOrderOfMagnitude(product.review_count, 1)})`}</span>
                   </div>
                 ) : (
-                  <div className="flex p-4 items-center gap-1 flex-1 lg:p-0 border-r border-border lg:border-r-0">No reviews</div>
+                  <div className="flex flex-1 items-center gap-1 border-r border-border p-4 lg:border-r-0 lg:p-0">
+                    No reviews
+                  </div>
                 )}
                 <div className="flex p-4 lg:p-0">
                   <PriceTag
