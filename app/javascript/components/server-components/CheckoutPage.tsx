@@ -676,9 +676,7 @@ export const CrossSellModal = ({
         <h4 dangerouslySetInnerHTML={{ __html: crossSell.description }} />
         <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
           <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
-            {product.thumbnail_url ? (
-              <img src={product.thumbnail_url} className="h-full w-full object-cover lg:h-0 lg:min-h-full" />
-            ) : null}
+            {product.thumbnail_url ? <img src={product.thumbnail_url} /> : null}
           </ProductCardFigure>
           <ProductCardSection>
             <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">

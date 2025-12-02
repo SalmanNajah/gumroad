@@ -23,6 +23,7 @@ export const ProductCardFigure = ({ children, className, ...props }: BaseProps) 
   <figure
     className={classNames(
       "aspect-square overflow-hidden rounded-t border-b border-border bg-(image:--product-cover) bg-cover",
+      "[&_img]:size-full [&_img]:object-cover [&_img]:lg:h-0 [&_img]:lg:min-h-full",
       className,
     )}
     {...props}

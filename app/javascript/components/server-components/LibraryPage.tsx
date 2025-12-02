@@ -84,11 +84,7 @@ export const Card = ({
   return (
     <ProductCard>
       <ProductCardFigure>
-        <Thumbnail
-          url={product.thumbnail_url}
-          nativeType={product.native_type}
-          className="h-full w-full object-cover"
-        />
+        <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} />
       </ProductCardFigure>
       <ProductCardHeader>
         {purchase.download_url ? (

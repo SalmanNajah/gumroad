@@ -106,7 +106,7 @@ const Card = ({
 }) => (
   <ProductCard>
     <ProductCardFigure>
-      <Thumbnail url={thumbnailUrl} nativeType={nativeType} className="h-full w-full object-cover" />
+      <Thumbnail url={thumbnailUrl} nativeType={nativeType} />
     </ProductCardFigure>
     <ProductCardHeader>
       {contentUrl ? (

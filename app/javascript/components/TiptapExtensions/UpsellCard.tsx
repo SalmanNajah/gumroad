@@ -175,13 +175,8 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
         ) : product ? (
           <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
             <ProductCardFigure className="lg:aspect-auto lg:h-full lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
-              <Thumbnail
-                url={null}
-                nativeType={product.native_type}
-                className="h-full w-full object-cover lg:h-0 lg:min-h-full"
-              />
+              <Thumbnail url={null} nativeType={product.native_type} />
             </ProductCardFigure>
-
             <ProductCardSection>
               {isEditable ? (
                 <UpsellCardHeader product={product} variant={variant} />

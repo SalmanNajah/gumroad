@@ -87,11 +87,11 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
             src={url ?? cast(nativeTypeThumbnails(`./${native_type}.svg`))}
             role="presentation"
             crossOrigin="anonymous"
-            className="h-full w-full rounded border bg-cover object-cover"
+            className="rounded border"
             {...lazyLoadingProps}
           />
         ))}
-        {wishlist.thumbnails.length === 0 ? <img role="presentation" className="h-full w-full object-cover" /> : null}
+        {wishlist.thumbnails.length === 0 ? <img role="presentation" /> : null}
       </ProductCardFigure>
       <ProductCardSection>
         <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">

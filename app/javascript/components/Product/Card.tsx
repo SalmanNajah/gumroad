@@ -24,12 +24,7 @@ export const Card = ({
 }) => (
   <ProductCard>
     <ProductCardFigure>
-      <Thumbnail
-        url={product.thumbnail_url}
-        nativeType={product.native_type}
-        eager={eager}
-        className="h-full w-full object-cover"
-      />
+      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} />
     </ProductCardFigure>
     {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
     <ProductCardHeader>
@@ -70,12 +65,7 @@ export const Card = ({
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
   <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
     <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
-      <Thumbnail
-        url={product.thumbnail_url}
-        nativeType={product.native_type}
-        eager={eager}
-        className="w-full object-cover lg:h-0 lg:min-h-full"
-      />
+      <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} />
     </ProductCardFigure>
     {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
     <ProductCardSection>
