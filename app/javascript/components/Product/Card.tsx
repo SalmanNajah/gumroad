@@ -9,7 +9,7 @@ import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import { Ribbon } from "$app/components/Product/Ribbon";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
-import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
 
 export const Card = ({
   product,
@@ -68,7 +68,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} />
     </ProductCardFigure>
     {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
-    <ProductCardSection>
+    <section className="grid grid-rows-[1fr_auto] lg:gap-8 lg:px-6 lg:py-4">
       <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
         <a href={product.url} className="stretched-link" draggable="false">
           {big ? (
@@ -114,7 +114,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
           </div>
         ) : null}
       </footer>
-    </ProductCardSection>
+    </section>
   </ProductCard>
 );
 

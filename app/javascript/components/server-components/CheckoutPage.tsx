@@ -52,7 +52,7 @@ import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { computeOptionPrice, OptionRadioButton, Option } from "$app/components/Product/ConfigurationSelector";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import { showAlert } from "$app/components/server-components/Alert";
-import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
 import { useAddThirdPartyAnalytics } from "$app/components/useAddThirdPartyAnalytics";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange, useOnChangeSync } from "$app/components/useOnChange";
@@ -678,7 +678,7 @@ export const CrossSellModal = ({
           <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
             {product.thumbnail_url ? <img src={product.thumbnail_url} /> : null}
           </ProductCardFigure>
-          <ProductCardSection>
+          <section className="grid grid-rows-[1fr_auto] lg:gap-8 lg:px-6 lg:py-4">
             <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
               <a className="stretched-link" href={product.url} target="_blank" rel="noreferrer">
                 <h3 className="truncate">{option ? `${product.name} - ${option.name}` : product.name}</h3>
@@ -718,7 +718,7 @@ export const CrossSellModal = ({
                 />
               </div>
             </footer>
-          </ProductCardSection>
+          </section>
         </ProductCard>
       </div>
       <footer style={{ display: "grid", gap: "var(--spacer-4)", gridTemplateColumns: "1fr 1fr" }}>

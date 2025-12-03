@@ -13,7 +13,7 @@ import { Icon } from "$app/components/Icons";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
-import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 declare module "@tiptap/core" {
@@ -177,7 +177,7 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
             <ProductCardFigure className="lg:aspect-auto lg:h-full lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
               <Thumbnail url={null} nativeType={product.native_type} />
             </ProductCardFigure>
-            <ProductCardSection>
+            <section className="grid grid-rows-[1fr_auto] lg:gap-8 lg:px-6 lg:py-4">
               {isEditable ? (
                 <UpsellCardHeader product={product} variant={variant} />
               ) : (
@@ -207,7 +207,7 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                   />
                 </div>
               </footer>
-            </ProductCardSection>
+            </section>
           </ProductCard>
         ) : null}
       </div>

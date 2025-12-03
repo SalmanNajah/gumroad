@@ -37,9 +37,3 @@ export const ProductCardHeader = ({ children, className, ...props }: BaseProps) 
     {children}
   </header>
 );
-
-export const ProductCardSection = ({ children, className, ...props }: BaseProps) => (
-  <section className={classNames("grid grid-rows-[1fr_auto] gap-0 p-0 lg:gap-8 lg:px-6 lg:py-4", className)} {...props}>
-    {children}
-  </section>
-);

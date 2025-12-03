@@ -9,7 +9,7 @@ import { getCssVariable } from "$app/utils/styles";
 
 import { Icon } from "$app/components/Icons";
 import { AuthorByline } from "$app/components/Product/AuthorByline";
-import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardSection } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
 import { useFollowWishlist } from "$app/components/Wishlist/FollowButton";
 
 const nativeTypeThumbnails = require.context("$assets/images/native_types/thumbnails/");
@@ -93,7 +93,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
         ))}
         {wishlist.thumbnails.length === 0 ? <img role="presentation" /> : null}
       </ProductCardFigure>
-      <ProductCardSection>
+      <section className="grid grid-rows-[1fr_auto] lg:gap-8 lg:px-6 lg:py-4">
         <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
           <a className="stretched-link no-underline" href={wishlist.url}>
             <h3 className="truncate">{wishlist.name}</h3>
@@ -131,7 +131,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
             </a>
           ) : null}
         </footer>
-      </ProductCardSection>
+      </section>
     </ProductCard>
   );
 };
