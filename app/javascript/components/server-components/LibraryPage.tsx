@@ -103,9 +103,7 @@ export const Card = ({
               profileUrl={product.creator.profile_url}
               avatarUrl={product.creator.avatar_url ?? undefined}
             />
-          ) : (
-            <div className="flex items-center gap-2" />
-          )}
+          ) : null}
         </div>
         <div className="p-4">
           <Popover
