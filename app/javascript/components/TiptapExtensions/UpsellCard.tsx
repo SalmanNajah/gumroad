@@ -55,7 +55,7 @@ type UpsellCardHeaderProps = {
 };
 
 const UpsellCardHeader = ({ product, variant }: UpsellCardHeaderProps) => (
-  <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
+  <ProductCardHeader className="lg:border-b-0 lg:p-0">
     <h3 className="truncate">
       {product.name}
       {variant ? <span className="ml-2 truncate text-muted">({variant.name})</span> : null}
