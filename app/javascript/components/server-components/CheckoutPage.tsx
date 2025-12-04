@@ -52,7 +52,7 @@ import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { computeOptionPrice, OptionRadioButton, Option } from "$app/components/Product/ConfigurationSelector";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import { showAlert } from "$app/components/server-components/Alert";
-import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardFooter } from "$app/components/ui/ProductCard";
 import { useAddThirdPartyAnalytics } from "$app/components/useAddThirdPartyAnalytics";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange, useOnChangeSync } from "$app/components/useOnChange";
@@ -689,14 +689,14 @@ export const CrossSellModal = ({
                 avatarUrl={product.creator.avatar_url}
               />
             </ProductCardHeader>
-            <footer className="flex items-center">
+            <ProductCardFooter className="*:lg:not-last:border-r-0">
               {crossSell.ratings ? (
                 <div className="flex flex-[1_0_max-content] items-center gap-1 p-4 lg:p-0">
                   <span className="rating-average">{crossSell.ratings.average.toFixed(1)}</span>
                   <span>{`(${formatOrderOfMagnitude(crossSell.ratings.count, 1)})`}</span>
                 </div>
               ) : null}
-              <div className="border-l border-border p-4 lg:border-0 lg:p-0">
+              <div className="p-4 lg:p-0">
                 <PriceTag
                   currencyCode={product.currency_code}
                   oldPrice={
@@ -717,7 +717,7 @@ export const CrossSellModal = ({
                   tooltipPosition="top"
                 />
               </div>
-            </footer>
+            </ProductCardFooter>
           </section>
         </ProductCard>
       </div>

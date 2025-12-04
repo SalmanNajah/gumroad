@@ -22,7 +22,7 @@ import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import Placeholder from "$app/components/ui/Placeholder";
-import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardFooter } from "$app/components/ui/ProductCard";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
 import { useAddThirdPartyAnalytics } from "$app/components/useAddThirdPartyAnalytics";
 import { useGlobalEventListener } from "$app/components/useGlobalEventListener";
@@ -95,8 +95,8 @@ export const Card = ({
           <h3 itemProp="name">{name}</h3>
         )}
       </ProductCardHeader>
-      <footer className="relative flex">
-        <div className="flex-1 border-r border-border p-4">
+      <ProductCardFooter>
+        <div className="flex-1 p-4">
           {product.creator ? (
             <AuthorByline
               name={product.creator.name}
@@ -124,7 +124,7 @@ export const Card = ({
             </div>
           </Popover>
         </div>
-      </footer>
+      </ProductCardFooter>
     </ProductCard>
   );
 };

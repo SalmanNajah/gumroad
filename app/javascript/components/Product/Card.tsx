@@ -9,7 +9,7 @@ import { AuthorByline } from "$app/components/Product/AuthorByline";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import { Ribbon } from "$app/components/Product/Ribbon";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
-import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardFooter } from "$app/components/ui/ProductCard";
 
 export const Card = ({
   product,
@@ -42,7 +42,7 @@ export const Card = ({
       ) : null}
       {product.ratings?.count ? <Rating ratings={product.ratings} /> : null}
     </ProductCardHeader>
-    <footer className="flex *:not-last:border-r *:not-last:border-border">
+    <ProductCardFooter>
       <div className="flex-1 p-4">
         <PriceTag
           url={product.url}
@@ -57,7 +57,7 @@ export const Card = ({
         />
       </div>
       {footerAction}
-    </footer>
+    </ProductCardFooter>
     {badge}
   </ProductCard>
 );
@@ -92,8 +92,8 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
           />
         ) : null}
       </ProductCardHeader>
-      <footer className="flex items-center">
-        <div className="flex-1 border-r border-border p-4 lg:border-r-0 lg:p-0">
+      <ProductCardFooter className="items-center *:lg:not-last:border-r-0">
+        <div className="flex-1 p-4 lg:p-0">
           <PriceTag
             url={product.url}
             currencyCode={product.currency_code}
@@ -113,7 +113,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
             <Rating ratings={product.ratings} />
           </div>
         ) : null}
-      </footer>
+      </ProductCardFooter>
     </section>
   </ProductCard>
 );

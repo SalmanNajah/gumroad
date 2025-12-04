@@ -37,3 +37,9 @@ export const ProductCardHeader = ({ children, className, ...props }: BaseProps) 
     {children}
   </header>
 );
+
+export const ProductCardFooter = ({ children, className, ...props }: BaseProps) => (
+  <footer className={classNames("flex *:not-last:border-r *:not-last:border-border", className)} {...props}>
+    {children}
+  </footer>
+);

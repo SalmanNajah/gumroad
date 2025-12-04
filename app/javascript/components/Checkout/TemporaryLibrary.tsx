@@ -11,7 +11,7 @@ import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Result } from "$app/components/server-components/CheckoutPage";
 import { PageHeader } from "$app/components/ui/PageHeader";
-import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardFooter } from "$app/components/ui/ProductCard";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -117,12 +117,12 @@ const Card = ({
         <h3 itemProp="name">{name}</h3>
       )}
     </ProductCardHeader>
-    <footer className="relative flex">
+    <ProductCardFooter>
       {creator ? (
-        <div className="flex flex-1 p-4">
+        <div className="p-4">
           <AuthorByline name={creator.name} profileUrl={creator.profile_url} avatarUrl={creator.avatar_url} />
         </div>
       ) : null}
-    </footer>
+    </ProductCardFooter>
   </ProductCard>
 );

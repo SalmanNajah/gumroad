@@ -13,7 +13,7 @@ import { Icon } from "$app/components/Icons";
 import { PriceTag } from "$app/components/Product/PriceTag";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
-import { ProductCard, ProductCardFigure, ProductCardHeader } from "$app/components/ui/ProductCard";
+import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardFooter } from "$app/components/ui/ProductCard";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 declare module "@tiptap/core" {
@@ -185,19 +185,17 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                   <UpsellCardHeader product={product} variant={variant} />
                 </a>
               )}
-              <footer className="flex">
+              <ProductCardFooter className="*:lg:not-last:border-r-0">
                 {product.review_count > 0 ? (
-                  <div className="flex flex-[1_0_max-content] items-center gap-1 border-r border-border p-4 lg:border-r-0 lg:p-0">
+                  <div className="flex flex-[1_0_max-content] items-center gap-1 p-4 lg:p-0">
                     <Icon name="solid-star" />
                     <span className="rating-average">{product.average_rating.toFixed(1)}</span>
                     <span>{`(${formatOrderOfMagnitude(product.review_count, 1)})`}</span>
                   </div>
                 ) : (
-                  <div className="flex flex-1 items-center gap-1 border-r border-border p-4 lg:border-r-0 lg:p-0">
-                    No reviews
-                  </div>
+                  <div className="flex flex-1 items-center p-4 lg:p-0">No reviews</div>
                 )}
-                <div className="flex p-4 lg:p-0">
+                <div className="p-4 lg:p-0">
                   <PriceTag
                     currencyCode={product.currency_code}
                     oldPrice={oldPrice}
@@ -206,7 +204,7 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                     isSalesLimited={false}
                   />
                 </div>
-              </footer>
+              </ProductCardFooter>
             </section>
           </ProductCard>
         ) : null}
