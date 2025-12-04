@@ -122,9 +122,7 @@ const Card = ({
         <div className="flex flex-1 p-4">
           <AuthorByline name={creator.name} profileUrl={creator.profile_url} avatarUrl={creator.avatar_url} />
         </div>
-      ) : (
-        <div className="flex flex-1 items-center gap-2 p-4" />
-      )}
+      ) : null}
     </footer>
   </ProductCard>
 );
