@@ -10,7 +10,7 @@ type BaseProps = {
 export const ProductCard = ({ children, className, ...props }: BaseProps) => (
   <article
     className={classNames(
-      "relative grid grid-rows-[auto_1fr_auto] rounded border border-border bg-background transition-all duration-150 hover:shadow",
+      "relative flex flex-col rounded border border-border bg-background transition-all duration-150 hover:shadow",
       className,
     )}
     {...props}
@@ -33,7 +33,7 @@ export const ProductCardFigure = ({ children, className, ...props }: BaseProps) 
 );
 
 export const ProductCardHeader = ({ children, className, ...props }: BaseProps) => (
-  <header className={classNames("grid grid-rows-1 gap-3 border-b border-border p-4", className)} {...props}>
+  <header className={classNames("flex flex-1 flex-col gap-3 border-b border-border p-4", className)} {...props}>
     {children}
   </header>
 );

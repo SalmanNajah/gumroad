@@ -173,11 +173,11 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
         {isLoading ? (
           <div className="dummy h-32"></div>
         ) : product ? (
-          <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
+          <ProductCard className="lg:flex-row">
             <ProductCardFigure className="lg:aspect-auto lg:h-full lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
               <Thumbnail url={null} nativeType={product.native_type} />
             </ProductCardFigure>
-            <section className="grid grid-rows-[1fr_auto] lg:gap-8 lg:px-6 lg:py-4">
+            <section className="flex flex-1 flex-col lg:gap-8 lg:px-6 lg:py-4">
               {isEditable ? (
                 <UpsellCardHeader product={product} variant={variant} />
               ) : (

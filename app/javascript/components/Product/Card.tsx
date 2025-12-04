@@ -63,13 +63,13 @@ export const Card = ({
 );
 
 export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; big?: boolean; eager?: boolean }) => (
-  <ProductCard className="lg:grid-cols-[auto_1fr] lg:grid-rows-none">
+  <ProductCard className="lg:flex-row">
     <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} />
     </ProductCardFigure>
     {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
-    <section className="grid grid-rows-[1fr_auto] lg:gap-8 lg:px-6 lg:py-4">
-      <ProductCardHeader className="lg:grid-rows-[repeat(auto-fit,minmax(0,min-content))] lg:border-b-0 lg:p-0">
+    <section className="flex flex-1 flex-col lg:gap-8 lg:px-6 lg:py-4">
+      <ProductCardHeader className="lg:border-b-0 lg:p-0">
         <a href={product.url} className="stretched-link" draggable="false">
           {big ? (
             <h2 itemProp="name" className="line-clamp-3 gap-3">
