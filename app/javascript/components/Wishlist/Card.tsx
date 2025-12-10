@@ -112,11 +112,11 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
         <footer className="flex">
           <div className="flex flex-1 items-center gap-3 p-4 lg:p-0">
             <span className="hidden lg:inline">
-              <span className="icon icon-file-text-fill" /> {wishlist.product_count}{" "}
+              <Icon name="file-text-fill" /> {wishlist.product_count}{" "}
               {wishlist.product_count === 1 ? "product" : "products"}
             </span>
             <span>
-              <span className="icon icon-bookmark-fill" /> {formatOrderOfMagnitude(wishlist.follower_count, 1)}{" "}
+              <Icon name="bookmark-fill" /> {formatOrderOfMagnitude(wishlist.follower_count, 1)}{" "}
               {wishlist.follower_count === 1 ? "follower" : "followers"}
             </span>
           </div>
