@@ -26,7 +26,7 @@ export const Card = ({
     <ProductCardFigure>
       <Thumbnail url={product.thumbnail_url} nativeType={product.native_type} eager={eager} />
     </ProductCardFigure>
-    {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
+    {product.quantity_remaining != null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
     <ProductCardHeader>
       <a href={product.url} className="stretched-link">
         <h4 itemProp="name" className="line-clamp-4 lg:text-xl">
