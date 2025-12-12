@@ -39,7 +39,7 @@ export const ProductCardHeader = ({ children, className, ...props }: BaseProps) 
 );
 
 export const ProductCardFooter = ({ children, className, ...props }: BaseProps) => (
-  <footer className={classNames("flex *:not-last:border-r *:not-last:border-border", className)} {...props}>
+  <footer className={classNames("flex divide-x divide-border", className)} {...props}>
     {children}
   </footer>
 );

@@ -185,7 +185,7 @@ const UpsellCardNodeView = ({ node, selected, editor }: NodeViewProps) => {
                   <UpsellCardHeader product={product} variant={variant} />
                 </a>
               )}
-              <ProductCardFooter className="*:lg:not-last:border-r-0">
+              <ProductCardFooter className="lg:divide-x-0">
                 {product.review_count > 0 ? (
                   <div className="flex flex-[1_0_max-content] items-center gap-1 p-4 lg:p-0">
                     <Icon name="solid-star" />

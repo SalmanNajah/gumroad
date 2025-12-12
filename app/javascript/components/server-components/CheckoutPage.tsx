@@ -689,7 +689,7 @@ export const CrossSellModal = ({
                 avatarUrl={product.creator.avatar_url}
               />
             </ProductCardHeader>
-            <ProductCardFooter className="*:lg:not-last:border-r-0">
+            <ProductCardFooter className="lg:divide-x-0">
               {crossSell.ratings ? (
                 <div className="flex flex-[1_0_max-content] items-center gap-1 p-4 lg:p-0">
                   <span className="rating-average">{crossSell.ratings.average.toFixed(1)}</span>

@@ -92,7 +92,7 @@ export const HorizontalCard = ({ product, big, eager }: { product: CardProduct; 
           />
         ) : null}
       </ProductCardHeader>
-      <ProductCardFooter className="items-center *:lg:not-last:border-r-0">
+      <ProductCardFooter className="items-center lg:divide-x-0">
         <div className="flex-1 p-4 lg:p-0">
           <PriceTag
             url={product.url}
