@@ -339,7 +339,7 @@ export const Product = ({
         <header className="grid gap-4 p-6 not-first:border-t">
           <h1 itemProp="name">{product.name}</h1>
         </header>
-        <section className="grid grid-cols-[auto_1fr] gap-[1px] p-0 sm:grid-cols-[auto_auto_minmax(max-content,1fr)]">
+        <section className="grid grid-cols-[auto_1fr] gap-[1px] border-t border-border p-0 sm:grid-cols-[auto_auto_minmax(max-content,1fr)]">
           {showPrice ? (
             <div className="px-6 py-4 outline outline-offset-0 outline-border">
               <PriceTag
