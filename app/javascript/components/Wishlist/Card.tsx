@@ -75,7 +75,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
     <ProductCard className="lg:flex-row">
       <ProductCardFigure
         className={classNames(
-          "lg:w-1/3 lg:shrink-0 lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0",
+          "lg:flex-1 lg:shrink-0 lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0",
           wishlist.thumbnails.length > 0 && "grid gap-1 bg-accent !bg-none p-2",
           wishlist.thumbnails.length >= 2 && "grid-cols-2",
         )}
@@ -93,7 +93,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
         ))}
         {wishlist.thumbnails.length === 0 ? <img role="presentation" /> : null}
       </ProductCardFigure>
-      <section className="flex flex-1 flex-col lg:w-2/3 lg:gap-8 lg:px-6 lg:py-4">
+      <section className="flex flex-1 flex-col lg:flex-2 lg:gap-8 lg:px-6 lg:py-4">
         <ProductCardHeader className="lg:border-b-0 lg:p-0">
           <a className="stretched-link no-underline" href={wishlist.url}>
             <h3 className="truncate">{wishlist.name}</h3>
