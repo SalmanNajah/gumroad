@@ -336,12 +336,12 @@ export const Product = ({
       <Covers covers={product.covers} mainCoverId={product.main_cover_id} />
       {product.quantity_remaining !== null ? <Ribbon>{product.quantity_remaining} left</Ribbon> : null}
       <section className="lg:border-r">
-        <header className="grid gap-4 p-5 not-first:border-t">
+        <header className="grid gap-4 p-6 not-first:border-t">
           <h1 itemProp="name">{product.name}</h1>
         </header>
         <section className="grid grid-cols-[auto_1fr] gap-[1px] p-0 sm:grid-cols-[auto_auto_minmax(max-content,1fr)]">
           {showPrice ? (
-            <div className="px-5 py-4 outline outline-offset-0 outline-border">
+            <div className="px-6 py-4 outline outline-offset-0 outline-border">
               <PriceTag
                 currencyCode={product.currency_code}
                 oldPrice={discountedPriceCents < basePriceCents ? basePriceCents : undefined}
@@ -356,7 +356,7 @@ export const Product = ({
           {sellerByline ? (
             <div
               className={classNames(
-                "flex flex-wrap items-center gap-2 px-5 py-4 outline outline-offset-0 outline-border",
+                "flex flex-wrap items-center gap-2 px-6 py-4 outline outline-offset-0 outline-border",
                 !showPrice && "col-span-full sm:col-auto",
                 showPrice && !(product.ratings != null && product.ratings.count > 0) && "sm:col-[2/-1]",
               )}
@@ -376,7 +376,7 @@ export const Product = ({
             </div>
           ) : null}
           {product.ratings != null && product.ratings.count > 0 ? (
-            <div className="flex items-center px-5 py-4 outline outline-offset-0 outline-border max-sm:col-span-full">
+            <div className="flex items-center px-6 py-4 outline outline-offset-0 outline-border max-sm:col-span-full">
               <RatingsSummary ratings={product.ratings} />
             </div>
           ) : null}
@@ -391,7 +391,7 @@ export const Product = ({
           />
         ) : null}
         {isBundle ? (
-          <section className="border-t border-border p-5">
+          <section className="border-t border-border p-6">
             <h2>This bundle contains...</h2>
             <CartItemList>
               {product.bundle_products.map((bundleProduct) => {
@@ -437,7 +437,7 @@ export const Product = ({
             </CartItemList>
           </section>
         ) : null}
-        <section className="border-t border-border p-5">
+        <section className="border-t border-border p-6">
           {pageLoaded ? (
             <PublicFilesSettingsContext.Provider value={publicFilesSettings}>
               <EditorContent className="rich-text" editor={descriptionEditor} />
@@ -448,7 +448,7 @@ export const Product = ({
         </section>
       </section>
       <section>
-        <section className="grid gap-4 p-5 not-first:border-t">
+        <section className="grid gap-4 p-6 not-first:border-t">
           {notForSaleMessage ? (
             <div role="status" className="warning">
               {notForSaleMessage}
@@ -663,7 +663,7 @@ const ExistingPurchaseStack = ({
   if (!purchase.should_show_receipt) return null;
 
   return (
-    <section className="border-t border-border p-5">
+    <section className="border-t border-border p-6">
       <div className="stack">
         {purchase.membership ? (
           <>
@@ -758,7 +758,7 @@ const Reviews = ({
   if (ratings.count === 0) return null;
 
   return (
-    <section className="grid gap-4 p-5 not-first:border-t">
+    <section className="grid gap-4 p-6 not-first:border-t">
       <header className="flex items-center justify-between">
         <h3>Ratings</h3>
         <div className="flex shrink-0 items-center gap-1">
