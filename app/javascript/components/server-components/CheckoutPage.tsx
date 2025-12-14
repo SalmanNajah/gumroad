@@ -678,7 +678,7 @@ export const CrossSellModal = ({
           <ProductCardFigure className="lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0">
             {product.thumbnail_url ? <img src={product.thumbnail_url} /> : null}
           </ProductCardFigure>
-          <section className="flex flex-1 flex-col lg:gap-8 lg:px-6 lg:py-4">
+          <section className="flex flex-1 flex-col overflow-hidden lg:gap-8 lg:px-6 lg:py-4">
             <ProductCardHeader className="lg:border-b-0 lg:p-0">
               <a className="stretched-link" href={product.url} target="_blank" rel="noreferrer">
                 <h3 className="truncate">{option ? `${product.name} - ${option.name}` : product.name}</h3>

@@ -26,7 +26,7 @@ describe("Product checkout with upsells", type: :system, js: true) do
         link = find_link("https://upsell.com", href: "https://upsell.com", target: "_blank")
         expect(link["rel"]).to eq("noopener")
         expect(page).to have_radio_button("Untitled 2")
-        find_button("Upgrade", visible: true).click
+        click_on "Upgrade"
       end
 
       expect(page).to have_alert(text: "Your purchase was successful! We sent a receipt to test@gumroad.com.")
@@ -277,7 +277,7 @@ describe("Product checkout with upsells", type: :system, js: true) do
         expect(page).to have_text("This offer will only last for a few weeks.")
         expect(page).to have_section("Offered product")
         expect(page).to have_selector("[itemprop='price']", text: "$4 $3.50")
-        find_button("Upgrade", visible: true).click
+        click_on "Upgrade"
       end
 
       expect(page).to have_section("Offered product")
@@ -316,7 +316,7 @@ describe("Product checkout with upsells", type: :system, js: true) do
           # The modal shows original discount that is better than the replacement
           # cross-sell discount.
           expect(page).to have_selector("[itemprop='price']", text: "$4 $3")
-          find_button("Upgrade", visible: true).click
+          click_on "Upgrade"
         end
 
         expect(page).to have_section("Offered product")
@@ -352,7 +352,7 @@ describe("Product checkout with upsells", type: :system, js: true) do
         add_to_cart(selected_product1, pwyw_price: 0)
         fill_checkout_form(selected_product1, is_free: true)
         click_on "Get"
-        find_button("Upgrade", visible: true).click
+        click_on "Upgrade"
 
         expect(page).to_not have_alert
         expect(page).to have_selector("[aria-label='Card information'][aria-invalid='true']")
@@ -383,7 +383,7 @@ describe("Product checkout with upsells", type: :system, js: true) do
       within_modal "Upsell" do
         expect(page).to have_text("Check out this awesome upsell at https://upsell.com!")
         expect(page).to have_radio_button("Untitled 2", text: "$1")
-        find_button("Upgrade", visible: true).click
+        click_on "Upgrade"
       end
 
       expect(page).to have_alert(text: "Your purchase was successful! We sent a receipt to test@gumroad.com")
@@ -545,7 +545,7 @@ describe("Product checkout with upsells", type: :system, js: true) do
         fill_checkout_form(upsell_product, logged_in_user: seller)
         click_on "Pay"
         within_modal "Upsell" do
-          find_button("Upgrade", visible: true).click
+          click_on "Upgrade"
         end
 
         expect(page).to have_alert(text: "Your purchase was successful! We sent a receipt to #{seller.email}")
