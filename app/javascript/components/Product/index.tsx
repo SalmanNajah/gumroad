@@ -391,7 +391,7 @@ export const Product = ({
           />
         ) : null}
         {isBundle ? (
-          <section className="border-t border-border p-6">
+          <section className="grid gap-4 border-t border-border p-6">
             <h2>This bundle contains...</h2>
             <CartItemList>
               {product.bundle_products.map((bundleProduct) => {
