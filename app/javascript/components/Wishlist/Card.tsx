@@ -77,7 +77,7 @@ export const Card = ({ wishlist, hideSeller, eager }: CardProps) => {
         className={classNames(
           "lg:flex-1 lg:shrink-0 lg:rounded-l lg:rounded-tr-none lg:border-r lg:border-b-0",
           wishlist.thumbnails.length > 0 && "grid gap-1 bg-accent !bg-none p-2",
-          wishlist.thumbnails.length >= 2 && "grid-cols-2",
+          wishlist.thumbnails.length >= 2 && "grid-cols-2 grid-rows-2",
         )}
         style={{ backgroundColor }}
       >
