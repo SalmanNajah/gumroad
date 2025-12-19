@@ -60,7 +60,7 @@
     .button-#{$name} {
       $color: map-get($info, color);
       background-color: $color;
-      color: map-get($info, text-color) or fg-color(split-color($color));
+      color: map-get($info, text-color) or fg-color($color);
 
       &::before {
         @extend .brand-icon, .brand-icon-#{$name};
