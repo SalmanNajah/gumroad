@@ -5,6 +5,15 @@
   @return red($color) green($color) blue($color);
 }
 
+@function fg-color($rgb) {
+  $c: rgb(nth($rgb, 1), nth($rgb, 2), nth($rgb, 3));
+  @if lightness($c) > 50% {
+    @return 0 0 0;
+  } @else {
+    @return 255 255 255;
+  }
+}
+
 $unit: 1rem !default;
 $colors: (
   "pink": #ff90e8,
@@ -241,20 +250,9 @@ $light-body-bg: #f4f4f0 !default;
     "black": 0 0 0,
     "filled": 255 255 255,
   );
-  // Pre-calculated contrast colors (black or white text based on WCAG contrast)
-  $contrast-colors: (
-    "success": 0 0 0,
-    "warning": 0 0 0,
-    "danger": 255 255 255,
-    "info": 0 0 0,
-    "accent": 0 0 0,
-    "primary": 255 255 255,
-    "black": 255 255 255,
-    "filled": 0 0 0,
-  );
   @each $name, $color in $base-colors {
     --#{$name}: #{$color};
-    --contrast-#{$name}: #{map-get($contrast-colors, $name)};
+    --contrast-#{$name}: #{fg-color($color)};
   }
   --color: 0 0 0;
   --body-bg: #{$light-body-bg};
