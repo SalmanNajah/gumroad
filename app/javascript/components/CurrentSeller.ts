@@ -17,7 +17,7 @@ export type CurrentSeller = {
   isNameInvalidForEmailDelivery: boolean;
   profileBackgroundColor: string;
   profileHighlightColor: string;
-  profileFont: string | null;
+  profileFont: string;
 };
 
 const Context = React.createContext<CurrentSeller | null | undefined>(undefined);
@@ -35,7 +35,7 @@ export const parseCurrentSeller = (data: unknown): CurrentSeller | null => {
     is_name_invalid_for_email_delivery: boolean;
     profile_background_color: string;
     profile_highlight_color: string;
-    profile_font: string | null;
+    profile_font: string;
   } | null>(data);
   if (parsed == null) return null;
   return {

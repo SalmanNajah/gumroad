@@ -165,7 +165,7 @@ export const Layout = ({
 
   const fontUrl =
     currentSeller?.profileFont && currentSeller.profileFont !== "ABC Favorit"
-      ? `https://fonts.googleapis.com/css2?family=${encodeURIComponent(currentSeller.profileFont)}:wght@400;600&display=swap`
+      ? `https://fonts.googleapis.com/css2?family=${currentSeller.profileFont}:wght@400;600&display=swap`
       : null;
 
   const [isPublishing, setIsPublishing] = React.useState(false);
@@ -358,7 +358,7 @@ export const Layout = ({
                   ? {
                       border: "var(--border)",
                       borderRadius: "var(--border-radius-2)",
-                      fontFamily: currentSeller?.profileFont === "ABC Favorit" ? undefined : currentSeller?.profileFont ?? undefined,
+                      fontFamily: currentSeller?.profileFont === "ABC Favorit" ? undefined : currentSeller?.profileFont,
                       ...profileColors,
                       "--primary": "var(--color)",
                       "--body-bg": "rgb(var(--filled))",
