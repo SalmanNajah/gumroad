@@ -3,6 +3,7 @@ import { Link, useMatches, useNavigate } from "react-router-dom";
 
 import { saveBundle } from "$app/data/bundle";
 import { setProductPublished } from "$app/data/publish_product";
+import { getContrastColor } from "$app/utils/color";
 import { asyncVoid } from "$app/utils/promise";
 import { assertResponseError } from "$app/utils/request";
 
@@ -19,6 +20,9 @@ import { PageHeader } from "$app/components/ui/PageHeader";
 import { Tabs, Tab } from "$app/components/ui/Tabs";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 import { WithTooltip } from "$app/components/WithTooltip";
+
+const hexToRgb = (hex: string) =>
+  `${parseInt(hex.slice(1, 3), 16)} ${parseInt(hex.slice(3, 5), 16)} ${parseInt(hex.slice(5), 16)}`;
 
 export const useProductUrl = (params = {}) => {
   const { bundle, uniquePermalink } = useBundleEditContext();
@@ -40,6 +44,7 @@ export const Layout = ({
   isLoading?: boolean;
 }) => {
   const { bundle, updateBundle, id, uniquePermalink } = useBundleEditContext();
+  const currentSeller = useCurrentSeller();
 
   const url = useProductUrl();
 
@@ -92,6 +97,20 @@ export const Layout = ({
         : undefined;
 
   const navigate = useNavigate();
+
+  const profileColors = currentSeller
+    ? {
+        "--accent": hexToRgb(currentSeller.profileHighlightColor),
+        "--contrast-accent": hexToRgb(getContrastColor(currentSeller.profileHighlightColor)),
+        "--filled": hexToRgb(currentSeller.profileBackgroundColor),
+        "--color": hexToRgb(getContrastColor(currentSeller.profileBackgroundColor)),
+      }
+    : {};
+
+  const fontUrl =
+    currentSeller?.profileFont && currentSeller.profileFont !== "ABC Favorit"
+      ? `https://fonts.googleapis.com/css2?family=${encodeURIComponent(currentSeller.profileFont)}:wght@400;600&display=swap`
+      : null;
 
   const saveButton = (
     <WithTooltip tip={saveButtonTooltip}>
@@ -202,9 +221,34 @@ export const Layout = ({
               scaleFactor={0.4}
               style={{
                 border: "var(--border)",
+                borderRadius: "var(--border-radius-2)",
+                fontFamily: currentSeller?.profileFont === "ABC Favorit" ? undefined : currentSeller?.profileFont ?? undefined,
+                ...profileColors,
+                "--primary": "var(--color)",
+                "--body-bg": "rgb(var(--filled))",
+                "--contrast-primary": "var(--filled)",
+                "--contrast-filled": "var(--color)",
+                "--color-body": "var(--body-bg)",
+                "--color-background": "rgb(var(--filled))",
+                "--color-foreground": "rgb(var(--color))",
+                "--color-border": "rgb(var(--color) / var(--border-alpha))",
+                "--color-accent": "rgb(var(--accent))",
+                "--color-accent-foreground": "rgb(var(--contrast-accent))",
+                "--color-primary": "rgb(var(--primary))",
+                "--color-primary-foreground": "rgb(var(--contrast-primary))",
+                "--color-active-bg": "rgb(var(--color) / var(--gray-1))",
+                "--color-muted": "rgb(var(--color) / var(--gray-3))",
                 backgroundColor: "rgb(var(--filled))",
+                color: "rgb(var(--color))",
               }}
             >
+              {fontUrl ? (
+                <>
+                  <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+                  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                  <link rel="stylesheet" href={fontUrl} />
+                </>
+              ) : null}
               {preview}
             </Preview>
           </PreviewSidebar>
