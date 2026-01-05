@@ -1,5 +1,4 @@
 import { usePage, router } from "@inertiajs/react";
-import { cx } from "class-variance-authority";
 import * as React from "react";
 import { GroupBase, SelectInstance } from "react-select";
 import { cast } from "ts-safe-cast";
@@ -29,6 +28,7 @@ import { Option, Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { WithTooltip } from "$app/components/WithTooltip";
 
@@ -144,11 +144,11 @@ const AddTeamMembersSection = ({
           gridTemplateColumns: "repeat(auto-fit, max(var(--dynamic-grid), 50% - var(--spacer-3) / 2))",
         }}
       >
-        <fieldset className={cx({ danger: errors.has("email") })}>
-          <legend>
-            <label htmlFor={emailUID}>Email</label>
-          </legend>
-          <input
+        <FormFieldset state={errors.has("email") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={emailUID}>Email</FormLabel>
+          </FormLegend>
+          <FormInput
             id={emailUID}
             type="text"
             ref={emailFieldRef}
@@ -160,11 +160,11 @@ const AddTeamMembersSection = ({
               clearError("email");
             }}
           />
-        </fieldset>
-        <fieldset className={cx({ danger: errors.has("role") })}>
-          <legend>
-            <label htmlFor={roleUID}>Role</label>
-          </legend>
+        </FormFieldset>
+        <FormFieldset state={errors.has("role") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={roleUID}>Role</FormLabel>
+          </FormLegend>
           <Select
             ref={roleFieldRef}
             inputId={roleUID}
@@ -181,7 +181,7 @@ const AddTeamMembersSection = ({
               }
             }}
           />
-        </fieldset>
+        </FormFieldset>
       </div>
       <Button color="primary" className="w-fit" disabled={loading} onClick={onSubmit}>
         {loading ? (

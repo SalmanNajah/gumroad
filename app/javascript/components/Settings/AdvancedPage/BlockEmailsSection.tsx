@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { isValidEmail } from "$app/utils/email";
+import { FormFieldset, FormLabel, FormLegend, FormSmall, FormTextarea } from "$app/components/ui/form";
 
 type Props = {
   blockedEmails: string;
@@ -46,22 +47,20 @@ const BlockEmailsSection = ({ blockedEmails, setBlockedEmails }: Props) => {
           Learn more
         </a>
       </header>
-      <fieldset>
-        <legend>
-          <label htmlFor={uid}>Block emails from purchasing</label>
-        </legend>
-        <div className="input input-wrapper">
-          <textarea
-            id={uid}
-            placeholder={["name@example.com", "name@example.net", "name@example.org"].join("\n")}
-            rows={4}
-            value={blockedEmails}
-            onChange={(e) => setBlockedEmails(e.target.value)}
-            onBlur={sanitizeBlockedEmails}
-          />
-        </div>
-        <small>Please enter each email address on a new line.</small>
-      </fieldset>
+      <FormFieldset>
+        <FormLegend>
+          <FormLabel htmlFor={uid}>Block emails from purchasing</FormLabel>
+        </FormLegend>
+        <FormTextarea
+          id={uid}
+          placeholder={["name@example.com", "name@example.net", "name@example.org"].join("\n")}
+          rows={4}
+          value={blockedEmails}
+          onChange={(e) => setBlockedEmails(e.target.value)}
+          onBlur={sanitizeBlockedEmails}
+        />
+        <FormSmall>Please enter each email address on a new line.</FormSmall>
+      </FormFieldset>
     </section>
   );
 };

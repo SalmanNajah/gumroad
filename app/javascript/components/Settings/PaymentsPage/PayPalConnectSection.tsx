@@ -8,6 +8,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
 
 export type PayPalConnect = {
   email: string | null;
@@ -92,15 +93,15 @@ const PayPalConnectSection = ({
           <>
             <p>{connectAccountFeeInfoText}</p>
             <div className="grid gap-8">
-              <fieldset>
-                <legend>
-                  <label>PayPal account</label>
-                </legend>
-                <div className="input input-wrapper">
-                  <div className="fake-input">{paypalConnect.charge_processor_merchant_id}</div>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel>PayPal account</FormLabel>
+                </FormLegend>
+                <FormInputWrapper readOnly>
+                  <span className="flex-1">{paypalConnect.charge_processor_merchant_id}</span>
                   <Icon name="solid-check-circle" className="text-success" />
-                </div>
-              </fieldset>
+                </FormInputWrapper>
+              </FormFieldset>
               {paypalConnect.show_paypal_connect ? (
                 <>
                   <p>

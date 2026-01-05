@@ -1,5 +1,4 @@
 import { useForm, usePage } from "@inertiajs/react";
-import cx from "classnames";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -16,6 +15,17 @@ import { ProductLevelSupportEmailsForm } from "$app/components/Settings/Advanced
 import { Layout } from "$app/components/Settings/Layout";
 import { TagInput } from "$app/components/TagInput";
 import { Toggle } from "$app/components/Toggle";
+import {
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormLegend,
+  FormSelect,
+  FormSmall,
+  FormTextarea,
+} from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 
@@ -118,11 +128,11 @@ export default function MainPage() {
           <header>
             <h2>User details</h2>
           </header>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-email`}>Email</label>
-            </legend>
-            <input
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-email`}>Email</FormLabel>
+            </FormLegend>
+            <FormInput
               type="email"
               id={`${uid}-email`}
               value={form.data.user.email}
@@ -131,7 +141,7 @@ export default function MainPage() {
               onChange={(e) => updateUserSettings({ email: e.target.value })}
             />
             {props.user.has_unconfirmed_email && !props.is_form_disabled ? (
-              <small>
+              <FormSmall>
                 This email address has not been confirmed yet.{" "}
                 {resentConfirmationEmail ? null : (
                   <button
@@ -144,9 +154,9 @@ export default function MainPage() {
                     {resendConfirmationEmailForm.processing ? "Resending..." : "Resend confirmation?"}
                   </button>
                 )}
-              </small>
+              </FormSmall>
             ) : null}
-          </fieldset>
+          </FormFieldset>
         </section>
         <section className="p-4! md:p-8!">
           <header>
@@ -164,7 +174,7 @@ export default function MainPage() {
               .
             </div>
           </header>
-          <fieldset>
+          <FormFieldset>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -265,17 +275,17 @@ export default function MainPage() {
                 </TableRow>
               </TableBody>
             </Table>
-          </fieldset>
+          </FormFieldset>
         </section>
         <section className="p-4! md:p-8!">
           <header>
             <h2>Support</h2>
           </header>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-support-email`}>Email</label>
-            </legend>
-            <input
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-support-email`}>Email</FormLabel>
+            </FormLegend>
+            <FormInput
               type="email"
               id={`${uid}-support-email`}
               value={form.data.user.support_email}
@@ -283,8 +293,8 @@ export default function MainPage() {
               disabled={isFormDisabled}
               onChange={(e) => updateUserSettings({ support_email: e.target.value })}
             />
-            <small>This email is listed on the receipt of every sale.</small>
-          </fieldset>
+            <FormSmall>This email is listed on the receipt of every sale.</FormSmall>
+          </FormFieldset>
           {props.user.product_level_support_emails !== null && (
             <ProductLevelSupportEmailsForm
               productLevelSupportEmails={form.data.user.product_level_support_emails}
@@ -300,11 +310,11 @@ export default function MainPage() {
               <h2>Refund policy</h2>
               <div>Choose how refunds will be handled for your products.</div>
             </header>
-            <fieldset>
-              <legend>
-                <label htmlFor="max-refund-period-in-days">Refund period</label>
-              </legend>
-              <select
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor="max-refund-period-in-days">Refund period</FormLabel>
+              </FormLegend>
+              <FormSelect
                 id="max-refund-period-in-days"
                 value={form.data.user.seller_refund_policy.max_refund_period_in_days}
                 disabled={isFormDisabled}
@@ -322,9 +332,9 @@ export default function MainPage() {
                     {value}
                   </option>
                 ))}
-              </select>
-            </fieldset>
-            <fieldset>
+              </FormSelect>
+            </FormFieldset>
+            <FormFieldset>
               <ToggleSettingRow
                 value={
                   form.data.user.seller_refund_policy.fine_print_enabled
@@ -342,11 +352,11 @@ export default function MainPage() {
                 disabled={isFormDisabled || form.data.user.seller_refund_policy.max_refund_period_in_days === 0}
                 label="Add a fine print to your refund policy"
                 dropdown={
-                  <fieldset>
-                    <legend>
-                      <label htmlFor="seller-refund-policy-fine-print">Fine print</label>
-                    </legend>
-                    <textarea
+                  <FormFieldset>
+                    <FormLegend>
+                      <FormLabel htmlFor="seller-refund-policy-fine-print">Fine print</FormLabel>
+                    </FormLegend>
+                    <FormTextarea
                       id="seller-refund-policy-fine-print"
                       maxLength={3000}
                       rows={10}
@@ -362,21 +372,21 @@ export default function MainPage() {
                         })
                       }
                     />
-                  </fieldset>
+                  </FormFieldset>
                 }
               />
-            </fieldset>
+            </FormFieldset>
           </section>
         ) : null}
         <section className="p-4! md:p-8!">
           <header>
             <h2>Local</h2>
           </header>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-timezone`}>Time zone</label>
-            </legend>
-            <select
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-timezone`}>Time zone</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-timezone`}
               disabled={isFormDisabled}
               value={form.data.user.timezone}
@@ -387,13 +397,13 @@ export default function MainPage() {
                   {`${tz.offset} | ${tz.name}`}
                 </option>
               ))}
-            </select>
-          </fieldset>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-local-currency`}>Sell in...</label>
-            </legend>
-            <select
+            </FormSelect>
+          </FormFieldset>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-local-currency`}>Sell in...</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-local-currency`}
               disabled={isFormDisabled}
               value={form.data.user.currency_type}
@@ -404,14 +414,14 @@ export default function MainPage() {
                   {currency.name}
                 </option>
               ))}
-            </select>
-            <small>Applies only to new products.</small>
-            <small>
+            </FormSelect>
+            <FormSmall>Applies only to new products.</FormSmall>
+            <FormSmall>
               Charges will happen in USD, using an up-to-date exchange rate. Customers may incur an additional foreign
               transaction fee according to their cardmember agreement.
-            </small>
-          </fieldset>
-          <fieldset>
+            </FormSmall>
+          </FormFieldset>
+          <FormFieldset>
             <ToggleSettingRow
               value={form.data.user.purchasing_power_parity_enabled}
               onChange={(value) => updateUserSettings({ purchasing_power_parity_enabled: value })}
@@ -419,11 +429,11 @@ export default function MainPage() {
               label="Enable purchasing power parity"
               dropdown={
                 <div className="flex flex-col gap-4">
-                  <fieldset>
-                    <legend>
-                      <label htmlFor={`${uid}-ppp-discount-percentage`}>Maximum PPP discount</label>
-                    </legend>
-                    <div className={cx("input", { disabled: props.is_form_disabled })}>
+                  <FormFieldset>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-ppp-discount-percentage`}>Maximum PPP discount</FormLabel>
+                    </FormLegend>
+                    <FormInputWrapper disabled={props.is_form_disabled}>
                       <NumberInput
                         value={form.data.user.purchasing_power_parity_limit}
                         onChange={(value) => {
@@ -433,10 +443,11 @@ export default function MainPage() {
                         }}
                       >
                         {(inputProps) => (
-                          <input
+                          <FormInput
                             id={`${uid}-ppp-discount-percentage`}
                             type="text"
                             placeholder="60"
+                            className="border-none! outline-none!"
                             disabled={isFormDisabled}
                             aria-label="Percentage"
                             {...inputProps}
@@ -444,8 +455,8 @@ export default function MainPage() {
                         )}
                       </NumberInput>
                       <Pill className="-mr-2 shrink-0">%</Pill>
-                    </div>
-                  </fieldset>
+                    </FormInputWrapper>
+                  </FormFieldset>
                   <Toggle
                     value={!form.data.user.purchasing_power_parity_payment_verification_disabled}
                     disabled={isFormDisabled}
@@ -455,10 +466,10 @@ export default function MainPage() {
                   >
                     Apply only if the customer is currently located in the country of their payment method
                   </Toggle>
-                  <fieldset>
-                    <legend>
-                      <label htmlFor={`${uid}-ppp-exclude-products`}>Products to exclude</label>
-                    </legend>
+                  <FormFieldset>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-ppp-exclude-products`}>Products to exclude</FormLabel>
+                    </FormLegend>
 
                     <TagInput
                       inputId={`${uid}-ppp-exclude-products`}
@@ -470,9 +481,8 @@ export default function MainPage() {
                       }
                     />
 
-                    <label>
-                      <input
-                        type="checkbox"
+                    <FormLabel>
+                      <FormCheckbox
                         disabled={isFormDisabled}
                         checked={
                           form.data.user.purchasing_power_parity_excluded_product_ids.length ===
@@ -487,45 +497,47 @@ export default function MainPage() {
                         }
                       />
                       All products
-                    </label>
-                  </fieldset>
+                    </FormLabel>
+                  </FormFieldset>
                 </div>
               }
             />
-            <small>
+            <FormSmall>
               Charge customers different amounts depending on the cost of living in their country.{" "}
               <a href="/help/article/327-purchasing-power-parity" target="_blank" rel="noreferrer">
                 Learn more
               </a>
-            </small>
-          </fieldset>
+            </FormSmall>
+          </FormFieldset>
         </section>
         <section className="p-4! md:p-8!">
           <header>
             <h2>Adult content</h2>
           </header>
-          <fieldset>
+          <FormFieldset>
             <ToggleSettingRow
               value={form.data.user.show_nsfw_products}
               onChange={(value) => updateUserSettings({ show_nsfw_products: value })}
               disabled={isFormDisabled}
               label="Show adult content in recommendations and search results"
             />
-          </fieldset>
+          </FormFieldset>
         </section>
         <section className="p-4! md:p-8!">
           <header>
             <h2>Affiliates</h2>
           </header>
-          <fieldset>
+          <FormFieldset>
             <ToggleSettingRow
               value={form.data.user.disable_affiliate_requests}
               onChange={(value) => updateUserSettings({ disable_affiliate_requests: value })}
               disabled={isFormDisabled}
               label="Prevent others from adding me as an affiliate"
             />
-            <small>When enabled, other users cannot add you as an affiliate or request to become your affiliate.</small>
-          </fieldset>
+            <FormSmall>
+              When enabled, other users cannot add you as an affiliate or request to become your affiliate.
+            </FormSmall>
+          </FormFieldset>
         </section>
         {props.invalidate_active_sessions ? <InvalidateActiveSessionsSection /> : null}
       </form>
@@ -555,12 +567,12 @@ const InvalidateActiveSessionsSection = () => {
 
   return (
     <section className="p-4! md:p-8!">
-      <fieldset>
+      <FormFieldset>
         <button className="underline" type="button" onClick={() => setIsConfirmationDialogOpen(true)}>
           Sign out from all active sessions
         </button>
         <small>You will be signed out from all your active sessions including this session.</small>
-      </fieldset>
+      </FormFieldset>
       {isConfirmationDialogOpen ? (
         <Modal
           open

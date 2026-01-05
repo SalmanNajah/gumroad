@@ -1,6 +1,5 @@
 import { CardElement, Elements } from "@stripe/react-stripe-js";
 import { StripeCardElement, StripeElementStyleVariant, StripeCardElementChangeEvent } from "@stripe/stripe-js";
-import cx from "classnames";
 import * as React from "react";
 
 import { SavedCreditCard } from "$app/parsers/card";
@@ -9,6 +8,7 @@ import { getCssVariable } from "$app/utils/styles";
 
 import { useFont } from "$app/components/DesignSettings";
 import { Icon } from "$app/components/Icons";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
 
 export const CreditCardInput = ({
   disabled,
@@ -32,23 +32,23 @@ export const CreditCardInput = ({
   const [baseStripeStyle, setBaseStripeStyle] = React.useState<null | StripeElementStyleVariant>(null);
 
   return (
-    <fieldset className={cx({ danger: invalid })}>
-      <legend>
-        <label>Card information</label>
+    <FormFieldset state={invalid ? "danger" : undefined}>
+      <FormLegend>
+        <FormLabel>Card information</FormLabel>
         {savedCreditCard ? (
           <button className="font-normal underline" disabled={disabled} onClick={() => setUseSavedCard(!useSavedCard)}>
             {useSavedCard ? "Use a different card?" : "Use saved card"}
           </button>
         ) : null}
-      </legend>
+      </FormLegend>
       {savedCreditCard && useSavedCard ? (
-        <div className="input read-only" aria-label="Saved credit card">
+        <FormInputWrapper readOnly aria-label="Saved credit card">
           <Icon name="outline-credit-card" />
           <span>{savedCreditCard.number}</span>
           <span style={{ marginLeft: "auto" }}>{savedCreditCard.expiration_date}</span>
-        </div>
+        </FormInputWrapper>
       ) : (
-        <div className={cx("input", { disabled })} aria-label="Card information" aria-invalid={invalid}>
+        <FormInputWrapper disabled={disabled} aria-label="Card information" aria-invalid={invalid}>
           {baseStripeStyle == null ? (
             <input
               ref={(el) => {
@@ -67,7 +67,7 @@ export const CreditCardInput = ({
           ) : null}
           <StripeElementsProvider>
             <CardElement
-              className="fake-input"
+              className="flex-1"
               options={{
                 style: { base: baseStripeStyle ?? {} },
                 hidePostalCode: true,
@@ -79,9 +79,9 @@ export const CreditCardInput = ({
               {...(onChange ? { onChange } : {})}
             />
           </StripeElementsProvider>
-        </div>
+        </FormInputWrapper>
       )}
-    </fieldset>
+    </FormFieldset>
   );
 };
 

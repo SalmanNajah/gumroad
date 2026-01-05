@@ -9,6 +9,7 @@ import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
 import { SocialAuthButton } from "$app/components/SocialAuthButton";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
 
 export type StripeConnect = {
   has_connected_stripe: boolean;
@@ -65,15 +66,15 @@ const StripeConnectSection = ({
         </div>
         {stripeConnect.has_connected_stripe ? (
           <div className="grid gap-8">
-            <fieldset>
-              <legend>
-                <label>Stripe account</label>
-              </legend>
-              <div className="input input-wrapper">
-                <div className="fake-input">{stripeConnect.stripe_connect_account_id}</div>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel>Stripe account</FormLabel>
+              </FormLegend>
+              <FormInputWrapper readOnly>
+                <span className="flex-1">{stripeConnect.stripe_connect_account_id}</span>
                 <Icon name="solid-check-circle" className="text-success" />
-              </div>
-            </fieldset>
+              </FormInputWrapper>
+            </FormFieldset>
             <p>
               <Button
                 color="danger"

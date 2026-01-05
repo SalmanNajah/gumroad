@@ -1,4 +1,3 @@
-import cx from "classnames";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -6,6 +5,7 @@ import { asyncVoid } from "$app/utils/promise";
 import { assertResponseError, request, ResponseError } from "$app/utils/request";
 
 import { Button } from "$app/components/Button";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 type VerificationState = "initial" | "verifying" | "success" | "failure";
@@ -67,22 +67,22 @@ const CustomDomain = ({
   });
 
   return (
-    <fieldset
-      className={cx({
-        success: verificationInfo.state === "success",
-        danger: verificationInfo.state === "failure",
-      })}
+    <FormFieldset
+      state={
+        verificationInfo.state === "success" ? "success" : verificationInfo.state === "failure" ? "danger" : undefined
+      }
     >
-      <legend>
-        <label htmlFor={uid}>{label}</label>
+      <FormLegend>
+        <FormLabel htmlFor={uid}>{label}</FormLabel>
         {includeLearnMoreLink ? (
           <a href="/help/article/153-setting-up-a-custom-domain" target="_blank" rel="noreferrer">
             Learn more
           </a>
         ) : null}
-      </legend>
-      <div className="input input-wrapper">
-        <input
+      </FormLegend>
+      <FormInputWrapper>
+        <FormInput
+        className="border-none!"
           id={uid}
           placeholder="yourdomain.com"
           type="text"
@@ -112,9 +112,9 @@ const CustomDomain = ({
             </Button>
           </Pill>
         ) : null}
-      </div>
-      <small>{verificationInfo.message}</small>
-    </fieldset>
+      </FormInputWrapper>
+      <FormSmall>{verificationInfo.message}</FormSmall>
+    </FormFieldset>
   );
 };
 

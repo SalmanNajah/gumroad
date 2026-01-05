@@ -11,6 +11,16 @@ import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
+import {
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormLabel,
+  FormLegend,
+  FormSmall,
+  FormSwitch,
+  FormTextarea,
+} from "$app/components/ui/form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 
@@ -93,56 +103,51 @@ export default function ThirdPartyAnalyticsPage() {
             className="toggle"
             open={!thirdPartyAnalytics.disable_third_party_analytics}
             summary={
-              <label>
-                <input
-                  type="checkbox"
-                  role="switch"
-                  checked={!thirdPartyAnalytics.disable_third_party_analytics}
-                  onChange={(evt) => updateThirdPartyAnalytics({ disable_third_party_analytics: !evt.target.checked })}
-                />
-                Enable third-party analytics services
-              </label>
+              <FormSwitch
+                checked={!thirdPartyAnalytics.disable_third_party_analytics}
+                onChange={(evt) => updateThirdPartyAnalytics({ disable_third_party_analytics: !evt.target.checked })}
+                label="Enable third-party analytics services"
+              />
             }
           >
             <div className="dropdown flex flex-col gap-4">
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}googleAnalyticsId`}>Google Analytics Property ID</label>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}googleAnalyticsId`}>Google Analytics Property ID</FormLabel>
                   <a href="/help/article/174-third-party-analytics" target="_blank" rel="noreferrer">
                     Learn more
                   </a>
-                </legend>
-                <input
+                </FormLegend>
+                <FormInput
                   id={`${uid}googleAnalyticsId`}
                   type="text"
                   placeholder="G-ABCD232DSE"
                   value={thirdPartyAnalytics.google_analytics_id}
                   onChange={(evt) => updateThirdPartyAnalytics({ google_analytics_id: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}facebookPixel`}>Facebook Pixel</label>
+              </FormFieldset>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}facebookPixel`}>Facebook Pixel</FormLabel>
                   <a href="/help/article/174-third-party-analytics" target="_blank" rel="noreferrer">
                     Learn more
                   </a>
-                </legend>
-                <input
+                </FormLegend>
+                <FormInput
                   id={`${uid}facebookPixel`}
                   type="text"
                   placeholder="9127380912836192"
                   value={thirdPartyAnalytics.facebook_pixel_id}
                   onChange={(evt) => updateThirdPartyAnalytics({ facebook_pixel_id: evt.target.value })}
                 />
-              </fieldset>
-              <label>
-                <input
-                  type="checkbox"
+              </FormFieldset>
+              <FormLabel>
+                <FormCheckbox
                   checked={!thirdPartyAnalytics.skip_free_sale_analytics}
                   onChange={(evt) => updateThirdPartyAnalytics({ skip_free_sale_analytics: !evt.target.checked })}
                 />
                 Send 'Purchase' events for free ($0) sales
-              </label>
+              </FormLabel>
             </div>
           </Details>
         </section>
@@ -154,35 +159,31 @@ export default function ThirdPartyAnalyticsPage() {
             className="toggle"
             open={thirdPartyAnalytics.enable_verify_domain_third_party_services}
             summary={
-              <label>
-                <input
-                  type="checkbox"
-                  role="switch"
-                  checked={thirdPartyAnalytics.enable_verify_domain_third_party_services}
-                  onChange={(evt) =>
-                    updateThirdPartyAnalytics({ enable_verify_domain_third_party_services: evt.target.checked })
-                  }
-                />
-                Verify domain in third-party services
-              </label>
+              <FormSwitch
+                checked={thirdPartyAnalytics.enable_verify_domain_third_party_services}
+                onChange={(evt) =>
+                  updateThirdPartyAnalytics({ enable_verify_domain_third_party_services: evt.target.checked })
+                }
+                label="Verify domain in third-party services"
+              />
             }
           >
             <div className="dropdown flex flex-col gap-4">
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}facebookMetaTag`}>Facebook Business</label>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}facebookMetaTag`}>Facebook Business</FormLabel>
                   <a href="/help/article/290-facebook-domain-verification" target="_blank" rel="noreferrer">
                     Learn more
                   </a>
-                </legend>
-                <textarea
+                </FormLegend>
+                <FormTextarea
                   id={`${uid}facebookMetaTag`}
                   placeholder='<meta name="facebook-domain-verification" content="me2vv6lgwoh" />'
                   value={thirdPartyAnalytics.facebook_meta_tag}
                   onChange={(evt) => updateThirdPartyAnalytics({ facebook_meta_tag: evt.target.value })}
                 />
-                <small>Enter meta tag containing the Facebook domain verification code.</small>
-              </fieldset>
+                <FormSmall>Enter meta tag containing the Facebook domain verification code.</FormSmall>
+              </FormFieldset>
             </div>
           </Details>
         </section>
@@ -281,17 +282,17 @@ const SnippetRow = ({
       </RowActions>
       {expanded ? (
         <RowDetails className="flex flex-col gap-4">
-          <fieldset>
-            <label htmlFor={`${uid}name`}>Name</label>
-            <input
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}name`}>Name</FormLabel>
+            <FormInput
               id={`${uid}name`}
               type="text"
               value={snippet.name}
               onChange={(evt) => updateSnippet({ name: evt.target.value })}
             />
-          </fieldset>
-          <fieldset>
-            <label htmlFor={`${uid}location`}>Location</label>
+          </FormFieldset>
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}location`}>Location</FormLabel>
             <TypeSafeOptionSelect
               id={`${uid}location`}
               value={snippet.location}
@@ -301,9 +302,9 @@ const SnippetRow = ({
                 label: LOCATION_TITLES[location] ?? "Receipt",
               }))}
             />
-          </fieldset>
-          <fieldset>
-            <label htmlFor={`${uid}product`}>Products</label>
+          </FormFieldset>
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}product`}>Products</FormLabel>
             <TypeSafeOptionSelect
               id={`${uid}product`}
               value={snippet.product ?? ""}
@@ -316,16 +317,16 @@ const SnippetRow = ({
                 })),
               ]}
             />
-          </fieldset>
-          <fieldset>
-            <label htmlFor={`${uid}code`}>Code</label>
-            <textarea
+          </FormFieldset>
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}code`}>Code</FormLabel>
+            <FormTextarea
               id={`${uid}code`}
               placeholder="Enter your analytics code"
               value={snippet.code}
               onChange={(evt) => updateSnippet({ code: evt.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
         </RowDetails>
       ) : null}
     </Row>

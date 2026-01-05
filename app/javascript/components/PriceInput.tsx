@@ -1,4 +1,3 @@
-import cx from "classnames";
 import * as React from "react";
 
 import {
@@ -10,6 +9,7 @@ import {
 
 import { Icon } from "$app/components/Icons";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 export const PriceInput = React.forwardRef<
@@ -61,9 +61,9 @@ export const PriceInput = React.forwardRef<
     };
 
     return (
-      <div className={cx("input", { disabled })}>
+      <FormInputWrapper disabled={disabled}>
         {currencyCodeSelector ? (
-          <Pill className="relative -ml-2 shrink-0 cursor-pointer">
+          <Pill className="relative -ml-2 shrink-0 cursor-pointer z-1">
             {getLongCurrencySymbol(currencyCode)}
             <TypeSafeOptionSelect
               name="Currency"
@@ -78,9 +78,9 @@ export const PriceInput = React.forwardRef<
             <Icon name="outline-cheveron-down" className="ml-auto" />
           </Pill>
         ) : (
-          <Pill className="-ml-2 shrink-0">{getLongCurrencySymbol(currencyCode)}</Pill>
+          <Pill className="-ml-2 shrink-0 z-1">{getLongCurrencySymbol(currencyCode)}</Pill>
         )}
-        <input
+        <FormInput
           type="text"
           inputMode="decimal"
           id={id}
@@ -94,9 +94,10 @@ export const PriceInput = React.forwardRef<
           onBlur={onBlur}
           disabled={disabled}
           ref={ref}
+          className="border-none! outline-none!"
         />
         {suffix}
-      </div>
+      </FormInputWrapper>
     );
   },
 );

@@ -8,6 +8,7 @@ import { Button } from "$app/components/Button";
 import { PasswordInput } from "$app/components/PasswordInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
 
 const MIN_PASSWORD_LENGTH = 4;
 const MAX_PASSWORD_LENGTH = 128;
@@ -59,10 +60,10 @@ export default function PasswordPage() {
             <h2>Change password</h2>
           </header>
           {requireOldPassword ? (
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-old-password`}>Old password</label>
-              </legend>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-old-password`}>Old password</FormLabel>
+              </FormLegend>
               <PasswordInput
                 id={`${uid}-old-password`}
                 value={form.data.user.password}
@@ -70,12 +71,14 @@ export default function PasswordPage() {
                 required
                 disabled={form.processing}
               />
-            </fieldset>
+            </FormFieldset>
           ) : null}
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-new-password`}>{requireOldPassword ? "New password" : "Add password"}</label>
-            </legend>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-new-password`}>
+                {requireOldPassword ? "New password" : "Add password"}
+              </FormLabel>
+            </FormLegend>
             <PasswordInput
               id={`${uid}-new-password`}
               value={form.data.user.new_password}
@@ -83,14 +86,14 @@ export default function PasswordPage() {
               required
               disabled={form.processing}
             />
-          </fieldset>
-          <fieldset>
+          </FormFieldset>
+          <FormFieldset>
             <div>
               <Button type="submit" color="accent" disabled={form.processing}>
                 {form.processing ? "Changing..." : "Change password"}
               </Button>
             </div>
-          </fieldset>
+          </FormFieldset>
         </section>
       </form>
     </SettingsLayout>

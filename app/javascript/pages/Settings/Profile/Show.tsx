@@ -20,6 +20,15 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { Profile, Props as ProfileProps } from "$app/components/server-components/Profile";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { SocialAuthButton } from "$app/components/SocialAuthButton";
+import {
+  FormColorPicker,
+  FormFieldset,
+  FormInput,
+  FormLabel,
+  FormLegend,
+  FormSmall,
+  FormTextarea,
+} from "$app/components/ui/form";
 
 type ProfilePageProps = {
   profile_settings: ProfileSettings;
@@ -105,11 +114,11 @@ export default function SettingsPage() {
             <header>
               <h2>Profile</h2>
             </header>
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-username`}>Username</label>
-              </legend>
-              <input
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-username`}>Username</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-username`}
                 type="text"
                 disabled={!loggedInUser?.policies.settings_profile.update_username}
@@ -118,15 +127,15 @@ export default function SettingsPage() {
                   updateProfileSettings({ username: evt.target.value.replace(/[^a-z0-9]/giu, "").toLowerCase() })
                 }
               />
-              <small>
+              <FormSmall>
                 View your profile at: <a href={`${scheme}://${subdomain}`}>{subdomain}</a>
-              </small>
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-name`}>Name</label>
-              </legend>
-              <input
+              </FormSmall>
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-name`}>Name</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-name`}
                 type="text"
                 value={profileSettings.name ?? ""}
@@ -136,17 +145,17 @@ export default function SettingsPage() {
                   updateProfileSettings({ name: evt.target.value });
                 }}
               />
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-bio`}>Bio</label>
-              </legend>
-              <textarea
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-bio`}>Bio</FormLabel>
+              </FormLegend>
+              <FormTextarea
                 id={`${uid}-bio`}
                 value={profileSettings.bio ?? ""}
                 onChange={(e) => updateProfileSettings({ bio: e.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
             <LogoInput
               logoUrl={creatorProfile.avatar_url}
               onChange={(blob) => {
@@ -160,8 +169,8 @@ export default function SettingsPage() {
               disabled={!canUpdate}
             />
             {loggedInUser?.policies.settings_profile.manage_social_connections ? (
-              <fieldset>
-                <legend>Social links</legend>
+              <FormFieldset>
+                <FormLegend>Social links</FormLegend>
                 {creatorProfile.twitter_handle ? (
                   <button type="button" className="button button-twitter" onClick={handleUnlinkTwitter}>
                     Disconnect {creatorProfile.twitter_handle} from X
@@ -177,15 +186,15 @@ export default function SettingsPage() {
                     Connect to X
                   </SocialAuthButton>
                 )}
-              </fieldset>
+              </FormFieldset>
             ) : null}
           </section>
           <section className="p-4! md:p-8!">
             <header>
               <h2>Design</h2>
             </header>
-            <fieldset>
-              <legend>Font</legend>
+            <FormFieldset>
+              <FormLegend>Font</FormLegend>
               <div className="radio-buttons grid-cols-1! sm:grid-cols-2! md:grid-cols-3!" role="radiogroup">
                 {FONT_CHOICES.map((font) => (
                   <Button
@@ -204,36 +213,30 @@ export default function SettingsPage() {
                   </Button>
                 ))}
               </div>
-            </fieldset>
+            </FormFieldset>
             <div className="flex gap-4">
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}-backgroundColor`}>Background color</label>
-                </legend>
-                <div className="color-picker">
-                  <input
-                    id={`${uid}-backgroundColor`}
-                    value={profileSettings.background_color}
-                    type="color"
-                    onChange={(evt) => updateProfileSettings({ background_color: evt.target.value })}
-                    disabled={!canUpdate}
-                  />
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}-highlightColor`}>Highlight color</label>
-                </legend>
-                <div className="color-picker">
-                  <input
-                    id={`${uid}-highlightColor`}
-                    value={profileSettings.highlight_color}
-                    type="color"
-                    onChange={(evt) => updateProfileSettings({ highlight_color: evt.target.value })}
-                    disabled={!canUpdate}
-                  />
-                </div>
-              </fieldset>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-backgroundColor`}>Background color</FormLabel>
+                </FormLegend>
+                <FormColorPicker
+                  id={`${uid}-backgroundColor`}
+                  value={profileSettings.background_color}
+                  onChange={(evt) => updateProfileSettings({ background_color: evt.target.value })}
+                  disabled={!canUpdate}
+                />
+              </FormFieldset>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-highlightColor`}>Highlight color</FormLabel>
+                </FormLegend>
+                <FormColorPicker
+                  id={`${uid}-highlightColor`}
+                  value={profileSettings.highlight_color}
+                  onChange={(evt) => updateProfileSettings({ highlight_color: evt.target.value })}
+                  disabled={!canUpdate}
+                />
+              </FormFieldset>
             </div>
           </section>
         </form>

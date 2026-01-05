@@ -5,6 +5,7 @@ import { Icon } from "$app/components/Icons";
 import { TagInput } from "$app/components/TagInput";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
 
 type ProductLevelSupportEmail = {
   email: string;
@@ -76,9 +77,9 @@ const ProductLevelSupportEmailRow = React.memo(
         </RowActions>
         {expanded ? (
           <RowDetails className="flex flex-col gap-4">
-            <fieldset>
-              <label htmlFor={`${uid}email`}>Email</label>
-              <input
+            <FormFieldset>
+              <FormLabel htmlFor={`${uid}email`}>Email</FormLabel>
+              <FormInput
                 id={`${uid}email`}
                 type="email"
                 value={supportEmail.email}
@@ -86,12 +87,12 @@ const ProductLevelSupportEmailRow = React.memo(
                 required={supportEmail.product_ids.length > 0}
                 onChange={handleEmailChange}
               />
-              <small>This reply-to email will appear on receipts for selected products.</small>
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-products`}>Products</label>
-              </legend>
+              <FormSmall>This reply-to email will appear on receipts for selected products.</FormSmall>
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-products`}>Products</FormLabel>
+              </FormLegend>
               <TagInput
                 inputId={`${uid}-products`}
                 tagIds={supportEmail.product_ids}
@@ -99,7 +100,7 @@ const ProductLevelSupportEmailRow = React.memo(
                 isDisabled={isDisabled}
                 onChangeTagIds={handleProductIdsChange}
               />
-            </fieldset>
+            </FormFieldset>
           </RowDetails>
         ) : null}
       </Row>

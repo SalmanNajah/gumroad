@@ -1,5 +1,4 @@
 import { useForm, usePage } from "@inertiajs/react";
-import cx from "classnames";
 import parsePhoneNumberFromString, { CountryCode } from "libphonenumber-js";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
@@ -37,6 +36,7 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import logo from "$assets/images/logo-g.svg";
+import { FormFieldset, FormSmall, FormLabel } from "$app/components/ui/form";
 
 const PAYOUT_FREQUENCIES = ["daily", "weekly", "monthly", "quarterly"] as const;
 type PayoutFrequency = (typeof PAYOUT_FREQUENCIES)[number];
@@ -723,7 +723,7 @@ export default function PaymentsPage() {
   const payoutThresholdError = form.data.payout_threshold_cents < props.minimum_payout_threshold_cents;
 
   const payoutsPausedToggle = (
-    <fieldset>
+    <FormFieldset>
       <Toggle
         value={form.data.payouts_paused_by_user || props.payouts_paused_internally}
         onChange={(value) => form.setData("payouts_paused_by_user", value)}
@@ -732,11 +732,11 @@ export default function PaymentsPage() {
       >
         Pause payouts
       </Toggle>
-      <small>
+      <FormSmall>
         By pausing payouts, they won't be processed until you decide to resume them, and your balance will remain in
         your account until then.
-      </small>
-    </fieldset>
+      </FormSmall>
+    </FormFieldset>
   );
 
   return (
@@ -849,8 +849,8 @@ export default function PaymentsPage() {
             <h2>Payout schedule</h2>
           </header>
           <section className="flex flex-col gap-4">
-            <fieldset>
-              <label htmlFor="payout_frequency">Schedule</label>
+            <FormFieldset>
+              <FormLabel htmlFor="payout_frequency">Schedule</FormLabel>
               <TypeSafeOptionSelect
                 id="payout_frequency"
                 name="Schedule"
@@ -862,11 +862,11 @@ export default function PaymentsPage() {
                   disabled: frequency === "daily" && !props.payout_frequency_daily_supported,
                 }))}
               />
-              <small>
+              <FormSmall>
                 Daily payouts are only available for US users with eligible bank accounts and more than 4 previous
                 payouts.
-              </small>
-            </fieldset>
+              </FormSmall>
+            </FormFieldset>
             {form.data.payout_frequency === "daily" && props.payout_frequency_daily_supported ? (
               <Alert role="status" className="info">
                 <div>
@@ -880,8 +880,8 @@ export default function PaymentsPage() {
                 <div>Your account is no longer eligible for daily payouts. Please update your schedule.</div>
               </Alert>
             )}
-            <fieldset className={cx({ danger: payoutThresholdError })}>
-              <label htmlFor="payout_threshold_cents">Minimum payout threshold</label>
+            <FormFieldset state={payoutThresholdError ? "danger" : undefined}>
+              <FormLabel htmlFor="payout_threshold_cents">Minimum payout threshold</FormLabel>
               <PriceInput
                 id="payout_threshold_cents"
                 currencyCode="usd"
@@ -895,17 +895,17 @@ export default function PaymentsPage() {
                 hasError={!!payoutThresholdError}
               />
               {payoutThresholdError ? (
-                <small>
+                <FormSmall>
                   Your payout threshold must be at least{" "}
                   {formatPriceCentsWithCurrencySymbol("usd", props.minimum_payout_threshold_cents, {
                     symbolFormat: "long",
                   })}
                   .
-                </small>
+                </FormSmall>
               ) : (
-                <small>Payouts will only be issued once your balance reaches this amount.</small>
+                <FormSmall>Payouts will only be issued once your balance reaches this amount.</FormSmall>
               )}
-            </fieldset>
+            </FormFieldset>
             {props.payouts_paused_internally ? (
               <WithTooltip
                 tip={

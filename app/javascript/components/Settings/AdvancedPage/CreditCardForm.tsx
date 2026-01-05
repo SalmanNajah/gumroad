@@ -8,6 +8,7 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormInputWrapper } from "$app/components/ui/form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 type Props = {
@@ -44,11 +45,11 @@ export const CreditCardForm = ({ card, can_remove, read_only }: Props) => {
         </a>
       </header>
       <div className="flex flex-col gap-4">
-        <div className="input read-only" aria-label="Saved credit card">
+        <FormInputWrapper readOnly aria-label="Saved credit card">
           <Icon name="outline-credit-card" />
           <span>{card.number}</span>
           <span style={{ marginLeft: "auto" }}>{card.expiration_date}</span>
-        </div>
+        </FormInputWrapper>
         {read_only ? null : (
           <WithTooltip
             tip={
