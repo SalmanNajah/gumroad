@@ -12,11 +12,10 @@ import {
 } from "date-fns";
 import * as React from "react";
 
-import { classNames } from "$app/utils/classNames";
-
 import { DateInput } from "$app/components/DateInput";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
 export const DateRangePicker = ({
@@ -48,18 +47,18 @@ export const DateRangePicker = ({
         setOpen(open);
       }}
       trigger={
-        <div className="input" aria-label="Date range selector">
+        <FormInputWrapper aria-label="Date range selector">
           <span suppressHydrationWarning>{Intl.DateTimeFormat(locale).formatRange(from, to)}</span>
           <Icon name="outline-cheveron-down" className="ml-auto" />
-        </div>
+        </FormInputWrapper>
       }
     >
       {isCustom ? (
         <div className="flex flex-col gap-4">
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-from`}>From (including)</label>
-            </legend>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-from`}>From (including)</FormLabel>
+            </FormLegend>
             <DateInput
               id={`${uid}-from`}
               value={from}
@@ -67,11 +66,11 @@ export const DateRangePicker = ({
                 if (date) setFrom(date);
               }}
             />
-          </fieldset>
-          <fieldset className={classNames({ danger: to < from })}>
-            <legend>
-              <label htmlFor={`${uid}-to`}>To (including)</label>
-            </legend>
+          </FormFieldset>
+          <FormFieldset state={to < from ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-to`}>To (including)</FormLabel>
+            </FormLegend>
             <DateInput
               id={`${uid}-to`}
               value={to}
@@ -80,8 +79,8 @@ export const DateRangePicker = ({
               }}
               aria-invalid={to < from}
             />
-            {to < from ? <small>Must be after from date</small> : null}
-          </fieldset>
+            {to < from ? <FormSmall>Must be after from date</FormSmall> : null}
+          </FormFieldset>
         </div>
       ) : (
         <div role="menu">

@@ -4,6 +4,7 @@ import { type Product } from "$app/components/Analytics";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
+import { FormCheckbox, FormFieldset, FormInputWrapper, FormLabel } from "$app/components/ui/form";
 
 export type ProductOption = Product & { selected: boolean };
 
@@ -16,18 +17,17 @@ export const ProductsPopover = ({
 }) => (
   <Popover
     trigger={
-      <span className="input">
-        <div className="fake-input">Select products...</div>
+      <FormInputWrapper>
+        <div className="flex-1">Select products...</div>
         <Icon name="outline-cheveron-down" />
-      </span>
+      </FormInputWrapper>
     }
   >
     <div className="stack">
       <div>
-        <fieldset>
-          <label>
-            <input
-              type="checkbox"
+        <FormFieldset>
+          <FormLabel>
+            <FormCheckbox
               checked={products.filter((product) => product.selected).length === products.length}
               onChange={(event) =>
                 setProducts((prevProducts) =>
@@ -36,11 +36,10 @@ export const ProductsPopover = ({
               }
             />
             All products
-          </label>
+          </FormLabel>
           {products.map(({ id, name, unique_permalink, selected }) => (
-            <label key={id}>
-              <input
-                type="checkbox"
+            <FormLabel key={id}>
+              <FormCheckbox
                 checked={selected}
                 onChange={(event) =>
                   setProducts((prevProducts) =>
@@ -53,9 +52,9 @@ export const ProductsPopover = ({
                 }
               />
               {name}
-            </label>
+            </FormLabel>
           ))}
-        </fieldset>
+        </FormFieldset>
       </div>
       <div>
         <Button

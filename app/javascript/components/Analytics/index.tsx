@@ -21,6 +21,7 @@ import { useAnalyticsDateRange } from "$app/components/Analytics/useAnalyticsDat
 import { DateRangePicker } from "$app/components/DateRangePicker";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormInputWrapper, FormSelect } from "$app/components/ui/form";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 
 import placeholder from "$assets/images/placeholders/sales.png";
@@ -150,14 +151,14 @@ const Analytics = ({ products: initialProducts, country_codes, state_names }: An
       actions={
         hasContent ? (
           <>
-            <select
+            <FormSelect
               aria-label="Aggregate by"
               onChange={(e) => setAggregateBy(e.target.value === "daily" ? "daily" : "monthly")}
               className="w-auto"
             >
               <option value="daily">Daily</option>
               <option value="monthly">Monthly</option>
-            </select>
+            </FormSelect>
             <ProductsPopover products={products} setProducts={setProducts} />
             <DateRangePicker {...dateRange} />
           </>
@@ -179,14 +180,14 @@ const Analytics = ({ products: initialProducts, country_codes, state_names }: An
             </>
           ) : (
             <>
-              <div className="input">
+              <FormInputWrapper>
                 <LoadingSpinner />
                 Loading charts...
-              </div>
-              <div className="input">
+              </FormInputWrapper>
+              <FormInputWrapper>
                 <LoadingSpinner />
                 Loading referrers...
-              </div>
+              </FormInputWrapper>
             </>
           )}
           {data?.byState ? (
@@ -197,10 +198,10 @@ const Analytics = ({ products: initialProducts, country_codes, state_names }: An
               stateNames={state_names}
             />
           ) : (
-            <div className="input">
+            <FormInputWrapper>
               <LoadingSpinner />
               Loading locations...
-            </div>
+            </FormInputWrapper>
           )}
         </div>
       ) : (

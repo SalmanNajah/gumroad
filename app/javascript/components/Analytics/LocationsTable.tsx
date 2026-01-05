@@ -4,6 +4,7 @@ import { AnalyticsDataByState, LocationDataValue } from "$app/data/analytics";
 import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
+import { FormInputWrapper, FormSelect } from "$app/components/ui/form";
 import { useClientSortingTableDriver } from "$app/components/useSortingTableDriver";
 
 type TableEntry = {
@@ -175,7 +176,7 @@ export const AnalyticsStatesTable = ({ locationData, selectedProducts, locations
         </TableBody>
       </Table>
 
-      {!items.length ? <div className="input mt-4 lg:mt-0">Nothing yet </div> : null}
+      {!items.length ? <FormInputWrapper className="mt-4 lg:mt-0">Nothing yet</FormInputWrapper> : null}
     </>
   );
 };
@@ -196,10 +197,15 @@ export const LocationsTable = ({
   const caption = (
     <div className="flex justify-between">
       Locations
-      <select aria-label="Locations" className="w-fit" value={selected} onChange={(ev) => setSelected(ev.target.value)}>
+      <FormSelect
+        aria-label="Locations"
+        className="w-fit"
+        value={selected}
+        onChange={(ev) => setSelected(ev.target.value)}
+      >
         <option value="world">World</option>
         <option value="us">United States</option>
-      </select>
+      </FormSelect>
     </div>
   );
 
