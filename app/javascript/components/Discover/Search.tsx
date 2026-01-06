@@ -9,6 +9,7 @@ import { assertResponseError } from "$app/utils/request";
 import { ComboBox } from "$app/components/ComboBox";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange } from "$app/components/useOnChange";
 
@@ -66,9 +67,9 @@ export const Search = ({ query, setQuery }: { query?: string | undefined; setQue
       onToggle={setAutocompleteOpen}
       editable
       input={(props) => (
-        <div className="input">
+        <FormInputWrapper>
           <Icon name="solid-search" />
-          <input
+          <FormInput
             {...props}
             type="search"
             className="cursor-text!"
@@ -88,7 +89,7 @@ export const Search = ({ query, setQuery }: { query?: string | undefined; setQue
             }}
             aria-autocomplete="list"
           />
-        </div>
+        </FormInputWrapper>
       )}
       options={options}
       option={(item, props, index) => (
