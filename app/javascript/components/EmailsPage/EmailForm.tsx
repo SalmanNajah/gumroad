@@ -967,7 +967,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
               <div>
                 <FormFieldset>
                   <FormLegend>
-                    <label htmlFor={`${uid}-bought`}>Bought</label>
+                    <FormLabel htmlFor={`${uid}-bought`}>Bought</FormLabel>
                   </FormLegend>
                   <TagInput
                     inputId={`${uid}-bought`}
@@ -984,7 +984,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
               <div>
                 <FormFieldset>
                   <FormLegend>
-                    <label htmlFor={`${uid}-not_bought`}>Has not yet bought</label>
+                    <FormLabel htmlFor={`${uid}-not_bought`}>Has not yet bought</FormLabel>
                   </FormLegend>
                   <TagInput
                     inputId={`${uid}-not_bought`}
@@ -1163,7 +1163,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                 ) : null}
                 <ImageUploadSettingsContext.Provider value={imageSettings}>
                   <RichTextEditor
-                    className= "textarea px-4 py-3 border border-border rounded block w-full bg-filled text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
+                    className="textarea px-4 py-3 border border-border rounded block w-full bg-filled text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
                     ariaLabel="Email message"
                     placeholder="Write a personalized message..."
                     initialValue={parseInitialValue(form.data.installment.message)}

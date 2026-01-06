@@ -3,7 +3,6 @@ import { DirectUpload } from "@rails/activestorage";
 import { findChildren, Node as TiptapNode } from "@tiptap/core";
 import { Plugin } from "@tiptap/pm/state";
 import { EditorContent, NodeViewProps, NodeViewWrapper, ReactNodeViewRenderer } from "@tiptap/react";
-import cx from "classnames";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -48,6 +47,7 @@ import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/u
 import { useConfigureEvaporate } from "$app/components/useConfigureEvaporate";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { FormFieldset, FormInput, FormSelect } from "$app/components/ui/form";
 import {
   Layout,
   EditPageNavigation,
@@ -494,7 +494,7 @@ const EmailRow = ({
                   value={email.delayed_delivery_time_duration}
                 >
                   {(inputProps) => (
-                    <input
+                    <FormInput
                       type="text"
                       autoComplete="off"
                       placeholder="0"
@@ -504,7 +504,7 @@ const EmailRow = ({
                     />
                   )}
                 </NumberInput>
-                <select
+                <FormSelect
                   value={email.delayed_delivery_time_period}
                   aria-label="Period"
                   onChange={(e) => onChange({ delayed_delivery_time_period: cast(e.target.value) })}
@@ -515,11 +515,11 @@ const EmailRow = ({
                       {`${period}${email.delayed_delivery_time_duration === 1 ? "" : "s"} after ${WORKFLOW_EMAILS_LABELS[workflowTrigger]}`}
                     </option>
                   ))}
-                </select>
+                </FormSelect>
               </div>
             )}
-            <fieldset className={cx({ danger: invalidFieldNames.includes("name") })}>
-              <input
+            <FormFieldset state={invalidFieldNames.includes("name") ? "danger" : undefined}>
+              <FormInput
                 ref={nameInputRef}
                 type="text"
                 placeholder="Subject"
@@ -528,10 +528,10 @@ const EmailRow = ({
                 onChange={(e) => onChange({ name: e.target.value })}
                 onFocus={() => onFocus("name")}
               />
-            </fieldset>
+            </FormFieldset>
             <RichTextEditor
               id={email.id}
-              className="textarea"
+              className="textarea px-4 py-3 border border-border rounded block w-full bg-filled text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
               ariaLabel="Email message"
               placeholder="Write a personalized message..."
               extensions={[...(isAbandonedCartWorkflow ? [AbandonedCartProductList] : [])]}

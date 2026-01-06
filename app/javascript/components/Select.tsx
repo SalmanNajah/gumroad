@@ -203,7 +203,7 @@ const Control = <IsMulti extends boolean>(props: ControlProps<Option, IsMulti>) 
       "px-4 py-0",
       "min-h-[3.025rem]",
       "border border-border",
-      "rounded",
+      "rounded rounded-b-none",
       "bg-background text-foreground",
       "focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent",
       "[&>.icon]:text-muted",

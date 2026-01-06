@@ -6,6 +6,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
 import { Toggle } from "$app/components/Toggle";
+import { FormFieldset } from "$app/components/ui/form";
 
 type PublishButtonProps = {
   isPublished: boolean;
@@ -48,14 +49,14 @@ export const PublishButton = ({
       open={popoverOpen}
       onToggle={setPopoverOpen}
     >
-      <fieldset>
+      <FormFieldset>
         <Button color="accent" onClick={() => onClick("save_and_publish")} disabled={isDisabled}>
           Publish now
         </Button>
         <Toggle value={sendToPastCustomers.enabled} onChange={sendToPastCustomers.toggle}>
           {sendToPastCustomers.label}
         </Toggle>
-      </fieldset>
+      </FormFieldset>
     </Popover>
   );
 };
