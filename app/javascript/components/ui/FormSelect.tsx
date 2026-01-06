@@ -9,7 +9,7 @@ export const FormSelect = React.forwardRef<HTMLSelectElement, FormSelectProps>(
     <select
       ref={ref}
       className={classNames(
-        "font-inherit",
+        "text-base leading-[1.4]",
         "px-4 py-3",
         "border border-border",
         "rounded",

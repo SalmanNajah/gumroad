@@ -1,10 +1,10 @@
-import cx from "classnames";
 import * as React from "react";
 
 import { CurrencyCode } from "$app/utils/currency";
 
 import { NumberInput } from "$app/components/NumberInput";
 import { PriceInput } from "$app/components/PriceInput";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormRadio } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 import { WithTooltip } from "$app/components/WithTooltip";
 
@@ -26,12 +26,11 @@ export const DiscountInput = ({
   ref?: React.RefObject<HTMLInputElement>;
 }) => {
   const fixedAmountFieldset = (
-    <fieldset className={cx({ danger: discount.type === "cents" && discount.error })}>
+    <FormFieldset state={discount.type === "cents" && discount.error ? "danger" : undefined}>
       <div className="grid items-center gap-4 md:grid-cols-[auto_1fr]!">
-        <label>
-          <input
+        <FormLabel>
+          <FormRadio
             ref={ref}
-            type="radio"
             checked={discount.type === "cents"}
             onChange={(evt) => {
               if (evt.target.checked) setDiscount({ type: "cents", value: 0 });
@@ -39,7 +38,7 @@ export const DiscountInput = ({
             disabled={disableFixedAmount}
           />
           Fixed amount
-        </label>
+        </FormLabel>
         <PriceInput
           currencyCode={currencyCode}
           currencyCodeSelector={currencyCodeSelector}
@@ -51,7 +50,7 @@ export const DiscountInput = ({
           ariaLabel="Fixed amount"
         />
       </div>
-    </fieldset>
+    </FormFieldset>
   );
   return (
     <div
@@ -61,19 +60,18 @@ export const DiscountInput = ({
         gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
       }}
     >
-      <fieldset className={cx({ danger: discount.type === "percent" && discount.error })}>
+      <FormFieldset state={discount.type === "percent" && discount.error ? "danger" : undefined}>
         <div className="grid items-center gap-4 md:grid-cols-[auto_1fr]!">
-          <label>
-            <input
-              type="radio"
+          <FormLabel>
+            <FormRadio
               checked={discount.type === "percent"}
               onChange={(evt) => {
                 if (evt.target.checked) setDiscount({ type: "percent", value: 0 });
               }}
             />
             Percentage
-          </label>
-          <div className={cx("input", { disabled: discount.type !== "percent" })}>
+          </FormLabel>
+          <FormInputWrapper disabled={discount.type !== "percent"}>
             <NumberInput
               value={discount.type === "percent" ? discount.value : null}
               onChange={(value) => {
@@ -81,9 +79,10 @@ export const DiscountInput = ({
               }}
             >
               {(props) => (
-                <input
+                <FormInput
                   type="text"
                   placeholder="0"
+                  className="border-none! outline-none!"
                   disabled={discount.type !== "percent"}
                   aria-label="Percentage"
                   aria-invalid={discount.error}
@@ -92,9 +91,9 @@ export const DiscountInput = ({
               )}
             </NumberInput>
             <Pill className="-mr-2 shrink-0">%</Pill>
-          </div>
+          </FormInputWrapper>
         </div>
-      </fieldset>
+      </FormFieldset>
       {disableFixedAmount ? (
         <WithTooltip tip="To select a fixed amount, make sure the selected products are priced in the same currency.">
           {fixedAmountFieldset}

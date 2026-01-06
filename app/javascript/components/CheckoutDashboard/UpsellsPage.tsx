@@ -41,6 +41,7 @@ import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea, FormInputWrapper, FormRadio } from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { Sort, useSortingTableDriver } from "$app/components/useSortingTableDriver";
 
@@ -242,9 +243,9 @@ const UpsellsPage = (props: UpsellsPageProps) => {
                 </div>
               }
             >
-              <div className="input">
+              <FormInputWrapper>
                 <Icon name="solid-search" />
-                <input
+                <FormInput
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search"
@@ -254,7 +255,7 @@ const UpsellsPage = (props: UpsellsPageProps) => {
                     debouncedLoadUpsells();
                   }}
                 />
-              </div>
+              </FormInputWrapper>
             </Popover>
           )}
           <Button color="accent" onClick={() => setView("create")} disabled={isReadOnly}>
@@ -699,11 +700,11 @@ const Form = ({
                 Learn more
               </a>
             </p>
-            <fieldset className={cx({ danger: name.error })}>
-              <legend>
-                <label htmlFor={`${uid}name`}>Name</label>
-              </legend>
-              <input
+            <FormFieldset state={name.error ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}name`}>Name</FormLabel>
+              </FormLegend>
+              <FormInput
                 type="text"
                 id={`${uid}name`}
                 placeholder="Complete course upsell"
@@ -711,12 +712,12 @@ const Form = ({
                 onChange={(evt) => setName({ value: evt.target.value })}
                 aria-invalid={name.error}
               />
-            </fieldset>
-            <fieldset className={cx({ danger: offerText.error })}>
-              <legend>
-                <label htmlFor={`${uid}offerText`}>Offer text</label>
-              </legend>
-              <input
+            </FormFieldset>
+            <FormFieldset state={offerText.error ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}offerText`}>Offer text</FormLabel>
+              </FormLegend>
+              <FormInput
                 type="text"
                 id={`${uid}offerText`}
                 placeholder="Enhance your learning experience"
@@ -724,69 +725,66 @@ const Form = ({
                 onChange={(evt) => setOfferText({ value: evt.target.value })}
                 aria-invalid={offerText.error}
               />
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}offerDescription`}>Offer description</label>
-              </legend>
-              <textarea
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}offerDescription`}>Offer description</FormLabel>
+              </FormLegend>
+              <FormTextarea
                 id={`${uid}offerDescription`}
                 placeholder="You'll enjoy a range of exclusive features, including..."
                 value={offerDescription}
                 onChange={(evt) => setOfferDescription(evt.target.value)}
               />
-            </fieldset>
-            <fieldset>
-              <legend>Status</legend>
-              <label>
-                <input type="radio" name="paused" value="false" checked={!paused} onChange={handlePausedChange} />
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>Status</FormLegend>
+              <FormLabel>
+                <FormRadio name="paused" value="false" checked={!paused} onChange={handlePausedChange} />
                 Live
-              </label>
-              <label>
-                <input type="radio" name="paused" value="true" checked={paused} onChange={handlePausedChange} />
+              </FormLabel>
+              <FormLabel>
+                <FormRadio name="paused" value="true" checked={paused} onChange={handlePausedChange} />
                 Paused
-              </label>
+              </FormLabel>
               <small>Paused upsells will not appear at checkout. You can resume anytime.</small>
-            </fieldset>
-            <fieldset>
-              <legend>Type of offer</legend>
-              <label>
-                <input
-                  type="radio"
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>Type of offer</FormLegend>
+              <FormLabel>
+                <FormRadio
                   checked={type === "cross-sell"}
                   onChange={(evt) => {
                     if (evt.target.checked) setType("cross-sell");
                   }}
                 />
                 Add another product to the cart
-              </label>
-              <label>
-                <input
-                  type="radio"
+              </FormLabel>
+              <FormLabel>
+                <FormRadio
                   checked={type === "replacement-cross-sell"}
                   onChange={(evt) => {
                     if (evt.target.checked) setType("replacement-cross-sell");
                   }}
                 />
                 Replace the selected products with another product
-              </label>
-              <label>
-                <input
-                  type="radio"
+              </FormLabel>
+              <FormLabel>
+                <FormRadio
                   checked={type === "upsell"}
                   onChange={(evt) => {
                     if (evt.target.checked) setType("upsell");
                   }}
                 />
                 Replace the version selected with another version of the same product
-              </label>
-            </fieldset>
+              </FormLabel>
+            </FormFieldset>
             {isCrossSell ? (
               <>
-                <fieldset className={cx({ danger: selectedProductIds.error })}>
-                  <legend>
-                    <label htmlFor={`${uid}selectedProducts`}>Apply to these products</label>
-                  </legend>
+                <FormFieldset state={selectedProductIds.error ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}selectedProducts`}>Apply to these products</FormLabel>
+                  </FormLegend>
                   <Select
                     inputId={`${uid}selectedProducts`}
                     instanceId={`${uid}selectedProducts`}
@@ -802,15 +800,15 @@ const Form = ({
                     isClearable
                     aria-invalid={selectedProductIds.error}
                   />
-                  <label>
-                    <input type="checkbox" checked={universal} onChange={(evt) => setUniversal(evt.target.checked)} />
+                  <FormLabel>
+                    <FormCheckbox checked={universal} onChange={(evt) => setUniversal(evt.target.checked)} />
                     All products
-                  </label>
-                </fieldset>
-                <fieldset className={cx({ danger: offeredProductId.error })}>
-                  <legend>
-                    <label htmlFor={`${uid}offeredProduct`}>Product to offer</label>
-                  </legend>
+                  </FormLabel>
+                </FormFieldset>
+                <FormFieldset state={offeredProductId.error ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}offeredProduct`}>Product to offer</FormLabel>
+                  </FormLegend>
                   <Select
                     inputId={`${uid}offeredProduct`}
                     instanceId={`${uid}offeredProduct`}
@@ -824,12 +822,12 @@ const Form = ({
                     isClearable
                     aria-invalid={offeredProductId.error}
                   />
-                </fieldset>
+                </FormFieldset>
                 {offeredProduct && offeredProduct.options.length > 0 ? (
-                  <fieldset className={cx({ danger: offeredVariantId.error })}>
-                    <legend>
-                      <label htmlFor={`${uid}offeredVariant`}>Version to offer</label>
-                    </legend>
+                  <FormFieldset state={offeredVariantId.error ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}offeredVariant`}>Version to offer</FormLabel>
+                    </FormLegend>
                     <Select
                       inputId={`${uid}offeredVariant`}
                       instanceId={`${uid}offeredVariant`}
@@ -840,23 +838,21 @@ const Form = ({
                       isClearable
                       aria-invalid={offeredVariantId.error}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 ) : null}
-                <fieldset>
-                  <legend>Settings</legend>
+                <FormFieldset>
+                  <FormLegend>Settings</FormLegend>
                   <Details
                     className="toggle"
                     open={!!discount}
                     summary={
-                      <label>
-                        <input
-                          type="checkbox"
-                          role="switch"
+                      <FormLabel>
+                        <FormCheckbox
                           checked={!!discount}
                           onChange={(evt) => setDiscount(evt.target.checked ? { type: "percent", value: 0 } : null)}
                         />
                         Add discount to the offered product
-                      </label>
+                      </FormLabel>
                     }
                   >
                     {discount ? (
@@ -865,14 +861,14 @@ const Form = ({
                       </div>
                     ) : null}
                   </Details>
-                </fieldset>
+                </FormFieldset>
               </>
             ) : (
               <>
-                <fieldset className={cx({ danger: selectedProductId.error })}>
-                  <legend>
-                    <label htmlFor={`${uid}selectedProduct`}>Apply to this product</label>
-                  </legend>
+                <FormFieldset state={selectedProductId.error ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}selectedProduct`}>Apply to this product</FormLabel>
+                  </FormLegend>
                   <Select
                     inputId={`${uid}selectedProduct`}
                     instanceId={`${uid}selectedProduct`}
@@ -888,7 +884,7 @@ const Form = ({
                     isClearable
                     aria-invalid={selectedProductId.error}
                   />
-                </fieldset>
+                </FormFieldset>
                 {selectedProduct ? (
                   <div className="grid grid-cols-[1fr_auto_1fr] gap-2" aria-label="Upsell versions">
                     <b>Version selected</b>
@@ -902,7 +898,7 @@ const Form = ({
                       );
                       return (
                         <React.Fragment key={option.id}>
-                          <div className="input read-only">{option.name}</div>
+                          <FormInputWrapper readOnly>{option.name}</FormInputWrapper>
                           <Icon name="arrow-right-circle" />
                           <Select
                             options={selectedProduct.options.flatMap(({ id, name: label }) =>

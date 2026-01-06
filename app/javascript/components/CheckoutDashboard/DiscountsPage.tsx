@@ -32,8 +32,10 @@ import { PriceInput } from "$app/components/PriceInput";
 import { Select, Option } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Skeleton } from "$app/components/Skeleton";
+import { FormInputWrapper } from "$app/components/ui/form";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -310,9 +312,9 @@ const DiscountsPage = ({
                 </div>
               }
             >
-              <div className="input">
+              <FormInputWrapper>
                 <Icon name="solid-search" />
-                <input
+                <FormInput
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search"
@@ -322,7 +324,7 @@ const DiscountsPage = ({
                     debouncedLoadDiscounts();
                   }}
                 />
-              </div>
+              </FormInputWrapper>
             </Popover>
           ) : null}
 
@@ -894,11 +896,11 @@ const Form = ({
               </div>
             </div>
           </header>
-          <fieldset className={cx({ danger: name.error })}>
-            <legend>
-              <label htmlFor={`${uid}name`}>Name</label>
-            </legend>
-            <input
+          <FormFieldset state={name.error ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}name`}>Name</FormLabel>
+            </FormLegend>
+            <FormInput
               type="text"
               id={`${uid}name`}
               placeholder="Black Friday"
@@ -907,13 +909,13 @@ const Form = ({
               onChange={(evt) => setName({ value: evt.target.value })}
               aria-invalid={name.error}
             />
-          </fieldset>
-          <fieldset className={cx({ danger: code.error })}>
-            <legend>
-              <label htmlFor={`${uid}code`}>Discount code</label>
-            </legend>
+          </FormFieldset>
+          <FormFieldset state={code.error ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}code`}>Discount code</FormLabel>
+            </FormLegend>
             <div className="grid grid-cols-[1fr_auto] gap-2">
-              <input
+              <FormInput
                 type="text"
                 id={`${uid}code`}
                 value={code.value}
@@ -939,11 +941,11 @@ const Form = ({
                 By using this discount, your product will be featured in Black Friday Deals on Discover.
               </Alert>
             ) : null}
-          </fieldset>
-          <fieldset className={cx({ danger: selectedProductIds.error })}>
-            <legend>
-              <label htmlFor={`${uid}products`}>Products</label>
-            </legend>
+          </FormFieldset>
+          <FormFieldset state={selectedProductIds.error ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}products`}>Products</FormLabel>
+            </FormLegend>
             <Select
               ref={selectedProductsFieldRef}
               inputId={`${uid}products`}
@@ -974,9 +976,8 @@ const Form = ({
               isDisabled={universal}
               aria-invalid={selectedProductIds.error}
             />
-            <label>
-              <input
-                type="checkbox"
+            <FormLabel>
+              <FormCheckbox
                 checked={universal}
                 onChange={(evt) => {
                   setUniversal(evt.target.checked);
@@ -985,13 +986,13 @@ const Form = ({
                 aria-invalid={selectedProductIds.error}
               />
               All products
-            </label>
-          </fieldset>
+            </FormLabel>
+          </FormFieldset>
           {canSetDuration ? (
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}duration`}>Discount duration for memberships</label>
-              </legend>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}duration`}>Discount duration for memberships</FormLabel>
+              </FormLegend>
               <TypeSafeOptionSelect
                 id={`${uid}duration`}
                 value={durationInBillingCycles === null ? "forever" : "once"}
@@ -1001,10 +1002,10 @@ const Form = ({
                   { id: "once", label: "Once (first billing period only)" },
                 ]}
               />
-            </fieldset>
+            </FormFieldset>
           ) : null}
-          <fieldset>
-            <legend>Type</legend>
+          <FormFieldset>
+            <FormLegend>Type</FormLegend>
             <DiscountInput
               discount={discount}
               setDiscount={setDiscount}
@@ -1023,29 +1024,24 @@ const Form = ({
                 !selectedProducts.every(({ currency_type }) => currency_type === currencyCode)
               }
             />
-          </fieldset>
-          <fieldset className="gap-4">
-            <legend>Settings</legend>
+          </FormFieldset>
+          <FormFieldset className="gap-4">
+            <FormLegend>Settings</FormLegend>
             <Details
               className="toggle"
               open={limitQuantity}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
-                    checked={limitQuantity}
-                    onChange={(evt) => setLimitQuantity(evt.target.checked)}
-                  />
+                <FormLabel>
+                  <FormSwitch checked={limitQuantity} onChange={(evt) => setLimitQuantity(evt.target.checked)} />
                   Limit quantity
-                </label>
+                </FormLabel>
               }
             >
               <div className="dropdown">
-                <fieldset className={cx({ danger: maxQuantity.error })}>
-                  <legend>
-                    <label htmlFor={`${uid}quantity`}>Quantity</label>
-                  </legend>
+                <FormFieldset state={maxQuantity.error ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}quantity`}>Quantity</FormLabel>
+                  </FormLegend>
                   <NumberInput
                     value={maxQuantity.value}
                     onChange={(value) => {
@@ -1053,25 +1049,20 @@ const Form = ({
                     }}
                   >
                     {(props) => (
-                      <input id={`${uid}quantity`} placeholder="0" aria-invalid={maxQuantity.error} {...props} />
+                      <FormInput id={`${uid}quantity`} placeholder="0" aria-invalid={maxQuantity.error} {...props} />
                     )}
                   </NumberInput>
-                </fieldset>
+                </FormFieldset>
               </div>
             </Details>
             <Details
               className="toggle"
               open={limitValidity}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
-                    checked={limitValidity}
-                    onChange={(evt) => setLimitValidity(evt.target.checked)}
-                  />
+                <FormLabel>
+                  <FormSwitch checked={limitValidity} onChange={(evt) => setLimitValidity(evt.target.checked)} />
                   Limit validity period
-                </label>
+                </FormLabel>
               }
             >
               <div
@@ -1082,10 +1073,10 @@ const Form = ({
                   gap: "var(--spacer-4)",
                 }}
               >
-                <fieldset>
-                  <legend>
-                    <label htmlFor={`${uid}validAt`}>Valid from</label>
-                  </legend>
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}validAt`}>Valid from</FormLabel>
+                  </FormLegend>
                   <DateInput
                     withTime
                     id={`${uid}validAt`}
@@ -1094,19 +1085,15 @@ const Form = ({
                       if (date) setValidAt(date);
                     }}
                   />
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={hasNoEndDate}
-                      onChange={(evt) => setHasNoEndDate(evt.target.checked)}
-                    />
+                  <FormLabel>
+                    <FormCheckbox checked={hasNoEndDate} onChange={(evt) => setHasNoEndDate(evt.target.checked)} />
                     No end date
-                  </label>
-                </fieldset>
-                <fieldset className={cx({ danger: expiresAt.error })}>
-                  <legend>
-                    <label htmlFor={`${uid}expiresAt`}>Valid until</label>
-                  </legend>
+                  </FormLabel>
+                </FormFieldset>
+                <FormFieldset state={expiresAt.error ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}expiresAt`}>Valid until</FormLabel>
+                  </FormLegend>
                   <DateInput
                     withTime
                     id={`${uid}expiresAt`}
@@ -1117,29 +1104,24 @@ const Form = ({
                     disabled={hasNoEndDate}
                     aria-invalid={expiresAt.error ?? false}
                   />
-                </fieldset>
+                </FormFieldset>
               </div>
             </Details>
             <Details
               className="toggle"
               open={hasMinimumAmount}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
-                    checked={hasMinimumAmount}
-                    onChange={(evt) => setHasMinimumAmount(evt.target.checked)}
-                  />
+                <FormLabel>
+                  <FormSwitch checked={hasMinimumAmount} onChange={(evt) => setHasMinimumAmount(evt.target.checked)} />
                   Set a minimum qualifying amount
-                </label>
+                </FormLabel>
               }
             >
               <div className="dropdown">
-                <fieldset className={cx({ danger: minimumAmount.error })}>
-                  <legend>
-                    <label htmlFor={`${uid}minimumAmount`}>Minimum amount</label>
-                  </legend>
+                <FormFieldset state={minimumAmount.error ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}minimumAmount`}>Minimum amount</FormLabel>
+                  </FormLegend>
                   <PriceInput
                     id={`${uid}minimumAmount`}
                     currencyCode={currencyCode}
@@ -1148,29 +1130,27 @@ const Form = ({
                     placeholder="0"
                     hasError={minimumAmount.error ?? false}
                   />
-                </fieldset>
+                </FormFieldset>
               </div>
             </Details>
             <Details
               className="toggle"
               open={hasMinimumQuantity}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
+                <FormLabel>
+                  <FormSwitch
                     checked={hasMinimumQuantity}
                     onChange={(evt) => setHasMinimumQuantity(evt.target.checked)}
                   />
                   Set a minimum quantity
-                </label>
+                </FormLabel>
               }
             >
               <div className="dropdown">
-                <fieldset className={cx({ danger: minimumQuantity.error })}>
-                  <legend>
-                    <label htmlFor={`${uid}minimumQuantity`}>Minimum quantity per product</label>
-                  </legend>
+                <FormFieldset state={minimumQuantity.error ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}minimumQuantity`}>Minimum quantity per product</FormLabel>
+                  </FormLegend>
                   <NumberInput
                     value={minimumQuantity.value}
                     onChange={(value) => {
@@ -1178,7 +1158,7 @@ const Form = ({
                     }}
                   >
                     {(props) => (
-                      <input
+                      <FormInput
                         id={`${uid}minimumQuantity`}
                         placeholder="0"
                         aria-invalid={minimumQuantity.error}
@@ -1186,10 +1166,10 @@ const Form = ({
                       />
                     )}
                   </NumberInput>
-                </fieldset>
+                </FormFieldset>
               </div>
             </Details>
-          </fieldset>
+          </FormFieldset>
         </section>
       </form>
     </div>

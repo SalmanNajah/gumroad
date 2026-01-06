@@ -1,3 +1,4 @@
+import { FormSelect } from "$app/components/ui/FormSelect";
 import * as React from "react";
 
 type Props<OptionId extends string> = {
@@ -15,7 +16,7 @@ export const TypeSafeOptionSelect = <OptionId extends string>({
   disabled,
   ...rest
 }: Props<OptionId> & Omit<React.HTMLAttributes<HTMLSelectElement>, "value" | "onChange"> & { name?: string }) => (
-  <select
+  <FormSelect
     value={value}
     /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions */
     onChange={(evt) => onChange(evt.target.value as OptionId)}
@@ -28,5 +29,5 @@ export const TypeSafeOptionSelect = <OptionId extends string>({
         {opt.label}
       </option>
     ))}
-  </select>
+  </FormSelect>
 );
