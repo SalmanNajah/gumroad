@@ -34,6 +34,7 @@ import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Row, RowActions, RowContent, RowDragHandle, Rows } from "$app/components/ui/Rows";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
 import { useOnChange } from "$app/components/useOnChange";
 import { useRefToLatest } from "$app/components/useRefToLatest";
 
@@ -260,22 +261,20 @@ export const SectionLayout = ({
       <SectionToolbar>
         <EditorMenu label="Edit section" onClose={onClose}>
           <EditorSubmenu heading="Name" text={section.header}>
-            <fieldset>
-              <input
+            <FormFieldset>
+              <FormInput
                 placeholder="Name"
                 value={section.header}
                 onChange={(e) => updateSection({ header: e.target.value })}
               />
-            </fieldset>
-            <label>
-              <input
-                type="checkbox"
-                role="switch"
+            </FormFieldset>
+            <FormLabel>
+              <FormSwitch
                 checked={!section.hide_header}
                 onChange={() => updateSection({ hide_header: !section.hide_header })}
               />
               Display above section
-            </label>
+            </FormLabel>
           </EditorSubmenu>
           {menuItems}
           <button onClick={copyLink}>
@@ -340,10 +339,10 @@ const ProductsSettings = ({ section }: { section: ProductsSection }) => {
 
   return (
     <div className="flex flex-col gap-4 overflow-auto" style={{ maxHeight: "min(100vh, 500px)" }}>
-      <fieldset>
-        <legend>
-          <label htmlFor={`${uid}-defaultProductSort`}>Default sort order</label>
-        </legend>
+      <FormFieldset>
+        <FormLegend>
+          <FormLabel htmlFor={`${uid}-defaultProductSort`}>Default sort order</FormLabel>
+        </FormLegend>
         <TypeSafeOptionSelect
           id={`${uid}-defaultProductSort`}
           value={section.default_product_sort}
@@ -353,25 +352,21 @@ const ProductsSettings = ({ section }: { section: ProductsSection }) => {
             label: SORT_BY_LABELS[key],
           }))}
         />
-      </fieldset>
-      <label>
-        <input
-          type="checkbox"
-          role="switch"
+      </FormFieldset>
+      <FormLabel>
+        <FormSwitch
           checked={section.show_filters}
           onChange={() => updateSection({ show_filters: !section.show_filters })}
         />
         Show product filters
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          role="switch"
+      </FormLabel>
+      <FormLabel>
+        <FormSwitch
           checked={section.add_new_products}
           onChange={() => updateSection({ add_new_products: !section.add_new_products })}
         />
         Add new products by default
-      </label>
+      </FormLabel>
       {products.length > 0 ? (
         <Sortable list={products} setList={setProducts} tag={ProductList} handle="[aria-grabbed]">
           {products.map((product) => {
@@ -383,7 +378,7 @@ const ProductsSettings = ({ section }: { section: ProductsSection }) => {
                 className={classNames(product.chosen && "border border-border")}
                 asChild
               >
-                <label>
+                <FormLabel>
                   <RowContent>
                     {section.default_product_sort === "page_layout" ? (
                       <RowDragHandle aria-grabbed={product.chosen} />
@@ -391,9 +386,8 @@ const ProductsSettings = ({ section }: { section: ProductsSection }) => {
                     <span className="text-singleline">{product.name}</span>
                   </RowContent>
                   <RowActions>
-                    <input
+                    <FormCheckbox
                       id={productVisibilityUID}
-                      type="checkbox"
                       checked={section.shown_products.includes(product.id)}
                       onChange={() => {
                         updateSection({
@@ -406,7 +400,7 @@ const ProductsSettings = ({ section }: { section: ProductsSection }) => {
                       }}
                     />
                   </RowActions>
-                </label>
+                </FormLabel>
               </Row>
             );
           })}
@@ -549,7 +543,7 @@ const SubscribeSectionView = ({ section }: { section: SubscribeSection }) => {
       section={section}
       menuItems={[
         <EditorSubmenu key="0" heading="Button Label" text={section.button_label}>
-          <input
+          <FormInput
             type="text"
             placeholder="Subscribe"
             aria-label="Button Label"

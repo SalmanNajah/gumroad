@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { ImageUploader } from "$app/components/ImageUploader";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
 
 const ALLOWED_EXTENSIONS = ["jpeg", "jpg", "png"];
 
@@ -20,10 +21,10 @@ export const LogoInput = ({
   const id = React.useId();
 
   return (
-    <fieldset>
-      <legend>
-        <label htmlFor={id}>Logo</label>
-      </legend>
+    <FormFieldset>
+      <FormLegend>
+        <FormLabel htmlFor={id}>Logo</FormLabel>
+      </FormLegend>
       <ImageUploader
         id={id}
         helpText="Your logo will be visible next to your name in your Gumroad profile and product pages. Your image should be at least 200x200px and must be in JPG or PNG format."
@@ -52,6 +53,6 @@ export const LogoInput = ({
         imageAlt="Current logo"
         disabled={disabled}
       />
-    </fieldset>
+    </FormFieldset>
   );
 };

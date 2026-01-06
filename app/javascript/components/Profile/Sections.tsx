@@ -1,6 +1,7 @@
 import { EditorContent } from "@tiptap/react";
 import classNames from "classnames";
 import * as React from "react";
+import { FormInput } from "$app/components/ui/form";
 
 import {
   FeaturedProductSection as SavedFeaturedProductSection,
@@ -124,7 +125,7 @@ const ProductsSectionView = ({
       defaults={defaultParams}
       prependFilters={
         <div>
-          <input
+          <FormInput
             aria-label="Search products"
             placeholder="Search products"
             value={enteredQuery}

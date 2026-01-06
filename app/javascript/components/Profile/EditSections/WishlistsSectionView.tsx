@@ -10,6 +10,7 @@ import { useReducer, EditorSubmenu, SectionLayout, ProductList } from "$app/comp
 import { WishlistsView } from "$app/components/Profile/Sections";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Row, RowActions, RowContent, RowDragHandle } from "$app/components/ui/Rows";
+import { FormCheckbox, FormLabel } from "$app/components/ui/form";
 import { CardWishlist, DummyCardGrid } from "$app/components/Wishlist/Card";
 
 export const WishlistsSectionView = ({ section }: { section: WishlistsSection }) => {
@@ -65,15 +66,14 @@ export const WishlistsSectionView = ({ section }: { section: WishlistsSection })
               <Sortable list={wishlists} setList={setWishlists} tag={ProductList} handle="[aria-grabbed]">
                 {wishlists.map((wishlist) => (
                   <Row asChild key={wishlist.id}>
-                    <label role="listitem">
+                    <FormLabel role="listitem">
                       <RowContent>
                         <RowDragHandle aria-grabbed={wishlist.chosen} />
                         <span className="text-singleline">{wishlist.name}</span>
                       </RowContent>
                       <RowActions>
-                        <input
+                        <FormCheckbox
                           id={`${uid}-productVisibility-${wishlist.id}`}
-                          type="checkbox"
                           checked={section.shown_wishlists.includes(wishlist.id)}
                           onChange={() => {
                             updateSection({
@@ -86,7 +86,7 @@ export const WishlistsSectionView = ({ section }: { section: WishlistsSection })
                           }}
                         />
                       </RowActions>
-                    </label>
+                    </FormLabel>
                   </Row>
                 ))}
               </Sortable>
