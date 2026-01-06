@@ -10,6 +10,7 @@ import {
   CartItemFooter,
 } from "$app/components/CartItemList";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
+import { FormCheckbox } from "$app/components/ui/FormCheckbox";
 
 export const BundleProductSelector = ({
   bundleProduct,
@@ -34,7 +35,7 @@ export const BundleProductSelector = ({
       ) : null}
     </CartItemMain>
     <CartItemEnd className="justify-center">
-      <input type="checkbox" aria-label={bundleProduct.name} checked={!!selected} onChange={onToggle} />
+      <FormCheckbox aria-label={bundleProduct.name} checked={!!selected} onChange={onToggle} />
     </CartItemEnd>
   </CartItem>
 );

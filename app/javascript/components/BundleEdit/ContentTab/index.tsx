@@ -14,6 +14,7 @@ import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Card } from "$app/components/Product/Card";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormCheckbox, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
@@ -98,9 +99,8 @@ export const ContentTab = () => {
                 }}
               >
                 <h2>Products</h2>
-                <label>
-                  <input
-                    type="checkbox"
+                <FormLabel>
+                  <FormCheckbox
                     checked={bundle.products.length === productsCount}
                     disabled={isLoading}
                     onChange={(evt) =>
@@ -112,7 +112,7 @@ export const ContentTab = () => {
                     }
                   />
                   All products
-                </label>
+                </FormLabel>
               </header>
               {bundle.products.length > 0 ? (
                 <CartItemList aria-label="Bundle products">
@@ -140,15 +140,15 @@ export const ContentTab = () => {
                 className="grid gap-4 rounded-sm border border-border bg-background p-4"
                 aria-label="Product selector"
               >
-                <div className="input">
+                <FormInputWrapper>
                   <Icon name="solid-search" />
-                  <input
+                  <FormInput
                     type="text"
                     value={query}
                     onChange={(evt) => setQuery(evt.target.value)}
                     placeholder="Search products"
                   />
-                </div>
+                </FormInputWrapper>
                 {isLoading && results.length === 0 ? (
                   <div style={{ justifySelf: "center" }}>
                     <LoadingSpinner />

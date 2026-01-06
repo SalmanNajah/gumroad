@@ -1,5 +1,4 @@
 import { Editor } from "@tiptap/core";
-import cx from "classnames";
 import { format } from "date-fns";
 import * as React from "react";
 
@@ -28,6 +27,16 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { Drawer, ReorderingHandle, SortableList } from "$app/components/SortableList";
 import { Toggle } from "$app/components/Toggle";
 import { Alert } from "$app/components/ui/Alert";
+import {
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormLegend,
+  FormSmall,
+  FormSwitch,
+  FormTextarea,
+} from "$app/components/ui/form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
@@ -217,10 +226,10 @@ const TierEditor = ({
       {isOpen ? (
         <RowDetails asChild>
           <Drawer className="grid gap-6">
-            <fieldset>
-              <label htmlFor={`${uid}-name`}>Name</label>
-              <div className="input">
-                <input
+            <FormFieldset>
+              <FormLabel htmlFor={`${uid}-name`}>Name</FormLabel>
+              <FormInputWrapper>
+                <FormInput
                   id={`${uid}-name`}
                   type="text"
                   value={tier.name}
@@ -229,35 +238,35 @@ const TierEditor = ({
                 <a href={url} target="_blank" rel="noreferrer">
                   Share
                 </a>
-              </div>
-            </fieldset>
-            <fieldset>
-              <label htmlFor={`${uid}-description`}>Description</label>
-              <textarea
+              </FormInputWrapper>
+            </FormFieldset>
+            <FormFieldset>
+              <FormLabel htmlFor={`${uid}-description`}>Description</FormLabel>
+              <FormTextarea
                 id={`${uid}-description`}
                 value={tier.description}
                 onChange={(evt) => updateTier({ description: evt.target.value })}
               />
-            </fieldset>
-            <fieldset>
-              <label htmlFor={`${uid}-max-purchase-count`}>Maximum number of active supporters</label>
+            </FormFieldset>
+            <FormFieldset>
+              <FormLabel htmlFor={`${uid}-max-purchase-count`}>Maximum number of active supporters</FormLabel>
               <NumberInput
                 onChange={(value) => updateTier({ max_purchase_count: value })}
                 value={tier.max_purchase_count}
               >
                 {(inputProps) => (
-                  <input id={`${uid}-max-purchase-count`} type="number" placeholder="∞" {...inputProps} />
+                  <FormInput id={`${uid}-max-purchase-count`} type="number" placeholder="∞" {...inputProps} />
                 )}
               </NumberInput>
-            </fieldset>
-            <fieldset
+            </FormFieldset>
+            <FormFieldset
               style={{
                 display: "grid",
                 gap: "var(--spacer-3)",
                 gridTemplateColumns: "repeat(auto-fit, max(var(--dynamic-grid), 50% - var(--spacer-3) / 2))",
               }}
             >
-              <legend>Pricing</legend>
+              <FormLegend>Pricing</FormLegend>
               {Object.entries(tier.recurrence_price_values).map(([recurrence, value]) => (
                 <div
                   style={{
@@ -268,9 +277,7 @@ const TierEditor = ({
                   }}
                   key={recurrence}
                 >
-                  <input
-                    type="checkbox"
-                    role="switch"
+                  <FormSwitch
                     checked={value.enabled}
                     aria-label={`Toggle recurrence option: ${recurrenceNames[recurrence]}`}
                     onChange={() => updateRecurrencePriceValue(recurrence, { enabled: !value.enabled })}
@@ -287,7 +294,7 @@ const TierEditor = ({
                   />
                 </div>
               ))}
-            </fieldset>
+            </FormFieldset>
             {allEnabledPricesAreZero ? (
               <div role="alert" className="info">
                 Free tiers require a pay what they want price.
@@ -317,21 +324,21 @@ const TierEditor = ({
                   {Object.entries(tier.recurrence_price_values).flatMap(([recurrence, value]) =>
                     value.enabled ? (
                       <React.Fragment key={recurrence}>
-                        <fieldset>
-                          <label htmlFor={`${uid}-${recurrence}-minimum-price`}>
+                        <FormFieldset>
+                          <FormLabel htmlFor={`${uid}-${recurrence}-minimum-price`}>
                             Minimum amount {perRecurrenceLabels[recurrence]}
-                          </label>
+                          </FormLabel>
                           <PriceInput
                             id={`${uid}-${recurrence}-minimum-price`}
                             currencyCode={currencyType}
                             cents={value.price_cents}
                             disabled
                           />
-                        </fieldset>
-                        <fieldset>
-                          <label htmlFor={`${uid}-${recurrence}-suggested-price`}>
+                        </FormFieldset>
+                        <FormFieldset>
+                          <FormLabel htmlFor={`${uid}-${recurrence}-suggested-price`}>
                             Suggested amount {perRecurrenceLabels[recurrence]}
-                          </label>
+                          </FormLabel>
                           <PriceInput
                             id={`${uid}-${recurrence}-suggested-price`}
                             currencyCode={currencyType}
@@ -341,7 +348,7 @@ const TierEditor = ({
                             }
                             placeholder={PLACEHOLDER_VALUES[recurrence]}
                           />
-                        </fieldset>
+                        </FormFieldset>
                       </React.Fragment>
                     ) : (
                       []
@@ -352,8 +359,8 @@ const TierEditor = ({
             </Details>
             <PriceChangeSettings tier={tier} updateTier={updateTier} />
             {integrations.length > 0 ? (
-              <fieldset>
-                <legend>Integrations</legend>
+              <FormFieldset>
+                <FormLegend>Integrations</FormLegend>
                 {integrations.map((integration) => (
                   <Toggle
                     value={tier.integrations[integration]}
@@ -365,7 +372,7 @@ const TierEditor = ({
                     {integration === "circle" ? "Enable access to Circle community" : "Enable access to Discord server"}
                   </Toggle>
                 ))}
-              </fieldset>
+              </FormFieldset>
             ) : null}
           </Drawer>
         </RowDetails>
@@ -485,10 +492,10 @@ You can modify or cancel your membership at any time.`;
               Get a sample
             </button>
           </div>
-          <fieldset className={cx({ danger: effectiveDate.error })}>
-            <legend>
-              <label htmlFor={`${uid}-date`}>Effective date for existing customers</label>
-            </legend>
+          <FormFieldset state={effectiveDate.error ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-date`}>Effective date for existing customers</FormLabel>
+            </FormLegend>
             <DateInput
               id={`${uid}-date`}
               value={effectiveDate.value}
@@ -498,12 +505,12 @@ You can modify or cancel your membership at any time.`;
               }}
             />
 
-            {effectiveDate.error ? <small>The effective date must be at least 7 days from today</small> : null}
-          </fieldset>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-custom-message`}>Custom message</label>
-            </legend>
+            {effectiveDate.error ? <FormSmall>The effective date must be at least 7 days from today</FormSmall> : null}
+          </FormFieldset>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-custom-message`}>Custom message</FormLabel>
+            </FormLegend>
             {isMounted ? (
               <RichTextEditor
                 id={`${uid}-custom-message`}
@@ -515,7 +522,7 @@ You can modify or cancel your membership at any time.`;
                 onCreate={setEditor}
               />
             ) : null}
-          </fieldset>
+          </FormFieldset>
         </div>
       </div>
     </Details>

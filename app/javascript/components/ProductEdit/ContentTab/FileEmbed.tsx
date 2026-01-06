@@ -39,6 +39,7 @@ import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMen
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch, FormTextarea } from "$app/components/ui/form";
 
 export const getDownloadUrl = (productId: string, file: FileEntry) =>
   file.extension === "URL" || file.status.type === "removed"
@@ -229,7 +230,12 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
     if (thumbnail) uploadThumbnail(thumbnail);
   };
   const thumbnailInput = (
-    <input type="file" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => onThumbnailSelected(e.target.files)} />
+    <input
+      type="file"
+      className="sr-only"
+      accept=".jpg,.jpeg,.png,.gif"
+      onChange={(e) => onThumbnailSelected(e.target.files)}
+    />
   );
 
   const removeSubtitle = (url: string) =>
@@ -581,24 +587,24 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
 
         {expanded ? (
           <RowDetails className="drawer flex flex-col gap-4">
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}name`}>Name</label>
-              </legend>
-              <input
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}name`}>Name</FormLabel>
+              </FormLegend>
+              <FormInput
                 type="text"
                 id={`${uid}name`}
                 value={file.display_name}
                 onChange={(evt) => updateFile({ display_name: evt.target.value })}
                 placeholder="Name"
               />
-            </fieldset>
+            </FormFieldset>
 
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}description`}>Description</label>
-              </legend>
-              <textarea
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}description`}>Description</FormLabel>
+              </FormLegend>
+              <FormTextarea
                 id={`${uid}description`}
                 rows={3}
                 maxLength={65_535}
@@ -606,28 +612,26 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
                 onChange={(evt) => updateFile({ description: evt.target.value })}
                 placeholder="Description"
               />
-            </fieldset>
+            </FormFieldset>
 
             {FileUtils.isDocumentExtension(file.extension) ? (
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}isbn`}>ISBN</label>
-                </legend>
-                <input
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}isbn`}>ISBN</FormLabel>
+                </FormLegend>
+                <FormInput
                   type="text"
                   id={`${uid}isbn`}
                   value={file.isbn ?? ""}
                   onChange={(evt) => updateFile({ isbn: evt.target.value })}
                   placeholder="ISBN"
                 />
-              </fieldset>
+              </FormFieldset>
             ) : null}
 
             {file.is_pdf ? (
-              <label>
-                <input
-                  type="checkbox"
-                  role="switch"
+              <FormLabel>
+                <FormSwitch
                   checked={file.pdf_stamp_enabled}
                   onChange={(e) => updateFile({ pdf_stamp_enabled: e.target.checked })}
                 />
@@ -635,13 +639,13 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
                 <a href="/help/article/130-pdf-stamping" target="_blank" rel="noreferrer">
                   Learn more
                 </a>
-              </label>
+              </FormLabel>
             ) : null}
 
             {file.is_streamable ? (
               <>
-                <fieldset>
-                  <legend>Subtitles</legend>
+                <FormFieldset>
+                  <FormLegend>Subtitles</FormLegend>
                   <div className="flex flex-col gap-4">
                     <SubtitleList
                       subtitleFiles={file.subtitle_files}
@@ -657,11 +661,9 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
                     />
                     <SubtitleUploadBox onUploadFiles={uploadSubtitles} />
                   </div>
-                </fieldset>
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
+                </FormFieldset>
+                <FormLabel>
+                  <FormSwitch
                     checked={file.stream_only}
                     onChange={(e) => updateFile({ stream_only: e.target.checked })}
                   />
@@ -669,7 +671,7 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
                   <a href="/help/article/43-streaming-videos" target="_blank" rel="noreferrer">
                     Learn more
                   </a>
-                </label>
+                </FormLabel>
               </>
             ) : null}
           </RowDetails>

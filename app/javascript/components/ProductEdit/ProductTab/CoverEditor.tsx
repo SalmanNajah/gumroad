@@ -19,6 +19,7 @@ import { RemoveButton } from "$app/components/RemoveButton";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Tab, TabIcon, Tabs } from "$app/components/ui/Tabs";
+import { FormFieldset, FormInput } from "$app/components/ui/form";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 import { WithTooltip } from "$app/components/WithTooltip";
 const MAX_PREVIEW_COUNT = 8;
@@ -161,6 +162,7 @@ const CoverUploader = ({
             <label>
               <input
                 type="file"
+                className="sr-only"
                 multiple
                 accept={ALLOWED_EXTENSIONS.map((ext) => `.${ext}`).join(",")}
                 disabled={isUploading}
@@ -202,7 +204,7 @@ const CoverUploader = ({
             External link
           </Tab>
         </Tabs>
-        <fieldset
+        <FormFieldset
           role="tabpanel"
           className="mt-4 rounded-sm border border-border p-4"
           id={`${uid}-url`}
@@ -210,7 +212,7 @@ const CoverUploader = ({
         >
           {uploader?.type === "url" ? (
             <div className="flex gap-2">
-              <input
+              <FormInput
                 type="url"
                 placeholder="https://"
                 value={uploader.value}
@@ -231,7 +233,7 @@ const CoverUploader = ({
             </div>
           ) : null}
           <small>We support media from sites such as YouTube, Vimeo, and Soundcloud.</small>
-        </fieldset>
+        </FormFieldset>
       </div>
     )
   ) : (

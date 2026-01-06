@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { FormFieldset, FormLabel, FormTextarea } from "$app/components/ui/form";
+
 export const CustomReceiptTextInput = ({
   value,
   onChange,
@@ -11,9 +13,9 @@ export const CustomReceiptTextInput = ({
 }) => {
   const uid = React.useId();
   return (
-    <fieldset>
-      <label htmlFor={uid}>Custom message</label>
-      <textarea
+    <FormFieldset>
+      <FormLabel htmlFor={uid}>Custom message</FormLabel>
+      <FormTextarea
         id={uid}
         maxLength={maxLength}
         placeholder="Add any additional information you'd like to include on the receipt."
@@ -21,6 +23,6 @@ export const CustomReceiptTextInput = ({
         onChange={(evt) => onChange(evt.target.value)}
         rows={3}
       />
-    </fieldset>
+    </FormFieldset>
   );
 };

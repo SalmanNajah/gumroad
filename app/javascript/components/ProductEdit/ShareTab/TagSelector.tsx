@@ -5,6 +5,7 @@ import { assertResponseError } from "$app/utils/request";
 
 import { showAlert } from "$app/components/server-components/Alert";
 import { TagInput } from "$app/components/TagInput";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange } from "$app/components/useOnChange";
 
@@ -40,10 +41,10 @@ export const TagSelector = ({ tags, onChange }: { tags: string[]; onChange: (tag
   };
 
   return (
-    <fieldset>
-      <legend>
-        <label htmlFor={uid}>Tags</label>
-      </legend>
+    <FormFieldset>
+      <FormLegend>
+        <FormLabel htmlFor={uid}>Tags</FormLabel>
+      </FormLegend>
       <TagInput
         inputId={uid}
         tagIds={tags}
@@ -68,6 +69,6 @@ export const TagSelector = ({ tags, onChange }: { tags: string[]; onChange: (tag
         maxLength={MAX_TAG_LENGTH}
         maxTags={MAX_ALLOWED_TAGS}
       />
-    </fieldset>
+    </FormFieldset>
   );
 };

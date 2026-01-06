@@ -3,6 +3,7 @@ import * as React from "react";
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { ProfileSection } from "$app/components/ProductEdit/state";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormLabel, FormSmall, FormSwitch } from "$app/components/ui/form";
 
 export const ProfileSectionsEditor = ({
   sectionIds,
@@ -33,14 +34,12 @@ export const ProfileSectionsEditor = ({
         Choose the sections where you want this product to be displayed on your profile.
       </header>
       {profileSections.length ? (
-        <fieldset>
+        <FormFieldset>
           {profileSections.map((section) => {
             const items = section.product_names.slice(0, 2).join(", ");
             return (
-              <label key={section.id}>
-                <input
-                  type="checkbox"
-                  role="switch"
+              <FormLabel key={section.id}>
+                <FormSwitch
                   checked={sectionIds.includes(section.id)}
                   onChange={(evt) =>
                     onChange(
@@ -51,16 +50,16 @@ export const ProfileSectionsEditor = ({
                 <div>
                   {sectionName(section)}
                   <br />
-                  <small>
+                  <FormSmall>
                     {section.product_names.length > 2
                       ? `${items}, and ${section.product_names.length - 2} ${section.product_names.length - 2 === 1 ? " other" : " others"}`
                       : items}
-                  </small>
+                  </FormSmall>
                 </div>
-              </label>
+              </FormLabel>
             );
           })}
-        </fieldset>
+        </FormFieldset>
       ) : (
         <Alert role="status" variant="info">
           You currently have no sections in your profile to display this,{" "}

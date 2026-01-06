@@ -39,6 +39,7 @@ import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
 
 export const ProductTab = () => {
   const uid = React.useId();
@@ -101,37 +102,37 @@ export const ProductTab = () => {
               </Alert>
             ) : null}
             <BundleConversionNotice />
-            <fieldset>
-              <label htmlFor={`${uid}-name`}>{isCoffee ? "Header" : "Name"}</label>
-              <input
+            <FormFieldset>
+              <FormLabel htmlFor={`${uid}-name`}>{isCoffee ? "Header" : "Name"}</FormLabel>
+              <FormInput
                 id={`${uid}-name`}
                 type="text"
                 value={product.name}
                 onChange={(evt) => updateProduct({ name: evt.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
             {isCoffee ? (
               <>
-                <fieldset>
-                  <label htmlFor={`${uid}-body`}>Body</label>
-                  <textarea
+                <FormFieldset>
+                  <FormLabel htmlFor={`${uid}-body`}>Body</FormLabel>
+                  <FormTextarea
                     id={`${uid}-body`}
                     value={product.description}
                     placeholder="Add a short inspiring message"
                     onChange={(evt) => updateProduct({ description: evt.target.value })}
                   />
-                </fieldset>
-                <fieldset>
-                  <legend>
-                    <label htmlFor={`${uid}-url`}>URL</label>
+                </FormFieldset>
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-url`}>URL</FormLabel>
                     <CopyToClipboard text={url}>
                       <button type="button" className="font-normal underline">
                         Copy URL
                       </button>
                     </CopyToClipboard>
-                  </legend>
-                  <input id={`${uid}-url`} type="text" value={url} disabled />
-                </fieldset>
+                  </FormLegend>
+                  <FormInput id={`${uid}-url`} type="text" value={url} disabled />
+                </FormFieldset>
               </>
             ) : (
               <>
@@ -207,7 +208,7 @@ export const ProductTab = () => {
               </section>
               <section className="p-4! md:p-8!">
                 <h2>Integrations</h2>
-                <fieldset>
+                <FormFieldset>
                   {product.community_chat_enabled === null ? null : (
                     <ToggleSettingRow
                       label="Invite your customers to your Gumroad community chat"
@@ -254,7 +255,7 @@ export const ProductTab = () => {
                       }
                     />
                   ) : null}
-                </fieldset>
+                </FormFieldset>
               </section>
               {product.native_type === "membership" ? (
                 <section className="p-4! md:p-8!">
@@ -371,7 +372,7 @@ export const ProductTab = () => {
               ) : null}
               <section className="p-4! md:p-8!">
                 <h2>Settings</h2>
-                <fieldset>
+                <FormFieldset>
                   {product.native_type === "membership" ? (
                     <>
                       <FreeTrialSelector />
@@ -456,12 +457,12 @@ export const ProductTab = () => {
                   >
                     Require shipping information
                   </Toggle>
-                </fieldset>
+                </FormFieldset>
                 {product.native_type === "membership" ? (
-                  <fieldset>
-                    <legend>
-                      <label htmlFor={`${uid}-subscription-duration`}>Default payment frequency</label>
-                    </legend>
+                  <FormFieldset>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-subscription-duration`}>Default payment frequency</FormLabel>
+                    </FormLegend>
                     <TypeSafeOptionSelect
                       id={`${uid}-subscription-duration`}
                       value={product.subscription_duration || "monthly"}
@@ -471,7 +472,7 @@ export const ProductTab = () => {
                         label: recurrenceLabels[recurrenceId],
                       }))}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 ) : null}
                 <CustomDomain
                   verificationStatus={customDomainVerificationStatus}

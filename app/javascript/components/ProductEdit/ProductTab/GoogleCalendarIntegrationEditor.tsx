@@ -9,6 +9,7 @@ import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
+import { FormInput, FormLabel, FormSelect } from "$app/components/ui/form";
 
 export type GoogleCalendarIntegration = {
   integration_details: {
@@ -120,10 +121,10 @@ export const GoogleCalendarIntegrationEditor = ({
                 People who purchase your product will automatically receive a Google Calendar invite and we'll keep your
                 calendar in sync.
               </p>
-              <label htmlFor="google-account">Google account</label>
-              <input id="google-account" type="text" value={integration.integration_details.email} readOnly />
-              <label htmlFor="calendar-select">Choose calendar</label>
-              <select
+              <FormLabel htmlFor="google-account">Google account</FormLabel>
+              <FormInput id="google-account" type="text" value={integration.integration_details.email} readOnly />
+              <FormLabel htmlFor="calendar-select">Choose calendar</FormLabel>
+              <FormSelect
                 id="calendar-select"
                 value={integration.integration_details.calendar_id}
                 onChange={(e) => {
@@ -144,7 +145,7 @@ export const GoogleCalendarIntegrationEditor = ({
                     {calendar.summary}
                   </option>
                 ))}
-              </select>
+              </FormSelect>
               <Button color="danger" onClick={() => onChange(null)}>
                 Disconnect Google Calendar
               </Button>

@@ -10,6 +10,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Toggle } from "$app/components/Toggle";
 import { Alert } from "$app/components/ui/Alert";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 export type CircleIntegration = {
@@ -113,15 +114,15 @@ export const CircleIntegrationEditor = ({
         <div className="flex flex-col gap-4">
           People who purchase your product will be automatically invited to your Circle community. To get your API
           token, visit your-community.circle.so/settings/API.
-          <fieldset>
-            <label htmlFor={`${uid}-api-key`}>API Token</label>
-            <input
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}-api-key`}>API Token</FormLabel>
+            <FormInput
               id={`${uid}-api-key`}
               value={apiKey}
               onChange={(evt) => setApiKey(evt.target.value)}
               placeholder="Type or paste your API token"
             />
-          </fieldset>
+          </FormFieldset>
           <Button
             color="primary"
             onClick={() => {
@@ -142,11 +143,11 @@ export const CircleIntegrationEditor = ({
             ) : communities.status === "error" ? (
               <Alert variant="danger">Could not retrieve communities from Circle. Please check your API key.</Alert>
             ) : (
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}-community`}>Select a community</label>
-                </legend>
-                <select
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-community`}>Select a community</FormLabel>
+                </FormLegend>
+                <FormSelect
                   id={`${uid}-community`}
                   value={selectedCommunityId ?? "select-community"}
                   onChange={(ev) => setSelectedCommunityId(parseInt(ev.target.value, 10))}
@@ -159,8 +160,8 @@ export const CircleIntegrationEditor = ({
                       {community.name}
                     </option>
                   ))}
-                </select>
-              </fieldset>
+                </FormSelect>
+              </FormFieldset>
             )
           ) : null}
           {spaceGroups ? (
@@ -172,11 +173,11 @@ export const CircleIntegrationEditor = ({
               <Alert variant="danger">Could not retrieve space groups from Circle. Please try again.</Alert>
             ) : (
               <>
-                <fieldset>
-                  <legend>
-                    <label htmlFor={`${uid}-space-group`}>Select a space group</label>
-                  </legend>
-                  <select
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-space-group`}>Select a space group</FormLabel>
+                  </FormLegend>
+                  <FormSelect
                     id={`${uid}-space-group`}
                     value={selectedSpaceGroupId ?? "select-space-group"}
                     onChange={(ev) => {
@@ -192,19 +193,18 @@ export const CircleIntegrationEditor = ({
                         {spaceGroup.name}
                       </option>
                     ))}
-                  </select>
-                </fieldset>
+                  </FormSelect>
+                </FormFieldset>
                 {product.native_type === "membership" && integration ? (
-                  <label>
-                    <input
-                      type="checkbox"
+                  <FormLabel>
+                    <FormCheckbox
                       checked={integration.keep_inactive_members}
                       onChange={() =>
                         onChange({ ...integration, keep_inactive_members: !integration.keep_inactive_members })
                       }
                     />
                     Do not remove Circle access when membership ends
-                  </label>
+                  </FormLabel>
                 ) : null}
                 {product.variants.length > 0 ? (
                   <>

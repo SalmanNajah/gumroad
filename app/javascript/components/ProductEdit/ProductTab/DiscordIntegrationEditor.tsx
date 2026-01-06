@@ -11,6 +11,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Toggle } from "$app/components/Toggle";
 import { Alert } from "$app/components/ui/Alert";
+import { FormCheckbox, FormLabel } from "$app/components/ui/form";
 
 export type DiscordIntegration = {
   keep_inactive_members: boolean;
@@ -138,16 +139,15 @@ export const DiscordIntegrationEditor = ({
                 </>
               ) : null}
               {product.native_type === "membership" ? (
-                <label>
-                  <input
-                    type="checkbox"
+                <FormLabel>
+                  <FormCheckbox
                     checked={integration.keep_inactive_members}
                     onChange={() =>
                       onChange({ ...integration, keep_inactive_members: !integration.keep_inactive_members })
                     }
                   />
                   Do not remove Discord access when membership ends
-                </label>
+                </FormLabel>
               ) : null}
             </>
           )}

@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
+import { FormFieldset, FormInput, FormLegend } from "$app/components/ui/form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 
 export type Attribute = { name: string; value: string };
@@ -35,8 +36,8 @@ export const AttributesEditor = ({
   );
 
   return (
-    <fieldset>
-      <legend>Additional details</legend>
+    <FormFieldset>
+      <FormLegend>Additional details</FormLegend>
       {(fileAttributes?.length ?? 0) > 0 || customAttributes.length > 0 ? (
         <>
           {fileAttributes?.map((attribute, idx) => (
@@ -63,7 +64,7 @@ export const AttributesEditor = ({
           {addButton}
         </Placeholder>
       )}
-    </fieldset>
+    </FormFieldset>
   );
 };
 
@@ -77,13 +78,13 @@ const AttributeEditor = ({
   onDelete: () => void;
 }) => (
   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr max-content", gap: "var(--spacer-2)" }}>
-    <input
+    <FormInput
       type="text"
       value={attribute.name}
       onChange={(evt) => onUpdate?.({ name: evt.target.value })}
       disabled={!onUpdate}
     />
-    <input
+    <FormInput
       type="text"
       value={attribute.value}
       onChange={(evt) => onUpdate?.({ value: evt.target.value })}

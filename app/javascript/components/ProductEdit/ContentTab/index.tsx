@@ -67,6 +67,7 @@ import { WithTooltip } from "$app/components/WithTooltip";
 
 import { FileEmbed, FileEmbedConfig } from "./FileEmbed";
 import { Page, PageTab, titleWithFallback } from "./PageTab";
+import { FormCheckbox, FormInput } from "$app/components/ui/form";
 
 declare global {
   interface Window {
@@ -501,7 +502,13 @@ const ContentTabContent = ({ selectedVariantId }: { selectedVariantId: string | 
                         <span>Embed media</span>
                       </div>
                       <label role="menuitem">
-                        <input type="file" name="file" multiple onChange={(e) => uploadFileInput(e.target)} />
+                        <input
+                          type="file"
+                          name="file"
+                          multiple
+                          onChange={(e) => uploadFileInput(e.target)}
+                          className="sr-only"
+                        />
                         <Icon name="paperclip" />
                         <span>Computer files</span>
                       </label>
@@ -922,7 +929,7 @@ const ContentTabContent = ({ selectedVariantId }: { selectedVariantId: string | 
               </>
             }
           >
-            <input
+            <FormInput
               type="text"
               placeholder="Enter text"
               autoFocus={addingButton != null}
@@ -932,7 +939,7 @@ const ContentTabContent = ({ selectedVariantId }: { selectedVariantId: string | 
                 if (el.key === "Enter") onInsertButton();
               }}
             />
-            <input
+            <FormInput
               type="text"
               placeholder="Enter URL"
               value={addingButton?.url ?? ""}
@@ -1052,8 +1059,12 @@ export const ContentTab = () => {
                       // TODO: Currently needed to get the icon on the selected option even though this is not multiple select. We should fix this in the design system
                       multiple
                       input={(props) => (
-                        <div {...props} className="input h-full min-h-auto" aria-label="Select a version">
-                          <span className="fake-input text-singleline">
+                        <div
+                          {...props}
+                          className="bg-background inline-flex h-full min-h-auto cursor-pointer items-center gap-2 rounded border border-border px-4 py-3"
+                          aria-label="Select a version"
+                        >
+                          <span className="text-singleline flex-1">
                             {selectedVariant && !product.has_same_rich_content_for_all_variants
                               ? `Editing: ${selectedVariant.name || "Untitled"}`
                               : "Editing: All versions"}
@@ -1097,9 +1108,8 @@ export const ContentTab = () => {
                           </div>
                           {index === product.variants.length - 1 ? (
                             <div className="option">
-                              <label style={{ alignItems: "center" }}>
-                                <input
-                                  type="checkbox"
+                              <label className="inline-flex cursor-pointer gap-2" style={{ alignItems: "center" }}>
+                                <FormCheckbox
                                   checked={product.has_same_rich_content_for_all_variants}
                                   onChange={() => {
                                     if (!product.has_same_rich_content_for_all_variants && product.variants.length > 1)

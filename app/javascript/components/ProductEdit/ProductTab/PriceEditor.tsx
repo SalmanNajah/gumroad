@@ -6,6 +6,7 @@ import { Details } from "$app/components/Details";
 import { PriceInput } from "$app/components/PriceInput";
 import { InstallmentPlanEditor } from "$app/components/ProductEdit/ProductTab/InstallmentPlanEditor";
 import { Toggle } from "$app/components/Toggle";
+import { FormFieldset, FormLabel } from "$app/components/ui/form";
 
 export const PriceEditor = ({
   priceCents,
@@ -40,8 +41,8 @@ export const PriceEditor = ({
   const isFreeProduct = priceCents === 0;
 
   return (
-    <fieldset>
-      <label htmlFor={`${uid}-price-cents`}>Amount</label>
+    <FormFieldset>
+      <FormLabel htmlFor={`${uid}-price-cents`}>Amount</FormLabel>
       <PriceInput
         id={`${uid}-price-cents`}
         currencyCode={currencyType}
@@ -73,12 +74,12 @@ export const PriceEditor = ({
             gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
           }}
         >
-          <fieldset>
-            <label htmlFor={`${uid}-minimum-amount`}>Minimum amount</label>
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}-minimum-amount`}>Minimum amount</FormLabel>
             <PriceInput id={`${uid}-minimum-amount`} currencyCode={currencyType} cents={priceCents} disabled />
-          </fieldset>
-          <fieldset>
-            <label htmlFor={`${uid}-suggested-price-cents`}>Suggested amount</label>
+          </FormFieldset>
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}-suggested-price-cents`}>Suggested amount</FormLabel>
             <PriceInput
               id={`${uid}-suggested-price-cents`}
               placeholder={formatPriceCentsWithoutCurrencySymbol(currencyType, priceCents)}
@@ -86,7 +87,7 @@ export const PriceEditor = ({
               cents={suggestedPriceCents}
               onChange={setSuggestedPriceCents}
             />
-          </fieldset>
+          </FormFieldset>
         </div>
       </Details>
       {eligibleForInstallmentPlans ? (
@@ -99,6 +100,6 @@ export const PriceEditor = ({
           onNumberOfInstallmentsChange={onNumberOfInstallmentsChange}
         />
       ) : null}
-    </fieldset>
+    </FormFieldset>
   );
 };

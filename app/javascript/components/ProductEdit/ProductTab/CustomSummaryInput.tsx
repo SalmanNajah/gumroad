@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
+
 export const CustomSummaryInput = ({
   value,
   onChange,
@@ -9,15 +11,15 @@ export const CustomSummaryInput = ({
 }) => {
   const uid = React.useId();
   return (
-    <fieldset>
-      <label htmlFor={uid}>Summary</label>
-      <input
+    <FormFieldset>
+      <FormLabel htmlFor={uid}>Summary</FormLabel>
+      <FormInput
         id={uid}
         type="text"
         placeholder="You'll get..."
         value={value ?? ""}
         onChange={(evt) => onChange(evt.target.value)}
       />
-    </fieldset>
+    </FormFieldset>
   );
 };

@@ -12,6 +12,7 @@ import { Icon } from "$app/components/Icons";
 import { ProfileSectionsEditor } from "$app/components/ProductEdit/ShareTab/ProfileSectionsEditor";
 import { TagSelector } from "$app/components/ProductEdit/ShareTab/TagSelector";
 import { TaxonomyEditor } from "$app/components/ProductEdit/ShareTab/TaxonomyEditor";
+import { FormFieldset } from "$app/components/ui/form";
 import { Toggle } from "$app/components/Toggle";
 import { TwitterShareButton } from "$app/components/TwitterShareButton";
 
@@ -68,7 +69,7 @@ export const ShareTab = () => {
             taxonomies={taxonomies}
           />
           <TagSelector tags={bundle.tags} onChange={(tags) => updateBundle({ tags })} />
-          <fieldset>
+          <FormFieldset>
             <Toggle
               value={bundle.display_product_reviews}
               onChange={(newValue) => updateBundle({ display_product_reviews: newValue })}
@@ -78,7 +79,7 @@ export const ShareTab = () => {
             <Toggle value={bundle.is_adult} onChange={(newValue) => updateBundle({ is_adult: newValue })}>
               This product contains content meant only for adults, including the preview
             </Toggle>
-          </fieldset>
+          </FormFieldset>
         </section>
       </form>
     </Layout>

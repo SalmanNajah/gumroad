@@ -16,6 +16,7 @@ import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { Toggle } from "$app/components/Toggle";
 import { TwitterShareButton } from "$app/components/TwitterShareButton";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset } from "$app/components/ui/form";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 export const ShareTab = () => {
@@ -92,7 +93,7 @@ export const ShareTab = () => {
               taxonomies={taxonomies}
             />
             <TagSelector tags={product.tags} onChange={(tags) => updateProduct({ tags })} />
-            <fieldset>
+            <FormFieldset>
               <Toggle
                 value={product.display_product_reviews}
                 onChange={(newValue) => updateProduct({ display_product_reviews: newValue })}
@@ -106,7 +107,7 @@ export const ShareTab = () => {
                 </a>{" "}
                 including the preview
               </Toggle>
-            </fieldset>
+            </FormFieldset>
           </section>
         </form>
       </div>

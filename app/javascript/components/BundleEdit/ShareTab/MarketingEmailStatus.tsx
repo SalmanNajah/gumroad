@@ -5,6 +5,7 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 import { computeStandalonePrice, useBundleEditContext } from "$app/components/BundleEdit/state";
 import { NavigationButton } from "$app/components/Button";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormLabel, FormRadio } from "$app/components/ui/form";
 
 export const MarketingEmailStatus = () => {
   const { bundle, uniquePermalink, currencyType } = useBundleEditContext();
@@ -32,24 +33,22 @@ export const MarketingEmailStatus = () => {
         <strong>
           Your product bundle is ready. Would you like to send an email about this offer to existing customers?
         </strong>
-        <fieldset>
-          <label>
-            <input
-              type="radio"
+        <FormFieldset>
+          <FormLabel>
+            <FormRadio
               checked={!sendToAllCustomers}
               onChange={(evt) => setSendToAllCustomers(!evt.target.checked)}
             />
             Customers who have purchased at least one product in the bundle
-          </label>
-          <label>
-            <input
-              type="radio"
+          </FormLabel>
+          <FormLabel>
+            <FormRadio
               checked={sendToAllCustomers}
               onChange={(evt) => setSendToAllCustomers(evt.target.checked)}
             />
             All customers
-          </label>
-        </fieldset>
+          </FormLabel>
+        </FormFieldset>
         <NavigationButton
           color="primary"
           href={Routes.new_email_path(queryParams)}

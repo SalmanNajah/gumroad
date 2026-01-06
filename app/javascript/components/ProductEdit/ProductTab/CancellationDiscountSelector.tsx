@@ -4,6 +4,7 @@ import { InputtedDiscount, DiscountInput } from "$app/components/CheckoutDashboa
 import { NumberInput } from "$app/components/NumberInput";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { ToggleSettingRow } from "$app/components/SettingRow";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
 
 export const CancellationDiscountSelector = () => {
   const { product, updateProduct, currencyType } = useProductEditContext();
@@ -51,12 +52,12 @@ export const CancellationDiscountSelector = () => {
       dropdown={
         <section className="flex flex-col gap-4">
           <DiscountInput discount={discount} setDiscount={setDiscount} currencyCode={currencyType} />
-          <fieldset>
-            <label htmlFor="billing-cycles">Duration in billing cycles</label>
+          <FormFieldset>
+            <FormLabel htmlFor="billing-cycles">Duration in billing cycles</FormLabel>
             <NumberInput value={durationInBillingCycles} onChange={setDurationInBillingCycles}>
-              {(props) => <input id="billing-cycles" type="text" autoComplete="off" placeholder="∞" {...props} />}
+              {(props) => <FormInput id="billing-cycles" type="text" autoComplete="off" placeholder="∞" {...props} />}
             </NumberInput>
-          </fieldset>
+          </FormFieldset>
         </section>
       }
     />

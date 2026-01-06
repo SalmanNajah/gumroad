@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { NumberInput } from "$app/components/NumberInput";
 import { ToggleSettingRow } from "$app/components/SettingRow";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/form";
 
 const DEFAULT_NUMBER_OF_INSTALLMENTS = 2;
 
@@ -39,18 +40,18 @@ export const InstallmentPlanEditor = ({
       onChange={onAllowInstallmentPaymentsChange}
       label="Allow customers to pay in installments"
       dropdown={
-        <fieldset>
+        <FormFieldset>
           <NumberInput value={numberOfInstallments} onChange={(value) => onNumberOfInstallmentsChange(value || 0)}>
             {(props) => (
-              <div className="input">
-                <input {...props} type="number" min={2} aria-label="Number of installments" />
-                <label>
+              <FormInputWrapper>
+                <FormInput {...props} type="number" min={2} aria-label="Number of installments" />
+                <FormLabel>
                   <span>equal monthly payments</span>
-                </label>
-              </div>
+                </FormLabel>
+              </FormInputWrapper>
             )}
           </NumberInput>
-        </fieldset>
+        </FormFieldset>
       }
     />
   );

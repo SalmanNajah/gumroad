@@ -4,6 +4,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { PriceInput } from "$app/components/PriceInput";
 import { ShippingDestination, useProductEditContext } from "$app/components/ProductEdit/state";
+import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { WithTooltip } from "$app/components/WithTooltip";
 
@@ -88,12 +89,12 @@ const ShippingDestinationRow = ({
 
   return (
     <div aria-label="Shipping destination">
-      <fieldset>
-        <legend>
-          <label htmlFor={`${uid}-country`}>Country</label>
-        </legend>
+      <FormFieldset>
+        <FormLegend>
+          <FormLabel htmlFor={`${uid}-country`}>Country</FormLabel>
+        </FormLegend>
         <div className="flex gap-2">
-          <select
+          <FormSelect
             id={`${uid}-country`}
             aria-label="Country"
             className="flex-1"
@@ -110,19 +111,19 @@ const ShippingDestinationRow = ({
                 </React.Fragment>
               );
             })}
-          </select>
+          </FormSelect>
           <WithTooltip position="bottom" tip="Remove">
             <Button color="danger" outline onClick={onRemove} aria-label="Remove shipping destination">
               <Icon name="trash2" />
             </Button>
           </WithTooltip>
         </div>
-      </fieldset>
+      </FormFieldset>
       <div style={{ display: "grid", gridAutoFlow: "column", gap: "var(--spacer-3)", width: "100%" }}>
-        <fieldset>
-          <legend>
-            <label htmlFor={`${uid}-one-item`}>Amount alone</label>
-          </legend>
+        <FormFieldset>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-one-item`}>Amount alone</FormLabel>
+          </FormLegend>
           <PriceInput
             id={`${uid}-one-item`}
             currencyCode={currencyType}
@@ -130,11 +131,11 @@ const ShippingDestinationRow = ({
             placeholder="0"
             onChange={(one_item_rate_cents) => updateDestination({ one_item_rate_cents })}
           />
-        </fieldset>
-        <fieldset>
-          <legend>
-            <label htmlFor={`${uid}-multiple-items`}>Amount with others</label>
-          </legend>
+        </FormFieldset>
+        <FormFieldset>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-multiple-items`}>Amount with others</FormLabel>
+          </FormLegend>
           <PriceInput
             id={`${uid}-multiple-items`}
             currencyCode={currencyType}
@@ -142,7 +143,7 @@ const ShippingDestinationRow = ({
             placeholder="0"
             onChange={(multiple_items_rate_cents) => updateDestination({ multiple_items_rate_cents })}
           />
-        </fieldset>
+        </FormFieldset>
       </div>
     </div>
   );

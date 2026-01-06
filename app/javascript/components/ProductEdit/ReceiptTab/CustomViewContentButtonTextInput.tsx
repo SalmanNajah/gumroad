@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { FormFieldset, FormInput, FormLabel, FormSmall } from "$app/components/ui/form";
+
 export const CustomViewContentButtonTextInput = ({
   value,
   onChange,
@@ -11,9 +13,9 @@ export const CustomViewContentButtonTextInput = ({
 }) => {
   const uid = React.useId();
   return (
-    <fieldset>
-      <label htmlFor={uid}>Button text</label>
-      <input
+    <FormFieldset>
+      <FormLabel htmlFor={uid}>Button text</FormLabel>
+      <FormInput
         id={uid}
         type="text"
         placeholder="View content"
@@ -21,7 +23,9 @@ export const CustomViewContentButtonTextInput = ({
         onChange={(evt) => onChange(evt.target.value)}
         maxLength={maxLength}
       />
-      <small>Customize the download button text on receipts and product pages (max {maxLength} characters).</small>
-    </fieldset>
+      <FormSmall>
+        Customize the download button text on receipts and product pages (max {maxLength} characters).
+      </FormSmall>
+    </FormFieldset>
   );
 };

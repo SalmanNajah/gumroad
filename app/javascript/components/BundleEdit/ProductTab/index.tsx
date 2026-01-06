@@ -16,6 +16,7 @@ import { MaxPurchaseCountToggle } from "$app/components/ProductEdit/ProductTab/M
 import { PriceEditor } from "$app/components/ProductEdit/ProductTab/PriceEditor";
 import { ThumbnailEditor } from "$app/components/ProductEdit/ProductTab/ThumbnailEditor";
 import { RefundPolicySelector } from "$app/components/ProductEdit/RefundPolicy";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
 import { Toggle } from "$app/components/Toggle";
 
 export const ProductTab = () => {
@@ -49,15 +50,15 @@ export const ProductTab = () => {
     <Layout preview={<ProductPreview showRefundPolicyModal={showRefundPolicyPreview} />} isLoading={isUploading}>
       <form>
         <section className="p-4! md:p-8!">
-          <fieldset>
-            <label htmlFor={`${uid}-name`}>Name</label>
-            <input
+          <FormFieldset>
+            <FormLabel htmlFor={`${uid}-name`}>Name</FormLabel>
+            <FormInput
               id={`${uid}-name`}
               type="text"
               value={bundle.name}
               onChange={(evt) => updateBundle({ name: evt.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
           <DescriptionEditor
             id={id}
             initialDescription={initialBundle.description}
@@ -132,7 +133,7 @@ export const ProductTab = () => {
         </section>
         <section className="p-4! md:p-8!">
           <h2>Settings</h2>
-          <fieldset>
+          <FormFieldset>
             <MaxPurchaseCountToggle
               maxPurchaseCount={bundle.max_purchase_count}
               setMaxPurchaseCount={(value) => updateBundle({ max_purchase_count: value })}
@@ -165,7 +166,7 @@ export const ProductTab = () => {
                 setShowPreview={setShowRefundPolicyPreview}
               />
             ) : null}
-          </fieldset>
+          </FormFieldset>
         </section>
       </form>
     </Layout>

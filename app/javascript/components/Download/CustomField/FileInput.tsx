@@ -80,7 +80,7 @@ export const FileInput = ({ customFieldId }: { customFieldId: string }) => {
 
   const fileUpload = (
     <label className="button primary">
-      <input type="file" onChange={handleFileChange} disabled={isUploading} multiple />
+      <input type="file" className="sr-only" onChange={handleFileChange} disabled={isUploading} multiple />
       <Icon name="upload-fill" />
       Upload files
     </label>

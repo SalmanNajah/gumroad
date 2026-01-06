@@ -9,6 +9,7 @@ import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { Select } from "$app/components/Select";
 import { Toggle } from "$app/components/Toggle";
+import { FormFieldset, FormLabel, FormLegend, FormSelect, FormTextarea } from "$app/components/ui/form";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
 export type RefundPolicy = {
@@ -53,9 +54,9 @@ export const RefundPolicySelector = ({
       }
     >
       <div className="dropdown flex flex-col gap-4">
-        <fieldset>
-          <legend>
-            <label htmlFor={`${uid}-max-refund-period-in-days`}>Refund period</label>
+        <FormFieldset>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-max-refund-period-in-days`}>Refund period</FormLabel>
             {refundPolicies.length > 0 ? (
               <Popover
                 trigger={<div className="link">Copy from other products</div>}
@@ -96,8 +97,8 @@ export const RefundPolicySelector = ({
                 </div>
               </Popover>
             ) : null}
-          </legend>
-          <select
+          </FormLegend>
+          <FormSelect
             id={`${uid}-max-refund-period-in-days`}
             value={refundPolicy.max_refund_period_in_days}
             onChange={(evt) => {
@@ -117,13 +118,13 @@ export const RefundPolicySelector = ({
                 {value}
               </option>
             ))}
-          </select>
-        </fieldset>
-        <fieldset>
-          <legend>
-            <label htmlFor={`${uid}-refund-policy-fine-print`}>Fine print (optional)</label>
-          </legend>
-          <textarea
+          </FormSelect>
+        </FormFieldset>
+        <FormFieldset>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-refund-policy-fine-print`}>Fine print (optional)</FormLabel>
+          </FormLegend>
+          <FormTextarea
             id={`${uid}-refund-policy-fine-print`}
             maxLength={3000}
             rows={10}
@@ -132,7 +133,7 @@ export const RefundPolicySelector = ({
             onMouseEnter={() => setShowPreview(true)}
             onMouseLeave={() => setShowPreview(false)}
           />
-        </fieldset>
+        </FormFieldset>
       </div>
     </Details>
   );
