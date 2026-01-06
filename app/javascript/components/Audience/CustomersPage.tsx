@@ -1,5 +1,15 @@
 import { DirectUpload, Blob } from "@rails/activestorage";
 import cx from "classnames";
+import {
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLegend,
+  FormLabel,
+  FormSelect,
+  FormSmall,
+  FormCheckbox,
+} from "$app/components/ui/form";
 import { lightFormat, subMonths } from "date-fns";
 import { format } from "date-fns-tz";
 import * as React from "react";
@@ -268,9 +278,9 @@ const CustomersPage = ({
                 </WithTooltip>
               }
             >
-              <div className="input">
+              <FormInputWrapper>
                 <Icon name="solid-search" />
-                <input
+                <FormInput
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search sales"
@@ -278,7 +288,7 @@ const CustomersPage = ({
                   onChange={(evt) => updateQuery({ query: evt.target.value })}
                   autoFocus
                 />
-              </div>
+              </FormInputWrapper>
             </Popover>
             <Popover
               aria-label="Filter"
@@ -319,8 +329,8 @@ const CustomersPage = ({
                       gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
                     }}
                   >
-                    <fieldset>
-                      <label htmlFor={`${uid}-minimum-amount`}>Paid more than</label>
+                    <FormFieldset>
+                      <FormLabel htmlFor={`${uid}-minimum-amount`}>Paid more than</FormLabel>
                       <PriceInput
                         id={`${uid}-minimum-amount`}
                         currencyCode={currency_type}
@@ -328,9 +338,9 @@ const CustomersPage = ({
                         onChange={(minimumAmount) => updateQuery({ minimumAmount })}
                         placeholder="0"
                       />
-                    </fieldset>
-                    <fieldset>
-                      <label htmlFor={`${uid}-maximum-amount`}>Paid less than</label>
+                    </FormFieldset>
+                    <FormFieldset>
+                      <FormLabel htmlFor={`${uid}-maximum-amount`}>Paid less than</FormLabel>
                       <PriceInput
                         id={`${uid}-maximum-amount`}
                         currencyCode={currency_type}
@@ -338,7 +348,7 @@ const CustomersPage = ({
                         onChange={(maximumAmount) => updateQuery({ maximumAmount })}
                         placeholder="0"
                       />
-                    </fieldset>
+                    </FormFieldset>
                   </div>
                 </div>
                 <div>
@@ -349,32 +359,32 @@ const CustomersPage = ({
                       gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
                     }}
                   >
-                    <fieldset>
-                      <label htmlFor={`${uid}-after-date`}>After</label>
+                    <FormFieldset>
+                      <FormLabel htmlFor={`${uid}-after-date`}>After</FormLabel>
                       <DateInput
                         id={`${uid}-after-date`}
                         value={createdAfter}
                         onChange={(createdAfter) => updateQuery({ createdAfter })}
                         max={createdBefore || undefined}
                       />
-                      <small suppressHydrationWarning>{`00:00  ${timeZoneAbbreviation}`}</small>
-                    </fieldset>
-                    <fieldset>
-                      <label htmlFor={`${uid}-before-date`}>Before</label>
+                      <FormSmall suppressHydrationWarning>{`00:00  ${timeZoneAbbreviation}`}</FormSmall>
+                    </FormFieldset>
+                    <FormFieldset>
+                      <FormLabel htmlFor={`${uid}-before-date`}>Before</FormLabel>
                       <DateInput
                         id={`${uid}-before-date`}
                         value={createdBefore}
                         onChange={(createdBefore) => updateQuery({ createdBefore })}
                         min={createdAfter || undefined}
                       />
-                      <small suppressHydrationWarning>{`11:59 ${timeZoneAbbreviation}`}</small>
-                    </fieldset>
+                      <FormSmall suppressHydrationWarning>{`11:59 ${timeZoneAbbreviation}`}</FormSmall>
+                    </FormFieldset>
                   </div>
                 </div>
                 <div>
-                  <fieldset>
-                    <label htmlFor={`${uid}-country`}>From</label>
-                    <select
+                  <FormFieldset>
+                    <FormLabel htmlFor={`${uid}-country`}>From</FormLabel>
+                    <FormSelect
                       id={`${uid}-country`}
                       value={country ?? "Anywhere"}
                       onChange={(evt) =>
@@ -387,12 +397,12 @@ const CustomersPage = ({
                           {country}
                         </option>
                       ))}
-                    </select>
-                  </fieldset>
+                    </FormSelect>
+                  </FormFieldset>
                 </div>
                 <div>
                   <h4>
-                    <label htmlFor={`${uid}-active-customers-only`}>Show active customers only</label>
+                    <FormLabel htmlFor={`${uid}-active-customers-only`}>Show active customers only</FormLabel>
                   </h4>
                   <Toggle
                     id={`${uid}-active-customers-only`}
@@ -609,10 +619,10 @@ const ProductSelect = ({
 }) => {
   const uid = React.useId();
   return (
-    <fieldset>
-      <legend>
-        <label htmlFor={uid}>{label}</label>
-      </legend>
+    <FormFieldset>
+      <FormLegend>
+        <FormLabel htmlFor={uid}>{label}</FormLabel>
+      </FormLegend>
       <Select
         inputId={uid}
         options={products.flatMap((product) => [
@@ -645,7 +655,7 @@ const ProductSelect = ({
         isMulti
         isClearable
       />
-    </fieldset>
+    </FormFieldset>
   );
 };
 
@@ -1354,71 +1364,71 @@ const AddressSection = ({
       {isEditing ? (
         <div>
           <div className="flex flex-col gap-4">
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-full-name`}>Full name</label>
-              </legend>
-              <input
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-full-name`}>Full name</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-full-name`}
                 type="text"
                 placeholder="Full name"
                 value={address.full_name}
                 onChange={(evt) => updateShipping({ full_name: evt.target.value })}
               />
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-street-address`}>Street address</label>
-              </legend>
-              <input
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-street-address`}>Street address</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-street-address`}
                 type="text"
                 placeholder="Street address"
                 value={address.street_address}
                 onChange={(evt) => updateShipping({ street_address: evt.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
             <div style={{ display: "grid", gridAutoFlow: "column", gridAutoColumns: "1fr", gap: "var(--spacer-2)" }}>
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}-city`}>City</label>
-                </legend>
-                <input
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-city`}>City</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-city`}
                   type="text"
                   placeholder="City"
                   value={address.city}
                   onChange={(evt) => updateShipping({ city: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}-state`}>State</label>
-                </legend>
-                <input
+              </FormFieldset>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-state`}>State</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-state`}
                   type="text"
                   placeholder="State"
                   value={address.state}
                   onChange={(evt) => updateShipping({ state: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset>
-                <legend>
-                  <label htmlFor={`${uid}-zip-code`}>ZIP code</label>
-                </legend>
-                <input
+              </FormFieldset>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-zip-code`}>ZIP code</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-zip-code`}
                   type="text"
                   placeholder="ZIP code"
                   value={address.zip_code}
                   onChange={(evt) => updateShipping({ zip_code: evt.target.value })}
                 />
-              </fieldset>
+              </FormFieldset>
             </div>
-            <fieldset>
-              <label htmlFor={`${uid}-country`}>Country</label>
-              <select
+            <FormFieldset>
+              <FormLabel htmlFor={`${uid}-country`}>Country</FormLabel>
+              <FormSelect
                 id={`${uid}-country`}
                 value={address.country}
                 onChange={(evt) => updateShipping({ country: evt.target.value })}
@@ -1428,8 +1438,8 @@ const AddressSection = ({
                     {country}
                   </option>
                 ))}
-              </select>
-            </fieldset>
+              </FormSelect>
+            </FormFieldset>
             <div
               style={{
                 width: "100%",
@@ -1506,8 +1516,8 @@ const TrackingSection = ({
         )
       ) : (
         <div>
-          <fieldset>
-            <input
+          <FormFieldset>
+            <FormInput
               type="text"
               placeholder="Tracking URL (optional)"
               value={url}
@@ -1516,7 +1526,7 @@ const TrackingSection = ({
             <Button color="primary" disabled={isLoading} onClick={() => void handleSave()}>
               Mark as shipped
             </Button>
-          </fieldset>
+          </FormFieldset>
         </div>
       )}
     </section>
@@ -1563,8 +1573,8 @@ const EmailSection = ({
         <h3>{label}</h3>
       </header>
       {isEditing ? (
-        <fieldset>
-          <input
+        <FormFieldset>
+          <FormInput
             type="text"
             value={email}
             onChange={(evt) => setEmail(evt.target.value)}
@@ -1586,7 +1596,7 @@ const EmailSection = ({
               Save
             </Button>
           </div>
-        </fieldset>
+        </FormFieldset>
       ) : (
         <section>
           <h5>{currentEmail}</h5>
@@ -1595,20 +1605,19 @@ const EmailSection = ({
               Edit
             </button>
           ) : (
-            <small>
+            <FormSmall>
               You cannot change the email of this purchase, because it was made by an existing user. Please ask them to
               go to gumroad.com/settings to update their email.
-            </small>
+            </FormSmall>
           )}
         </section>
       )}
       {onChangeCanContact ? (
         <section>
-          <fieldset role="group">
-            <label>
+          <FormFieldset role="group">
+            <FormLabel>
               Receives emails
-              <input
-                type="checkbox"
+              <FormCheckbox
                 checked={canContact}
                 onChange={(evt) => {
                   setIsLoading(true);
@@ -1616,8 +1625,8 @@ const EmailSection = ({
                 }}
                 disabled={isLoading}
               />
-            </label>
-          </fieldset>
+            </FormLabel>
+          </FormFieldset>
         </section>
       ) : null}
     </section>
@@ -1822,8 +1831,8 @@ const OptionSection = ({
       <section>
         {options.length > 0 ? (
           isEditing ? (
-            <fieldset className={cx({ danger: selectedOptionId.error })}>
-              <select
+            <FormFieldset state={selectedOptionId.error ? "danger" : undefined}>
+              <FormSelect
                 value={selectedOptionId.value ?? "None selected"}
                 name={title}
                 onChange={(evt) => setSelectedOptionId({ value: evt.target.value })}
@@ -1835,7 +1844,7 @@ const OptionSection = ({
                     {option.name}
                   </option>
                 ))}
-              </select>
+              </FormSelect>
               <div
                 style={{
                   width: "100%",
@@ -1851,7 +1860,7 @@ const OptionSection = ({
                   Save
                 </Button>
               </div>
-            </fieldset>
+            </FormFieldset>
           ) : (
             <>
               <h5>{option?.name ?? "None selected"}</h5>
@@ -1977,9 +1986,9 @@ const SeatSection = ({ seats: currentSeats, onSave }: { seats: number; onSave: (
         <h3>Seats</h3>
       </header>
       {isEditing ? (
-        <fieldset>
+        <FormFieldset>
           <NumberInput value={seats} onChange={(seats) => setSeats(seats ?? 0)}>
-            {(props) => <input type="number" {...props} min={1} aria-label="Seats" />}
+            {(props) => <FormInput type="number" {...props} min={1} aria-label="Seats" />}
           </NumberInput>
           <div
             style={{
@@ -1996,7 +2005,7 @@ const SeatSection = ({ seats: currentSeats, onSave }: { seats: number; onSave: (
               Save
             </Button>
           </div>
-        </fieldset>
+        </FormFieldset>
       ) : (
         <section>
           <h5>{seats}</h5>
@@ -2172,7 +2181,7 @@ const RefundForm = ({
 
   return (
     <>
-      <fieldset className={cx({ danger: refundAmountCents.error })}>
+      <FormFieldset state={refundAmountCents.error ? "danger" : undefined}>
         <PriceInput
           cents={refundAmountCents.value}
           onChange={(value) => setRefundAmountCents({ value })}
@@ -2209,7 +2218,7 @@ const RefundForm = ({
             </a>
           </Alert>
         ) : null}
-      </fieldset>
+      </FormFieldset>
       <div style={{ display: "contents" }}>
         <Modal
           usePortal
@@ -2413,8 +2422,8 @@ const CallSection = ({ call, onChange }: { call: Call; onChange: (call: Call) =>
             void handleSave();
           }}
         >
-          <fieldset>
-            <input
+          <FormFieldset>
+            <FormInput
               type="text"
               value={callUrl}
               onChange={(evt) => setCallUrl(evt.target.value)}
@@ -2423,7 +2432,7 @@ const CallSection = ({ call, onChange }: { call: Call; onChange: (call: Call) =>
             <Button color="primary" type="submit" disabled={isLoading}>
               {isLoading ? "Saving..." : "Save"}
             </Button>
-          </fieldset>
+          </FormFieldset>
         </form>
       </section>
     </section>
@@ -2565,10 +2574,10 @@ const CommissionSection = ({
               ))}
             </Rows>
           ) : null}
-          <label className="button">
+          <FormLabel className="button">
             <input type="file" onChange={handleFileChange} disabled={isLoading} multiple style={{ display: "none" }} />
             <Icon name="paperclip" /> Upload files
-          </label>
+          </FormLabel>
           {commission.status === "in_progress" ? (
             <Button color="primary" disabled={isLoading} onClick={() => void handleCompletion()}>
               Submit and mark as complete
