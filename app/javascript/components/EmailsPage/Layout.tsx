@@ -5,6 +5,7 @@ import { EmailTab } from "$app/data/installments";
 
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Tab, Tabs } from "$app/components/ui/Tabs";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -45,16 +46,16 @@ export const EmailsLayout = ({ selectedTab, children, hasPosts, query, onQueryCh
                   </WithTooltip>
                 }
               >
-                <div className="input">
+                <FormInputWrapper>
                   <Icon name="solid-search" />
-                  <input
+                  <FormInput
                     ref={searchInputRef}
                     type="text"
                     placeholder="Search emails"
                     value={query ?? ""}
                     onChange={(evt) => onQueryChange(evt.target.value)}
                   />
-                </div>
+                </FormInputWrapper>
               </Popover>
             ) : null}
             {!hideNewButton && <NewEmailButton />}

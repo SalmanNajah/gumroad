@@ -1,7 +1,18 @@
 import { Link, router, useForm, usePage } from "@inertiajs/react";
 import { DirectUpload } from "@rails/activestorage";
 import { Editor, JSONContent } from "@tiptap/core";
-import cx from "classnames";
+
+import {
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormLabel,
+  FormLegend,
+  FormRadio,
+  FormSelect,
+  FormSmall,
+  FormSwitch,
+} from "$app/components/ui/form";
 import { addHours, format, startOfDay, startOfHour } from "date-fns";
 import React from "react";
 import { cast } from "ts-safe-cast";
@@ -762,7 +773,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   )}
                 </div>
                 <Separator>OR</Separator>
-                <fieldset className={cx({ danger: invalidFields.has("scheduleDate") })}>
+                <FormFieldset state={invalidFields.has("scheduleDate") ? "danger" : undefined}>
                   <DateInput
                     withTime
                     aria-label="Schedule date"
@@ -774,7 +785,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                       markFieldAsValid("scheduleDate");
                     }}
                   />
-                </fieldset>
+                </FormFieldset>
                 <Button disabled={isPublished || isBusy} onClick={() => save("save_and_schedule")}>
                   Schedule
                 </Button>
@@ -792,8 +803,8 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
         <div className="grid grid-cols-1 items-start gap-x-16 gap-y-8 lg:grid-cols-[var(--grid-cols-sidebar)]">
           <div className="stack">
             <div>
-              <fieldset role="group">
-                <legend>
+              <FormFieldset role="group">
+                <FormLegend>
                   <div>Audience</div>
                   {hasAudience ? (
                     recipientCount.loading ? (
@@ -804,64 +815,59 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                       <div aria-label="Recipient count">{`${recipientCount.count.toLocaleString()} / ${recipientCount.total.toLocaleString()}`}</div>
                     )
                   ) : null}
-                </legend>
-                <label htmlFor={`${uid}-recipient_everyone`}>
+                </FormLegend>
+                <FormLabel htmlFor={`${uid}-recipient_everyone`}>
                   Everyone
-                  <input
+                  <FormRadio
                     id={`${uid}-recipient_everyone`}
-                    type="radio"
                     checked={audienceType === "everyone"}
                     disabled={isPublished}
                     onChange={() => setAudienceType("everyone")}
                   />
-                </label>
+                </FormLabel>
                 {context.audience_types.includes("followers") ? (
-                  <label htmlFor={`${uid}-recipient_followers_only`}>
+                  <FormLabel htmlFor={`${uid}-recipient_followers_only`}>
                     Followers only
-                    <input
+                    <FormRadio
                       id={`${uid}-recipient_followers_only`}
-                      type="radio"
                       checked={audienceType === "followers"}
                       disabled={isPublished}
                       onChange={() => setAudienceType("followers")}
                     />
-                  </label>
+                  </FormLabel>
                 ) : null}
                 {context.audience_types.includes("customers") ? (
-                  <label htmlFor={`${uid}-recipient_customers_only`}>
+                  <FormLabel htmlFor={`${uid}-recipient_customers_only`}>
                     Customers only
-                    <input
+                    <FormRadio
                       id={`${uid}-recipient_customers_only`}
-                      type="radio"
                       checked={audienceType === "customers"}
                       disabled={isPublished}
                       onChange={() => setAudienceType("customers")}
                     />
-                  </label>
+                  </FormLabel>
                 ) : null}
                 {context.audience_types.includes("affiliates") ? (
-                  <label htmlFor={`${uid}-recipient_affiliates_only`}>
+                  <FormLabel htmlFor={`${uid}-recipient_affiliates_only`}>
                     Affiliates only
-                    <input
+                    <FormRadio
                       id={`${uid}-recipient_affiliates_only`}
-                      type="radio"
                       checked={audienceType === "affiliates"}
                       disabled={isPublished}
                       onChange={() => setAudienceType("affiliates")}
                     />
-                  </label>
+                  </FormLabel>
                 ) : null}
-              </fieldset>
+              </FormFieldset>
             </div>
             <div>
-              <fieldset role="group" className={cx({ danger: invalidFields.has("channel") })}>
-                <legend>Channel</legend>
+              <FormFieldset role="group" state={invalidFields.has("channel") ? "danger" : undefined}>
+                <FormLegend>Channel</FormLegend>
                 {hasAudience ? (
-                  <label htmlFor={`${uid}-channel_email`}>
+                  <FormLabel htmlFor={`${uid}-channel_email`}>
                     Send email
-                    <input
+                    <FormCheckbox
                       id={`${uid}-channel_email`}
-                      type="checkbox"
                       ref={sendEmailRef}
                       checked={channel.email}
                       disabled={!!(installment?.external_id && installment.has_been_blasted)}
@@ -870,9 +876,9 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                         markFieldAsValid("channel");
                       }}
                     />
-                  </label>
+                  </FormLabel>
                 ) : null}
-                <label htmlFor={`${uid}-channel_profile`}>
+                <FormLabel htmlFor={`${uid}-channel_profile`}>
                   Post to profile
                   <WithTooltip
                     tip={
@@ -888,24 +894,21 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   >
                     (?)
                   </WithTooltip>
-                  <input
+                  <FormCheckbox
                     id={`${uid}-channel_profile`}
-                    type="checkbox"
                     checked={channel.profile}
                     onChange={(event) => {
                       setChannel((prev) => ({ ...prev, profile: event.target.checked }));
                       markFieldAsValid("channel");
                     }}
                   />
-                </label>
+                </FormLabel>
                 {audienceType === "everyone" && channel.profile ? (
                   context.profile_sections.length > 0 ? (
                     <>
                       {context.profile_sections.map((section) => (
-                        <label key={section.id} className="w-fit">
-                          <input
-                            type="checkbox"
-                            role="switch"
+                        <FormLabel key={section.id} className="w-fit">
+                          <FormSwitch
                             checked={shownInProfileSections.includes(section.id)}
                             onChange={() => {
                               setShownInProfileSections((prevSections) =>
@@ -917,7 +920,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                           />
 
                           {section.name || "Unnamed section"}
-                        </label>
+                        </FormLabel>
                       ))}
                       {installment?.published_at ? null : (
                         <Alert role="status" variant="info">
@@ -932,24 +935,23 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     </Alert>
                   )
                 ) : null}
-              </fieldset>
+              </FormFieldset>
             </div>
             {audienceType === "affiliates" ? (
               <div>
-                <fieldset role="group">
-                  <legend>Affiliated products</legend>
-                  <label htmlFor={`${uid}-all_affiliated_products`}>
+                <FormFieldset role="group">
+                  <FormLegend>Affiliated products</FormLegend>
+                  <FormLabel htmlFor={`${uid}-all_affiliated_products`}>
                     All products
-                    <input
+                    <FormCheckbox
                       id={`${uid}-all_affiliated_products`}
-                      type="checkbox"
                       checked={affiliatedProducts.length === affiliateProductOptions.length}
                       disabled={isPublished}
                       onChange={(event) =>
                         setAffiliatedProducts(event.target.checked ? affiliateProductOptions.map(({ id }) => id) : [])
                       }
                     />
-                  </label>
+                  </FormLabel>
                   <TagInput
                     inputId={`${uid}-affiliated_products_dropdown`}
                     placeholder="Select products..."
@@ -958,15 +960,15 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     onChangeTagIds={setAffiliatedProducts}
                     isDisabled={isPublished}
                   />
-                </fieldset>
+                </FormFieldset>
               </div>
             ) : null}
             {audienceType === "customers" || audienceType === "followers" ? (
               <div>
-                <fieldset>
-                  <legend>
+                <FormFieldset>
+                  <FormLegend>
                     <label htmlFor={`${uid}-bought`}>Bought</label>
-                  </legend>
+                  </FormLegend>
                   <TagInput
                     inputId={`${uid}-bought`}
                     placeholder="Any product"
@@ -975,15 +977,15 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     onChangeTagIds={setBought}
                     isDisabled={isPublished}
                   />
-                </fieldset>
+                </FormFieldset>
               </div>
             ) : null}
             {hasAudience && audienceType !== "affiliates" ? (
               <div>
-                <fieldset>
-                  <legend>
+                <FormFieldset>
+                  <FormLegend>
                     <label htmlFor={`${uid}-not_bought`}>Has not yet bought</label>
-                  </legend>
+                  </FormLegend>
                   <TagInput
                     inputId={`${uid}-not_bought`}
                     placeholder="No products"
@@ -994,7 +996,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     // Displayed as a multi-select for consistency, but supports only one option for now
                     maxTags={1}
                   />
-                </fieldset>
+                </FormFieldset>
               </div>
             ) : null}
             {audienceType === "customers" ? (
@@ -1006,10 +1008,10 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr)",
                   }}
                 >
-                  <fieldset className={cx({ danger: invalidFields.has("paidMoreThan") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-paid_more_than`}>Paid more than</label>
-                    </legend>
+                  <FormFieldset state={invalidFields.has("paidMoreThan") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-paid_more_than`}>Paid more than</FormLabel>
+                    </FormLegend>
                     <PriceInput
                       id={`${uid}-paid_more_than`}
                       ref={paidMoreThanRef}
@@ -1023,11 +1025,11 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                       }}
                       placeholder="0"
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: invalidFields.has("paidLessThan") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-paid_less_than`}>Paid less than</label>
-                    </legend>
+                  </FormFieldset>
+                  <FormFieldset state={invalidFields.has("paidLessThan") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-paid_less_than`}>Paid less than</FormLabel>
+                    </FormLegend>
                     <PriceInput
                       id={`${uid}-paid_less_than`}
                       currencyCode={context.currency_type}
@@ -1040,7 +1042,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                       }}
                       placeholder="∞"
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </div>
               </div>
             ) : null}
@@ -1053,11 +1055,11 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
                   }}
                 >
-                  <fieldset className={cx({ danger: invalidFields.has("afterDate") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-after_date`}>After</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={invalidFields.has("afterDate") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-after_date`}>After</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="date"
                       id={`${uid}-after_date`}
                       ref={afterDateRef}
@@ -1069,13 +1071,13 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                         markFieldAsValid("beforeDate");
                       }}
                     />
-                    <small>00:00 {context.timezone}</small>
-                  </fieldset>
-                  <fieldset className={cx({ danger: invalidFields.has("beforeDate") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-before_date`}>Before</label>
-                    </legend>
-                    <input
+                    <FormSmall>00:00 {context.timezone}</FormSmall>
+                  </FormFieldset>
+                  <FormFieldset state={invalidFields.has("beforeDate") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-before_date`}>Before</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="date"
                       id={`${uid}-before_date`}
                       value={beforeDate}
@@ -1086,18 +1088,18 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                         markFieldAsValid("afterDate");
                       }}
                     />
-                    <small>11:59 {context.timezone}</small>
-                  </fieldset>
+                    <FormSmall>11:59 {context.timezone}</FormSmall>
+                  </FormFieldset>
                 </div>
               </div>
             ) : null}
             {audienceType === "customers" ? (
               <div>
-                <fieldset>
-                  <legend>
-                    <label htmlFor={`${uid}-from_country`}>From</label>
-                  </legend>
-                  <select
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-from_country`}>From</FormLabel>
+                  </FormLegend>
+                  <FormSelect
                     id={`${uid}-from_country`}
                     value={fromCountry}
                     disabled={isPublished}
@@ -1109,30 +1111,29 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                         {country}
                       </option>
                     ))}
-                  </select>
-                </fieldset>
+                  </FormSelect>
+                </FormFieldset>
               </div>
             ) : null}
             <div>
-              <fieldset role="group">
-                <legend>Engagement</legend>
-                <label htmlFor={`${uid}-allow_comments`}>
+              <FormFieldset role="group">
+                <FormLegend>Engagement</FormLegend>
+                <FormLabel htmlFor={`${uid}-allow_comments`}>
                   Allow comments
-                  <input
+                  <FormCheckbox
                     id={`${uid}-allow_comments`}
-                    type="checkbox"
                     checked={allowComments}
                     onChange={(event) => setAllowComments(event.target.checked)}
                   />
-                </label>
-              </fieldset>
+                </FormLabel>
+              </FormFieldset>
             </div>
           </div>
           <S3UploadConfigProvider value={s3UploadConfig}>
             <EvaporateUploaderProvider value={evaporateUploader}>
               <div className="grid gap-6">
-                <fieldset className={cx({ danger: invalidFields.has("title") })}>
-                  <input
+                <FormFieldset state={invalidFields.has("title") ? "danger" : undefined}>
+                  <FormInput
                     ref={titleRef}
                     type="text"
                     placeholder="Title"
@@ -1143,10 +1144,10 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                       markFieldAsValid("title");
                     }}
                   />
-                </fieldset>
+                </FormFieldset>
                 {isPublished ? (
-                  <fieldset className={cx({ danger: invalidFields.has("publishDate") })}>
-                    <input
+                  <FormFieldset state={invalidFields.has("publishDate") ? "danger" : undefined}>
+                    <FormInput
                       ref={publishDateRef}
                       type="date"
                       placeholder="Publish date"
@@ -1158,11 +1159,11 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                       }}
                       max={toISODateString(new Date())}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 ) : null}
                 <ImageUploadSettingsContext.Provider value={imageSettings}>
                   <RichTextEditor
-                    className="textarea"
+                    className= "textarea px-4 py-3 border border-border rounded block w-full bg-filled text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
                     ariaLabel="Email message"
                     placeholder="Write a personalized message..."
                     initialValue={parseInitialValue(form.data.installment.message)}
