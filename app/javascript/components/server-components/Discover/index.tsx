@@ -20,6 +20,7 @@ import { Icon } from "$app/components/Icons";
 import { HorizontalCard } from "$app/components/Product/Card";
 import { CardGrid, useSearchReducer } from "$app/components/Product/CardGrid";
 import { RatingStars } from "$app/components/RatingStars";
+import { FormFieldset, FormLabel, FormRadio } from "$app/components/ui/form";
 import { Tabs, Tab } from "$app/components/ui/Tabs";
 import { useOnChange } from "$app/components/useOnChange";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
@@ -434,15 +435,14 @@ const Discover = (props: Props) => {
               <>
                 <details>
                   <summary>Rating</summary>
-                  <fieldset role="group">
+                  <FormFieldset role="group">
                     {range(4, 0).map((number) => (
-                      <label key={number}>
+                      <FormLabel key={number}>
                         <span className="flex shrink-0 items-center gap-1">
                           <RatingStars rating={number} />
                           and up
                         </span>
-                        <input
-                          type="radio"
+                        <FormRadio
                           value={number}
                           aria-label={`${number} ${number === 1 ? "star" : "stars"} and up`}
                           checked={number === state.params.rating}
@@ -451,9 +451,9 @@ const Discover = (props: Props) => {
                             updateParams(state.params.rating === number ? { rating: undefined } : { rating: number })
                           }
                         />
-                      </label>
+                      </FormLabel>
                     ))}
-                  </fieldset>
+                  </FormFieldset>
                 </details>
                 {hasOfferCode ? (
                   <details open>

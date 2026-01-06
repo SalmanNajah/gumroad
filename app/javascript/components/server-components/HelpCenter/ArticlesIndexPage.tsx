@@ -5,6 +5,7 @@ import { createCast } from "ts-safe-cast";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { NavigationButton } from "$app/components/Button";
+import { FormInput } from "$app/components/ui/FormInput";
 
 interface Article {
   title: string;
@@ -76,7 +77,7 @@ const ArticlesIndexPage = ({ categories }: ArticlesIndexPageProps) => {
 
   return (
     <>
-      <input
+      <FormInput
         type="text"
         autoFocus
         value={searchTerm}

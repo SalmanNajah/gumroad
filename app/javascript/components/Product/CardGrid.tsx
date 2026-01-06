@@ -10,6 +10,15 @@ import { AbortError, assertResponseError } from "$app/utils/request";
 import { Icon } from "$app/components/Icons";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
+import {
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormLegend,
+  FormRadio,
+} from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
@@ -126,10 +135,9 @@ const FilterCheckboxes = ({
   return (
     <>
       {(showingAll ? filters : filters.slice(0, 5)).map((option) => (
-        <label key={option.key}>
+        <FormLabel key={option.key}>
           {option.key} ({option.doc_count})
-          <input
-            type="checkbox"
+          <FormCheckbox
             checked={selection.includes(option.key)}
             disabled={disabled}
             onChange={() =>
@@ -140,7 +148,7 @@ const FilterCheckboxes = ({
               )
             }
           />
-        </label>
+        </FormLabel>
       ))}
       {filters.length > 5 && !showingAll ? (
         <button className="underline" onClick={() => setShowingAll(true)}>
@@ -248,35 +256,33 @@ export const CardGrid = ({
           {hideSort ? null : (
             <details>
               <summary>Sort by</summary>
-              <fieldset role="group">
+              <FormFieldset role="group">
                 {(onProfile ? PROFILE_SORT_KEYS : SORT_KEYS).map((key) => (
-                  <label key={key}>
+                  <FormLabel key={key}>
                     {SORT_BY_LABELS[key]}
-                    <input
-                      type="radio"
+                    <FormRadio
                       disabled={disableFilters}
                       name={`${uid}-sortBy`}
                       checked={(searchParams.sort ?? defaults.sort) === key}
                       onChange={() => updateParams({ sort: key })}
                     />
-                  </label>
+                  </FormLabel>
                 ))}
-              </fieldset>
+              </FormFieldset>
             </details>
           )}
           {results?.tags_data.length || searchParams.tags?.length || tagsOpen ? (
             <details onToggle={() => setTagsOpen(!tagsOpen)}>
               <summary>Tags</summary>
-              <fieldset role="group">
-                <label>
+              <FormFieldset role="group">
+                <FormLabel>
                   All Products
-                  <input
-                    type="checkbox"
+                  <FormCheckbox
                     checked={!searchParams.tags?.length}
                     disabled={disableFilters || !searchParams.tags?.length}
                     onChange={() => updateParams({ tags: undefined })}
                   />
-                </label>
+                </FormLabel>
                 {results ? (
                   <FilterCheckboxes
                     filters={concatFoundAndNotFound(results.tags_data, searchParams.tags)}
@@ -285,13 +291,13 @@ export const CardGrid = ({
                     disabled={disableFilters ?? false}
                   />
                 ) : null}
-              </fieldset>
+              </FormFieldset>
             </details>
           ) : null}
           {results?.filetypes_data.length || searchParams.filetypes?.length || filetypesOpen ? (
             <details onToggle={() => setFiletypesOpen(!filetypesOpen)}>
               <summary>Contains</summary>
-              <fieldset role="group">
+              <FormFieldset role="group">
                 {results ? (
                   <FilterCheckboxes
                     filters={concatFoundAndNotFound(results.filetypes_data, searchParams.filetypes)}
@@ -300,7 +306,7 @@ export const CardGrid = ({
                     disabled={disableFilters ?? false}
                   />
                 ) : null}
-              </fieldset>
+              </FormFieldset>
             </details>
           ) : null}
           <details>
@@ -313,11 +319,11 @@ export const CardGrid = ({
                 gap: "var(--spacer-3)",
               }}
             >
-              <fieldset>
-                <legend>
-                  <label htmlFor={minPriceUid}>Minimum price</label>
-                </legend>
-                <div className="input">
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={minPriceUid}>Minimum price</FormLabel>
+                </FormLegend>
+                <FormInputWrapper>
                   <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>
                   <NumberInput
                     onChange={(value) => {
@@ -326,15 +332,15 @@ export const CardGrid = ({
                     }}
                     value={enteredMinPrice ?? null}
                   >
-                    {(props) => <input id={minPriceUid} placeholder="0" disabled={disableFilters} {...props} />}
+                    {(props) => <FormInput id={minPriceUid} placeholder="0" disabled={disableFilters} {...props} />}
                   </NumberInput>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>
-                  <label htmlFor={maxPriceUid}>Maximum price</label>
-                </legend>
-                <div className="input">
+                </FormInputWrapper>
+              </FormFieldset>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={maxPriceUid}>Maximum price</FormLabel>
+                </FormLegend>
+                <FormInputWrapper>
                   <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>
                   <NumberInput
                     onChange={(value) => {
@@ -343,10 +349,10 @@ export const CardGrid = ({
                     }}
                     value={enteredMaxPrice ?? null}
                   >
-                    {(props) => <input id={maxPriceUid} placeholder="∞" disabled={disableFilters} {...props} />}
+                    {(props) => <FormInput id={maxPriceUid} placeholder="∞" disabled={disableFilters} {...props} />}
                   </NumberInput>
-                </div>
-              </fieldset>
+                </FormInputWrapper>
+              </FormFieldset>
             </div>
           </details>
           {appendFilters}
