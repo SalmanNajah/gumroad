@@ -10,6 +10,7 @@ import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { useRunOnce } from "$app/components/useRunOnce";
+import { FormSelect, FormLabel, FormCheckbox } from "$app/components/ui/form";
 
 const ExportPayoutsPopoverContent = ({ closePopover }: { closePopover: () => void }) => {
   const currentYear = new Date().getFullYear();
@@ -85,7 +86,7 @@ const ExportPayoutsPopoverContent = ({ closePopover }: { closePopover: () => voi
       </header>
 
       <section>
-        <select
+        <FormSelect
           aria-label="Filter by year"
           value={selectedYear}
           onChange={handleYearChange}
@@ -97,7 +98,7 @@ const ExportPayoutsPopoverContent = ({ closePopover }: { closePopover: () => voi
               {year}
             </option>
           ))}
-        </select>
+        </FormSelect>
       </section>
 
       <section className="relative -mx-4 max-h-[300px] max-w-none overflow-y-auto border-y p-4">
@@ -111,15 +112,14 @@ const ExportPayoutsPopoverContent = ({ closePopover }: { closePopover: () => voi
             <p>No payouts found for this year.</p>
           ) : (
             payouts.map((payout) => (
-              <label key={payout.id} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
+              <FormLabel key={payout.id} className="flex items-center gap-2">
+                <FormCheckbox
                   checked={selectedPayouts.has(payout.id)}
                   onChange={() => toggleSelectOne(payout.id)}
                   disabled={isLoading || isDownloading}
                 />
                 {payout.date_formatted}
-              </label>
+              </FormLabel>
             ))
           )}
         </div>

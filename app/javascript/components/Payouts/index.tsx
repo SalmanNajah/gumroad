@@ -23,6 +23,7 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholder from "$assets/images/placeholders/payouts.png";
+import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 
 const INSTANT_PAYOUT_FEE_PERCENTAGE = 0.03;
 const MINIMUM_INSTANT_PAYOUT_AMOUNT_CENTS = 1000;
@@ -787,11 +788,11 @@ const Payouts = ({
                 bank account within 30 minutes, though some payouts may take longer to be credited.
               </p>
 
-              <fieldset>
-                <label htmlFor="instant-payout-date">Pay out balance up to</label>
+              <FormFieldset>
+                <FormLabel htmlFor="instant-payout-date">Pay out balance up to</FormLabel>
                 <div className="input cursor-pointer">
                   <Icon name="calendar-all" />
-                  <select
+                  <FormSelect
                     id="instant-payout-date"
                     value={instantPayoutId}
                     onChange={(e) => setInstantPayoutId(e.target.value)}
@@ -805,12 +806,12 @@ const Payouts = ({
                         })}
                       </option>
                     ))}
-                  </select>
+                  </FormSelect>
                   <Icon name="outline-cheveron-down" />
                 </div>
-              </fieldset>
-              <fieldset>
-                <legend>Payout details</legend>
+              </FormFieldset>
+              <FormFieldset>
+                <FormLegend>Payout details</FormLegend>
                 <div className="rounded-sm border border-border bg-background not-first:border-t">
                   <div className="grid gap-4 p-4">
                     <div className="grid grid-flow-col justify-between gap-4">
@@ -858,7 +859,7 @@ const Payouts = ({
                     your balance into multiple payouts.
                   </Alert>
                 ) : null}
-              </fieldset>
+              </FormFieldset>
             </Modal>
           </Alert>
         ) : null}

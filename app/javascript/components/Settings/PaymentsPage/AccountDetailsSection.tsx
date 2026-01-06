@@ -1,4 +1,4 @@
-import cx from "classnames";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect, FormSmall } from "$app/components/ui/form";
 import parsePhoneNumberFromString, { CountryCode } from "libphonenumber-js";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
@@ -52,12 +52,12 @@ const AccountDetailsSection = ({
     <section className="grid gap-8">
       {(complianceInfo.is_business ? complianceInfo.business_country !== "AE" : complianceInfo.country !== "AE") ? (
         <section>
-          <fieldset>
-            <legend>
+          <FormFieldset>
+            <FormLegend>
               <label>Account type</label>
               <a href="/help/article/260-your-payout-settings-page">What type of account should I choose?</a>
-            </legend>
-          </fieldset>
+            </FormLegend>
+          </FormFieldset>
           <div className="radio-buttons" role="radiogroup">
             <Button
               role="radio"
@@ -102,11 +102,11 @@ const AccountDetailsSection = ({
               gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
             }}
           >
-            <fieldset className={cx({ danger: errorFieldNames.has("business_name") })}>
-              <legend>
-                <label htmlFor={`${uid}-business-legal-name`}>Legal business name</label>
-              </legend>
-              <input
+            <FormFieldset state={errorFieldNames.has("business_name") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-business-legal-name`}>Legal business name</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-business-legal-name`}
                 placeholder="Acme"
                 required={complianceInfo.is_business}
@@ -115,13 +115,13 @@ const AccountDetailsSection = ({
                 aria-invalid={errorFieldNames.has("business_name")}
                 onChange={(evt) => updateComplianceInfo({ business_name: evt.target.value })}
               />
-            </fieldset>
-            <fieldset className={cx({ danger: errorFieldNames.has("business_type") })}>
-              <legend>
-                <label htmlFor={`${uid}-business-type`}>Type</label>
-              </legend>
+            </FormFieldset>
+            <FormFieldset state={errorFieldNames.has("business_type") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-business-type`}>Type</FormLabel>
+              </FormLegend>
               {complianceInfo.business_country === "AE" ? (
-                <select
+                <FormSelect
                   id={`${uid}-business-type`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -135,9 +135,9 @@ const AccountDetailsSection = ({
                       {businessType.name}
                     </option>
                   ))}
-                </select>
+                </FormSelect>
               ) : complianceInfo.business_country === "IN" ? (
-                <select
+                <FormSelect
                   id={`${uid}-business-type`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -151,9 +151,9 @@ const AccountDetailsSection = ({
                       {businessType.name}
                     </option>
                   ))}
-                </select>
+                </FormSelect>
               ) : complianceInfo.business_country === "CA" ? (
-                <select
+                <FormSelect
                   id={`${uid}-business-type`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -167,9 +167,9 @@ const AccountDetailsSection = ({
                       {businessType.name}
                     </option>
                   ))}
-                </select>
+                </FormSelect>
               ) : (
-                <select
+                <FormSelect
                   id={`${uid}-business-type`}
                   disabled={isFormDisabled}
                   value={complianceInfo.business_type || "Type"}
@@ -183,17 +183,17 @@ const AccountDetailsSection = ({
                   <option value="profit">Non Profit</option>
                   <option value="sole_proprietorship">Sole Proprietorship</option>
                   <option value="corporation">Corporation</option>
-                </select>
+                </FormSelect>
               )}
-            </fieldset>
+            </FormFieldset>
           </div>
           {complianceInfo.business_country === "JP" ? (
             <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-              <fieldset className={cx({ danger: errorFieldNames.has("business_name_kanji") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-name-kanji`}>Business Name (Kanji)</label>
-                </legend>
-                <input
+              <FormFieldset state={errorFieldNames.has("business_name_kanji") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-name-kanji`}>Business Name (Kanji)</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-business-name-kanji`}
                   type="text"
                   placeholder="Legal Business Name (Kanji)"
@@ -203,12 +203,12 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ business_name_kanji: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset className={cx({ danger: errorFieldNames.has("business_name_kana") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-name-kana`}>Legal Business Name (Kana)</label>
-                </legend>
-                <input
+              </FormFieldset>
+              <FormFieldset state={errorFieldNames.has("business_name_kana") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-name-kana`}>Legal Business Name (Kana)</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-business-name-kana`}
                   type="text"
                   placeholder="Business Name (Kana)"
@@ -218,16 +218,16 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ business_name_kana: evt.target.value })}
                 />
-              </fieldset>
+              </FormFieldset>
             </div>
           ) : null}
           {complianceInfo.business_country === "JP" ? (
             <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-              <fieldset className={cx({ danger: errorFieldNames.has("business_building_number") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-building-number`}>Business Block / Building Number</label>
-                </legend>
-                <input
+              <FormFieldset state={errorFieldNames.has("business_building_number") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-building-number`}>Business Block / Building Number</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-business-building-number`}
                   type="text"
                   placeholder="1-1"
@@ -237,12 +237,14 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ business_building_number: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset className={cx({ danger: errorFieldNames.has("business_street_address_kanji") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-street-address-kanji`}>Business Street Address (Kanji)</label>
-                </legend>
-                <input
+              </FormFieldset>
+              <FormFieldset state={errorFieldNames.has("business_street_address_kanji") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-street-address-kanji`}>
+                    Business Street Address (Kanji)
+                  </FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-business-street-address-kanji`}
                   type="text"
                   placeholder="Business Street Address (Kanji)"
@@ -252,12 +254,12 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ business_street_address_kanji: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset className={cx({ danger: errorFieldNames.has("business_street_address_kana") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-street-address-kana`}>Business Street Address (Kana)</label>
-                </legend>
-                <input
+              </FormFieldset>
+              <FormFieldset state={errorFieldNames.has("business_street_address_kana") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-street-address-kana`}>Business Street Address (Kana)</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-business-street-address-kana`}
                   type="text"
                   placeholder="Business Street Address (Kana)"
@@ -267,14 +269,14 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ business_street_address_kana: evt.target.value })}
                 />
-              </fieldset>
+              </FormFieldset>
             </div>
           ) : (
-            <fieldset className={cx({ danger: errorFieldNames.has("business_street_address") })}>
-              <legend>
-                <label htmlFor={`${uid}-business-street-address`}>Address</label>
-              </legend>
-              <input
+            <FormFieldset state={errorFieldNames.has("business_street_address") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-business-street-address`}>Address</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-business-street-address`}
                 placeholder="123 smith street"
                 value={complianceInfo.business_street_address || ""}
@@ -282,7 +284,7 @@ const AccountDetailsSection = ({
                 aria-invalid={errorFieldNames.has("business_street_address")}
                 onChange={(evt) => updateComplianceInfo({ business_street_address: evt.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
           )}
           <div
             style={{
@@ -291,11 +293,11 @@ const AccountDetailsSection = ({
               gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
             }}
           >
-            <fieldset className={cx({ danger: errorFieldNames.has("business_city") })}>
-              <legend>
-                <label htmlFor={`${uid}-business-city`}>City</label>
-              </legend>
-              <input
+            <FormFieldset state={errorFieldNames.has("business_city") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-business-city`}>City</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-business-city`}
                 placeholder="Springfield"
                 value={complianceInfo.business_city || ""}
@@ -303,13 +305,13 @@ const AccountDetailsSection = ({
                 aria-invalid={errorFieldNames.has("business_city")}
                 onChange={(evt) => updateComplianceInfo({ business_city: evt.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
             {complianceInfo.business_country === "US" ? (
-              <fieldset className={cx({ danger: errorFieldNames.has("business_state") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-state`}>State</label>
-                </legend>
-                <select
+              <FormFieldset state={errorFieldNames.has("business_state") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-state`}>State</FormLabel>
+                </FormLegend>
+                <FormSelect
                   id={`${uid}-business-state`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -325,14 +327,14 @@ const AccountDetailsSection = ({
                       {state.name}
                     </option>
                   ))}
-                </select>
-              </fieldset>
+                </FormSelect>
+              </FormFieldset>
             ) : complianceInfo.business_country === "CA" ? (
-              <fieldset className={cx({ danger: errorFieldNames.has("business_state") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-province`}>Province</label>
-                </legend>
-                <select
+              <FormFieldset state={errorFieldNames.has("business_state") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-province`}>Province</FormLabel>
+                </FormLegend>
+                <FormSelect
                   id={`${uid}-business-province`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -348,14 +350,14 @@ const AccountDetailsSection = ({
                       {state.name}
                     </option>
                   ))}
-                </select>
-              </fieldset>
+                </FormSelect>
+              </FormFieldset>
             ) : complianceInfo.business_country === "AU" ? (
-              <fieldset className={cx({ danger: errorFieldNames.has("business_state") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-state`}>State</label>
-                </legend>
-                <select
+              <FormFieldset state={errorFieldNames.has("business_state") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-state`}>State</FormLabel>
+                </FormLegend>
+                <FormSelect
                   id={`${uid}-business-state`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -371,14 +373,14 @@ const AccountDetailsSection = ({
                       {state.name}
                     </option>
                   ))}
-                </select>
-              </fieldset>
+                </FormSelect>
+              </FormFieldset>
             ) : complianceInfo.business_country === "MX" ? (
-              <fieldset className={cx({ danger: errorFieldNames.has("business_state") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-state`}>State</label>
-                </legend>
-                <select
+              <FormFieldset state={errorFieldNames.has("business_state") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-state`}>State</FormLabel>
+                </FormLegend>
+                <FormSelect
                   id={`${uid}-business-state`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -394,14 +396,14 @@ const AccountDetailsSection = ({
                       {state.name}
                     </option>
                   ))}
-                </select>
-              </fieldset>
+                </FormSelect>
+              </FormFieldset>
             ) : complianceInfo.business_country === "AE" ? (
-              <fieldset className={cx({ danger: errorFieldNames.has("business_state") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-state`}>Province</label>
-                </legend>
-                <select
+              <FormFieldset state={errorFieldNames.has("business_state") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-state`}>Province</FormLabel>
+                </FormLegend>
+                <FormSelect
                   id={`${uid}-business-state`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -417,14 +419,14 @@ const AccountDetailsSection = ({
                       {state.name}
                     </option>
                   ))}
-                </select>
-              </fieldset>
+                </FormSelect>
+              </FormFieldset>
             ) : complianceInfo.business_country === "IE" ? (
-              <fieldset className={cx({ danger: errorFieldNames.has("business_state") })}>
-                <legend>
-                  <label htmlFor={`${uid}-business-county`}>County</label>
-                </legend>
-                <select
+              <FormFieldset state={errorFieldNames.has("business_state") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-business-county`}>County</FormLabel>
+                </FormLegend>
+                <FormSelect
                   id={`${uid}-business-county`}
                   required={complianceInfo.is_business}
                   disabled={isFormDisabled}
@@ -440,16 +442,16 @@ const AccountDetailsSection = ({
                       {state.name}
                     </option>
                   ))}
-                </select>
-              </fieldset>
+                </FormSelect>
+              </FormFieldset>
             ) : null}
-            <fieldset className={cx({ danger: errorFieldNames.has("business_zip_code") })}>
-              <legend>
-                <label htmlFor={`${uid}-business-zip-code`}>
+            <FormFieldset state={errorFieldNames.has("business_zip_code") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-business-zip-code`}>
                   {complianceInfo.business_country === "US" ? "ZIP code" : "Postal code"}
-                </label>
-              </legend>
-              <input
+                </FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-business-zip-code`}
                 placeholder="12345"
                 required={complianceInfo.is_business}
@@ -458,13 +460,13 @@ const AccountDetailsSection = ({
                 aria-invalid={errorFieldNames.has("business_zip_code")}
                 onChange={(evt) => updateComplianceInfo({ business_zip_code: evt.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
           </div>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-business-country`}>Country</label>
-            </legend>
-            <select
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-business-country`}>Country</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-business-country`}
               value={complianceInfo.business_country || ""}
               disabled={isFormDisabled}
@@ -476,13 +478,13 @@ const AccountDetailsSection = ({
                   {name}
                 </option>
               ))}
-            </select>
-          </fieldset>
-          <fieldset className={cx({ danger: errorFieldNames.has("business_phone") })}>
-            <legend>
-              <label htmlFor={`${uid}-business-phone-number`}>Business phone number</label>
-            </legend>
-            <input
+            </FormSelect>
+          </FormFieldset>
+          <FormFieldset state={errorFieldNames.has("business_phone") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-business-phone-number`}>Business phone number</FormLabel>
+            </FormLegend>
+            <FormInput
               id={`${uid}-business-phone-number`}
               type="tel"
               placeholder="555-555-5555"
@@ -496,18 +498,20 @@ const AccountDetailsSection = ({
                 })
               }
             />
-          </fieldset>
+          </FormFieldset>
           {user.country_supports_native_payouts || complianceInfo.business_country === "AE" ? (
-            <fieldset className={cx({ danger: errorFieldNames.has("business_tax_id") })}>
+            <FormFieldset state={errorFieldNames.has("business_tax_id") ? "danger" : undefined}>
               {complianceInfo.business_country === "US" ? (
                 <>
-                  <legend>
-                    <label htmlFor={`${uid}-business-tax-id`}>Business Tax ID (EIN, or SSN for sole proprietors)</label>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-business-tax-id`}>
+                      Business Tax ID (EIN, or SSN for sole proprietors)
+                    </FormLabel>
                     <div className="small">
                       <a href="/help/article/260-your-payout-settings-page">I'm not sure what my Tax ID is.</a>
                     </div>
-                  </legend>
-                  <input
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-business-tax-id`}
                     type="text"
                     placeholder={user.business_tax_id_entered ? "Hidden for security" : "12-3456789"}
@@ -519,10 +523,10 @@ const AccountDetailsSection = ({
                 </>
               ) : complianceInfo.business_country === "CA" ? (
                 <>
-                  <legend>
-                    <label htmlFor={`${uid}-business-tax-id`}>Business Number (BN)</label>
-                  </legend>
-                  <input
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-business-tax-id`}>Business Number (BN)</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-business-tax-id`}
                     type="text"
                     placeholder={user.business_tax_id_entered ? "Hidden for security" : "123456789"}
@@ -534,10 +538,10 @@ const AccountDetailsSection = ({
                 </>
               ) : complianceInfo.business_country === "AU" ? (
                 <>
-                  <legend>
-                    <label htmlFor={`${uid}-business-tax-id`}>Australian Business Number (ABN)</label>
-                  </legend>
-                  <input
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-business-tax-id`}>Australian Business Number (ABN)</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-business-tax-id`}
                     type="text"
                     placeholder={user.business_tax_id_entered ? "Hidden for security" : "12 123 456 789"}
@@ -549,10 +553,10 @@ const AccountDetailsSection = ({
                 </>
               ) : complianceInfo.business_country === "GB" ? (
                 <>
-                  <legend>
-                    <label htmlFor={`${uid}-business-tax-id`}>Company Number (CRN)</label>
-                  </legend>
-                  <input
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-business-tax-id`}>Company Number (CRN)</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-business-tax-id`}
                     type="text"
                     placeholder={user.business_tax_id_entered ? "Hidden for security" : "12345678"}
@@ -564,10 +568,10 @@ const AccountDetailsSection = ({
                 </>
               ) : complianceInfo.business_country === "AE" ? (
                 <>
-                  <legend>
-                    <label htmlFor={`${uid}-business-tax-id`}>Company tax ID</label>
-                  </legend>
-                  <input
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-business-tax-id`}>Company tax ID</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-business-tax-id`}
                     type="text"
                     placeholder={user.business_tax_id_entered ? "Hidden for security" : "12345678"}
@@ -579,10 +583,10 @@ const AccountDetailsSection = ({
                 </>
               ) : complianceInfo.business_country === "MX" ? (
                 <>
-                  <legend>
-                    <label htmlFor={`${uid}-business-tax-id`}>Business RFC</label>
-                  </legend>
-                  <input
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-business-tax-id`}>Business RFC</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-business-tax-id`}
                     type="text"
                     placeholder={user.business_tax_id_entered ? "Hidden for security" : "12345678"}
@@ -594,10 +598,10 @@ const AccountDetailsSection = ({
                 </>
               ) : (
                 <>
-                  <legend>
-                    <label htmlFor={`${uid}-business-tax-id`}>Company tax ID</label>
-                  </legend>
-                  <input
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-business-tax-id`}>Company tax ID</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-business-tax-id`}
                     type="text"
                     placeholder={user.business_tax_id_entered ? "Hidden for security" : "12345678"}
@@ -608,12 +612,12 @@ const AccountDetailsSection = ({
                   />
                 </>
               )}
-            </fieldset>
+            </FormFieldset>
           ) : null}
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-personal-address-is-business-address`}>
-                <input
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-personal-address-is-business-address`}>
+                <FormInput
                   id={`${uid}-personal-address-is-business-address`}
                   type="checkbox"
                   disabled={isFormDisabled}
@@ -628,18 +632,18 @@ const AccountDetailsSection = ({
                   }
                 />
                 Same as business
-              </label>
-            </legend>
-          </fieldset>
+              </FormLabel>
+            </FormLegend>
+          </FormFieldset>
         </section>
       ) : null}
       <section className="grid gap-8">
         <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-          <fieldset className={cx({ danger: errorFieldNames.has("first_name") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-first-name`}>First name</label>
-            </legend>
-            <input
+          <FormFieldset state={errorFieldNames.has("first_name") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-first-name`}>First name</FormLabel>
+            </FormLegend>
+            <FormInput
               id={`${uid}-creator-first-name`}
               type="text"
               placeholder="First name"
@@ -649,13 +653,13 @@ const AccountDetailsSection = ({
               required
               onChange={(evt) => updateComplianceInfo({ first_name: evt.target.value })}
             />
-            <small>Include your middle name if it appears on your ID.</small>
-          </fieldset>
-          <fieldset className={cx({ danger: errorFieldNames.has("last_name") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-last-name`}>Last name</label>
-            </legend>
-            <input
+            <FormSmall>Include your middle name if it appears on your ID.</FormSmall>
+          </FormFieldset>
+          <FormFieldset state={errorFieldNames.has("last_name") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-last-name`}>Last name</FormLabel>
+            </FormLegend>
+            <FormInput
               id={`${uid}-creator-last-name`}
               type="text"
               placeholder="Last name"
@@ -665,14 +669,14 @@ const AccountDetailsSection = ({
               required
               onChange={(evt) => updateComplianceInfo({ last_name: evt.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
         </div>
         {complianceInfo.is_business && complianceInfo.country === "CA" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("job_title") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-job-title`}>Job title</label>
-            </legend>
-            <input
+          <FormFieldset state={errorFieldNames.has("job_title") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-job-title`}>Job title</FormLabel>
+            </FormLegend>
+            <FormInput
               id={`${uid}-creator-job-title`}
               type="text"
               placeholder="CEO"
@@ -682,16 +686,16 @@ const AccountDetailsSection = ({
               required
               onChange={(evt) => updateComplianceInfo({ job_title: evt.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
         ) : null}
         {complianceInfo.country === "JP" ? (
           <>
             <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-              <fieldset className={cx({ danger: errorFieldNames.has("first_name_kanji") })}>
-                <legend>
-                  <label htmlFor={`${uid}-creator-first-name-kanji`}>First name (Kanji)</label>
-                </legend>
-                <input
+              <FormFieldset state={errorFieldNames.has("first_name_kanji") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-creator-first-name-kanji`}>First name (Kanji)</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-creator-first-name-kanji`}
                   type="text"
                   placeholder="First name (Kanji)"
@@ -701,12 +705,12 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ first_name_kanji: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset className={cx({ danger: errorFieldNames.has("last_name_kanji") })}>
-                <legend>
-                  <label htmlFor={`${uid}-creator-last-name-kanji`}>Last name (Kanji)</label>
-                </legend>
-                <input
+              </FormFieldset>
+              <FormFieldset state={errorFieldNames.has("last_name_kanji") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-creator-last-name-kanji`}>Last name (Kanji)</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-creator-last-name-kanji`}
                   type="text"
                   placeholder="Last name (Kanji)"
@@ -716,14 +720,14 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ last_name_kanji: evt.target.value })}
                 />
-              </fieldset>
+              </FormFieldset>
             </div>
             <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-              <fieldset className={cx({ danger: errorFieldNames.has("first_name_kana") })}>
-                <legend>
-                  <label htmlFor={`${uid}-creator-first-name-kana`}>First name (Kana)</label>
-                </legend>
-                <input
+              <FormFieldset state={errorFieldNames.has("first_name_kana") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-creator-first-name-kana`}>First name (Kana)</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-creator-first-name-kana`}
                   type="text"
                   placeholder="First name (Kana)"
@@ -733,12 +737,12 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ first_name_kana: evt.target.value })}
                 />
-              </fieldset>
-              <fieldset className={cx({ danger: errorFieldNames.has("last_name_kana") })}>
-                <legend>
-                  <label htmlFor={`${uid}-creator-last-name-kana`}>Last name (Kana)</label>
-                </legend>
-                <input
+              </FormFieldset>
+              <FormFieldset state={errorFieldNames.has("last_name_kana") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-creator-last-name-kana`}>Last name (Kana)</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-creator-last-name-kana`}
                   type="text"
                   placeholder="Last name (Kana)"
@@ -748,17 +752,17 @@ const AccountDetailsSection = ({
                   required
                   onChange={(evt) => updateComplianceInfo({ last_name_kana: evt.target.value })}
                 />
-              </fieldset>
+              </FormFieldset>
             </div>
           </>
         ) : null}
         {complianceInfo.country === "JP" ? (
           <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-            <fieldset className={cx({ danger: errorFieldNames.has("building_number") })}>
-              <legend>
-                <label htmlFor={`${uid}-creator-building-number`}>Block / Building Number</label>
-              </legend>
-              <input
+            <FormFieldset state={errorFieldNames.has("building_number") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-creator-building-number`}>Block / Building Number</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-creator-building-number`}
                 type="text"
                 placeholder="1-1"
@@ -768,12 +772,12 @@ const AccountDetailsSection = ({
                 required
                 onChange={(evt) => updateComplianceInfo({ building_number: evt.target.value })}
               />
-            </fieldset>
-            <fieldset className={cx({ danger: errorFieldNames.has("street_address_kanji") })}>
-              <legend>
-                <label htmlFor={`${uid}-creator-street-address-kanji`}>Street Address (Kanji)</label>
-              </legend>
-              <input
+            </FormFieldset>
+            <FormFieldset state={errorFieldNames.has("street_address_kanji") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-creator-street-address-kanji`}>Street Address (Kanji)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-creator-street-address-kanji`}
                 type="text"
                 placeholder="Street Address (Kanji)"
@@ -783,12 +787,12 @@ const AccountDetailsSection = ({
                 required
                 onChange={(evt) => updateComplianceInfo({ street_address_kanji: evt.target.value })}
               />
-            </fieldset>
-            <fieldset className={cx({ danger: errorFieldNames.has("street_address_kana") })}>
-              <legend>
-                <label htmlFor={`${uid}-creator-street-address-kana`}>Street Address (Kana)</label>
-              </legend>
-              <input
+            </FormFieldset>
+            <FormFieldset state={errorFieldNames.has("street_address_kana") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-creator-street-address-kana`}>Street Address (Kana)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-creator-street-address-kana`}
                 type="text"
                 placeholder="Street Address (Kana)"
@@ -798,14 +802,14 @@ const AccountDetailsSection = ({
                 required
                 onChange={(evt) => updateComplianceInfo({ street_address_kana: evt.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
           </div>
         ) : (
-          <fieldset className={cx({ danger: errorFieldNames.has("street_address") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-street-address`}>Address</label>
-            </legend>
-            <input
+          <FormFieldset state={errorFieldNames.has("street_address") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-street-address`}>Address</FormLabel>
+            </FormLegend>
+            <FormInput
               id={`${uid}-creator-street-address`}
               type="text"
               placeholder="Street address"
@@ -815,15 +819,15 @@ const AccountDetailsSection = ({
               aria-invalid={errorFieldNames.has("street_address")}
               onChange={(evt) => updateComplianceInfo({ street_address: evt.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
         )}
       </section>
       <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-        <fieldset className={cx({ danger: errorFieldNames.has("city") })}>
-          <legend>
-            <label htmlFor={`${uid}-creator-city`}>City</label>
-          </legend>
-          <input
+        <FormFieldset state={errorFieldNames.has("city") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-creator-city`}>City</FormLabel>
+          </FormLegend>
+          <FormInput
             id={`${uid}-creator-city`}
             type="text"
             placeholder="City"
@@ -833,13 +837,13 @@ const AccountDetailsSection = ({
             required
             onChange={(evt) => updateComplianceInfo({ city: evt.target.value })}
           />
-        </fieldset>
+        </FormFieldset>
         {complianceInfo.country === "US" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("state") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-state`}>State</label>
-            </legend>
-            <select
+          <FormFieldset state={errorFieldNames.has("state") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-state`}>State</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-creator-state`}
               required
               disabled={isFormDisabled}
@@ -855,14 +859,14 @@ const AccountDetailsSection = ({
                   {state.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         ) : complianceInfo.country === "CA" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("state") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-province`}>Province</label>
-            </legend>
-            <select
+          <FormFieldset state={errorFieldNames.has("state") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-province`}>Province</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-creator-province`}
               required
               disabled={isFormDisabled}
@@ -878,14 +882,14 @@ const AccountDetailsSection = ({
                   {state.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         ) : complianceInfo.country === "AU" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("state") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-state`}>State</label>
-            </legend>
-            <select
+          <FormFieldset state={errorFieldNames.has("state") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-state`}>State</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-creator-state`}
               required
               disabled={isFormDisabled}
@@ -901,14 +905,14 @@ const AccountDetailsSection = ({
                   {state.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         ) : complianceInfo.country === "MX" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("state") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-state`}>State</label>
-            </legend>
-            <select
+          <FormFieldset state={errorFieldNames.has("state") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-state`}>State</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-creator-state`}
               required
               disabled={isFormDisabled}
@@ -924,14 +928,14 @@ const AccountDetailsSection = ({
                   {state.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         ) : complianceInfo.country === "AE" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("state") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-province`}>Province</label>
-            </legend>
-            <select
+          <FormFieldset state={errorFieldNames.has("state") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-province`}>Province</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-creator-province`}
               required
               disabled={isFormDisabled}
@@ -947,14 +951,14 @@ const AccountDetailsSection = ({
                   {state.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         ) : complianceInfo.country === "IE" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("state") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-county`}>County</label>
-            </legend>
-            <select
+          <FormFieldset state={errorFieldNames.has("state") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-county`}>County</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-creator-county`}
               required
               disabled={isFormDisabled}
@@ -970,14 +974,14 @@ const AccountDetailsSection = ({
                   {state.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         ) : complianceInfo.country === "BR" ? (
-          <fieldset className={cx({ danger: errorFieldNames.has("state") })}>
-            <legend>
-              <label htmlFor={`${uid}-creator-state`}>State</label>
-            </legend>
-            <select
+          <FormFieldset state={errorFieldNames.has("state") ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-creator-state`}>State</FormLabel>
+            </FormLegend>
+            <FormSelect
               id={`${uid}-creator-state`}
               required
               disabled={isFormDisabled}
@@ -993,16 +997,16 @@ const AccountDetailsSection = ({
                   {state.name}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         ) : null}
-        <fieldset className={cx({ danger: errorFieldNames.has("zip_code") })}>
-          <legend>
-            <label htmlFor={`${uid}-creator-zip-code`}>
+        <FormFieldset state={errorFieldNames.has("zip_code") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-creator-zip-code`}>
               {complianceInfo.country === "US" ? "ZIP code" : "Postal code"}
-            </label>
-          </legend>
-          <input
+            </FormLabel>
+          </FormLegend>
+          <FormInput
             id={`${uid}-creator-zip-code`}
             type="text"
             placeholder={complianceInfo.country === "US" ? "ZIP code" : "Postal code"}
@@ -1012,13 +1016,13 @@ const AccountDetailsSection = ({
             required
             onChange={(evt) => updateComplianceInfo({ zip_code: evt.target.value })}
           />
-        </fieldset>
+        </FormFieldset>
       </div>
-      <fieldset>
-        <legend>
-          <label htmlFor={`${uid}-creator-country`}>Country</label>
-        </legend>
-        <select
+      <FormFieldset>
+        <FormLegend>
+          <FormLabel htmlFor={`${uid}-creator-country`}>Country</FormLabel>
+        </FormLegend>
+        <FormSelect
           id={`${uid}-creator-country`}
           disabled={isFormDisabled}
           value={complianceInfo.country || ""}
@@ -1033,13 +1037,13 @@ const AccountDetailsSection = ({
               {name}
             </option>
           ))}
-        </select>
-      </fieldset>
-      <fieldset className={cx({ danger: errorFieldNames.has("phone") })}>
-        <legend>
-          <label htmlFor={`${uid}-creator-phone`}>Phone number</label>
-        </legend>
-        <input
+        </FormSelect>
+      </FormFieldset>
+      <FormFieldset state={errorFieldNames.has("phone") ? "danger" : undefined}>
+        <FormLegend>
+          <FormLabel htmlFor={`${uid}-creator-phone`}>Phone number</FormLabel>
+        </FormLegend>
+        <FormInput
           id={`${uid}-creator-phone`}
           type="tel"
           placeholder="Phone number"
@@ -1051,15 +1055,15 @@ const AccountDetailsSection = ({
             updateComplianceInfo({ phone: formatPhoneNumber(evt.target.value, complianceInfo.country) })
           }
         />
-      </fieldset>
-      <fieldset>
-        <legend>
+      </FormFieldset>
+      <FormFieldset>
+        <FormLegend>
           <label>Date of Birth</label>
           <a href="/help/article/260-your-payout-settings-page">Why does Gumroad need this information?</a>
-        </legend>
+        </FormLegend>
         <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-          <fieldset className={cx({ danger: errorFieldNames.has("dob_month") })}>
-            <select
+          <FormFieldset state={errorFieldNames.has("dob_month") ? "danger" : undefined}>
+            <FormSelect
               id={`${uid}-creator-dob-month`}
               disabled={isFormDisabled}
               required
@@ -1074,13 +1078,13 @@ const AccountDetailsSection = ({
                   {new Date(2000, month - 1, 1).toLocaleString("en-US", { month: "long" })}
                 </option>
               ))}
-            </select>
-          </fieldset>
-          <fieldset
+            </FormSelect>
+          </FormFieldset>
+          <FormFieldset
             style={complianceInfo.country !== "US" ? { gridRow: 1, gridColumn: 1 } : {}}
-            className={cx({ danger: errorFieldNames.has("dob_day") })}
+            state={errorFieldNames.has("dob_day") ? "danger" : undefined}
           >
-            <select
+            <FormSelect
               id={`${uid}-creator-dob-day`}
               disabled={isFormDisabled}
               required
@@ -1095,10 +1099,10 @@ const AccountDetailsSection = ({
                   {day}
                 </option>
               ))}
-            </select>
-          </fieldset>
-          <fieldset className={cx({ danger: errorFieldNames.has("dob_year") })}>
-            <select
+            </FormSelect>
+          </FormFieldset>
+          <FormFieldset state={errorFieldNames.has("dob_year") ? "danger" : undefined}>
+            <FormSelect
               id={`${uid}-creator-dob-year`}
               disabled={isFormDisabled}
               required
@@ -1113,20 +1117,20 @@ const AccountDetailsSection = ({
                   {year}
                 </option>
               ))}
-            </select>
-          </fieldset>
+            </FormSelect>
+          </FormFieldset>
         </div>
-      </fieldset>
+      </FormFieldset>
       {user.country_code === "AE" ||
       user.country_code === "SG" ||
       user.country_code === "PK" ||
       user.country_code === "BD" ? (
-        <fieldset className={cx({ danger: errorFieldNames.has("nationality") })}>
-          <legend>
-            <label htmlFor={`${uid}-nationality`}>Nationality</label>
-          </legend>
+        <FormFieldset state={errorFieldNames.has("nationality") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-nationality`}>Nationality</FormLabel>
+          </FormLegend>
           <div>
-            <select
+            <FormSelect
               id={`${uid}-nationality`}
               disabled={isFormDisabled}
               aria-invalid={errorFieldNames.has("nationality")}
@@ -1139,22 +1143,22 @@ const AccountDetailsSection = ({
                   {name}
                 </option>
               ))}
-            </select>
+            </FormSelect>
           </div>
-        </fieldset>
+        </FormFieldset>
       ) : null}
       {(complianceInfo.is_business &&
         complianceInfo.business_country !== null &&
         user.individual_tax_id_needed_countries.includes(complianceInfo.business_country)) ||
       (complianceInfo.country !== null && user.individual_tax_id_needed_countries.includes(complianceInfo.country)) ? (
-        <fieldset className={cx({ danger: errorFieldNames.has("individual_tax_id") })}>
+        <FormFieldset state={errorFieldNames.has("individual_tax_id") ? "danger" : undefined}>
           {complianceInfo.country === "US" ? (
             user.need_full_ssn ? (
               <div>
-                <legend>
-                  <label htmlFor={`${uid}-social-security-number-full`}>Social Security Number</label>
-                </legend>
-                <input
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-social-security-number-full`}>Social Security Number</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-social-security-number-full`}
                   type="text"
                   minLength={9}
@@ -1168,10 +1172,10 @@ const AccountDetailsSection = ({
               </div>
             ) : (
               <div>
-                <legend>
-                  <label htmlFor={`${uid}-social-security-number`}>Last 4 digits of SSN</label>
-                </legend>
-                <input
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}-social-security-number`}>Last 4 digits of SSN</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}-social-security-number`}
                   type="text"
                   minLength={4}
@@ -1186,10 +1190,10 @@ const AccountDetailsSection = ({
             )
           ) : complianceInfo.country === "CA" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-social-insurance-number`}>Social Insurance Number</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-social-insurance-number`}>Social Insurance Number</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-social-insurance-number`}
                 type="text"
                 minLength={9}
@@ -1203,10 +1207,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "CO" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-colombia-id-number`}>Cédula de Ciudadanía (CC)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-colombia-id-number`}>Cédula de Ciudadanía (CC)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-colombia-id-number`}
                 type="text"
                 minLength={13}
@@ -1220,10 +1224,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "UY" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-uruguay-id-number`}>Cédula de Identidad (CI)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-uruguay-id-number`}>Cédula de Identidad (CI)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-uruguay-id-number`}
                 type="text"
                 minLength={11}
@@ -1237,10 +1241,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "HK" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-hong-kong-id-number`}>Hong Kong ID Number</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-hong-kong-id-number`}>Hong Kong ID Number</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-hong-kong-id-number`}
                 type="text"
                 minLength={8}
@@ -1254,10 +1258,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "SG" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-singapore-id-number`}>NRIC number / FIN</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-singapore-id-number`}>NRIC number / FIN</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-singapore-id-number`}
                 type="text"
                 minLength={9}
@@ -1271,10 +1275,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "AE" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-uae-id-number`}>Emirates ID</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-uae-id-number`}>Emirates ID</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-uae-id-number`}
                 type="text"
                 minLength={15}
@@ -1288,10 +1292,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "MX" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-mexico-id-number`}>Personal RFC</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-mexico-id-number`}>Personal RFC</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-mexico-id-number`}
                 type="text"
                 minLength={13}
@@ -1305,10 +1309,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "KZ" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-kazakhstan-id-number`}>Individual identification number (IIN)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-kazakhstan-id-number`}>Individual identification number (IIN)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-kazakhstan-id-number`}
                 type="text"
                 minLength={9}
@@ -1322,10 +1326,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "AR" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-argentina-id-number`}>CUIL</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-argentina-id-number`}>CUIL</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-argentina-id-number`}
                 type="text"
                 minLength={13}
@@ -1339,10 +1343,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "PE" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-peru-id-number`}>DNI number</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-peru-id-number`}>DNI number</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-peru-id-number`}
                 type="text"
                 minLength={10}
@@ -1356,10 +1360,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "PK" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-snic`}>National Identity Card Number (SNIC or CNIC)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-snic`}>National Identity Card Number (SNIC or CNIC)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-snic`}
                 type="text"
                 minLength={13}
@@ -1373,10 +1377,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "CR" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-costa-rica-id-number`}>Tax Identification Number</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-costa-rica-id-number`}>Tax Identification Number</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-costa-rica-id-number`}
                 type="text"
                 minLength={9}
@@ -1390,10 +1394,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "CL" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-chile-id-number`}>Rol Único Tributario (RUT)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-chile-id-number`}>Rol Único Tributario (RUT)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-chile-id-number`}
                 type="text"
                 minLength={8}
@@ -1407,10 +1411,12 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "DO" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-dominican-republic-id-number`}>Cédula de identidad y electoral (CIE)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-dominican-republic-id-number`}>
+                  Cédula de identidad y electoral (CIE)
+                </FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-dominican-republic-id-number`}
                 type="text"
                 minLength={13}
@@ -1424,10 +1430,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "BO" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-bolivia-id-number`}>Cédula de Identidad (CI)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-bolivia-id-number`}>Cédula de Identidad (CI)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-bolivia-id-number`}
                 type="text"
                 minLength={8}
@@ -1441,10 +1447,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "PY" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-paraguay-id-number`}>Cédula de Identidad (CI)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-paraguay-id-number`}>Cédula de Identidad (CI)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-paraguay-id-number`}
                 type="text"
                 minLength={7}
@@ -1458,10 +1464,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "BD" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-bangladesh-id-number`}>Personal ID number</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-bangladesh-id-number`}>Personal ID number</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-bangladesh-id-number`}
                 type="text"
                 minLength={1}
@@ -1475,10 +1481,12 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "MZ" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-mozambique-id-number`}>Mozambique Taxpayer Single ID Number (NUIT)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-mozambique-id-number`}>
+                  Mozambique Taxpayer Single ID Number (NUIT)
+                </FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-mozambique-id-number`}
                 type="text"
                 minLength={9}
@@ -1492,10 +1500,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "GT" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-guatemala-id-number`}>Número de Identificación Tributaria (NIT)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-guatemala-id-number`}>Número de Identificación Tributaria (NIT)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-guatemala-id-number`}
                 type="text"
                 minLength={8}
@@ -1509,10 +1517,10 @@ const AccountDetailsSection = ({
             </div>
           ) : complianceInfo.country === "BR" ? (
             <div>
-              <legend>
-                <label htmlFor={`${uid}-brazil-id-number`}>Cadastro de Pessoas Físicas (CPF)</label>
-              </legend>
-              <input
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-brazil-id-number`}>Cadastro de Pessoas Físicas (CPF)</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-brazil-id-number`}
                 type="text"
                 minLength={11}
@@ -1525,7 +1533,7 @@ const AccountDetailsSection = ({
               />
             </div>
           ) : null}
-        </fieldset>
+        </FormFieldset>
       ) : null}
     </section>
   );
