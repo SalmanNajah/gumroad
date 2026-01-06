@@ -1,4 +1,3 @@
-import cx from "classnames";
 import * as React from "react";
 import { Link, useNavigation, useNavigate, useLoaderData } from "react-router-dom";
 import { cast } from "ts-safe-cast";
@@ -19,6 +18,16 @@ import { Icon } from "$app/components/Icons";
 import { Modal } from "$app/components/Modal";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
+import {
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormLegend,
+  FormSmall,
+  FormSwitch,
+} from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -226,24 +235,22 @@ const CollaboratorForm = () => {
             </a>
           </header>
           {!isEditing ? (
-            <fieldset className={cx({ danger: collaboratorEmail.error })}>
-              <legend>
-                <label htmlFor="email">Email</label>
-              </legend>
+            <FormFieldset state={collaboratorEmail.error ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor="email">Email</FormLabel>
+              </FormLegend>
 
-              <div className="input">
-                <input
-                  ref={emailInputRef}
-                  id="email"
-                  type="email"
-                  value={collaboratorEmail.value}
-                  placeholder="Collaborator's Gumroad account email"
-                  onChange={(e) => setCollaboratorEmail({ value: e.target.value.trim() })}
-                />
-              </div>
-            </fieldset>
+              <FormInput
+                ref={emailInputRef}
+                id="email"
+                type="email"
+                value={collaboratorEmail.value}
+                placeholder="Collaborator's Gumroad account email"
+                onChange={(e) => setCollaboratorEmail({ value: e.target.value.trim() })}
+              />
+            </FormFieldset>
           ) : null}
-          <fieldset>
+          <FormFieldset>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -256,10 +263,8 @@ const CollaboratorForm = () => {
               <TableBody>
                 <TableRow>
                   <TableCell>
-                    <input
+                    <FormSwitch
                       id="all-products-cut"
-                      type="checkbox"
-                      role="switch"
                       checked={applyToAllProducts}
                       onChange={(evt) => {
                         const enabled = evt.target.checked;
@@ -272,14 +277,14 @@ const CollaboratorForm = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <label htmlFor="all-products-cut">All products</label>
+                    <FormLabel htmlFor="all-products-cut">All products</FormLabel>
                   </TableCell>
                   <TableCell>
-                    <fieldset className={cx({ danger: defaultPercentCommission.hasError })}>
+                    <FormFieldset state={defaultPercentCommission.hasError ? "danger" : undefined}>
                       <NumberInput value={defaultPercentCommission.value} onChange={handleDefaultCommissionChange}>
                         {(inputProps) => (
-                          <div className={cx("input", { disabled: !applyToAllProducts })}>
-                            <input
+                          <FormInputWrapper disabled={!applyToAllProducts}>
+                            <FormInput
                               type="text"
                               disabled={!applyToAllProducts}
                               placeholder={`${defaultPercentCommission.value || DEFAULT_PERCENT_COMMISSION}`}
@@ -287,15 +292,14 @@ const CollaboratorForm = () => {
                               {...inputProps}
                             />
                             <Pill className="-mr-2 shrink-0">%</Pill>
-                          </div>
+                          </FormInputWrapper>
                         )}
                       </NumberInput>
-                    </fieldset>
+                    </FormFieldset>
                   </TableCell>
                   <TableCell>
-                    <label>
-                      <input
-                        type="checkbox"
+                    <FormLabel>
+                      <FormCheckbox
                         checked={!dontShowAsCoCreator}
                         onChange={(evt) => {
                           const value = !evt.target.checked;
@@ -307,7 +311,7 @@ const CollaboratorForm = () => {
                         disabled={!applyToAllProducts}
                       />
                       Show as co-creator
-                    </label>
+                    </FormLabel>
                   </TableCell>
                 </TableRow>
                 {products.map((product) => {
@@ -316,10 +320,8 @@ const CollaboratorForm = () => {
                   return shouldShowProduct(product) ? (
                     <TableRow key={product.id}>
                       <TableCell>
-                        <input
+                        <FormSwitch
                           id={`enable-product-${product.id}`}
-                          type="checkbox"
-                          role="switch"
                           disabled={product.has_another_collaborator}
                           checked={product.enabled}
                           onChange={(evt) => handleProductChange(product.id, { enabled: evt.target.checked })}
@@ -327,24 +329,24 @@ const CollaboratorForm = () => {
                         />
                       </TableCell>
                       <TableCell>
-                        <label htmlFor={`enable-product-${product.id}`}>{product.name}</label>
+                        <FormLabel htmlFor={`enable-product-${product.id}`}>{product.name}</FormLabel>
                         {product.has_another_collaborator || product.has_affiliates ? (
-                          <small>
+                          <FormSmall>
                             {product.has_another_collaborator
                               ? "Already has a collaborator"
                               : "Selecting this product will remove all its affiliates."}
-                          </small>
+                          </FormSmall>
                         ) : null}
                       </TableCell>
                       <TableCell>
-                        <fieldset className={cx({ danger: product.has_error })}>
+                        <FormFieldset state={product.has_error ? "danger" : undefined}>
                           <NumberInput
                             value={product.percent_commission}
                             onChange={(value) => handleProductChange(product.id, { percent_commission: value })}
                           >
                             {(inputProps) => (
-                              <div className={cx("input", { disabled })}>
-                                <input
+                              <FormInputWrapper disabled={disabled}>
+                                <FormInput
                                   disabled={disabled}
                                   type="text"
                                   placeholder={`${defaultPercentCommission.value || DEFAULT_PERCENT_COMMISSION}`}
@@ -352,15 +354,14 @@ const CollaboratorForm = () => {
                                   {...inputProps}
                                 />
                                 <Pill className="-mr-2 shrink-0">%</Pill>
-                              </div>
+                              </FormInputWrapper>
                             )}
                           </NumberInput>
-                        </fieldset>
+                        </FormFieldset>
                       </TableCell>
                       <TableCell>
-                        <label>
-                          <input
-                            type="checkbox"
+                        <FormLabel>
+                          <FormCheckbox
                             checked={!product.dont_show_as_co_creator}
                             onChange={(evt) =>
                               handleProductChange(product.id, { dont_show_as_co_creator: !evt.target.checked })
@@ -368,17 +369,16 @@ const CollaboratorForm = () => {
                             disabled={disabled}
                           />
                           Show as co-creator
-                        </label>
+                        </FormLabel>
                       </TableCell>
                     </TableRow>
                   ) : null;
                 })}
               </TableBody>
             </Table>
-          </fieldset>
-          <label>
-            <input
-              type="checkbox"
+          </FormFieldset>
+          <FormLabel>
+            <FormCheckbox
               checked={showIneligibleProducts}
               onChange={(evt) => {
                 const enabled = evt.target.checked;
@@ -393,7 +393,7 @@ const CollaboratorForm = () => {
               }}
             />
             Show unpublished and ineligible products
-          </label>
+          </FormLabel>
         </section>
         <Modal
           open={isConfirmationModalOpen}
