@@ -32,6 +32,15 @@ import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 import placeholder from "$assets/images/placeholders/library.png";
+import {
+  FormCheckbox,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormFieldset,
+  FormLegend,
+  FormSelect,
+} from "$app/components/ui/form";
 
 export type Result = {
   product: {
@@ -415,9 +424,9 @@ export default function LibraryPage() {
               {isDesktop || mobileFiltersExpanded ? (
                 <>
                   <div>
-                    <div className="input input-wrapper product-search__wrapper">
+                    <FormInputWrapper>
                       <Icon name="solid-search" />
-                      <input
+                      <FormInput
                         className="search-products"
                         placeholder="Search products"
                         value={enteredQuery}
@@ -425,16 +434,16 @@ export default function LibraryPage() {
                         onBlur={handleSearchBlur}
                         onKeyDown={handleSearchKeyDown}
                       />
-                    </div>
+                    </FormInputWrapper>
                   </div>
                   <div className="sort">
-                    <fieldset>
-                      <legend>
-                        <label className="filter-header" htmlFor={sortUid}>
+                    <FormFieldset>
+                      <FormLegend>
+                        <FormLabel className="filter-header" htmlFor={sortUid}>
                           Sort by
-                        </label>
-                      </legend>
-                      <select
+                        </FormLabel>
+                      </FormLegend>
+                      <FormSelect
                         id={sortUid}
                         value={state.search.sort}
                         onChange={(e) =>
@@ -446,15 +455,15 @@ export default function LibraryPage() {
                       >
                         <option value="recently_updated">Recently Updated</option>
                         <option value="purchase_date">Purchase Date</option>
-                      </select>
-                    </fieldset>
+                      </FormSelect>
+                    </FormFieldset>
                   </div>
                   {bundles.length > 0 ? (
                     <div>
-                      <fieldset>
-                        <legend>
-                          <label htmlFor={bundlesUid}>Bundles</label>
-                        </legend>
+                      <FormFieldset>
+                        <FormLegend>
+                          <FormLabel htmlFor={bundlesUid}>Bundles</FormLabel>
+                        </FormLegend>
                         <Select
                           inputId={bundlesUid}
                           instanceId={bundlesUid}
@@ -469,27 +478,25 @@ export default function LibraryPage() {
                           isMulti
                           isClearable
                         />
-                      </fieldset>
+                      </FormFieldset>
                     </div>
                   ) : null}
                   <div className="creator">
-                    <fieldset role="group">
-                      <legend className="filter-header">Creator</legend>
-                      <label>
+                    <FormFieldset role="group">
+                      <FormLegend className="filter-header">Creator</FormLegend>
+                      <FormLabel>
                         All Creators
-                        <input
-                          type="checkbox"
+                        <FormCheckbox
                           checked={state.search.creators.length === 0}
                           onClick={() => dispatch({ type: "update-search", search: { creators: [] } })}
                           readOnly
                         />
-                      </label>
+                      </FormLabel>
                       {(showingAllCreators ? creators : creators.slice(0, 5)).map((creator) => (
-                        <label key={creator.id}>
+                        <FormLabel key={creator.id}>
                           {creator.name}
                           <span className="shrink-0 text-muted">{`(${creator.count})`}</span>
-                          <input
-                            type="checkbox"
+                          <FormCheckbox
                             checked={state.search.creators.includes(creator.id)}
                             onClick={() =>
                               dispatch({
@@ -503,7 +510,7 @@ export default function LibraryPage() {
                             }
                             readOnly
                           />
-                        </label>
+                        </FormLabel>
                       ))}
                       <div>
                         {creators.length > 5 && !showingAllCreators ? (
@@ -512,15 +519,14 @@ export default function LibraryPage() {
                           </button>
                         ) : null}
                       </div>
-                    </fieldset>
+                    </FormFieldset>
                   </div>
                   {archivedCount > 0 ? (
                     <div className="archived">
-                      <fieldset role="group">
-                        <label className="filter-archived">
+                      <FormFieldset role="group">
+                        <FormLabel className="filter-archived">
                           Show archived only
-                          <input
-                            type="checkbox"
+                          <FormCheckbox
                             checked={state.search.showArchivedOnly}
                             readOnly
                             onClick={() =>
@@ -530,8 +536,8 @@ export default function LibraryPage() {
                               })
                             }
                           />
-                        </label>
-                      </fieldset>
+                        </FormLabel>
+                      </FormFieldset>
                     </div>
                   ) : null}
                 </>

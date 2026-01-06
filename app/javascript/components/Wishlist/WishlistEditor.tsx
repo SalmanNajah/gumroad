@@ -5,6 +5,7 @@ import { assertResponseError } from "$app/utils/request";
 
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 
 export const WishlistEditor = ({
@@ -52,19 +53,19 @@ export const WishlistEditor = ({
         </small>
       ) : null}
 
-      <fieldset>
-        <label htmlFor={`${uid}-name`}>Name</label>
-        <input
+      <FormFieldset>
+        <FormLabel htmlFor={`${uid}-name`}>Name</FormLabel>
+        <FormInput
           id={`${uid}-name`}
           type="text"
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
           onBlur={() => void update()}
         />
-      </fieldset>
-      <fieldset>
-        <label htmlFor={`${uid}-description`}>Description</label>
-        <input
+      </FormFieldset>
+      <FormFieldset>
+        <FormLabel htmlFor={`${uid}-description`}>Description</FormLabel>
+        <FormInput
           id={`${uid}-description`}
           type="text"
           value={newDescription}
@@ -72,7 +73,7 @@ export const WishlistEditor = ({
           onChange={(e) => setNewDescription(e.target.value)}
           onBlur={() => void update()}
         />
-      </fieldset>
+      </FormFieldset>
     </Sheet>
   );
 };
