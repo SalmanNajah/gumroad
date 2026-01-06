@@ -6,6 +6,7 @@ import { assertResponseError } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormLabel, FormCheckbox } from "$app/components/ui/form";
 
 export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () => void }) => {
   const [loading, setLoading] = React.useState(false);
@@ -49,40 +50,31 @@ export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () =>
       <p className="mb-4">This will download a CSV file with one row per subscriber.</p>
 
       <div className="mb-4 flex flex-col gap-2">
-        <label className="font-medium">
-          <input type="checkbox" checked={allSelected} onChange={selectAll} />
+        <FormLabel className="font-medium">
+          <FormCheckbox checked={allSelected} onChange={selectAll} />
           All Subscribers
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={followers}
-            onChange={(evt) => {
+        </FormLabel>
+        <FormLabel>
+          <FormCheckbox checked={followers} onChange={(evt) => {
               setFollowers(evt.target.checked);
             }}
           />
           Followers
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={customers}
-            onChange={(evt) => {
+        </FormLabel>
+        <FormLabel>
+          <FormCheckbox checked={customers} onChange={(evt) => {
               setCustomers(evt.target.checked);
             }}
           />
           Customers
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={affiliates}
-            onChange={(evt) => {
+        </FormLabel>
+        <FormLabel>
+          <FormCheckbox checked={affiliates} onChange={(evt) => {
               setAffiliates(evt.target.checked);
             }}
           />
           Affiliates
-        </label>
+        </FormLabel>
       </div>
       <div className="grid">
         <Button disabled={noOptionSelected || loading} onClick={() => void handleDownload()}>

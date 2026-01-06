@@ -23,6 +23,7 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholder from "$assets/images/placeholders/followers.png";
+import { FormInput } from "$app/components/ui/form";
 
 const Layout = ({
   title,
@@ -137,7 +138,7 @@ export default function FollowersPage() {
                 </WithTooltip>
               }
             >
-              <input
+              <FormInput
                 ref={searchInputRef}
                 value={searchQuery}
                 autoFocus
