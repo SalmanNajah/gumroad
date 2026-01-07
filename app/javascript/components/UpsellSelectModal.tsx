@@ -12,6 +12,7 @@ import { Modal } from "$app/components/Modal";
 import { RecurrencePriceValue } from "$app/components/ProductEdit/state";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 export type ProductOption = {
@@ -128,10 +129,10 @@ export const UpsellSelectModal = ({
         </>
       }
     >
-      <fieldset>
-        <legend>
-          <label htmlFor="product-select">Product</label>
-        </legend>
+      <FormFieldset>
+        <FormLegend>
+          <FormLabel htmlFor="product-select">Product</FormLabel>
+        </FormLegend>
         <Select
           inputId="product-select"
           options={productOptions}
@@ -147,25 +148,23 @@ export const UpsellSelectModal = ({
           isClearable
           isDisabled={products.length === 0}
         />
-      </fieldset>
+      </FormFieldset>
 
-      <fieldset>
-        <legend>
-          <label htmlFor="discount">Discount</label>
-        </legend>
+      <FormFieldset>
+        <FormLegend>
+          <FormLabel htmlFor="discount">Discount</FormLabel>
+        </FormLegend>
         <Details
           className="toggle"
           open={!!discount}
           summary={
-            <label>
-              <input
-                type="checkbox"
-                role="switch"
+            <FormLabel>
+              <FormSwitch
                 checked={!!discount}
                 onChange={(evt) => setDiscount(evt.target.checked ? { type: "percent", value: 0 } : null)}
               />
               Add a discount to the offered product
-            </label>
+            </FormLabel>
           }
         >
           {discount && selectedProduct ? (
@@ -178,7 +177,7 @@ export const UpsellSelectModal = ({
             </div>
           ) : null}
         </Details>
-      </fieldset>
+      </FormFieldset>
     </Modal>
   );
 };

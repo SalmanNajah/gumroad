@@ -37,7 +37,7 @@ export const DateInput = ({
   const input = (
     <input
       ref={ref}
-      className="flex-1 appearance-none border-none! bg-transparent outline-none! font-[inherit] leading-[1.4] text-base py-3 px-4"
+      className="flex-1 appearance-none border-none! bg-transparent px-4 py-3 font-[inherit] text-base leading-[1.4] outline-none!"
       type={withTime ? "datetime-local" : "date"}
       {...rest}
       defaultValue={formatDate(value)}

@@ -213,7 +213,14 @@ export const EmailAttachments = ({
         </Rows>
       ) : null}
       <label className="button primary">
-        <input type="file" name="file" tabIndex={-1} multiple onChange={(e) => onAttachFiles(e.target)} />
+        <input
+          type="file"
+          className="sr-only"
+          name="file"
+          tabIndex={-1}
+          multiple
+          onChange={(e) => onAttachFiles(e.target)}
+        />
         <Icon name="paperclip" />
         Attach files
       </label>

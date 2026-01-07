@@ -41,7 +41,7 @@ import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea, FormInputWrapper, FormRadio } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea, FormInputWrapper, FormRadio, FormSwitch } from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { Sort, useSortingTableDriver } from "$app/components/useSortingTableDriver";
 
@@ -847,7 +847,7 @@ const Form = ({
                     open={!!discount}
                     summary={
                       <FormLabel>
-                        <FormCheckbox
+                        <FormSwitch
                           checked={!!discount}
                           onChange={(evt) => setDiscount(evt.target.checked ? { type: "percent", value: 0 } : null)}
                         />

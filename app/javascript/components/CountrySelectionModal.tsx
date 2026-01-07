@@ -1,5 +1,4 @@
 import { router } from "@inertiajs/react";
-import cx from "classnames";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -8,6 +7,7 @@ import { assertResponseError, request } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Modal } from "$app/components/Modal";
+import { FormCheckbox, FormFieldset, FormLabel, FormLegend, FormSelect, FormSmall } from "$app/components/ui/form";
 
 type Props = {
   country: string | null;
@@ -66,34 +66,38 @@ export const CountrySelectionModal = ({ country: initialCountry, countries }: Pr
         }
       >
         <div className="flex flex-col gap-4">
-          <fieldset className={cx({ danger: !!error })}>
-            <legend>
-              <label htmlFor={`${uid}country`}>Country</label>
-            </legend>
-            <select id={`${uid}country`} value={country} onChange={(e) => setCountry(e.target.value)} disabled={saving}>
+          <FormFieldset state={error ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}country`}>Country</FormLabel>
+            </FormLegend>
+            <FormSelect
+              id={`${uid}country`}
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              disabled={saving}
+            >
               {Object.entries(countries).map(([code, name]) => (
                 <option key={code} value={code} disabled={name.includes("(not supported)")}>
                   {name}
                 </option>
               ))}
-            </select>
-            {error ? <small>{error}</small> : null}
-          </fieldset>
-          <fieldset>
-            <legend>To ensure prompt payouts, please check off each item:</legend>
+            </FormSelect>
+            {error ? <FormSmall>{error}</FormSmall> : null}
+          </FormFieldset>
+          <FormFieldset>
+            <FormLegend>To ensure prompt payouts, please check off each item:</FormLegend>
             {checkboxes.map((item, i) => (
-              <label key={item}>
-                <input
-                  type="checkbox"
+              <FormLabel key={item}>
+                <FormCheckbox
                   checked={checked.includes(i)}
                   onChange={(e) =>
                     setChecked(e.target.checked ? [...checked, i] : checked.filter((item) => item !== i))
                   }
                 />{" "}
                 {item}
-              </label>
+              </FormLabel>
             ))}
-          </fieldset>
+          </FormFieldset>
           <h4>You may have to forfeit your balance if you want to change your country in the future.</h4>
         </div>
       </Modal>

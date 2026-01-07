@@ -46,6 +46,7 @@ export const ImageUploader = ({
           <label className="button primary">
             <input
               type="file"
+              className="sr-only"
               id={id}
               accept={allowedExtensions.map((ext) => `.${ext}`).join(",")}
               onChange={(evt) => {
