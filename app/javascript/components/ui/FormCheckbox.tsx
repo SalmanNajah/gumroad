@@ -14,7 +14,7 @@ export const FormCheckbox = React.forwardRef<HTMLInputElement, FormCheckboxProps
     <input ref={ref} type="checkbox" className={classNames(checkboxBaseStyles, className)} {...props} />
     <Icon
       name="outline-check"
-      className="pointer-events-none absolute hidden text-accent-foreground peer-checked:block"
+      className="pointer-events-none absolute hidden! text-accent-foreground peer-checked:block!"
     />
   </span>
 ));
