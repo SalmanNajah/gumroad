@@ -1,7 +1,7 @@
-import cx from "classnames";
 import * as React from "react";
 
 import { NumberInput } from "$app/components/NumberInput";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormSwitch } from "$app/components/ui/form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 
 export type AffiliateProduct = {
@@ -71,24 +71,22 @@ export const AffiliateForm = ({
       <TableBody>
         <TableRow>
           <TableCell>
-            <input
+            <FormSwitch
               id={`${uid}enableAllProducts`}
-              type="checkbox"
-              role="switch"
               checked={applyToAllProducts}
               onChange={(e) => onToggleAllProducts(e.target.checked)}
               aria-label="Enable all products"
             />
           </TableCell>
           <TableCell>
-            <label htmlFor={`${uid}enableAllProducts`}>All products</label>
+            <FormLabel htmlFor={`${uid}enableAllProducts`}>All products</FormLabel>
           </TableCell>
           <TableCell>
-            <fieldset className={cx({ danger: errors["affiliate.fee_percent"] })}>
+            <FormFieldset state={errors["affiliate.fee_percent"] ? "danger" : undefined}>
               <NumberInput onChange={(value) => onUpdateFeePercent(value)} value={data.fee_percent}>
                 {(inputProps) => (
-                  <div className={cx("input", { disabled: processing || !applyToAllProducts })}>
-                    <input
+                  <FormInputWrapper disabled={processing || !applyToAllProducts}>
+                    <FormInput
                       type="text"
                       autoComplete="off"
                       placeholder="Commission"
@@ -96,29 +94,27 @@ export const AffiliateForm = ({
                       {...inputProps}
                     />
                     <div className="pill">%</div>
-                  </div>
+                  </FormInputWrapper>
                 )}
               </NumberInput>
-            </fieldset>
+            </FormFieldset>
           </TableCell>
           <TableCell>
-            <fieldset className={cx({ danger: errors["affiliate.destination_url"] })}>
-              <input
+            <FormFieldset state={errors["affiliate.destination_url"] ? "danger" : undefined}>
+              <FormInput
                 type="url"
                 value={data.destination_url || ""}
                 placeholder="https://link.com"
                 onChange={(e) => onUpdateDestinationUrl(e.target.value)}
                 disabled={processing || !applyToAllProducts}
               />
-            </fieldset>
+            </FormFieldset>
           </TableCell>
         </TableRow>
         {data.products.map((product) => (
           <TableRow key={product.id}>
             <TableCell>
-              <input
-                type="checkbox"
-                role="switch"
+              <FormSwitch
                 checked={product.enabled}
                 onChange={(e) => onUpdateProduct(product.id, { enabled: e.target.checked })}
                 disabled={processing}
@@ -132,8 +128,8 @@ export const AffiliateForm = ({
                 value={product.fee_percent}
               >
                 {(inputProps) => (
-                  <div className={cx("input", { disabled: processing || !product.enabled })}>
-                    <input
+                  <FormInputWrapper disabled={processing || !product.enabled}>
+                    <FormInput
                       type="text"
                       autoComplete="off"
                       placeholder="Commission"
@@ -141,12 +137,12 @@ export const AffiliateForm = ({
                       {...inputProps}
                     />
                     <div className="pill">%</div>
-                  </div>
+                  </FormInputWrapper>
                 )}
               </NumberInput>
             </TableCell>
             <TableCell>
-              <input
+              <FormInput
                 type="text"
                 placeholder="https://link.com"
                 value={product.destination_url || ""}

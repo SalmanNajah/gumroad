@@ -1,5 +1,4 @@
 import { Link, useForm, usePage } from "@inertiajs/react";
-import cx from "classnames";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -13,6 +12,7 @@ import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
@@ -150,12 +150,12 @@ export default function AffiliatesOnboarding() {
                 Learn more
               </a>
             </header>
-            <fieldset>
-              <legend>
-                <label htmlFor="affiliate-link">Your affiliate link</label>
-              </legend>
-              <div className="input input-wrapper">
-                <input
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor="affiliate-link">Your affiliate link</FormLabel>
+              </FormLegend>
+              <FormInputWrapper>
+                <FormInput
                   type="text"
                   id="affiliate-link"
                   readOnly
@@ -170,13 +170,13 @@ export default function AffiliatesOnboarding() {
                     </button>
                   </CopyToClipboard>
                 ) : null}
-              </div>
+              </FormInputWrapper>
               {enableAffiliateLink ? null : (
                 <div role="alert" className="warning">
                   You must enable and set up the commission for at least one product before sharing your affiliate link.
                 </div>
               )}
-            </fieldset>
+            </FormFieldset>
           </section>
           <section className="p-4! md:p-8!">
             <header>
@@ -216,13 +216,13 @@ export default function AffiliatesOnboarding() {
                 Learn more
               </a>
             </header>
-            <fieldset>
+            <FormFieldset>
               <ToggleSettingRow
                 label="Opt out of the Gumroad Affiliate Program"
                 value={data.disable_global_affiliate}
                 onChange={onToggleDisableGlobalAffiliate}
               />
-            </fieldset>
+            </FormFieldset>
           </section>
         </form>
       )}
@@ -243,10 +243,8 @@ const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => {
   return (
     <TableRow>
       <TableCell>
-        <input
+        <FormSwitch
           id={uid}
-          type="checkbox"
-          role="switch"
           checked={product.enabled}
           onChange={(evt) => onChange({ enabled: evt.target.checked })}
           aria-label="Enable product"
@@ -254,14 +252,14 @@ const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => {
         />
       </TableCell>
       <TableCell>
-        <label htmlFor={uid}>{product.name}</label>
+        <FormLabel htmlFor={uid}>{product.name}</FormLabel>
       </TableCell>
       <TableCell>
-        <fieldset className={cx({ danger: invalidAttrs.has("commission") })}>
+        <FormFieldset state={invalidAttrs.has("commission") ? "danger" : undefined}>
           <NumberInput onChange={(value) => onChange({ fee_percent: value ?? 0 })} value={product.fee_percent}>
             {(inputProps) => (
-              <div className={cx("input", { disabled: disabled || !product.enabled })}>
-                <input
+              <FormInputWrapper disabled={disabled || !product.enabled}>
+                <FormInput
                   type="text"
                   autoComplete="off"
                   placeholder="Commission"
@@ -269,14 +267,14 @@ const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => {
                   {...inputProps}
                 />
                 <div className="pill">%</div>
-              </div>
+              </FormInputWrapper>
             )}
           </NumberInput>
-        </fieldset>
+        </FormFieldset>
       </TableCell>
       <TableCell>
-        <fieldset className={cx({ danger: invalidAttrs.has("destination_url") })}>
-          <input
+        <FormFieldset state={invalidAttrs.has("destination_url") ? "danger" : undefined}>
+          <FormInput
             type="text"
             aria-label="destination_url"
             disabled={disabled || !product.enabled}
@@ -284,7 +282,7 @@ const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => {
             value={product.destination_url || ""}
             onChange={(event) => onChange({ destination_url: event.target.value.trim() })}
           />
-        </fieldset>
+        </FormFieldset>
       </TableCell>
     </TableRow>
   );
