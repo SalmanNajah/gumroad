@@ -752,7 +752,7 @@ export const UpsellModal = ({
     <>
       <div className="flex flex-col gap-4">
         <h4 dangerouslySetInnerHTML={{ __html: upsell.description }} />
-        <div className="radio-buttons" role="radiogroup">
+        <div className="grid gap-4" role="radiogroup">
           <OptionRadioButton
             selected
             priceCents={product.price_cents + computeOptionPrice(offeredOption, item.recurrence)}

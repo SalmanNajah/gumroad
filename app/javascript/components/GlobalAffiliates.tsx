@@ -1,4 +1,3 @@
-import cx from "classnames";
 import * as React from "react";
 
 import { searchGlobalAffiliatesProductEligibility, Product } from "$app/data/global_affiliates";
@@ -11,6 +10,7 @@ import { useDomains, useDiscoverUrl } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormInputWrapper, FormLegend, FormSmall } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 const DiscoverLinkSection = ({
@@ -35,24 +35,24 @@ const DiscoverLinkSection = ({
           Learn more
         </a>
       </header>
-      <fieldset>
-        <legend>Your Discover affiliate link</legend>
-        <div className="input">
+      <FormFieldset>
+        <FormLegend>Your Discover affiliate link</FormLegend>
+        <FormInputWrapper>
           <div className="input">{discoverUrl}</div>
           <CopyToClipboard text={discoverUrl} tooltipPosition="bottom">
             <Pill asChild>
               <Button className="rounded-full! px-3! py-2!">Copy link</Button>
             </Pill>
           </CopyToClipboard>
-        </div>
-        <small>
+        </FormInputWrapper>
+        <FormSmall>
           You will be attributed any sales you referred within {cookieExpiryDays} days, even if they're for different
           products you linked to.
-        </small>
-        <small>
+        </FormSmall>
+        <FormSmall>
           To date, you have made <strong>{totalSales}</strong> from Gumroad referrals.
-        </small>
-      </fieldset>
+        </FormSmall>
+      </FormFieldset>
     </section>
   );
 };
@@ -81,10 +81,10 @@ const LinkGenerationSection = ({
           to the end of any link or use the generator to automatically add it for you.
         </p>
       </header>
-      <fieldset className={cx({ danger: hasError })}>
-        <legend>Destination page URL</legend>
-        <div className="input">
-          <input
+      <FormFieldset state={hasError ? "danger" : undefined}>
+        <FormLegend>Destination page URL</FormLegend>
+        <FormInputWrapper>
+          <FormInput
             placeholder="Paste a destination page URL"
             value={inputLink}
             onChange={(evt) => setInputLink(evt.target.value)}
@@ -111,25 +111,25 @@ const LinkGenerationSection = ({
               Generate link
             </Button>
           </Pill>
-        </div>
+        </FormInputWrapper>
         {hasError ? (
           <Alert variant="danger">
             Invalid URL. Make sure your URL is a Gumroad URL and starts with "http" or "https".
           </Alert>
         ) : null}
-      </fieldset>
-      <fieldset>
-        <legend>Your affiliate link</legend>
-        <div className="input">
-          <div className="input">{generatedLink}</div>
+      </FormFieldset>
+      <FormFieldset>
+        <FormLegend>Your affiliate link</FormLegend>
+        <FormInputWrapper className="outline-none">
+          <FormInputWrapper className="border-none px-0">{generatedLink}</FormInputWrapper>
           <CopyToClipboard text={generatedLink} tooltipPosition="bottom">
             <Pill asChild>
               <Button className="rounded-full! px-3! py-2!">Copy link</Button>
             </Pill>
           </CopyToClipboard>
-        </div>
-        <small>Copy this affiliate link and share it with your audience</small>
-      </fieldset>
+        </FormInputWrapper>
+        <FormSmall>Copy this affiliate link and share it with your audience</FormSmall>
+      </FormFieldset>
     </section>
   );
 };
@@ -163,10 +163,10 @@ const ProductEligibilitySection = ({
           Discover by entering the product URL here.
         </p>
       </header>
-      <fieldset>
-        <legend>Product URL</legend>
-        <div className="input">
-          <input
+      <FormFieldset>
+        <FormLegend>Product URL</FormLegend>
+        <FormInputWrapper>
+          <FormInput
             placeholder="Paste a product URL"
             value={query}
             onChange={(e) => {
@@ -227,8 +227,8 @@ const ProductEligibilitySection = ({
             })}
           />
           <Icon name="solid-search" />
-        </div>
-      </fieldset>
+        </FormInputWrapper>
+      </FormFieldset>
       {result.isLoading ? <LoadingSpinner /> : null}
       {result.product ? (
         <div className="stack">

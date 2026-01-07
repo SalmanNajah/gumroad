@@ -1,5 +1,4 @@
 import { Link } from "@inertiajs/react";
-import cx from "classnames";
 import hands from "images/illustrations/hands.png";
 import * as React from "react";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import { cast, is } from "ts-safe-cast";
 
 import { CreateProductData, RecurringProductType, createProduct } from "$app/data/products";
 import { ProductNativeType, ProductServiceType } from "$app/parsers/product";
+import { classNames } from "$app/utils/classNames";
 import { CurrencyCode, currencyCodeList, findCurrencyByCode } from "$app/utils/currency";
 import {
   RecurrenceId,
@@ -22,6 +22,14 @@ import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
+import {
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormLegend,
+  FormTextarea,
+} from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -239,15 +247,15 @@ const NewProductPage = ({
                 }
               >
                 <div className="w-96 max-w-full">
-                  <fieldset>
-                    <legend>
-                      <label htmlFor={`ai-prompt-${formUID}`}>Create a product with AI</label>
-                    </legend>
+                  <FormFieldset>
+                    <FormLegend>
+                      <FormLabel htmlFor={`ai-prompt-${formUID}`}>Create a product with AI</FormLabel>
+                    </FormLegend>
                     <p>
                       Got an idea? Give clear instructions, and let AI create your product—quick and easy! Customize it
                       to make it yours.
                     </p>
-                    <textarea
+                    <FormTextarea
                       id={`ai-prompt-${formUID}`}
                       placeholder="e.g., a 'Coding with AI using Cursor for Designers' ebook with 5 chapters for $35'."
                       value={aiPrompt}
@@ -257,7 +265,7 @@ const NewProductPage = ({
                       className="w-full resize-y"
                       autoFocus
                     />
-                  </fieldset>
+                  </FormFieldset>
                   <div className="mt-3 flex justify-end gap-2">
                     <Button onClick={() => setAiPopoverOpen(false)} disabled={isGeneratingUsingAi}>
                       Cancel
@@ -314,12 +322,12 @@ const NewProductPage = ({
                 </Alert>
               ) : null}
 
-              <fieldset className={cx({ danger: errors.has("name") })}>
-                <legend>
-                  <label htmlFor={`name-${formUID}`}>Name</label>
-                </legend>
+              <FormFieldset state={errors.has("name") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`name-${formUID}`}>Name</FormLabel>
+                </FormLegend>
 
-                <input
+                <FormInput
                   ref={nameInputRef}
                   id={`name-${formUID}`}
                   type="text"
@@ -331,34 +339,36 @@ const NewProductPage = ({
                   }}
                   aria-invalid={errors.has("name")}
                 />
-              </fieldset>
+              </FormFieldset>
 
-              <fieldset>
-                <legend>Products</legend>
+              <FormFieldset>
+                <FormLegend>Products</FormLegend>
                 <ProductTypeSelector
                   selectedType={productType}
                   types={native_product_types}
                   onChange={setProductType}
                 />
-              </fieldset>
+              </FormFieldset>
               {service_product_types.length > 0 ? (
-                <fieldset>
-                  <legend>Services</legend>
+                <FormFieldset>
+                  <FormLegend>Services</FormLegend>
                   <ProductTypeSelector
                     selectedType={productType}
                     types={service_product_types}
                     onChange={setProductType}
                     disabled={!eligible_for_service_products}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : null}
 
-              <fieldset className={cx({ danger: errors.has("price") })}>
-                <legend>
-                  <label htmlFor={`price-${formUID}`}>{productType === "coffee" ? "Suggested amount" : "Price"}</label>
-                </legend>
+              <FormFieldset state={errors.has("price") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`price-${formUID}`}>
+                    {productType === "coffee" ? "Suggested amount" : "Price"}
+                  </FormLabel>
+                </FormLegend>
 
-                <div className="input">
+                <FormInputWrapper>
                   <Pill asChild className="relative -ml-2 shrink-0 cursor-pointer">
                     <label>
                       <span>{selectedCurrency.longSymbol}</span>
@@ -381,7 +391,7 @@ const NewProductPage = ({
                     </label>
                   </Pill>
 
-                  <input
+                  <FormInput
                     ref={priceInputRef}
                     id={`price-${formUID}`}
                     type="text"
@@ -420,8 +430,8 @@ const NewProductPage = ({
                       </label>
                     </Pill>
                   ) : null}
-                </div>
-              </fieldset>
+                </FormInputWrapper>
+              </FormFieldset>
             </section>
           </form>
         </div>
@@ -494,14 +504,19 @@ const ProductTypeSelector = ({
   onChange: (type: ProductNativeType) => void;
   disabled?: boolean;
 }) => (
-  <div className="radio-buttons grid-cols-1! sm:grid-cols-2! md:grid-cols-3! 2xl:grid-cols-5!" role="radiogroup">
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5" role="radiogroup">
     {types.map((type) => {
+      const isSelected = type === selectedType;
       const typeButton = (
         <Button
           key={type}
-          className="vertical"
+          className={classNames(
+            "flex-col items-start! justify-start! gap-3! text-left transition-transform!",
+            "hover:translate-x-0! hover:translate-y-0!",
+            isSelected && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+          )}
           role="radio"
-          aria-checked={type === selectedType}
+          aria-checked={isSelected}
           data-type={type}
           onClick={() => onChange(type)}
           disabled={disabled}
@@ -509,11 +524,12 @@ const ProductTypeSelector = ({
           <img
             src={cast<string>(nativeTypeIcons(`./${type}.png`))}
             alt={PRODUCT_TYPES[type].title}
+            className="shrink-0"
             width="40"
             height="40"
           />
           <div>
-            <h4>{PRODUCT_TYPES[type].title}</h4>
+            <h4 className="font-bold">{PRODUCT_TYPES[type].title}</h4>
             {PRODUCT_TYPES[type].description}
           </div>
         </Button>

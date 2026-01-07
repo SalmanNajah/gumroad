@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { setProductRating } from "$app/data/product_reviews";
 import { assertDefined } from "$app/utils/assert";
+import { classNames } from "$app/utils/classNames";
 import FileUtils from "$app/utils/file";
 import { assertResponseError } from "$app/utils/request";
 import { summarizeUploadProgress } from "$app/utils/summarizeUploadProgress";
@@ -16,6 +17,7 @@ import { VideoState, ReviewVideoRecorderUiState } from "$app/components/ReviewFo
 import { useReviewVideoUploader } from "$app/components/ReviewForm/useReviewVideoUploader";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormLabel, FormTextarea } from "$app/components/ui/form";
 
 export type Review = {
   rating: number;
@@ -238,12 +240,17 @@ export const ReviewForm = React.forwardRef<
   };
 
   const reviewModeRadioButtons = (
-    <div role="radiogroup" className="radio-buttons grid-cols-2!">
+    <div role="radiogroup" className="grid grid-cols-2 gap-4">
       <Button
         role="radio"
         aria-checked={reviewMode === "text"}
         onClick={() => setReviewMode("text")}
         disabled={disabled || reviewVideoRecorderBusy}
+        className={classNames(
+          "justify-center! transition-transform!",
+          "hover:translate-x-0! hover:translate-y-0!",
+          reviewMode === "text" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+        )}
       >
         <div className="w-full text-center">Text review</div>
       </Button>
@@ -252,6 +259,11 @@ export const ReviewForm = React.forwardRef<
         aria-checked={reviewMode === "video"}
         onClick={() => setReviewMode("video")}
         disabled={disabled || reviewVideoRecorderBusy}
+        className={classNames(
+          "justify-center! transition-transform!",
+          "hover:translate-x-0! hover:translate-y-0!",
+          reviewMode === "video" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+        )}
       >
         <div className="w-full text-center">Video review</div>
       </Button>
@@ -261,7 +273,7 @@ export const ReviewForm = React.forwardRef<
   const textReview = viewing ? (
     <div className="w-full">{message ? `"${message}"` : "No written review"}</div>
   ) : (
-    <textarea
+    <FormTextarea
       id={uid}
       value={message}
       onChange={(evt) => setMessage(evt.target.value)}
@@ -326,7 +338,7 @@ export const ReviewForm = React.forwardRef<
     <form onSubmit={(event) => void handleSubmit(event)} style={style} className="flex flex-col items-start!">
       {error ? <p className="text-red"> {error} </p> : null}
       <div className="flex flex-wrap justify-between gap-2">
-        <label htmlFor={uid}>{viewing ? "Your rating:" : "Liked it? Give it a rating:"}</label>
+        <FormLabel htmlFor={uid}>{viewing ? "Your rating:" : "Liked it? Give it a rating:"}</FormLabel>
         <RatingSelector currentRating={rating} onChangeCurrentRating={setRating} disabled={disabled || viewing} />
       </div>
 

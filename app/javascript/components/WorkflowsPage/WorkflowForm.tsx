@@ -1,5 +1,6 @@
 import { Link, useForm } from "@inertiajs/react";
 import * as React from "react";
+import { classNames } from "$app/utils/classNames";
 
 import {
   WorkflowFormContext,
@@ -274,15 +275,19 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
 
   const abandonedCartButton = (
     <Button
-      className="vertical"
+      className={classNames(
+        "flex-col! items-start! transition-transform!",
+        "hover:translate-x-0! hover:translate-y-0!",
+        formState.trigger === "abandoned_cart" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+      )}
       role="radio"
       disabled={wasPublishedPreviously || !context.eligible_for_abandoned_cart_workflows}
       aria-checked={formState.trigger === "abandoned_cart"}
       onClick={() => updateFormState({ trigger: "abandoned_cart" })}
     >
-      <img src={abandonedCartTriggerImage} width={40} height={40} />
+      <img src={abandonedCartTriggerImage} width={40} height={40} className="shrink-0" />
       <div>
-        <h4>Abandoned cart</h4>A customer doesn't complete checking out
+        <h4 className="font-bold">Abandoned cart</h4>A customer doesn't complete checking out
       </div>
     </Button>
   );
@@ -341,73 +346,99 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
             <FormLegend>
               <FormLabel htmlFor="trigger">Trigger</FormLabel>
             </FormLegend>
-            <div
-              className="radio-buttons"
-              role="radiogroup"
-              style={{
-                gridTemplateColumns: "repeat(auto-fit, minmax(13rem, 1fr))",
-              }}
-            >
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3" role="radiogroup">
               {workflow && workflow.workflow_type === "audience" ? (
                 <Button
-                  className="vertical"
+                  className={classNames(
+                    "flex-col! items-start! transition-transform!",
+                    "hover:translate-x-0! hover:translate-y-0!",
+                    formState.trigger === "legacy_audience" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                  )}
                   role="radio"
                   disabled={wasPublishedPreviously}
                   aria-checked={formState.trigger === "legacy_audience"}
                   onClick={() => updateFormState({ trigger: "legacy_audience" })}
                 >
-                  <img src={audienceTriggerImage} width={40} height={40} />
+                  <img src={audienceTriggerImage} width={40} height={40} className="shrink-0" />
                   <div>
-                    <h4>Audience</h4>A user becomes a customer, subscriber or an affiliate
+                    <h4 className="font-bold">Audience</h4>A user becomes a customer, subscriber or an affiliate
                   </div>
                 </Button>
               ) : null}
               <Button
-                className="vertical"
+                className={classNames(
+                  "flex-col! items-start! transition-transform!",
+                  "hover:translate-x-0! hover:translate-y-0!",
+                  formState.trigger === "purchase" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                )}
                 role="radio"
                 disabled={wasPublishedPreviously}
                 aria-checked={formState.trigger === "purchase"}
                 onClick={() => updateFormState({ trigger: "purchase" })}
               >
-                <img src={purchaseTriggerImage} width={40} height={40} />
+                <img src={purchaseTriggerImage} width={40} height={40} className="shrink-0" />
                 <div>
-                  <h4>Purchase</h4>A customer purchases your product
+                  <h4 className="font-bold">Purchase</h4>A customer purchases your product
                 </div>
               </Button>
               <Button
-                className="vertical"
+                className={classNames(
+                  "vertical flex-col! items-start! transition-transform!",
+                  "hover:translate-x-0! hover:translate-y-0!",
+                  formState.trigger === "new_subscriber" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                )}
                 role="radio"
                 disabled={wasPublishedPreviously}
                 aria-checked={formState.trigger === "new_subscriber"}
                 onClick={() => updateFormState({ trigger: "new_subscriber" })}
               >
-                <img src={newSubscriberTriggerImage} width={40} height={40} />
+                <img src={newSubscriberTriggerImage} width={40} height={40} className="shrink-0" />
                 <div>
-                  <h4>New subscriber</h4>A user subscribes to your email list
+                  <h4 className="font-bold">New subscriber</h4>A user subscribes to your email list
                 </div>
               </Button>
               <Button
-                className="vertical"
+                className={classNames(
+                  "flex-col! items-start! transition-transform!",
+                  "hover:translate-x-0! hover:translate-y-0!",
+                  formState.trigger === "member_cancels" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                )}
                 role="radio"
                 disabled={wasPublishedPreviously}
                 aria-checked={formState.trigger === "member_cancels"}
                 onClick={() => updateFormState({ trigger: "member_cancels" })}
               >
-                <img src={memberCancelsTriggerImage} width={40} height={40} style={{ objectFit: "contain" }} />
+                <img
+                  src={memberCancelsTriggerImage}
+                  width={40}
+                  height={40}
+                  className="shrink-0"
+                  style={{ objectFit: "contain" }}
+                />
                 <div>
-                  <h4>Member cancels</h4>A membership product subscriber cancels
+                  <h4 className="font-bold">Member cancels</h4>A membership product subscriber cancels
                 </div>
               </Button>
               <Button
-                className="vertical"
+                className={classNames(
+                  "flex-col! items-start! transition-transform!",
+                  "hover:translate-x-0! hover:translate-y-0!",
+                  formState.trigger === "new_affiliate" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                )}
                 role="radio"
                 disabled={wasPublishedPreviously}
                 aria-checked={formState.trigger === "new_affiliate"}
                 onClick={() => updateFormState({ trigger: "new_affiliate" })}
               >
-                <img src={newAffiliateTriggerImage} width={40} height={40} style={{ objectFit: "contain" }} />
+                <img
+                  src={newAffiliateTriggerImage}
+                  width={40}
+                  height={40}
+                  className="shrink-0"
+                  style={{ objectFit: "contain" }}
+                />
                 <div>
-                  <h4>New affiliate</h4>A user becomes an affiliate of yours
+                  <h4 className="font-bold">New affiliate</h4>A user becomes an affiliate of yours
                 </div>
               </Button>
               {context.eligible_for_abandoned_cart_workflows ? (

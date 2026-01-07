@@ -27,6 +27,7 @@ import { createBillingAgreement, createBillingAgreementToken } from "$app/data/p
 import { PurchasePaymentMethod } from "$app/data/purchase";
 import { VerificationResult, verifyShippingAddress } from "$app/data/shipping";
 import { assert, assertDefined } from "$app/utils/assert";
+import { classNames } from "$app/utils/classNames";
 import { formatPriceCentsWithoutCurrencySymbol } from "$app/utils/currency";
 import { checkEmailForTypos as checkEmailForTyposUtil } from "$app/utils/email";
 import { asyncVoid } from "$app/utils/promise";
@@ -55,6 +56,7 @@ import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { PriceInput } from "$app/components/PriceInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 import { Tab, Tabs } from "$app/components/ui/Tabs";
 import { useIsDarkTheme } from "$app/components/useIsDarkTheme";
 import { useOnChangeSync } from "$app/components/useOnChange";
@@ -83,11 +85,11 @@ const CountryInput = () => {
   }, [state.country, shippingCountryCodes]);
 
   return (
-    <fieldset>
-      <legend>
-        <label htmlFor={`${uid}country`}>Country</label>
-      </legend>
-      <select
+    <FormFieldset>
+      <FormLegend>
+        <FormLabel htmlFor={`${uid}country`}>Country</FormLabel>
+      </FormLegend>
+      <FormSelect
         id={`${uid}country`}
         value={state.country}
         onChange={(e) =>
@@ -106,8 +108,8 @@ const CountryInput = () => {
             </option>
           ),
         )}
-      </select>
-    </fieldset>
+      </FormSelect>
+    </FormFieldset>
   );
 };
 
@@ -136,12 +138,12 @@ const StateInput = () => {
   }
 
   return (
-    <fieldset className={cx({ danger: errors.has("state") })}>
-      <legend>
-        <label htmlFor={`${uid}state`}>{stateLabel}</label>
-      </legend>
+    <FormFieldset state={errors.has("state") ? "danger" : undefined}>
+      <FormLegend>
+        <FormLabel htmlFor={`${uid}state`}>{stateLabel}</FormLabel>
+      </FormLegend>
       {(state.country === "US" || state.country === "CA") && states !== null ? (
-        <select
+        <FormSelect
           id={`${uid}state`}
           value={state.state}
           onChange={(e) => dispatch({ type: "set-value", state: e.target.value })}
@@ -152,9 +154,9 @@ const StateInput = () => {
               {state}
             </option>
           ))}
-        </select>
+        </FormSelect>
       ) : (
-        <input
+        <FormInput
           id={`${uid}state`}
           type="text"
           aria-invalid={errors.has("state")}
@@ -164,7 +166,7 @@ const StateInput = () => {
           onChange={(e) => dispatch({ type: "set-value", state: e.target.value })}
         />
       )}
-    </fieldset>
+    </FormFieldset>
   );
 };
 
@@ -175,11 +177,11 @@ const ZipCodeInput = () => {
   const label = state.country === "US" || state.country === "PH" ? "ZIP code" : "Postal";
 
   return (
-    <fieldset className={cx({ danger: errors.has("zipCode") })}>
-      <legend>
-        <label htmlFor={`${uid}zipCode`}>{label}</label>
-      </legend>
-      <input
+    <FormFieldset state={errors.has("zipCode") ? "danger" : undefined}>
+      <FormLegend>
+        <FormLabel htmlFor={`${uid}zipCode`}>{label}</FormLabel>
+      </FormLegend>
+      <FormInput
         id={`${uid}zipCode`}
         type="text"
         aria-invalid={errors.has("zipCode")}
@@ -188,7 +190,7 @@ const ZipCodeInput = () => {
         onChange={(e) => dispatch({ type: "set-value", zipCode: e.target.value })}
         disabled={isProcessing(state)}
       />
-    </fieldset>
+    </FormFieldset>
   );
 };
 
@@ -218,14 +220,14 @@ const EmailAddress = () => {
   return (
     <div>
       <div className="flex flex-col gap-4">
-        <fieldset className={cx({ danger: errors.has("email") })}>
-          <legend>
-            <label htmlFor={`${uid}email`}>
+        <FormFieldset state={errors.has("email") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}email`}>
               <h4>Email address</h4>
-            </label>
-          </legend>
+            </FormLabel>
+          </FormLegend>
           <div className={cx("popover", { expanded: !!state.emailTypoSuggestion })} style={{ width: "100%" }}>
-            <input
+            <FormInput
               id={`${uid}email`}
               type="email"
               aria-invalid={errors.has("email")}
@@ -247,7 +249,7 @@ const EmailAddress = () => {
               </div>
             ) : null}
           </div>
-        </fieldset>
+        </FormFieldset>
       </div>
     </div>
   );
@@ -384,11 +386,11 @@ const SharedInputs = ({ showCustomFields }: { showCustomFields: boolean }) => {
               </div>
             ) : null}
             {showVatIdInput ? (
-              <fieldset className={cx({ danger: errors.has("vatId") })}>
-                <legend>
-                  <label htmlFor={`${uid}vatId`}>{vatLabel}</label>
-                </legend>
-                <input
+              <FormFieldset state={errors.has("vatId") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}vatId`}>{vatLabel}</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}vatId`}
                   type="text"
                   placeholder={vatLabel}
@@ -396,7 +398,7 @@ const SharedInputs = ({ showCustomFields }: { showCustomFields: boolean }) => {
                   onChange={(e) => dispatch({ type: "set-value", vatId: e.target.value })}
                   disabled={isProcessing(state)}
                 />
-              </fieldset>
+              </FormFieldset>
             ) : null}
           </div>
         </div>
@@ -491,23 +493,22 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
             <h4 style={{ display: "flex", justifyContent: "space-between" }}>
               Shipping information
               {isLoggedIn ? (
-                <label>
-                  <input
-                    type="checkbox"
+                <FormLabel>
+                  <FormCheckbox
                     title="Save shipping address to account"
                     checked={state.saveAddress}
                     onChange={(e) => dispatch({ type: "set-value", saveAddress: e.target.checked })}
                     disabled={isProcessing(state)}
                   />
                   Keep on file
-                </label>
+                </FormLabel>
               ) : null}
             </h4>
-            <fieldset className={cx({ danger: errors.has("fullName") })}>
-              <legend>
-                <label htmlFor={`${uid}fullName`}>Full name</label>
-              </legend>
-              <input
+            <FormFieldset state={errors.has("fullName") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}fullName`}>Full name</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}fullName`}
                 type="text"
                 aria-invalid={errors.has("fullName")}
@@ -516,12 +517,12 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
                 value={state.fullName}
                 onChange={(e) => dispatch({ type: "set-value", fullName: e.target.value })}
               />
-            </fieldset>
-            <fieldset className={cx({ danger: errors.has("address") })}>
-              <legend>
-                <label htmlFor={`${uid}address`}>Street address</label>
-              </legend>
-              <input
+            </FormFieldset>
+            <FormFieldset state={errors.has("address") ? "danger" : undefined}>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}address`}>Street address</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}address`}
                 type="text"
                 aria-invalid={errors.has("address")}
@@ -530,13 +531,13 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
                 value={state.address}
                 onChange={(e) => dispatch({ type: "set-value", address: e.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
             <div style={{ display: "grid", gridAutoFlow: "column", gridAutoColumns: "1fr", gap: "var(--spacer-2)" }}>
-              <fieldset className={cx({ danger: errors.has("city") })}>
-                <legend>
-                  <label htmlFor={`${uid}city`}>City</label>
-                </legend>
-                <input
+              <FormFieldset state={errors.has("city") ? "danger" : undefined}>
+                <FormLegend>
+                  <FormLabel htmlFor={`${uid}city`}>City</FormLabel>
+                </FormLegend>
+                <FormInput
                   id={`${uid}city`}
                   type="text"
                   aria-invalid={errors.has("city")}
@@ -545,7 +546,7 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
                   value={state.city}
                   onChange={(e) => dispatch({ type: "set-value", city: e.target.value })}
                 />
-              </fieldset>
+              </FormFieldset>
               <StateInput />
               <ZipCodeInput />
             </div>
@@ -684,22 +685,21 @@ const CreditCard = () => {
     <div style={{ borderTop: "none", paddingTop: "0" }}>
       <div className="flex flex-col gap-4">
         {!useSavedCard ? (
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}nameOnCard`}>Name on card</label>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}nameOnCard`}>Name on card</FormLabel>
               {isLoggedIn ? (
-                <label>
-                  <input
-                    type="checkbox"
+                <FormLabel>
+                  <FormCheckbox
                     disabled={isProcessing(state)}
                     checked={keepOnFile}
                     onChange={(evt) => setKeepOnFile(evt.target.checked)}
                   />
                   Save card
-                </label>
+                </FormLabel>
               ) : null}
-            </legend>
-            <input
+            </FormLegend>
+            <FormInput
               type="text"
               placeholder="John Doe"
               id={`${uid}nameOnCard`}
@@ -707,7 +707,7 @@ const CreditCard = () => {
               disabled={isProcessing(state)}
               onChange={(evt) => setNameOnCard(evt.target.value)}
             />
-          </fieldset>
+          </FormFieldset>
         ) : null}
         <CreditCardInput
           savedCreditCard={state.savedCreditCard}
@@ -742,29 +742,36 @@ const TipSelector = () => {
         {showPercentageOptions ? (
           <div
             role="radiogroup"
-            className="radio-buttons"
+            className="grid gap-4"
             style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(5rem, 100%), 1fr))" }}
           >
-            {state.tipOptions.map((tip) => (
-              <Button
-                key={tip}
-                role="radio"
-                aria-checked={state.tip.type === "percentage" && tip === state.tip.percentage}
-                onClick={() => {
-                  dispatch({
-                    type: "set-value",
-                    tip: {
-                      type: "percentage",
-                      percentage: tip,
-                    },
-                  });
-                }}
-                disabled={isProcessing(state)}
-                style={{ justifyContent: "center" }}
-              >
-                {tip}%
-              </Button>
-            ))}
+            {state.tipOptions.map((tip) => {
+              const isSelected = state.tip.type === "percentage" && tip === state.tip.percentage;
+              return (
+                <Button
+                  key={tip}
+                  role="radio"
+                  aria-checked={isSelected}
+                  onClick={() => {
+                    dispatch({
+                      type: "set-value",
+                      tip: {
+                        type: "percentage",
+                        percentage: tip,
+                      },
+                    });
+                  }}
+                  disabled={isProcessing(state)}
+                  className={classNames(
+                    "justify-center! transition-transform!",
+                    "hover:translate-x-0! hover:translate-y-0!",
+                    isSelected && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                  )}
+                >
+                  {tip}%
+                </Button>
+              );
+            })}
             <Button
               role="radio"
               aria-checked={state.tip.type === "fixed"}
@@ -778,14 +785,18 @@ const TipSelector = () => {
                 });
               }}
               disabled={isProcessing(state)}
-              style={{ justifyContent: "center" }}
+              className={classNames(
+                "justify-center! transition-transform!",
+                "hover:translate-x-0! hover:translate-y-0!",
+                state.tip.type === "fixed" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+              )}
             >
               Other
             </Button>
           </div>
         ) : null}
         {state.tip.type === "fixed" ? (
-          <fieldset className={cx({ danger: errors.has("tip") })}>
+          <FormFieldset state={errors.has("tip") ? "danger" : undefined}>
             <PriceInput
               hasError={errors.has("tip")}
               ariaLabel="Tip"
@@ -797,7 +808,7 @@ const TipSelector = () => {
               placeholder={formatPriceCentsWithoutCurrencySymbol("usd", defaultOther)}
               disabled={isProcessing(state)}
             />
-          </fieldset>
+          </FormFieldset>
         ) : null}
       </div>
     </div>

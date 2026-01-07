@@ -5,6 +5,7 @@ import { cast } from "ts-safe-cast";
 import { unlinkTwitter } from "$app/data/profile_settings";
 import { CreatorProfile, ProfileSettings } from "$app/parsers/profile";
 import { SettingPage } from "$app/parsers/settings";
+import { classNames } from "$app/utils/classNames";
 import { getContrastColor } from "$app/utils/color";
 import { asyncVoid } from "$app/utils/promise";
 import { assertResponseError } from "$app/utils/request";
@@ -195,23 +196,31 @@ export default function SettingsPage() {
             </header>
             <FormFieldset>
               <FormLegend>Font</FormLegend>
-              <div className="radio-buttons grid-cols-1! sm:grid-cols-2! md:grid-cols-3!" role="radiogroup">
-                {FONT_CHOICES.map((font) => (
-                  <Button
-                    role="radio"
-                    key={font}
-                    aria-checked={font === profileSettings.font}
-                    onClick={() => updateProfileSettings({ font })}
-                    style={{ fontFamily: font === "ABC Favorit" ? undefined : font }}
-                    disabled={!canUpdate}
-                  >
-                    <Icon name="file-earmark-font" />
-                    <div>
-                      <h4>{font}</h4>
-                      {FONT_DESCRIPTIONS[font]}
-                    </div>
-                  </Button>
-                ))}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3" role="radiogroup">
+                {FONT_CHOICES.map((font) => {
+                  const isSelected = font === profileSettings.font;
+                  return (
+                    <Button
+                      role="radio"
+                      key={font}
+                      aria-checked={isSelected}
+                      onClick={() => updateProfileSettings({ font })}
+                      style={{ fontFamily: font === "ABC Favorit" ? undefined : font }}
+                      disabled={!canUpdate}
+                      className={classNames(
+                        "items-start! justify-start! gap-3! text-left transition-transform!",
+                        "hover:translate-x-0! hover:translate-y-0!",
+                        isSelected && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                      )}
+                    >
+                      <Icon name="file-earmark-font" className="shrink-0" />
+                      <div>
+                        <h4 className="font-bold">{font}</h4>
+                        {FONT_DESCRIPTIONS[font]}
+                      </div>
+                    </Button>
+                  );
+                })}
               </div>
             </FormFieldset>
             <div className="flex gap-4">

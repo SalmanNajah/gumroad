@@ -72,7 +72,7 @@ export const Search = ({ query, setQuery }: { query?: string | undefined; setQue
           <FormInput
             {...props}
             type="search"
-            className="cursor-text!"
+            className="cursor-text! appearance-none"
             placeholder="Search products"
             aria-label="Search products"
             value={enteredQuery}

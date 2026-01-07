@@ -1,4 +1,3 @@
-import cx from "classnames";
 import {
   addMinutes,
   compareAsc,
@@ -27,6 +26,7 @@ import {
   getMinPriceCents,
 } from "$app/utils/currency";
 import { formatCallDate } from "$app/utils/date";
+import { classNames } from "$app/utils/classNames";
 import { applyOfferCodeToCents } from "$app/utils/offer-code";
 import { formatInstallmentPaymentSchedule } from "$app/utils/price";
 import { recurrenceNames, recurrenceLabels, RecurrenceId } from "$app/utils/recurringPricing";
@@ -39,6 +39,7 @@ import { PriceInput } from "$app/components/PriceInput";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
 import { Calendar } from "$app/components/ui/Calendar";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -57,11 +58,11 @@ const PWYWInput = React.forwardRef<
   const uid = React.useId();
 
   return (
-    <fieldset className={cx({ danger: hasError })}>
+    <FormFieldset state={hasError ? "danger" : undefined}>
       {!hideLabel ? (
-        <legend>
-          <label htmlFor={uid}>Name a fair price:</label>
-        </legend>
+        <FormLegend>
+          <FormLabel htmlFor={uid}>Name a fair price:</FormLabel>
+        </FormLegend>
       ) : null}
       <PriceInput
         id={uid}
@@ -78,7 +79,7 @@ const PWYWInput = React.forwardRef<
         ref={ref}
         ariaLabel="Price"
       />
-    </fieldset>
+    </FormFieldset>
   );
 });
 PWYWInput.displayName = "PWYWInput";
@@ -238,7 +239,12 @@ export const OptionRadioButton = ({
       itemProp="offer"
       itemType="https://schema.org/Offer"
       itemScope
-      style={recurrence ? { flexDirection: "column" } : undefined}
+      className={classNames(
+        "items-start! justify-start! gap-3! text-left transition-transform!",
+        recurrence && "flex-col",
+        "hover:translate-x-0! hover:translate-y-0!",
+        selected && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+      )}
     >
       {status ? (
         <Alert role="status" variant="info">
@@ -443,18 +449,25 @@ const CallDateAndTimeSelector = ({
               {clientTimeZone.shortFormattedName}
             </span>
           </h4>
-          <div role="radiogroup" className="radio-buttons" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
-            {getAvailableStartTimesByDate(selectedStartTime).map((time) => (
-              <Button
-                role="radio"
-                key={time.toISOString()}
-                aria-checked={isEqual(selectedStartTime, time)}
-                onClick={() => onChange({ callStartTime: time })}
-                style={{ justifyContent: "center" }}
-              >
-                <div>{formatCallDate(time, { date: { hidden: true }, timeZone: { hidden: true } })}</div>
-              </Button>
-            ))}
+          <div role="radiogroup" className="grid gap-4" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
+            {getAvailableStartTimesByDate(selectedStartTime).map((time) => {
+              const isSelected = isEqual(selectedStartTime, time);
+              return (
+                <Button
+                  role="radio"
+                  key={time.toISOString()}
+                  aria-checked={isSelected}
+                  onClick={() => onChange({ callStartTime: time })}
+                  className={classNames(
+                    "justify-center! transition-transform!",
+                    "hover:translate-x-0! hover:translate-y-0!",
+                    isSelected && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                  )}
+                >
+                  <div>{formatCallDate(time, { date: { hidden: true }, timeZone: { hidden: true } })}</div>
+                </Button>
+              );
+            })}
           </div>
         </section>
       ) : null}
@@ -488,11 +501,16 @@ const PaymentOptionSelector = ({
   return (
     <section>
       <h4 className="mb-2">Payment option</h4>
-      <div role="radiogroup" className="radio-buttons">
+      <div role="radiogroup" className="grid gap-4">
         <Button
           role="radio"
           aria-checked={!selection.payInInstallments}
           onClick={() => onChange({ payInInstallments: false })}
+          className={classNames(
+            "items-start! justify-start! gap-3! transition-transform!",
+            "hover:translate-x-0! hover:translate-y-0!",
+            !selection.payInInstallments && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+          )}
         >
           <div>
             <strong>Pay in full</strong>
@@ -504,6 +522,11 @@ const PaymentOptionSelector = ({
           role="radio"
           aria-checked={selection.payInInstallments}
           onClick={() => onChange({ payInInstallments: true })}
+          className={classNames(
+            "items-start! justify-start! gap-3! transition-transform!",
+            "hover:translate-x-0! hover:translate-y-0!",
+            selection.payInInstallments && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+          )}
         >
           <div>
             <strong>Pay in {product.installment_plan.number_of_installments} installments</strong>
@@ -589,35 +612,42 @@ export const ConfigurationSelector = React.forwardRef<
     if (product.options.length === 1) return pwywInput;
     return (
       <>
-        <div
-          role="radiogroup"
-          className="radio-buttons"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(6rem, 100%), 1fr))" }}
-        >
-          {product.options.map((option) => (
-            <Button
-              role="radio"
-              style={{ justifyContent: "center" }}
-              aria-checked={selection.optionId === option.id}
-              onClick={() =>
-                setSelection?.({
-                  ...selection,
-                  optionId: option.id,
-                  price: { value: option.price_difference_cents ?? 100, error: false },
-                })
-              }
-              key={option.id}
-            >
-              {formatPriceCentsWithCurrencySymbol(product.currency_code, option.price_difference_cents ?? 0, {
-                symbolFormat: "short",
-              })}
-            </Button>
-          ))}
+        <div role="radiogroup" className="grid gap-4">
+          {product.options.map((option) => {
+            const isSelected = selection.optionId === option.id;
+            return (
+              <Button
+                role="radio"
+                aria-checked={isSelected}
+                onClick={() =>
+                  setSelection?.({
+                    ...selection,
+                    optionId: option.id,
+                    price: { value: option.price_difference_cents ?? 100, error: false },
+                  })
+                }
+                key={option.id}
+                className={classNames(
+                  "justify-center! transition-transform!",
+                  "hover:translate-x-0! hover:translate-y-0!",
+                  isSelected && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                )}
+              >
+                {formatPriceCentsWithCurrencySymbol(product.currency_code, option.price_difference_cents ?? 0, {
+                  symbolFormat: "short",
+                })}
+              </Button>
+            );
+          })}
           <Button
             role="radio"
-            style={{ justifyContent: "center" }}
             aria-checked={selection.optionId === null}
             onClick={() => setSelection?.({ ...selection, optionId: null, price: { value: null, error: false } })}
+            className={classNames(
+              "justify-center! transition-transform!",
+              "hover:translate-x-0! hover:translate-y-0!",
+              selection.optionId === null && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+            )}
           >
             Other
           </Button>
@@ -642,7 +672,7 @@ export const ConfigurationSelector = React.forwardRef<
       ) : null}
       {hasRentOption && product.rental ? (
         <div
-          className="radio-buttons"
+          className="grid gap-4"
           role="radiogroup"
           itemProp="offers"
           itemType="https://schema.org/AggregateOffer"
@@ -677,7 +707,7 @@ export const ConfigurationSelector = React.forwardRef<
       {hasOptions && hasRentOption ? <hr /> : null}
       {hasOptions ? (
         <div
-          className="radio-buttons"
+          className="grid gap-4"
           role="radiogroup"
           itemProp="offers"
           itemType="https://schema.org/AggregateOffer"
@@ -740,14 +770,14 @@ export const ConfigurationSelector = React.forwardRef<
         />
       ) : null}
       {hasConfigurableQuantity ? (
-        <fieldset>
-          <legend>
-            <label htmlFor={quantityInputUID}>{product.is_multiseat_license ? "Seats" : "Quantity"}</label>
-          </legend>
+        <FormFieldset>
+          <FormLegend>
+            <FormLabel htmlFor={quantityInputUID}>{product.is_multiseat_license ? "Seats" : "Quantity"}</FormLabel>
+          </FormLegend>
           <NumberInput onChange={(quantity) => update({ quantity: quantity ?? 0 })} value={selection.quantity}>
-            {(props) => <input type="number" id={quantityInputUID} {...props} min={1} max={maxQuantity ?? undefined} />}
+            {(props) => <FormInput type="number" id={quantityInputUID} {...props} min={1} max={maxQuantity ?? undefined} />}
           </NumberInput>
-        </fieldset>
+        </FormFieldset>
       ) : null}
       {showInstallmentPlan && product.installment_plan ? (
         <PaymentOptionSelector product={product} selection={selection} onChange={update} />

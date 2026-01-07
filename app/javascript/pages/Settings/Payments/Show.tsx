@@ -936,7 +936,11 @@ export default function PaymentsPage() {
             </div>
           </header>
           <section className="grid gap-8">
-            <div className="radio-buttons" role="radiogroup">
+            <div
+              className="grid gap-4"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(15rem, 100%), 1fr))" }}
+              role="radiogroup"
+            >
               {props.bank_account_details.show_bank_account ? (
                 <>
                   <Button

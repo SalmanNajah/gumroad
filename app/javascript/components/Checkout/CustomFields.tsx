@@ -1,4 +1,3 @@
-import cx from "classnames";
 import uniqBy from "lodash/uniqBy";
 import * as React from "react";
 
@@ -6,6 +5,7 @@ import { CustomFieldDescriptor } from "$app/parsers/product";
 
 import { Creator } from "$app/components/Checkout/cartState";
 import { Product, getCustomFieldKey, getErrors, isProcessing, useState } from "$app/components/Checkout/payment";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 const CustomField = ({ field, fieldKey }: { field: CustomFieldDescriptor; fieldKey: string }) => {
   const [state, dispatch] = useState();
@@ -16,11 +16,11 @@ const CustomField = ({ field, fieldKey }: { field: CustomFieldDescriptor; fieldK
   switch (field.type) {
     case "text": {
       return (
-        <fieldset className={cx({ danger: hasError })}>
-          <legend>
-            <label htmlFor={uid}>{field.name}</label>
-          </legend>
-          <input
+        <FormFieldset state={hasError ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={uid}>{field.name}</FormLabel>
+          </FormLegend>
+          <FormInput
             id={uid}
             type="text"
             aria-invalid={hasError}
@@ -29,15 +29,14 @@ const CustomField = ({ field, fieldKey }: { field: CustomFieldDescriptor; fieldK
             onChange={(e) => dispatch({ type: "set-custom-field", key: fieldKey, value: e.target.value })}
             disabled={isProcessing(state)}
           />
-        </fieldset>
+        </FormFieldset>
       );
     }
     case "checkbox": {
       return (
-        <fieldset className={cx({ danger: hasError })}>
-          <label>
-            <input
-              type="checkbox"
+        <FormFieldset state={hasError ? "danger" : undefined}>
+          <FormLabel>
+            <FormCheckbox
               checked={value === "true"}
               aria-invalid={hasError}
               onChange={(e) =>
@@ -47,16 +46,15 @@ const CustomField = ({ field, fieldKey }: { field: CustomFieldDescriptor; fieldK
               disabled={isProcessing(state)}
             />
             {field.required ? field.name : `${field.name} (optional)`}
-          </label>
-        </fieldset>
+          </FormLabel>
+        </FormFieldset>
       );
     }
     case "terms": {
       return (
-        <fieldset className={cx({ danger: hasError })}>
-          <label>
-            <input
-              type="checkbox"
+        <FormFieldset state={hasError ? "danger" : undefined}>
+          <FormLabel>
+            <FormCheckbox
               checked={value === "true"}
               aria-invalid={hasError}
               onChange={(e) =>
@@ -69,8 +67,8 @@ const CustomField = ({ field, fieldKey }: { field: CustomFieldDescriptor; fieldK
             <a href={field.name} target="_blank" rel="noreferrer">
               Terms and Conditions
             </a>
-          </label>
-        </fieldset>
+          </FormLabel>
+        </FormFieldset>
       );
     }
   }
@@ -145,10 +143,10 @@ const SellerCustomFields = ({ seller }: { seller: Creator }) => {
           <CustomField key={field.id} field={field} fieldKey={field.id} />
         ))}
         {customFieldGroups.map(({ product, customFields }) => (
-          <fieldset key={`${product.permalink}-${product.bundleProductId}`}>
-            <legend>
-              <label>{product.name}</label>
-            </legend>
+          <FormFieldset key={`${product.permalink}-${product.bundleProductId}`}>
+            <FormLegend>
+              <FormLabel>{product.name}</FormLabel>
+            </FormLegend>
             <div className="stack">
               <div>
                 <section className="flex flex-col gap-4">
@@ -158,7 +156,7 @@ const SellerCustomFields = ({ seller }: { seller: Creator }) => {
                 </section>
               </div>
             </div>
-          </fieldset>
+          </FormFieldset>
         ))}
       </section>
     </div>
