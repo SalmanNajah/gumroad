@@ -16,6 +16,7 @@ import { PurchaseArchiveButton } from "$app/components/PurchaseArchiveButton";
 import { Review, ReviewForm } from "$app/components/ReviewForm";
 import { showAlert } from "$app/components/server-components/Alert";
 import { PurchaseCustomField } from "$app/components/server-components/DownloadPage/WithContent";
+import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 
@@ -441,17 +442,17 @@ const AddToLibrary = ({ add_to_library_option, terms_page_url, purchase_id, purc
           <span>Create an account to access all of your purchases in one place</span>
           <div>
             <form autoComplete="off" onSubmit={handleSignupAndAddPurchaseToLibrary} className="grid gap-4">
-              <fieldset>
-                <input
+              <FormFieldset>
+                <FormInput
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Your password"
                 />
-                <small>
+                <FormSmall>
                   You agree to our <a href={terms_page_url}>Terms Of Use</a>.
-                </small>
-              </fieldset>
+                </FormSmall>
+              </FormFieldset>
               <Button color="primary" type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Creating..." : "Create"}
               </Button>

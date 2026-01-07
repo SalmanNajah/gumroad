@@ -65,7 +65,7 @@ export const CallLimitationsEditor = ({
             <FormInputWrapper ref={inputRef}>
               <FormInput id={`${uid}-notice-period`} placeholder="15" {...props} />
               <Pill asChild className="relative -mr-2 shrink-0 cursor-pointer">
-                <label>
+                <FormLabel>
                   <span>{minimumNotice.unit}</span>
                   <TypeSafeOptionSelect
                     aria-label="Units"
@@ -75,7 +75,7 @@ export const CallLimitationsEditor = ({
                     className="absolute inset-0 z-1 m-0! cursor-pointer opacity-0"
                   />
                   <Icon name="outline-cheveron-down" className="ml-auto" />
-                </label>
+                </FormLabel>
               </Pill>
             </FormInputWrapper>
           )}
