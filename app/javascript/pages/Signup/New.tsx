@@ -11,6 +11,7 @@ import { Separator } from "$app/components/Separator";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { RecaptchaCancelledError, useRecaptcha } from "$app/components/useRecaptcha";
 import { WarningFlash } from "$app/components/WarningFlashMessage";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
   email: string | null;
@@ -85,29 +86,29 @@ function SignupPage() {
         </Separator>
         <section>
           <WarningFlash />
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-email`}>Email</label>
-            </legend>
-            <input
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-email`}>Email</FormLabel>
+            </FormLegend>
+            <FormInput
               id={`${uid}-email`}
               type="email"
               value={form.data.user.email}
               onChange={(e) => form.setData("user.email", e.target.value)}
               required
             />
-          </fieldset>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}-password`}>Password</label>
-            </legend>
+          </FormFieldset>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}-password`}>Password</FormLabel>
+            </FormLegend>
             <PasswordInput
               id={`${uid}-password`}
               value={form.data.user.password}
               onChange={(e) => form.setData("user.password", e.target.value)}
               required
             />
-          </fieldset>
+          </FormFieldset>
           <Button color="primary" type="submit" disabled={form.processing}>
             {form.processing ? "Creating..." : "Create account"}
           </Button>

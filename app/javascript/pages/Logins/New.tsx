@@ -10,6 +10,7 @@ import { Separator } from "$app/components/Separator";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { RecaptchaCancelledError, useRecaptcha } from "$app/components/useRecaptcha";
 import { WarningFlash } from "$app/components/WarningFlashMessage";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
   email: string | null;
@@ -72,11 +73,11 @@ function LoginPage() {
           </Separator>
           <section>
             <WarningFlash />
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-email`}>Email</label>
-              </legend>
-              <input
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-email`}>Email</FormLabel>
+              </FormLegend>
+              <FormInput
                 id={`${uid}-email`}
                 type="email"
                 value={form.data.user.login_identifier}
@@ -85,14 +86,14 @@ function LoginPage() {
                 tabIndex={1}
                 autoComplete="email"
               />
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={`${uid}-password`}>Password</label>
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={`${uid}-password`}>Password</FormLabel>
                 <button type="button" className="font-normal underline" onClick={() => setShowForgotPassword(true)}>
                   Forgot your password?
                 </button>
-              </legend>
+              </FormLegend>
               <PasswordInput
                 id={`${uid}-password`}
                 value={form.data.user.password}
@@ -101,7 +102,7 @@ function LoginPage() {
                 tabIndex={1}
                 autoComplete="current-password"
               />
-            </fieldset>
+            </FormFieldset>
             <Button color="primary" type="submit" disabled={form.processing}>
               {form.processing ? "Logging in..." : "Login"}
             </Button>

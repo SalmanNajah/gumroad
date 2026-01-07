@@ -8,6 +8,7 @@ import { Button } from "$app/components/Button";
 import { Separator } from "$app/components/Separator";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 type SaveState = { type: "initial" | "submitting" } | { type: "error"; message: string };
 
@@ -37,12 +38,12 @@ export const ForgotPasswordForm = ({ onClose }: { onClose: () => void }) => {
       </Separator>
       <section>
         {saveState.type === "error" ? <Alert variant="danger">{saveState.message}</Alert> : null}
-        <fieldset>
-          <legend>
-            <label htmlFor={uid}>Email to send reset instructions to</label>
-          </legend>
-          <input id={uid} type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </fieldset>
+        <FormFieldset>
+          <FormLegend>
+            <FormLabel htmlFor={uid}>Email to send reset instructions to</FormLabel>
+          </FormLegend>
+          <FormInput id={uid} type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </FormFieldset>
         <Button color="primary" type="submit" disabled={saveState.type === "submitting"}>
           {saveState.type === "submitting" ? "Sending..." : "Send"}
         </Button>
