@@ -17,6 +17,7 @@ import { Tab, Tabs } from "$app/components/Developer/Tabs";
 import { useHasChanged } from "$app/components/Developer/useHasChanged";
 import { DomainSettingsProvider, useDomains } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
 
 type WidgetsPageProps = {
   default_product: Product;
@@ -85,10 +86,10 @@ export default function PublicWidgets() {
                 </a>
               </p>
             </header>
-            <fieldset>
-              <legend>
-                <label htmlFor={copyButtonUID}>Share your subscribe page and grow your audience</label>
-              </legend>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={copyButtonUID}>Share your subscribe page and grow your audience</FormLabel>
+              </FormLegend>
               <CopyToClipboard
                 text={Routes.custom_domain_subscribe_url({ host: currentSeller.subdomain })}
                 copyTooltip="Copy link"
@@ -99,24 +100,24 @@ export default function PublicWidgets() {
                   Copy link
                 </Button>
               </CopyToClipboard>
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={FOLLOW_FORM_EMBED_INPUT_ID}>Test your subscribe form with your email</label>
-              </legend>
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={FOLLOW_FORM_EMBED_INPUT_ID}>Test your subscribe form with your email</FormLabel>
+              </FormLegend>
               <FollowFormEmbed sellerId={currentSeller.id} preview />
-            </fieldset>
-            <fieldset>
-              <legend>
-                <label htmlFor={followFormEmbedUID}>Subscribe form embed code</label>
+            </FormFieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={followFormEmbedUID}>Subscribe form embed code</FormLabel>
                 <CopyToClipboard text={followFormEmbedHTML} copyTooltip="Copy to Clipboard" tooltipPosition="top">
                   <button type="button" className="font-normal underline">
                     Copy embed code
                   </button>
                 </CopyToClipboard>
-              </legend>
-              <textarea id={followFormEmbedUID} value={followFormEmbedHTML} readOnly />
-            </fieldset>
+              </FormLegend>
+              <FormTextarea id={followFormEmbedUID} value={followFormEmbedHTML} readOnly />
+            </FormFieldset>
           </section>
         ) : null}
       </form>
@@ -201,22 +202,22 @@ const OverlayPanel = ({ selectedProduct }: PanelProps) => {
   return (
     <>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--spacer-5)" }}>
-        <fieldset style={{ flexGrow: 1 }}>
-          <legend>
-            <label htmlFor={buttonTextUID}>Button text</label>
-          </legend>
-          <input
+        <FormFieldset style={{ flexGrow: 1 }}>
+          <FormLegend>
+            <FormLabel htmlFor={buttonTextUID}>Button text</FormLabel>
+          </FormLegend>
+          <FormInput
             id={buttonTextUID}
             type="text"
             placeholder="Buy on"
             value={buttonText}
             onChange={(evt) => setButtonText(evt.target.value)}
           />
-        </fieldset>
-        <fieldset>
-          <legend>
-            <label htmlFor={overlayPreviewUID}>Button Preview</label>
-          </legend>
+        </FormFieldset>
+        <FormFieldset>
+          <FormLegend>
+            <FormLabel htmlFor={overlayPreviewUID}>Button Preview</FormLabel>
+          </FormLegend>
           {!hasChanged ? (
             <a
               id={overlayPreviewUID}
@@ -228,15 +229,15 @@ const OverlayPanel = ({ selectedProduct }: PanelProps) => {
               <span>{buttonText || "Buy on"}</span>
             </a>
           ) : null}
-        </fieldset>
+        </FormFieldset>
       </div>
       <CodeContainer codeToCopy={codeToCopy} />
-      <fieldset className="grid gap-4">
-        <label>
-          <input type="checkbox" checked={isWanted} onChange={(e) => setIsWanted(e.target.checked)} role="switch" />
+      <FormFieldset className="grid gap-4">
+        <FormLabel>
+          <FormCheckbox checked={isWanted} onChange={(e) => setIsWanted(e.target.checked)} role="switch" />
           Send directly to checkout page
-        </label>
-      </fieldset>
+        </FormLabel>
+      </FormFieldset>
     </>
   );
 };

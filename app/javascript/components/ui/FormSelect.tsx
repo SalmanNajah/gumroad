@@ -4,26 +4,14 @@ import { classNames } from "$app/utils/classNames";
 
 export interface FormSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
 
+const selectBaseStyles =
+  "font-[inherit] text-base leading-[1.4] px-4 py-3 border border-border rounded block w-full bg-background placeholder:text-muted focus:outline-2 focus:outline-offset-0 focus:outline-accent disabled:cursor-not-allowed disabled:opacity-30 appearance-none bg-no-repeat pr-10";
+
 export const FormSelect = React.forwardRef<HTMLSelectElement, FormSelectProps>(
   ({ className, style, children, ...props }, ref) => (
     <select
       ref={ref}
-      className={classNames(
-        "font-[inherit]",
-        "text-base leading-[1.4]",
-        "px-4 py-3",
-        "border border-border",
-        "rounded",
-        "block w-full",
-        "bg-background",
-        "placeholder:text-muted",
-        "focus:outline-2 focus:outline-offset-0 focus:outline-accent",
-        "disabled:cursor-not-allowed disabled:opacity-30",
-        "appearance-none",
-        "bg-no-repeat",
-        "pr-10",
-        className,
-      )}
+      className={classNames(selectBaseStyles, className)}
       style={{
         backgroundImage: `linear-gradient(45deg, transparent 50%, currentColor 50%, var(--color-background) calc(50% + 2px)),
           linear-gradient(315deg, transparent 50%, currentColor 50%, var(--color-background) calc(50% + 2px))`,

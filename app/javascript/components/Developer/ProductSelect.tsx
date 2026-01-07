@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 
 export type Product = {
   name: string;
@@ -29,11 +30,11 @@ export const ProductSelect = ({
   };
 
   return (
-    <fieldset>
-      <legend>
-        <label htmlFor={uid}>Choose your product</label>
-      </legend>
-      <select id={uid} value={selectedProductUrl} onChange={dispatchChangeEvent}>
+    <FormFieldset>
+      <FormLegend>
+        <FormLabel htmlFor={uid}>Choose your product</FormLabel>
+      </FormLegend>
+      <FormSelect id={uid} value={selectedProductUrl} onChange={dispatchChangeEvent}>
         <optgroup label="Your products">
           {products.map((product) => (
             <option key={product.url} value={product.url}>
@@ -51,7 +52,7 @@ export const ProductSelect = ({
             ))}
           </optgroup>
         ) : null}
-      </select>
-    </fieldset>
+      </FormSelect>
+    </FormFieldset>
   );
 };

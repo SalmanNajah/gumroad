@@ -370,7 +370,7 @@ const NewProductPage = ({
 
                 <FormInputWrapper>
                   <Pill asChild className="relative -ml-2 shrink-0 cursor-pointer">
-                    <label>
+                    <FormLabel>
                       <span>{selectedCurrency.longSymbol}</span>
                       <TypeSafeOptionSelect
                         onChange={(newCurrencyCode) => {
@@ -388,7 +388,7 @@ const NewProductPage = ({
                         className="absolute inset-0 z-1 m-0! cursor-pointer opacity-0"
                       />
                       <Icon name="outline-cheveron-down" className="ml-auto" />
-                    </label>
+                    </FormLabel>
                   </Pill>
 
                   <FormInput
@@ -412,7 +412,7 @@ const NewProductPage = ({
 
                   {isRecurringBilling ? (
                     <Pill asChild className="relative -mr-2 shrink-0 cursor-pointer">
-                      <label>
+                      <FormLabel>
                         <span>{recurrenceLabels[subscriptionDuration || defaultRecurrence]}</span>
                         <TypeSafeOptionSelect
                           onChange={(newSubscriptionDuration) => {
@@ -427,7 +427,7 @@ const NewProductPage = ({
                           className="absolute inset-0 z-1 m-0! cursor-pointer opacity-0"
                         />
                         <Icon name="outline-cheveron-down" className="ml-auto" />
-                      </label>
+                      </FormLabel>
                     </Pill>
                   ) : null}
                 </FormInputWrapper>

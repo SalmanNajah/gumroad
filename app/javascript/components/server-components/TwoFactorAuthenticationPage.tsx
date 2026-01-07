@@ -9,6 +9,7 @@ import { Layout } from "$app/components/Authentication/Layout";
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 
 type SaveState = { type: "initial" | "submitting" } | { type: "error"; message: string };
@@ -66,12 +67,19 @@ export const TwoFactorAuthenticationPage = ({
       <form onSubmit={(e) => void handleSubmit(e)}>
         <section>
           {loginState.type === "error" ? <Alert variant="danger">{loginState.message}</Alert> : null}
-          <fieldset>
-            <legend>
-              <label htmlFor={uid}>Authentication Token</label>
-            </legend>
-            <input id={uid} type="text" value={token} onChange={(e) => setToken(e.target.value)} required autoFocus />
-          </fieldset>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={uid}>Authentication Token</FormLabel>
+            </FormLegend>
+            <FormInput
+              id={uid}
+              type="text"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              required
+              autoFocus
+            />
+          </FormFieldset>
           <Button color="primary" type="submit" disabled={loginState.type === "submitting"}>
             {loginState.type === "submitting" ? "Logging in..." : "Login"}
           </Button>

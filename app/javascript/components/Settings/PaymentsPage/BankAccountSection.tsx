@@ -1,4 +1,3 @@
-import cx from "classnames";
 import * as React from "react";
 
 import { SavedCreditCard } from "$app/parsers/card";
@@ -6,6 +5,7 @@ import type { FormFieldName, User } from "$app/types/payments";
 
 import { Button } from "$app/components/Button";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect, FormSmall } from "$app/components/ui/form";
 
 export type BankAccount =
   | {
@@ -924,11 +924,11 @@ const BankAccountSection = ({
     <>
       <div className="whitespace-pre-line">{feeInfoText}</div>
       <section className="grid gap-8">
-        <fieldset className={cx({ danger: errorFieldNames.has("account_holder_full_name") })}>
-          <legend>
-            <label htmlFor={`${uid}-account-holder-full-name`}>Pay to the order of</label>
-          </legend>
-          <input
+        <FormFieldset state={errorFieldNames.has("account_holder_full_name") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-account-holder-full-name`}>Pay to the order of</FormLabel>
+          </FormLegend>
+          <FormInput
             id={`${uid}-account-holder-full-name`}
             placeholder="Full name of account holder"
             value={bankAccount?.account_holder_full_name || ""}
@@ -936,18 +936,18 @@ const BankAccountSection = ({
             aria-invalid={errorFieldNames.has("account_holder_full_name")}
             onChange={(evt) => updateBankAccount({ account_holder_full_name: evt.target.value })}
           />
-          <small>Must exactly match the name on your bank account</small>
-        </fieldset>
+          <FormSmall>Must exactly match the name on your bank account</FormSmall>
+        </FormFieldset>
         <div className="grid gap-2">
           {showNewBankAccount ? (
             <div className="grid gap-5 md:auto-cols-fr md:grid-flow-col">
               {user.country_code === "CA" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("transit_number") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-transit-number`}>Transit #</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("transit_number") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-transit-number`}>Transit #</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-transit-number`}
                       placeholder="12345"
@@ -957,12 +957,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("transit_number")}
                       onChange={(evt) => updateBankAccount({ transit_number: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("institution_number") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-institution-number`}>Institution #</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("institution_number") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-institution-number`}>Institution #</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-institution-number`}
                       placeholder="000"
@@ -972,14 +972,14 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("institution_number")}
                       onChange={(evt) => updateBankAccount({ institution_number: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "AU" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bsb_number") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bsb-number`}>BSB</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bsb_number") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bsb-number`}>BSB</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bsb-number`}
                     placeholder="123456"
@@ -989,13 +989,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bsb_number")}
                     onChange={(evt) => updateBankAccount({ bsb_number: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "GB" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("sort_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-sort-code`}>Sort code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("sort_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-sort-code`}>Sort code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-sort-code`}
                     placeholder="12-34-56"
@@ -1005,13 +1005,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("sort_code")}
                     onChange={(evt) => updateBankAccount({ sort_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "IN" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("ifsc") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-ifsc`}>IFSC</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("ifsc") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-ifsc`}>IFSC</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-ifsc`}
                     placeholder="ICIC0123456"
@@ -1021,14 +1021,14 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("ifsc")}
                     onChange={(evt) => updateBankAccount({ ifsc: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "HK" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("clearing_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-clearing-code`}>Clearing Code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("clearing_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-clearing-code`}>Clearing Code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-clearing-code`}
                       placeholder="123"
@@ -1038,12 +1038,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("clearing_code")}
                       onChange={(evt) => updateBankAccount({ clearing_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="456"
@@ -1053,15 +1053,15 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("branch_code")}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "SG" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="1234"
@@ -1071,12 +1071,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="567"
@@ -1086,15 +1086,15 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("branch_code")}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "JP" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="1234"
@@ -1104,12 +1104,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="567"
@@ -1119,14 +1119,14 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("branch_code")}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "TH" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="123"
@@ -1136,13 +1136,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "KR" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="ABCDKR00123"
@@ -1152,13 +1152,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "VN" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="01101100"
@@ -1168,13 +1168,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "TW" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAATWTXXXX"
@@ -1184,13 +1184,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "ID" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="000"
@@ -1200,13 +1200,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MA" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAMAMAXXX"
@@ -1216,13 +1216,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "RS" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="BKCHRSBG"
@@ -1232,14 +1232,14 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "TT" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="123"
@@ -1249,12 +1249,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="45678"
@@ -1264,15 +1264,15 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("branch_code")}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "JM" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="111"
@@ -1282,12 +1282,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="00000"
@@ -1297,14 +1297,14 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("branch_code")}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "UY" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="091"
@@ -1314,13 +1314,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "AG" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAAGAGXYZ"
@@ -1330,13 +1330,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "LC" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAALCLCXYZ"
@@ -1346,13 +1346,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "TZ" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAATZTXXXX"
@@ -1362,13 +1362,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "NA" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAANANXXYZ"
@@ -1378,13 +1378,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "PH" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank Identifier Code (BIC)</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank Identifier Code (BIC)</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="12345678901"
@@ -1394,13 +1394,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "ZA" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="FIRNZAJJ"
@@ -1410,13 +1410,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "KE" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="BARCKENXMDR"
@@ -1426,13 +1426,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MY" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="HBMBMYKL"
@@ -1442,14 +1442,14 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "CL" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("account_type") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-account-type`}>Bank account type</label>
-                    </legend>
-                    <select
+                  <FormFieldset state={errorFieldNames.has("account_type") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-account-type`}>Bank account type</FormLabel>
+                    </FormLegend>
+                    <FormSelect
                       id={`${uid}-bank-account-type`}
                       required
                       disabled={isFormDisabled}
@@ -1464,13 +1464,13 @@ const BankAccountSection = ({
                       <option key="savings" value="savings">
                         Savings
                       </option>
-                    </select>
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                    </FormSelect>
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="123"
@@ -1480,15 +1480,15 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "CO" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("account_type") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-account-type`}>Account Type</label>
-                    </legend>
-                    <select
+                  <FormFieldset state={errorFieldNames.has("account_type") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-account-type`}>Account Type</FormLabel>
+                    </FormLegend>
+                    <FormSelect
                       id={`${uid}-account-type`}
                       required
                       disabled={isFormDisabled}
@@ -1503,13 +1503,13 @@ const BankAccountSection = ({
                       <option key="checking" value="checking">
                         Checking
                       </option>
-                    </select>
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank Code</label>
-                    </legend>
-                    <input
+                    </FormSelect>
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank Code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="060"
@@ -1519,14 +1519,14 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "RW" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAARWRWXXX"
@@ -1536,13 +1536,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "EC" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAECE1XXX"
@@ -1552,13 +1552,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "BW" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAABWBWXXX"
@@ -1568,13 +1568,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "OM" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAOMOMXXX"
@@ -1584,13 +1584,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "PY" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="27"
@@ -1600,13 +1600,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MG" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAMGMGXXX"
@@ -1616,13 +1616,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "GH" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="022112"
@@ -1632,13 +1632,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "US" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("routing_number") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-routing-number`}>Routing number</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("routing_number") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-routing-number`}>Routing number</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-routing-number`}
                     placeholder="121000497"
@@ -1648,13 +1648,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("routing_number")}
                     onChange={(evt) => updateBankAccount({ routing_number: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MD" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAMDMDXXX"
@@ -1664,13 +1664,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "PA" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAPAPAXXX"
@@ -1680,14 +1680,14 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "DO" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="021"
@@ -1697,12 +1697,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code (optional)</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code (optional)</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="4232"
@@ -1710,15 +1710,15 @@ const BankAccountSection = ({
                       disabled={isFormDisabled}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "UZ" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="AAAAUZUZXXX"
@@ -1728,12 +1728,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="00000"
@@ -1743,14 +1743,14 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("branch_code")}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "BO" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="060"
@@ -1760,13 +1760,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "NG" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAANGLAXXX"
@@ -1776,13 +1776,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "AM" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAAMNNXXX"
@@ -1792,14 +1792,14 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "LK" ? (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-bank-code`}
                       placeholder="AAAALKLXXXX"
@@ -1809,12 +1809,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("bank_code")}
                       onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-branch-code`}
                       placeholder="7010999"
@@ -1824,14 +1824,14 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("branch_code")}
                       onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : user.country_code === "ET" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAETETXXX"
@@ -1841,13 +1841,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "BN" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAABNBBXXX"
@@ -1857,13 +1857,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "GY" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAGYGGXYZ"
@@ -1873,13 +1873,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MK" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAMK2XXXX"
@@ -1889,13 +1889,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "BD" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>Bank Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>Bank Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="110000000"
@@ -1905,13 +1905,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "BT" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAABTBTXXX"
@@ -1921,13 +1921,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "LA" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAALALAXXX"
@@ -1937,13 +1937,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MZ" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAMZMXXXX"
@@ -1953,13 +1953,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "QA" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="QNBAQAQAXXX"
@@ -1969,13 +1969,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "GA" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAGAGAXXX"
@@ -1985,13 +1985,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "BS" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAABSNSXXX"
@@ -2001,13 +2001,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "KH" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAKHPPXXX"
@@ -2017,13 +2017,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MN" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAMNUBXXX"
@@ -2033,13 +2033,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "DZ" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAADZDZXXX"
@@ -2049,13 +2049,13 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : user.country_code === "MO" ? (
-                <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                  <legend>
-                    <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                  </legend>
-                  <input
+                <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     type="text"
                     id={`${uid}-bank-code`}
                     placeholder="AAAAMOMXXXX"
@@ -2065,16 +2065,16 @@ const BankAccountSection = ({
                     aria-invalid={errorFieldNames.has("bank_code")}
                     onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                   />
-                </fieldset>
+                </FormFieldset>
               ) : null}
               {user.country_supports_iban ? (
                 <>
                   {user.country_code === "PK" || user.country_code === "TR" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAPKKAXXX"
@@ -2084,13 +2084,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "GT" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAGTGCXYZ"
@@ -2100,13 +2100,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "BA" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="BIHBAHBOS"
@@ -2116,13 +2116,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "EG" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="NBEGEGCX331"
@@ -2132,13 +2132,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "SA" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="NCBKSAJE101"
@@ -2148,13 +2148,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "MU" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAMUMUXYZ"
@@ -2164,13 +2164,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "KZ" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAKZKZXXX"
@@ -2180,13 +2180,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "SV" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAASVS1XXX"
@@ -2196,13 +2196,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "AL" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAALTXXXX"
@@ -2212,13 +2212,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "BH" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAABHBMXYZ"
@@ -2228,13 +2228,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "JO" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAJOJOXXX"
@@ -2244,14 +2244,14 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "AZ" ? (
                     <>
-                      <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                        <legend>
-                          <label htmlFor={`${uid}-bank-code`}>Bank code</label>
-                        </legend>
-                        <input
+                      <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                        <FormLegend>
+                          <FormLabel htmlFor={`${uid}-bank-code`}>Bank code</FormLabel>
+                        </FormLegend>
+                        <FormInput
                           type="text"
                           id={`${uid}-bank-code`}
                           placeholder="123456"
@@ -2261,12 +2261,12 @@ const BankAccountSection = ({
                           aria-invalid={errorFieldNames.has("bank_code")}
                           onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                         />
-                      </fieldset>
-                      <fieldset className={cx({ danger: errorFieldNames.has("branch_code") })}>
-                        <legend>
-                          <label htmlFor={`${uid}-branch-code`}>Branch code</label>
-                        </legend>
-                        <input
+                      </FormFieldset>
+                      <FormFieldset state={errorFieldNames.has("branch_code") ? "danger" : undefined}>
+                        <FormLegend>
+                          <FormLabel htmlFor={`${uid}-branch-code`}>Branch code</FormLabel>
+                        </FormLegend>
+                        <FormInput
                           type="text"
                           id={`${uid}-branch-code`}
                           placeholder="123456"
@@ -2276,14 +2276,14 @@ const BankAccountSection = ({
                           aria-invalid={errorFieldNames.has("branch_code")}
                           onChange={(evt) => updateBankAccount({ branch_code: evt.target.value })}
                         />
-                      </fieldset>
+                      </FormFieldset>
                     </>
                   ) : user.country_code === "AO" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAAOAOXXX"
@@ -2293,13 +2293,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "SM" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAASMSMXXX"
@@ -2309,13 +2309,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : user.country_code === "KW" ? (
-                    <fieldset className={cx({ danger: errorFieldNames.has("bank_code") })}>
-                      <legend>
-                        <label htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</label>
-                      </legend>
-                      <input
+                    <FormFieldset state={errorFieldNames.has("bank_code") ? "danger" : undefined}>
+                      <FormLegend>
+                        <FormLabel htmlFor={`${uid}-bank-code`}>SWIFT / BIC Code</FormLabel>
+                      </FormLegend>
+                      <FormInput
                         type="text"
                         id={`${uid}-bank-code`}
                         placeholder="AAAAKWKWXYZ"
@@ -2325,13 +2325,13 @@ const BankAccountSection = ({
                         aria-invalid={errorFieldNames.has("bank_code")}
                         onChange={(evt) => updateBankAccount({ bank_code: evt.target.value })}
                       />
-                    </fieldset>
+                    </FormFieldset>
                   ) : null}
-                  <fieldset className={cx({ danger: errorFieldNames.has("account_number") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-account-number`}>IBAN</label>
-                    </legend>
-                    <input
+                  <FormFieldset state={errorFieldNames.has("account_number") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-account-number`}>IBAN</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-account-number`}
                       placeholder={`${user.country_code || ""}1234567890`}
@@ -2340,12 +2340,12 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("account_number")}
                       onChange={(evt) => updateBankAccount({ account_number: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("account_number_confirmation") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-confirm-account-number`}>Confirm IBAN</label>
-                    </legend>
-                    <input
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("account_number_confirmation") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-confirm-account-number`}>Confirm IBAN</FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-confirm-account-number`}
                       placeholder={`${user.country_code || ""}1234567890`}
@@ -2354,19 +2354,19 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("account_number_confirmation")}
                       onChange={(evt) => updateBankAccount({ account_number_confirmation: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               ) : (
                 <>
-                  <fieldset className={cx({ danger: errorFieldNames.has("account_number") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-account-number`}>
+                  <FormFieldset state={errorFieldNames.has("account_number") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-account-number`}>
                         {user.country_code && ["US", "MX", "AR", "PE"].includes(user.country_code)
                           ? "Account number"
                           : "Account #"}
-                      </label>
-                    </legend>
-                    <input
+                      </FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-account-number`}
                       placeholder="1234567890"
@@ -2375,16 +2375,16 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("account_number")}
                       onChange={(evt) => updateBankAccount({ account_number: evt.target.value })}
                     />
-                  </fieldset>
-                  <fieldset className={cx({ danger: errorFieldNames.has("account_number_confirmation") })}>
-                    <legend>
-                      <label htmlFor={`${uid}-confirm-account-number`}>
+                  </FormFieldset>
+                  <FormFieldset state={errorFieldNames.has("account_number_confirmation") ? "danger" : undefined}>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-confirm-account-number`}>
                         {user.country_code && ["US", "MX", "AR", "PE"].includes(user.country_code)
                           ? "Confirm account number"
                           : "Confirm account #"}
-                      </label>
-                    </legend>
-                    <input
+                      </FormLabel>
+                    </FormLegend>
+                    <FormInput
                       type="text"
                       id={`${uid}-confirm-account-number`}
                       placeholder="1234567890"
@@ -2393,7 +2393,7 @@ const BankAccountSection = ({
                       aria-invalid={errorFieldNames.has("account_number_confirmation")}
                       onChange={(evt) => updateBankAccount({ account_number_confirmation: evt.target.value })}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 </>
               )}
             </div>
@@ -2403,29 +2403,29 @@ const BankAccountSection = ({
                 style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}
               >
                 {bankAccountDetails.routing_number !== null && (
-                  <fieldset>
-                    <legend>
-                      <label htmlFor={`${uid}-saved-routing-number`}>
+                  <FormFieldset>
+                    <FormLegend>
+                      <FormLabel htmlFor={`${uid}-saved-routing-number`}>
                         {getRoutingNumberLabel(user.country_code || "")}
-                      </label>
-                    </legend>
-                    <input
+                      </FormLabel>
+                    </FormLegend>
+                    <FormInput
                       id={`${uid}-saved-routing-number`}
                       disabled
                       value={bankAccountDetails.routing_number || ""}
                     />
-                  </fieldset>
+                  </FormFieldset>
                 )}
-                <fieldset>
-                  <legend>
-                    <label htmlFor={`${uid}-saved-account-number`}>Account number</label>
-                  </legend>
-                  <input
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={`${uid}-saved-account-number`}>Account number</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={`${uid}-saved-account-number`}
                     disabled
                     value={bankAccountDetails.account_number_visual || ""}
                   />
-                </fieldset>
+                </FormFieldset>
               </section>
               <div>
                 <Button disabled={isFormDisabled} onClick={() => setShowNewBankAccount(true)}>

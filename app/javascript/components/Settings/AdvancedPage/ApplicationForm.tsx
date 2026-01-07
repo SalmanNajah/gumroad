@@ -126,6 +126,7 @@ const ApplicationForm = ({ application }: { application?: Application }) => {
       <input
         ref={iconInputRef}
         type="file"
+        className="sr-only"
         accept={ALLOWED_ICON_EXTENSIONS.map((ext) => `.${ext}`).join(",")}
         tabIndex={-1}
         onChange={handleIconChange}

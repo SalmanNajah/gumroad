@@ -1,9 +1,9 @@
-import cx from "classnames";
 import * as React from "react";
 
 import type { FormFieldName, PayoutMethod } from "$app/types/payments";
 
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 const PayPalEmailSection = ({
   countrySupportsNativePayouts,
@@ -43,11 +43,11 @@ const PayPalEmailSection = ({
             Switch to direct deposit
           </button>
         ) : null}
-        <fieldset className={cx({ danger: errorFieldNames.has("paypal_email_address") })}>
-          <legend>
-            <label htmlFor={`${uid}-paypal-email`}>PayPal Email</label>
-          </legend>
-          <input
+        <FormFieldset state={errorFieldNames.has("paypal_email_address") ? "danger" : undefined}>
+          <FormLegend>
+            <FormLabel htmlFor={`${uid}-paypal-email`}>PayPal Email</FormLabel>
+          </FormLegend>
+          <FormInput
             type="email"
             id={`${uid}-paypal-email`}
             placeholder="PayPal Email"
@@ -56,7 +56,7 @@ const PayPalEmailSection = ({
             aria-invalid={errorFieldNames.has("paypal_email_address")}
             onChange={(evt) => setPaypalEmailAddress(evt.target.value)}
           />
-        </fieldset>
+        </FormFieldset>
         {hasConnectedStripe ? (
           <Alert variant="warning">
             You cannot change your payout method to PayPal because you have a stripe account connected.
@@ -73,4 +73,5 @@ const PayPalEmailSection = ({
     </section>
   );
 };
+
 export default PayPalEmailSection;

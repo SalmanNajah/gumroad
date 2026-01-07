@@ -12,6 +12,7 @@ import { Card } from "$app/components/Product/Card";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
+import { FormRadio, FormLabel } from "$app/components/ui/form";
 
 export const MoreLikeThis = TiptapNode.create<{ productId: string }>({
   name: "moreLikeThis",
@@ -90,29 +91,26 @@ const MoreLikeThisNodeView = ({ editor, node, extension, selected }: NodeViewPro
                     </div>
                     <div onChange={close}>
                       <div role="menuitem">
-                        <label>
-                          <input
-                            type="radio"
+                        <FormLabel>
+                          <FormRadio
                             checked={node.attrs.recommendationType === "own_products"}
                             onChange={() => handleRecommendationTypeChange("own_products")}
                           />
                           Only my products
-                        </label>
+                        </FormLabel>
                       </div>
                       <div role="menuitem">
-                        <label>
-                          <input
-                            type="radio"
+                        <FormLabel>
+                          <FormRadio
                             checked={node.attrs.recommendationType === "directly_affiliated_products"}
                             onChange={() => handleRecommendationTypeChange("directly_affiliated_products")}
                           />
                           My products and affiliated
-                        </label>
+                        </FormLabel>
                       </div>
                       <div role="menuitem">
-                        <label>
-                          <input
-                            type="radio"
+                        <FormLabel>
+                          <FormRadio
                             checked={node.attrs.recommendationType === "gumroad_affiliates_products"}
                             onChange={() => handleRecommendationTypeChange("gumroad_affiliates_products")}
                           />
@@ -120,7 +118,7 @@ const MoreLikeThisNodeView = ({ editor, node, extension, selected }: NodeViewPro
                           <a href="/help/article/249-affiliate-faq" target="_blank" rel="noreferrer">
                             Gumroad Affiliates
                           </a>
-                        </label>
+                        </FormLabel>
                       </div>
                     </div>
                   </>

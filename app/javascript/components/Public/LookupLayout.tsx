@@ -5,7 +5,7 @@ import { assertResponseError } from "$app/utils/request"
 
 import { showAlert } from "$app/components/server-components/Alert"
 import { Alert } from "$app/components/ui/Alert"
-import { FormFieldset, FormLabel } from "$app/components/ui/form"
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form"
 import { PageHeader } from "$app/components/ui/PageHeader"
 
 const LookupLayout = ({ children, title, type }: {
@@ -120,7 +120,7 @@ const LookupLayout = ({ children, title, type }: {
             </header>
             <FormFieldset state={email.error ? "danger" : undefined}>
               <FormLabel htmlFor="email">What email address did you use?</FormLabel>
-              <input
+              <FormInput
                 id="email"
                 className="required"
                 placeholder="Email address"
@@ -132,7 +132,7 @@ const LookupLayout = ({ children, title, type }: {
             {type === "charge" && (
               <FormFieldset state={last4.error ? "danger" : undefined}>
                 <FormLabel htmlFor="cc_last_four">Last 4 digits of your card</FormLabel>
-                <input
+                <FormInput
                   id="cc_last_four"
                   className="required"
                   maxLength={4}
@@ -163,7 +163,7 @@ const LookupLayout = ({ children, title, type }: {
             </header>
             <FormFieldset state={invoiceId.error ? "danger" : undefined}>
               <FormLabel htmlFor="invoice_id">PayPal Invoice ID</FormLabel>
-              <input
+              <FormInput
                 id="invoice_id"
                 className="required"
                 placeholder="XXXXXXXXXXXX"

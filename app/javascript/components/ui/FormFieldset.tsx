@@ -4,7 +4,7 @@ import * as React from "react";
 import { classNames } from "$app/utils/classNames";
 
 const fieldsetVariants = cva(
-  "flex flex-col border-none gap-2 [&[role=group]_label]:w-full [&[role=group]_label_input]:ml-auto",
+  "flex flex-col border-none gap-2 [&[role=group]_label]:w-full [&[role=group]_label_input]:ml-auto [&[role=group]_label>span:last-child]:ml-auto",
   {
     variants: {
       state: {

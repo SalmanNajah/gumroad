@@ -14,6 +14,7 @@ import { Button } from "$app/components/Button";
 import { ConfirmBalanceForfeitOnPayoutMethodChangeModal } from "$app/components/ConfirmBalanceForfeitOnPayoutMethodChangeModal";
 import { CountrySelectionModal } from "$app/components/CountrySelectionModal";
 import { Icon } from "$app/components/Icons";
+import { classNames } from "$app/utils/classNames";
 import { StripeConnectEmbeddedNotificationBanner } from "$app/components/PayoutPage/StripeConnectEmbeddedNotificationBanner";
 import { PriceInput } from "$app/components/PriceInput";
 import { CreditCardForm } from "$app/components/Settings/AdvancedPage/CreditCardForm";
@@ -949,6 +950,11 @@ export default function PaymentsPage() {
                     aria-checked={selectedPayoutMethod === "bank"}
                     onClick={() => updatePayoutMethod("bank")}
                     disabled={props.is_form_disabled}
+                    className={classNames(
+                      "items-start! justify-start! gap-3! text-left transition-transform!",
+                      "hover:translate-x-0! hover:translate-y-0!",
+                      selectedPayoutMethod === "bank" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                    )}
                   >
                     <Icon name="bank" />
                     <div>
@@ -962,6 +968,11 @@ export default function PaymentsPage() {
                       aria-checked={selectedPayoutMethod === "card"}
                       onClick={() => updatePayoutMethod("card")}
                       disabled={props.is_form_disabled}
+                      className={classNames(
+                        "items-start! justify-start! gap-3! text-left transition-transform!",
+                        "hover:translate-x-0! hover:translate-y-0!",
+                        selectedPayoutMethod === "card" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                      )}
                     >
                       <Icon name="card" />
                       <div>
@@ -978,6 +989,11 @@ export default function PaymentsPage() {
                   aria-checked={selectedPayoutMethod === "paypal"}
                   onClick={() => updatePayoutMethod("paypal")}
                   disabled={props.is_form_disabled}
+                  className={classNames(
+                    "items-start! justify-start! gap-3! text-left transition-transform!",
+                    "hover:translate-x-0! hover:translate-y-0!",
+                    selectedPayoutMethod === "paypal" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                  )}
                 >
                   <Icon name="shop-window" />
                   <div>
@@ -994,6 +1010,11 @@ export default function PaymentsPage() {
                   aria-checked={selectedPayoutMethod === "stripe"}
                   onClick={() => updatePayoutMethod("stripe")}
                   disabled={props.is_form_disabled}
+                  className={classNames(
+                    "items-start! justify-start! gap-3! text-left transition-transform!",
+                    "hover:translate-x-0! hover:translate-y-0!",
+                    selectedPayoutMethod === "stripe" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                  )}
                 >
                   <Icon name="stripe" />
                   <div>

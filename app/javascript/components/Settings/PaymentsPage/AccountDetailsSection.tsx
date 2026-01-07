@@ -7,6 +7,7 @@ import type { ComplianceInfo, FormFieldName, User } from "$app/types/payments";
 
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
+import { classNames } from "$app/utils/classNames";
 
 const AccountDetailsSection = ({
   user,
@@ -54,7 +55,7 @@ const AccountDetailsSection = ({
         <section>
           <FormFieldset>
             <FormLegend>
-              <label>Account type</label>
+              <FormLabel>Account type</FormLabel>
               <a href="/help/article/260-your-payout-settings-page">What type of account should I choose?</a>
             </FormLegend>
           </FormFieldset>
@@ -69,6 +70,11 @@ const AccountDetailsSection = ({
               aria-checked={!complianceInfo.is_business}
               onClick={() => updateComplianceInfo({ is_business: false })}
               disabled={isFormDisabled}
+              className={classNames(
+                "items-start! justify-start! gap-3! text-left transition-transform!",
+                "hover:translate-x-0! hover:translate-y-0!",
+                !complianceInfo.is_business && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+              )}
             >
               <Icon name="person" />
               <div>
@@ -87,6 +93,11 @@ const AccountDetailsSection = ({
                 })
               }
               disabled={isFormDisabled}
+              className={classNames(
+                "items-start! justify-start! gap-3! text-left transition-transform!",
+                "hover:translate-x-0! hover:translate-y-0!",
+                complianceInfo.is_business && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+              )}
             >
               <Icon name="shop-window" />
               <div>
@@ -1062,7 +1073,7 @@ const AccountDetailsSection = ({
       </FormFieldset>
       <FormFieldset>
         <FormLegend>
-          <label>Date of Birth</label>
+          <FormLabel>Date of Birth</FormLabel>
           <a href="/help/article/260-your-payout-settings-page">Why does Gumroad need this information?</a>
         </FormLegend>
         <div style={{ display: "grid", gap: "var(--spacer-5)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
