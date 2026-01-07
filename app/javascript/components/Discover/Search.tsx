@@ -67,7 +67,7 @@ export const Search = ({ query, setQuery }: { query?: string | undefined; setQue
       onToggle={setAutocompleteOpen}
       editable
       input={(props) => (
-        <FormInputWrapper>
+        <FormInputWrapper className={autocompleteOpen && options.length > 0 ? "rounded-b-none" : ""}>
           <Icon name="solid-search" />
           <FormInput
             {...props}
@@ -95,7 +95,9 @@ export const Search = ({ query, setQuery }: { query?: string | undefined; setQue
       option={(item, props, index) => (
         <>
           {index === results?.recent_searches.length ? (
-            <h3>{enteredQuery ? "Products" : results.viewed ? "Keep shopping for" : "Trending"}</h3>
+            <h3 className="px-4 py-2">
+              {enteredQuery ? "Products" : results.viewed ? "Keep shopping for" : "Trending"}
+            </h3>
           ) : null}
           {typeof item === "string" ? (
             <div {...props}>
@@ -109,7 +111,11 @@ export const Search = ({ query, setQuery }: { query?: string | undefined; setQue
             </div>
           ) : (
             <a {...props} href={item.url} className={cx("flex items-center gap-4 no-underline", props.className)}>
-              <img src={item.thumbnail_url ?? thumbnailPlaceholder} alt={item.name} />
+              <img
+                src={item.thumbnail_url ?? thumbnailPlaceholder}
+                alt={item.name}
+                className="h-12 w-12 flex-none rounded border border-border object-cover"
+              />
               <div>
                 {highlightQuery(item.name)}
                 <small>{item.seller_name ? `Product by ${item.seller_name}` : "Product"}</small>

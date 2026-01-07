@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Wishlist, addToWishlist, createWishlist } from "$app/data/wishlists";
 import { assertResponseError } from "$app/utils/request";
+import { classNames } from "$app/utils/classNames";
 
 import { Button } from "$app/components/Button";
 import { ComboBox } from "$app/components/ComboBox";
@@ -99,7 +100,10 @@ export const ShareSection = ({
           input={(props) => (
             <div
               {...props}
-              className={`input ${dropdownState.state !== "closed" ? "!rounded-b-none" : ""}`}
+              className={classNames(
+                "flex cursor-pointer items-center rounded border border-border bg-background px-4 py-3",
+                dropdownState.state !== "closed" && "rounded-b-none",
+              )}
               aria-label="Add to wishlist"
             >
               <span className="text-singleline flex-1">

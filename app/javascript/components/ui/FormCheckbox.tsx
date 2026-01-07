@@ -10,7 +10,7 @@ const checkboxBaseStyles =
 export interface FormCheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {}
 
 export const FormCheckbox = React.forwardRef<HTMLInputElement, FormCheckboxProps>(({ className, ...props }, ref) => (
-  <span className="relative inline-flex items-center justify-center">
+  <span className="relative inline-flex items-center justify-center shrink-0">
     <input ref={ref} type="checkbox" className={classNames(checkboxBaseStyles, className)} {...props} />
     <Icon
       name="outline-check"

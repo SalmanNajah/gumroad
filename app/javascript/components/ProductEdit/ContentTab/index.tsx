@@ -1056,12 +1056,10 @@ export const ContentTab = () => {
                   <>
                     <hr className="relative left-1/2 my-2 w-screen max-w-none -translate-x-1/2 border-border lg:hidden" />
                     <ComboBox<Variant>
-                      // TODO: Currently needed to get the icon on the selected option even though this is not multiple select. We should fix this in the design system
-                      multiple
                       input={(props) => (
                         <div
                           {...props}
-                          className="bg-background inline-flex h-full min-h-auto cursor-pointer items-center gap-2 rounded border border-border px-4 py-3"
+                          className="inline-flex h-full min-h-auto cursor-pointer items-center gap-2 rounded border border-border bg-background px-4 py-3"
                           aria-label="Select a version"
                         >
                           <span className="text-singleline flex-1">
@@ -1084,7 +1082,7 @@ export const ContentTab = () => {
                             aria-selected={item.id === selectedVariantId}
                             inert={product.has_same_rich_content_for_all_variants}
                           >
-                            <div>
+                            <div className="flex-1">
                               <h4>{item.name || "Untitled"}</h4>
                               {item.id === selectedVariant?.id ? (
                                 <small>Editing</small>
@@ -1105,9 +1103,12 @@ export const ContentTab = () => {
                                 <small className="text-muted">No content yet</small>
                               )}
                             </div>
+                            {item.id === selectedVariant?.id && (
+                              <Icon name="solid-check-circle" className="ml-auto text-success" />
+                            )}
                           </div>
                           {index === product.variants.length - 1 ? (
-                            <div className="option">
+                            <div className="flex cursor-pointer items-center px-4 py-2">
                               <label className="inline-flex cursor-pointer gap-2" style={{ alignItems: "center" }}>
                                 <FormCheckbox
                                   checked={product.has_same_rich_content_for_all_variants}
