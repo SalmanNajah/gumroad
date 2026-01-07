@@ -1,4 +1,3 @@
-import cx from "classnames";
 import * as React from "react";
 import { createCast } from "ts-safe-cast";
 
@@ -9,6 +8,7 @@ import { register } from "$app/utils/serverComponentUtil";
 import { Button } from "$app/components/Button";
 import { PoweredByFooter } from "$app/components/PoweredByFooter";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormLabel, FormLegend, FormInput, FormSelect, FormTextarea } from "$app/components/ui/form";
 
 type FieldState = { value: string; error?: boolean };
 
@@ -112,89 +112,89 @@ const GenerateInvoicePage = ({
           <h4>{form_info.heading}</h4>
         </header>
         <div>
-          <fieldset className={cx({ danger: fullName.error })}>
-            <label htmlFor="full_name">Full name</label>
-            <input
+          <FormFieldset state={fullName.error ? "danger" : undefined}>
+            <FormLabel htmlFor="full_name">Full name</FormLabel>
+            <FormInput
               id="full_name"
               placeholder="Full name"
               type="text"
               value={fullName.value}
               onChange={(e) => setFullName({ value: e.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
           {form_info.display_vat_id ? (
-            <fieldset>
-              <legend>
-                <label htmlFor="chargeable_vat_id">{form_info.vat_id_label}</label>
-              </legend>
-              <input id="chargeable_vat_id" type="text" value={vatId} onChange={(e) => setVatId(e.target.value)} />
-            </fieldset>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor="chargeable_vat_id">{form_info.vat_id_label}</FormLabel>
+              </FormLegend>
+              <FormInput id="chargeable_vat_id" type="text" value={vatId} onChange={(e) => setVatId(e.target.value)} />
+            </FormFieldset>
           ) : null}
-          <fieldset className={cx({ danger: streetAddress.error })}>
-            <label htmlFor="street_address">Street address</label>
-            <input
+          <FormFieldset state={streetAddress.error ? "danger" : undefined}>
+            <FormLabel htmlFor="street_address">Street address</FormLabel>
+            <FormInput
               id="street_address"
               type="text"
               placeholder="Street address"
               value={streetAddress.value}
               onChange={(e) => setStreetAddress({ value: e.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
           <div style={{ display: "grid", gap: "var(--spacer-2)", gridTemplateColumns: "2fr 1fr 1fr" }}>
-            <fieldset className={cx({ danger: city.error })}>
-              <label htmlFor="city">City</label>
-              <input
+            <FormFieldset state={city.error ? "danger" : undefined}>
+              <FormLabel htmlFor="city">City</FormLabel>
+              <FormInput
                 id="city"
                 type="text"
                 placeholder="City"
                 value={city.value}
                 onChange={(e) => setCity({ value: e.target.value })}
               />
-            </fieldset>
-            <fieldset className={cx({ danger: state.error })}>
-              <label htmlFor="state">State</label>
-              <input
+            </FormFieldset>
+            <FormFieldset state={state.error ? "danger" : undefined}>
+              <FormLabel htmlFor="state">State</FormLabel>
+              <FormInput
                 id="state"
                 type="text"
                 placeholder="State"
                 value={state.value}
                 onChange={(e) => setState({ value: e.target.value })}
               />
-            </fieldset>
-            <fieldset className={cx({ danger: zipCode.error })}>
-              <label htmlFor="zip_code">ZIP code</label>
-              <input
+            </FormFieldset>
+            <FormFieldset state={zipCode.error ? "danger" : undefined}>
+              <FormLabel htmlFor="zip_code">ZIP code</FormLabel>
+              <FormInput
                 id="zip_code"
                 type="text"
                 placeholder="ZIP code"
                 value={zipCode.value}
                 onChange={(e) => setZipCode({ value: e.target.value })}
               />
-            </fieldset>
+            </FormFieldset>
           </div>
-          <fieldset className={cx({ danger: country.error })}>
-            <label htmlFor="country">Country</label>
-            <select id="country" value={country.value} onChange={(e) => setCountry({ value: e.target.value })}>
+          <FormFieldset state={country.error ? "danger" : undefined}>
+            <FormLabel htmlFor="country">Country</FormLabel>
+            <FormSelect id="country" value={country.value} onChange={(e) => setCountry({ value: e.target.value })}>
               <option value="">Select country</option>
               {Object.entries(countries).map(([code, name]) => (
                 <option key={code} value={code}>
                   {name}
                 </option>
               ))}
-            </select>
-          </fieldset>
-          <fieldset className={cx({ danger: additionalNotes.error })}>
-            <legend>
-              <label htmlFor="additional_notes">Additional notes</label>
-            </legend>
-            <textarea
+            </FormSelect>
+          </FormFieldset>
+          <FormFieldset state={additionalNotes.error ? "danger" : undefined}>
+            <FormLegend>
+              <FormLabel htmlFor="additional_notes">Additional notes</FormLabel>
+            </FormLegend>
+            <FormTextarea
               id="additional_notes"
               name="additional_notes"
               placeholder="Enter anything else you'd like to appear on your invoice (Optional)"
               value={additionalNotes.value}
               onChange={(e) => setAdditionalNotes({ value: e.target.value })}
             />
-          </fieldset>
+          </FormFieldset>
         </div>
         <div>
           <h5>{supplier_info.heading}</h5>

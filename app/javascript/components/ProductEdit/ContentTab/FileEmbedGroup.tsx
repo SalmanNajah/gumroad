@@ -20,6 +20,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useRunOnce } from "$app/components/useRunOnce";
+import { FormInput } from "$app/components/ui/FormInput";
 
 type FileEntry = {
   id: string;
@@ -152,7 +153,7 @@ const FileEmbedGroupNodeView = ({
             <Icon name={expanded ? "outline-cheveron-down" : "outline-cheveron-right"} />
             <Icon name="solid-folder-open" className="type-icon" />
             {editing ? (
-              <input
+              <FormInput
                 type="text"
                 ref={inputRef}
                 defaultValue={node.attrs.name ? String(node.attrs.name) : ""}

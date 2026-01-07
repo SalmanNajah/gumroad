@@ -13,6 +13,7 @@ import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
 
 export const LineItem = ({
   name,
@@ -214,27 +215,27 @@ export const CreateAccountForm = ({
           <div>
             <h3>Create an account to access all of your purchases in one place</h3>
           </div>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}email`}>Email</label>
-            </legend>
-            <input type="text" readOnly value={createAccountData.email} id={`${uid}email`} />
-          </fieldset>
-          <fieldset>
-            <legend>
-              <label htmlFor={`${uid}password`}>Password</label>
-            </legend>
-            <input
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}email`}>Email</FormLabel>
+            </FormLegend>
+            <FormInput type="text" readOnly value={createAccountData.email} id={`${uid}email`} />
+          </FormFieldset>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={`${uid}password`}>Password</FormLabel>
+            </FormLegend>
+            <FormInput
               type="password"
               placeholder="Enter password"
               value={password}
               onChange={(evt) => setPassword(evt.target.value)}
               id={`${uid}password`}
             />
-            <small>
+            <FormSmall>
               You agree to our <a href="https://gumroad.com/terms">Terms Of Use</a>.
-            </small>
-          </fieldset>
+            </FormSmall>
+          </FormFieldset>
 
           <Button type="submit" color="primary" disabled={status === "processing"}>
             {status === "processing" ? "..." : "Sign up"}

@@ -3,6 +3,7 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import { TextInput } from "$app/components/Download/CustomField/TextInput";
+import { FormFieldset, FormInput, FormTextarea } from "$app/components/ui/form";
 
 export const TextInputNodeView = ({ editor, node, updateAttributes }: NodeViewProps) => {
   const label = cast<string | null>(node.attrs.label);
@@ -16,10 +17,10 @@ export const TextInputNodeView = ({ editor, node, updateAttributes }: NodeViewPr
 
   return (
     <NodeViewWrapper data-drag-handle>
-      <fieldset>
+      <FormFieldset>
         {editor.isEditable ? (
           <>
-            <input
+            <FormInput
               value={label ?? ""}
               placeholder="Title"
               onChange={(evt) => updateAttributes({ label: evt.target.value })}
@@ -34,12 +35,12 @@ export const TextInputNodeView = ({ editor, node, updateAttributes }: NodeViewPr
                 borderRadius: 0,
               }}
             />
-            {type === "shortAnswer" ? <input {...sharedProps} /> : <textarea {...sharedProps} />}
+            {type === "shortAnswer" ? <FormInput {...sharedProps} /> : <FormTextarea {...sharedProps} />}
           </>
         ) : (
           <TextInput customFieldId={customFieldId ?? ""} type={type} label={label ?? ""} />
         )}
-      </fieldset>
+      </FormFieldset>
     </NodeViewWrapper>
   );
 };

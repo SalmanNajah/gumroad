@@ -5,6 +5,7 @@ import { request } from "$app/utils/request";
 
 import { showAlert } from "$app/components/server-components/Alert";
 import { usePurchaseCustomFields, usePurchaseInfo } from "$app/components/server-components/DownloadPage/WithContent";
+import { FormInput, FormLabel, FormTextarea } from "$app/components/ui/form";
 
 export const TextInput = ({
   customFieldId,
@@ -57,8 +58,8 @@ export const TextInput = ({
 
   return (
     <>
-      <label htmlFor={uid}>{label}</label>
-      {type === "shortAnswer" ? <input {...sharedInputProps} /> : <textarea {...sharedInputProps} />}
+      <FormLabel htmlFor={uid}>{label}</FormLabel>
+      {type === "shortAnswer" ? <FormInput {...sharedInputProps} /> : <FormTextarea {...sharedInputProps} />}
     </>
   );
 };

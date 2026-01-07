@@ -553,7 +553,7 @@ const ContentTabContent = ({ selectedVariantId }: { selectedVariantId: string | 
                     }
                   >
                     <div className="flex flex-col gap-4">
-                      <input
+                      <FormInput
                         type="text"
                         placeholder="Find your files"
                         value={selectingExistingFiles.query}

@@ -17,6 +17,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { TwitterShareButton } from "$app/components/TwitterShareButton";
 import { Alert } from "$app/components/ui/Alert";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { FormInput } from "$app/components/ui/FormInput";
 
 type SuccessState = { newlyCreated: boolean; wishlist: Wishlist };
 
@@ -101,7 +102,7 @@ export const ShareSection = ({
               className={`input ${dropdownState.state !== "closed" ? "!rounded-b-none" : ""}`}
               aria-label="Add to wishlist"
             >
-              <span className="fake-input text-singleline">
+              <span className="text-singleline flex-1">
                 {saveState.type === "success"
                   ? saveState.wishlist.name
                   : saveState.type === "saving"
@@ -140,7 +141,7 @@ export const ShareSection = ({
                   void addProduct(newWishlist(dropdownState.newWishlistName));
                 }}
               >
-                <input
+                <FormInput
                   type="text"
                   autoFocus
                   placeholder="Wishlist name"

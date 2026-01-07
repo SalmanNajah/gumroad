@@ -12,6 +12,7 @@ import { Drawer } from "$app/components/SortableList";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
 import { Toggle } from "$app/components/Toggle";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
 
 declare module "@tiptap/core" {
@@ -81,17 +82,19 @@ const LicenseKeyNodeView = ({ editor, selected }: NodeViewProps) => {
                 </Toggle>
               ) : null}
               {productId ? (
-                <fieldset>
-                  <legend>
-                    <label htmlFor={`product_id-${uid}`}>Use your product ID to verify licenses through the API.</label>
-                  </legend>
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={`product_id-${uid}`}>
+                      Use your product ID to verify licenses through the API.
+                    </FormLabel>
+                  </FormLegend>
                   <div className="flex gap-2">
-                    <input id={`product_id-${uid}`} type="text" value={productId} className="flex-1" readOnly />
+                    <FormInput id={`product_id-${uid}`} type="text" value={productId} className="flex-1" readOnly />
                     <CopyToClipboard text={productId} tooltipPosition="bottom">
                       <a className="button">Copy</a>
                     </CopyToClipboard>
                   </div>
-                </fieldset>
+                </FormFieldset>
               ) : null}
             </Drawer>
           </RowDetails>

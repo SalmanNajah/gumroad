@@ -4,6 +4,7 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormLabel, FormFieldset, FormSmall } from "$app/components/ui/form";
 
 export const AdminManualPayoutForm = ({
   user_id,
@@ -35,7 +36,7 @@ export const AdminManualPayoutForm = ({
     onSuccess={() => showAlert("Successfully issued payout.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <FormFieldset>
         <input type="hidden" name="payday[payout_processor]" value={stripe ? "STRIPE" : "PAYPAL"} />
         <input type="hidden" name="payday[payout_period_end_date]" value={manual_payout_period_end_date} />
         {stripe ? (
@@ -49,7 +50,7 @@ export const AdminManualPayoutForm = ({
         {paypal ? (
           <div>
             {unpaid_balance_up_to_date > paypal.split_payment_by_cents && (
-              <label>
+              <FormLabel>
                 <input
                   type="checkbox"
                   name="payday[should_split_the_amount]"
@@ -57,7 +58,7 @@ export const AdminManualPayoutForm = ({
                   className="small"
                 />
                 Break up into {paypal.split_payment_by_cents} chunks?
-              </label>
+              </FormLabel>
             )}
           </div>
         ) : null}
@@ -66,11 +67,11 @@ export const AdminManualPayoutForm = ({
             {isLoading ? "Issuing Payout..." : "Issue Payout"}
           </button>
         </div>
-        <small>
+        <FormSmall>
           Balance that will be paid by clicking this button:{" "}
           {formatPriceCentsWithCurrencySymbol("usd", unpaid_balance_up_to_date, { symbolFormat: "short" })}
-        </small>
-      </fieldset>
+        </FormSmall>
+      </FormFieldset>
     )}
   </Form>
 );

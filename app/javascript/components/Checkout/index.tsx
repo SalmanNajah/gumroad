@@ -59,6 +59,7 @@ import {
 import { computeTip, computeTipForPrice, getTotalPrice, isProcessing, useState } from "./payment";
 
 import placeholder from "$assets/images/placeholders/checkout.png";
+import { FormInput } from "$app/components/ui/FormInput";
 
 function formatPrice(price: number) {
   return formatUSDCentsWithExpandedCurrencySymbol(Math.floor(price));
@@ -329,7 +330,7 @@ export const Checkout = ({
                         void applyDiscount(newDiscountCode);
                       }}
                     >
-                      <input
+                      <FormInput
                         placeholder="Discount code"
                         value={newDiscountCode}
                         className="flex-1"

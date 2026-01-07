@@ -29,6 +29,7 @@ import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/u
 import { useOnOutsideClick } from "$app/components/useOnOutsideClick";
 import { useRefToLatest } from "$app/components/useRefToLatest";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
 
 import { NativeAppLink, TrackClick } from "./Interactions";
 
@@ -742,8 +743,8 @@ const SendToKindleContainer = ({
   return (
     <div>
       <div className="flex gap-2">
-        <fieldset className={cx("flex-1", { danger: hasError })}>
-          <input
+        <FormFieldset className="flex-1" state={hasError ? "danger" : undefined}>
+          <FormInput
             type="text"
             value={emailEntry}
             onChange={(evt) => {
@@ -753,14 +754,14 @@ const SendToKindleContainer = ({
             placeholder="e7@kindle.com"
             autoFocus
           />
-          <small>
+          <FormSmall>
             You'll need to add noreply@customers.gumroad.com to your{" "}
             <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H">
               list of approved personal document emails
             </a>
             .
-          </small>
-        </fieldset>
+          </FormSmall>
+        </FormFieldset>
         <Button color="primary" onClick={() => void sendToKindle()} style={{ alignSelf: "flex-start" }}>
           Send
         </Button>

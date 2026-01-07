@@ -26,6 +26,7 @@ import { WithTooltip } from "$app/components/WithTooltip";
 
 import noLinksYetPlaceholder from "$assets/images/placeholders/utm_links_empty.png";
 import noLinksFoundPlaceholder from "$assets/images/placeholders/utm_links_not_found.png";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 
 type UtmLinksIndexProps = {
   utm_links: SavedUtmLink[];
@@ -378,9 +379,9 @@ const SearchBoxPopover = ({ initialQuery, onSearch }: { initialQuery: string; on
         </WithTooltip>
       }
     >
-      <div className="input">
+      <FormInputWrapper>
         <Icon name="solid-search" />
-        <input
+        <FormInput
           ref={searchInputRef}
           type="text"
           placeholder="Search"
@@ -391,7 +392,7 @@ const SearchBoxPopover = ({ initialQuery, onSearch }: { initialQuery: string; on
             onSearch(newQuery);
           }}
         />
-      </div>
+      </FormInputWrapper>
     </Popover>
   );
 };

@@ -20,6 +20,7 @@ import {
 } from "$app/components/Payouts";
 import { ExportPayoutsPopover } from "$app/components/Payouts/ExportPayoutsPopover";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -584,11 +585,11 @@ export default function PayoutsIndex() {
                 You can request instant payouts 24/7, including weekends and holidays. Funds typically appear in your
                 bank account within 30 minutes, though some payouts may take longer to be credited.
               </p>
-              <fieldset>
-                <label htmlFor="instant-payout-date">Pay out balance up to</label>
+              <FormFieldset>
+                <FormLabel htmlFor="instant-payout-date">Pay out balance up to</FormLabel>
                 <div className="input cursor-pointer">
                   <Icon name="calendar-all" />
-                  <select
+                  <FormSelect
                     id="instant-payout-date"
                     value={instantPayoutId}
                     onChange={(e) => setInstantPayoutId(e.target.value)}
@@ -602,12 +603,12 @@ export default function PayoutsIndex() {
                         })}
                       </option>
                     ))}
-                  </select>
+                  </FormSelect>
                   <Icon name="outline-cheveron-down" />
                 </div>
-              </fieldset>
-              <fieldset>
-                <legend>Payout details</legend>
+              </FormFieldset>
+              <FormFieldset>
+                <FormLegend>Payout details</FormLegend>
                 <div className="rounded-sm border border-border bg-background not-first:border-t">
                   <div className="grid gap-4 p-4">
                     <div className="grid grid-flow-col justify-between gap-4">
@@ -655,7 +656,7 @@ export default function PayoutsIndex() {
                     your balance into multiple payouts.
                   </div>
                 ) : null}
-              </fieldset>
+              </FormFieldset>
             </Modal>
           </div>
         ) : null}

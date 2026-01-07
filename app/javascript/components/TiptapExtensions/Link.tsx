@@ -13,6 +13,7 @@ import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { MenuItem, validateUrl } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput } from "$app/components/ui/form";
 
 export const WithDialog = ({
   editor,
@@ -94,7 +95,7 @@ export const WithDialog = ({
           createPortal(
             <Modal open onClose={() => setAddingLink(null)} title={`Insert ${type === "link" ? "link" : "button"}`}>
               {!editor.isActive("image") ? (
-                <input
+                <FormInput
                   ref={labelInputRef}
                   type="text"
                   placeholder="Enter text"
@@ -105,7 +106,7 @@ export const WithDialog = ({
                   }}
                 />
               ) : null}
-              <input
+              <FormInput
                 ref={linkInputRef}
                 type="text"
                 placeholder="Enter URL"
@@ -236,14 +237,14 @@ const LinkNodeView = ({ node, editor, getPos, deleteNode }: NodeViewProps) => {
           }}
           style={{ visibility: isButton || isPopoverVisible ? "visible" : "hidden" }}
         >
-          <fieldset>
-            <input
+          <FormFieldset>
+            <FormInput
               placeholder="Enter text"
               value={link.label}
               onChange={(evt) => setLink({ ...link, label: evt.target.value })}
               onKeyDown={handleKeyPress}
             />
-            <input
+            <FormInput
               placeholder="Enter URL"
               value={link.url}
               ref={linkInputRef}
@@ -265,7 +266,7 @@ const LinkNodeView = ({ node, editor, getPos, deleteNode }: NodeViewProps) => {
                 Save
               </Button>
             </div>
-          </fieldset>
+          </FormFieldset>
         </Popover>
       ) : (
         <NodeViewContent
