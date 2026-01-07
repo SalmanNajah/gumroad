@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
 
 export const MassTransferPurchasesForm = ({ user_id }: { user_id: number }) => (
   <Form
@@ -14,15 +15,15 @@ export const MassTransferPurchasesForm = ({ user_id }: { user_id: number }) => (
     onSuccess={() => showAlert("Successfully transferred purchases.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <FormFieldset>
         <div style={{ display: "grid", gap: "var(--spacer-3)", gridTemplateColumns: "1fr auto" }}>
-          <input type="email" name="mass_transfer_purchases[new_email]" placeholder="New email" required />
+          <FormInput type="email" name="mass_transfer_purchases[new_email]" placeholder="New email" required />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Transferring..." : "Transfer"}
           </button>
         </div>
-        <small>Are you sure you want to Mass Transfer purchases for this user?</small>
-      </fieldset>
+        <FormSmall>Are you sure you want to Mass Transfer purchases for this user?</FormSmall>
+      </FormFieldset>
     )}
   </Form>
 );

@@ -1,3 +1,4 @@
+import { FormInput } from "$app/components/ui/FormInput";
 import React from "react";
 
 const AdminDashboard = () => {
@@ -7,7 +8,7 @@ const AdminDashboard = () => {
     <section>
       <div className="flex max-w-2xl flex-col gap-4">
         <div className="flex flex-col gap-4">
-          <input
+          <FormInput
             type="text"
             name="user_identifier"
             value={userIdentifier}

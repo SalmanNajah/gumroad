@@ -1,6 +1,7 @@
 import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
+import { FormLabel, FormSelect, FormTextarea } from "$app/components/ui/form";
 import CodeSnippet from "$app/components/ui/CodeSnippet";
 
 type PageProps = {
@@ -59,7 +60,7 @@ const SuspendUsers = () => {
           4724778
         </CodeSnippet>
 
-        <textarea
+        <FormTextarea
           id="identifiers"
           name="suspend_users[identifiers]"
           placeholder="Enter user IDs here"
@@ -68,8 +69,8 @@ const SuspendUsers = () => {
           onChange={setIdentifiers}
         />
 
-        <label htmlFor="reason">Reason</label>
-        <select
+        <FormLabel htmlFor="reason">Reason</FormLabel>
+        <FormSelect
           id="reason"
           name="suspend_users[reason]"
           required
@@ -82,10 +83,10 @@ const SuspendUsers = () => {
               {reason}
             </option>
           ))}
-        </select>
+        </FormSelect>
 
-        <label htmlFor="additionalNotes">Notes</label>
-        <textarea
+        <FormLabel htmlFor="additionalNotes">Notes</FormLabel>
+        <FormTextarea
           id="additionalNotes"
           name="suspend_users[additional_notes]"
           placeholder="Additional info for support team"

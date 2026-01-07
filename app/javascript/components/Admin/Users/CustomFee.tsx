@@ -3,6 +3,7 @@ import * as React from "react";
 import { Form } from "$app/components/Admin/Form";
 import type { User } from "$app/components/Admin/Users/User";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
 
 type AdminUserCustomFeeProps = {
   user: User;
@@ -26,9 +27,9 @@ const AdminUserCustomFee = ({ user }: AdminUserCustomFeeProps) => {
           onSuccess={() => showAlert("Custom fee updated.", "success")}
         >
           {(isLoading) => (
-            <fieldset>
+            <FormFieldset>
               <div className="flex items-start gap-2">
-                <input
+                <FormInput
                   name="custom_fee_percent"
                   type="number"
                   inputMode="decimal"
@@ -44,11 +45,11 @@ const AdminUserCustomFee = ({ user }: AdminUserCustomFeeProps) => {
                   {isLoading ? "Submitting..." : "Submit"}
                 </button>
               </div>
-              <small>
+              <FormSmall>
                 Note: Updated custom fee will apply to new direct (non-discover) sales of the user, but not to future
                 charges of their existing memberships.
-              </small>
-            </fieldset>
+              </FormSmall>
+            </FormFieldset>
           )}
         </Form>
       </details>

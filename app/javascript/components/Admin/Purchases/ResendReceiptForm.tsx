@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
 
 type AdminResendReceiptFormProps = {
   purchase_external_id: string;
@@ -16,15 +17,15 @@ export const AdminResendReceiptForm = ({ purchase_external_id, email }: AdminRes
     onSuccess={() => showAlert("Receipt sent successfully.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <FormFieldset>
         <div className="flex gap-2">
-          <input type="email" className="flex-1" name="resend_receipt[email_address]" placeholder={email} />
+          <FormInput type="email" className="flex-1" name="resend_receipt[email_address]" placeholder={email} />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Sending..." : "Send"}
           </button>
         </div>
-        <small>This will update the purchase email to this new one!</small>
-      </fieldset>
+        <FormSmall>This will update the purchase email to this new one!</FormSmall>
+      </FormFieldset>
     )}
   </Form>
 );

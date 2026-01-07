@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormTextarea } from "$app/components/ui/form";
 
 export const AdminSuspendForFraudForm = ({ user_id }: { user_id: number }) => (
   <Form
@@ -14,14 +15,18 @@ export const AdminSuspendForFraudForm = ({ user_id }: { user_id: number }) => (
     onSuccess={() => showAlert("Suspended.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <FormFieldset>
         <div className="input-with-button" style={{ alignItems: "start" }}>
-          <textarea name="suspend_for_fraud[suspension_note]" rows={3} placeholder="Add suspension note (optional)" />
+          <FormTextarea
+            name="suspend_for_fraud[suspension_note]"
+            rows={3}
+            placeholder="Add suspension note (optional)"
+          />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Submitting..." : "Submit"}
           </button>
         </div>
-      </fieldset>
+      </FormFieldset>
     )}
   </Form>
 );

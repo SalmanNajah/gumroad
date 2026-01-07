@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormSelect } from "$app/components/ui/FormSelect";
 
 type AdminSuspendForTosFormProps = {
   user_id: number;
@@ -37,13 +38,13 @@ export const AdminSuspendForTosForm = ({
     >
       {(isLoading) => (
         <>
-          <select name="suspend_tos[reason]" defaultValue={default_reason} className="flex-1">
+          <FormSelect name="suspend_tos[reason]" defaultValue={default_reason} className="flex-1">
             {Object.entries(reasons).map(([name, value]) => (
               <option key={value} value={value}>
                 {name}
               </option>
             ))}
-          </select>
+          </FormSelect>
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Suspending..." : "Submit"}
           </button>

@@ -1,3 +1,4 @@
+import { FormCheckbox } from "$app/components/ui/FormCheckbox";
 import React from "react";
 
 export type ProductPurchase = {
@@ -45,8 +46,7 @@ const AdminProductPurchase = ({
   return (
     <div>
       <div className="flex items-start gap-2">
-        <input
-          type="checkbox"
+        <FormCheckbox
           aria-label={`Select purchase ${external_id}`}
           checked={isSelected}
           onChange={(event) => onToggleSelection(external_id, event.target.checked)}

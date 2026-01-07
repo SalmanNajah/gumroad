@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput, FormInputWrapper, FormSmall } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 export const AdminAddCreditForm = ({ user_id }: { user_id: number }) => (
@@ -15,18 +16,18 @@ export const AdminAddCreditForm = ({ user_id }: { user_id: number }) => (
     onSuccess={() => showAlert("Successfully added credits.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <FormFieldset>
         <div className="input-with-button">
-          <div className="input">
+          <FormInputWrapper>
             <Pill className="-ml-2 shrink-0">$</Pill>
-            <input type="text" name="credit[credit_amount]" placeholder="10.25" inputMode="decimal" required />
-          </div>
+            <FormInput type="text" name="credit[credit_amount]" placeholder="10.25" inputMode="decimal" required />
+          </FormInputWrapper>
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Saving..." : "Add credits"}
           </button>
         </div>
-        <small>Subtract credits by providing a negative value</small>
-      </fieldset>
+        <FormSmall>Subtract credits by providing a negative value</FormSmall>
+      </FormFieldset>
     )}
   </Form>
 );

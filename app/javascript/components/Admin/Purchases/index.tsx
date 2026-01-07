@@ -12,6 +12,7 @@ import AdminResendReceiptForm from "$app/components/Admin/Purchases/ResendReceip
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormInput } from "$app/components/ui/form";
 
 import { type RefundPolicy, RefundPolicyTitle } from "./RefundPolicy";
 import { type PurchaseStatesInfo, PurchaseStates } from "./States";
@@ -502,7 +503,13 @@ const GiftInfo = ({ purchaseExternalId, gift }: { purchaseExternalId: string; gi
         >
           {(isLoading) => (
             <div className="flex gap-2">
-              <input type="text" className="flex-1" name="giftee_email" placeholder="Enter new giftee email" required />
+              <FormInput
+                type="text"
+                className="flex-1"
+                name="giftee_email"
+                placeholder="Enter new giftee email"
+                required
+              />
               <button type="submit" className="button" disabled={isLoading}>
                 {isLoading ? "Updating..." : "Update"}
               </button>

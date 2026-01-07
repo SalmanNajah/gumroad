@@ -10,6 +10,7 @@ import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { Icon } from "$app/components/Icons";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
+import { FormInput, FormSelect } from "$app/components/ui/form";
 
 type Purchase = {
   external_id: string;
@@ -53,24 +54,24 @@ export default function Purchases() {
             }}
             className="flex gap-2"
           >
-            <input
+            <FormInput
               name="product_title_query"
               placeholder="Filter by product title"
               type="text"
               value={data.product_title_query}
               onChange={(e) => setData("product_title_query", e.target.value)}
             />
-            <select
+            <FormSelect
               name="purchase_status"
               value={data.purchase_status}
-              className="w-auto"
+              className="w-auto shrink-0"
               onChange={(e) => setData("purchase_status", e.target.value)}
             >
               <option value="">Any status</option>
               <option value="chargeback">Chargeback</option>
               <option value="refunded">Refunded</option>
               <option value="failed">Failed</option>
-            </select>
+            </FormSelect>
             <button type="submit" className="button primary">
               <Icon name="solid-search" />
             </button>

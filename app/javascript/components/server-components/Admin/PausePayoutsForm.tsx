@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormTextarea } from "$app/components/ui/form";
 
 export const AdminPausePayoutsForm = ({
   user_id,
@@ -29,7 +30,7 @@ export const AdminPausePayoutsForm = ({
       onSuccess={() => showAlert(admin_can_resume_payouts ? "Payouts resumed" : "Payouts paused", "success")}
     >
       {(isLoading) => (
-        <fieldset>
+        <FormFieldset>
           <div className="input-with-button" style={{ alignItems: "end" }}>
             {payouts_paused_by === "admin" ? (
               <p>Payouts are currently paused by Gumroad admin. Reason: {reason}</p>
@@ -40,7 +41,7 @@ export const AdminPausePayoutsForm = ({
             ) : (
               <div className="grid gap-2">
                 {payouts_paused_by === "user" && <p>Payouts are currently paused by the creator.</p>}
-                <textarea
+                <FormTextarea
                   name="pause_payouts[reason]"
                   rows={2}
                   placeholder="Add a reason for pausing payouts. It'll be displayed to the user on their dashboard."
@@ -57,7 +58,7 @@ export const AdminPausePayoutsForm = ({
                   : "Pause Payouts"}
             </button>
           </div>
-        </fieldset>
+        </FormFieldset>
       )}
     </Form>
   );

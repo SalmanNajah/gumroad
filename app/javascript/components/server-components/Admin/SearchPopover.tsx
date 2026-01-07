@@ -7,6 +7,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
 import { Separator } from "$app/components/Separator";
+import { FormInput, FormInputWrapper, FormSelect } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -31,70 +32,70 @@ export const SearchPopover = ({ card_types }: Props) => {
     >
       <div style={{ width: "23rem", maxWidth: "100%", display: "grid", gap: "var(--spacer-3)" }}>
         <form action={Routes.admin_search_users_path()} method="get" className="input-with-button">
-          <div className="input">
+          <FormInputWrapper>
             <Icon name="person" />
-            <input
+            <FormInput
               autoFocus
               name="query"
               placeholder="Search users (email, name, ID)"
               type="text"
               defaultValue={searchParams.get("query") || ""}
             />
-          </div>
+          </FormInputWrapper>
           <Button color="primary" type="submit">
             <Icon name="solid-search" />
           </Button>
         </form>
         <form action={Routes.admin_search_purchases_path()} method="get" className="input-with-button">
-          <div className="input">
+          <FormInputWrapper>
             <Icon name="solid-currency-dollar" />
-            <input
+            <FormInput
               name="query"
               placeholder="Search purchases (email, IP, card, external ID)"
               type="text"
               defaultValue={searchParams.get("query") || ""}
             />
-          </div>
+          </FormInputWrapper>
           <Button color="primary" type="submit">
             <Icon name="solid-search" />
           </Button>
         </form>
         <form action={Routes.admin_affiliates_path()} method="get" className="input-with-button">
-          <div className="input">
+          <FormInputWrapper>
             <Icon name="people-fill" />
-            <input
+            <FormInput
               name="query"
               placeholder="Search affiliates (email, name, ID)"
               type="text"
               defaultValue={searchParams.get("query") || ""}
             />
-          </div>
+          </FormInputWrapper>
           <Button color="primary" type="submit">
             <Icon name="solid-search" />
           </Button>
         </form>
         <Separator>or search by card</Separator>
         <form action={Routes.admin_search_purchases_path()} method="get" style={{ display: "contents" }}>
-          <select name="card_type" defaultValue={searchParams.get("card_type") || ""}>
+          <FormSelect name="card_type" defaultValue={searchParams.get("card_type") || ""}>
             <option value="">Choose card type</option>
             {card_types.map((cardType) => (
               <option key={cardType.id} value={cardType.id}>
                 {cardType.name}
               </option>
             ))}
-          </select>
-          <div className="input">
+          </FormSelect>
+          <FormInputWrapper>
             <Icon name="calendar-all" />
-            <input
+            <FormInput
               name="transaction_date"
               placeholder="Date (02/22/2022)"
               type="text"
               defaultValue={searchParams.get("transaction_date") || ""}
             />
-          </div>
-          <div className="input">
+          </FormInputWrapper>
+          <FormInputWrapper>
             <Icon name="lock-fill" />
-            <input
+            <FormInput
               name="last_4"
               placeholder="Last 4 (7890)"
               type="text"
@@ -104,19 +105,19 @@ export const SearchPopover = ({ card_types }: Props) => {
               inputMode="numeric"
               defaultValue={searchParams.get("last_4") || ""}
             />
-          </div>
-          <div className="input">
+          </FormInputWrapper>
+          <FormInputWrapper>
             <Icon name="outline-credit-card" />
-            <input
+            <FormInput
               name="expiry_date"
               placeholder="Expiry (02/22)"
               type="text"
               defaultValue={searchParams.get("expiry_date") || ""}
             />
-          </div>
-          <div className="input">
+          </FormInputWrapper>
+          <FormInputWrapper>
             <Pill className="-ml-2 shrink-0">$</Pill>
-            <input
+            <FormInput
               name="price"
               placeholder="Price (9.99)"
               type="number"
@@ -124,7 +125,7 @@ export const SearchPopover = ({ card_types }: Props) => {
               step="0.01"
               defaultValue={searchParams.get("price") || ""}
             />
-          </div>
+          </FormInputWrapper>
           <Button color="primary" type="submit">
             Search
           </Button>

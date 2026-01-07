@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
+import { FormFieldset, FormTextarea } from "$app/components/ui/form";
 
 const AdminPausePayoutsForm = ({ user_id, onSuccess }: { user_id: number; onSuccess: (reason: string) => void }) => {
   const [reason, setReason] = React.useState("");
@@ -20,9 +21,9 @@ const AdminPausePayoutsForm = ({ user_id, onSuccess }: { user_id: number; onSucc
       onSuccess={onPauseSuccess}
     >
       {(isLoading) => (
-        <fieldset>
+        <FormFieldset>
           <div className="flex flex-col gap-2 md:flex-row md:items-end">
-            <textarea
+            <FormTextarea
               name="pause_payouts[reason]"
               rows={2}
               className="flex-1"
@@ -34,7 +35,7 @@ const AdminPausePayoutsForm = ({ user_id, onSuccess }: { user_id: number; onSucc
               {isLoading ? "Pausing Payouts" : "Pause Payouts"}
             </button>
           </div>
-        </fieldset>
+        </FormFieldset>
       )}
     </Form>
   );

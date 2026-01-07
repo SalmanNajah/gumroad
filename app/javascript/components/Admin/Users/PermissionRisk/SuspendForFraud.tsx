@@ -3,6 +3,7 @@ import * as React from "react";
 import { Form } from "$app/components/Admin/Form";
 import type { User } from "$app/components/Admin/Users/User";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormTextarea } from "$app/components/ui/form";
 
 type SuspendForFraudProps = {
   user: User;
@@ -26,9 +27,9 @@ const SuspendForFraud = ({ user }: SuspendForFraudProps) => {
             onSuccess={() => showAlert("Suspended.", "success")}
           >
             {(isLoading) => (
-              <fieldset>
+              <FormFieldset>
                 <div className="flex items-start gap-2">
-                  <textarea
+                  <FormTextarea
                     name="suspend_for_fraud[suspension_note]"
                     rows={3}
                     className="flex-1"
@@ -38,7 +39,7 @@ const SuspendForFraud = ({ user }: SuspendForFraudProps) => {
                     {isLoading ? "Submitting..." : "Submit"}
                   </button>
                 </div>
-              </fieldset>
+              </FormFieldset>
             )}
           </Form>
         </details>

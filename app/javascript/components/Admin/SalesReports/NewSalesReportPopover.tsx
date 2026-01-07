@@ -5,6 +5,7 @@ import { cast } from "ts-safe-cast";
 
 import Errors from "$app/components/Admin/Form/Errors";
 import { Popover } from "$app/components/Popover";
+import { FormInput, FormLabel, FormSelect } from "$app/components/ui/form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 type Errors = {
@@ -65,8 +66,8 @@ const NewSalesReportPopover = () => {
       <div className="grid w-96 max-w-full gap-3">
         <form onSubmit={handleSubmit} style={{ display: "contents" }}>
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="country_code">Country</label>
-            <select
+            <FormLabel htmlFor="country_code">Country</FormLabel>
+            <FormSelect
               name="sales_report[country_code]"
               id="country_code"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
@@ -81,14 +82,14 @@ const NewSalesReportPopover = () => {
                   {name}
                 </option>
               ))}
-            </select>
+            </FormSelect>
             <Errors errors={errors.sales_report?.country_code} label="Country code" />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="grid grid-rows-[auto_1fr] gap-3">
-              <label htmlFor="start_date">Start Date</label>
-              <input
+              <FormLabel htmlFor="start_date">Start Date</FormLabel>
+              <FormInput
                 name="sales_report[start_date]"
                 id="start_date"
                 type="date"
@@ -102,8 +103,8 @@ const NewSalesReportPopover = () => {
             </div>
 
             <div className="grid grid-rows-[1fr_auto] gap-3">
-              <label htmlFor="end_date">End Date</label>
-              <input
+              <FormLabel htmlFor="end_date">End Date</FormLabel>
+              <FormInput
                 name="sales_report[end_date]"
                 id="end_date"
                 type="date"
@@ -118,8 +119,8 @@ const NewSalesReportPopover = () => {
           </div>
 
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="sales_type">Sale Type</label>
-            <select
+            <FormLabel htmlFor="sales_type">Sale Type</FormLabel>
+            <FormSelect
               name="sales_report[sales_type]"
               id="sales_type"
               onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
@@ -133,7 +134,7 @@ const NewSalesReportPopover = () => {
                   {name}
                 </option>
               ))}
-            </select>
+            </FormSelect>
             <Errors errors={errors.sales_report?.sales_type} label="Type of sales" />
           </div>
 
