@@ -17,6 +17,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { Stats as StatsComponent } from "$app/components/Stats";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useGlobalEventListener } from "$app/components/useGlobalEventListener";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
@@ -199,9 +200,9 @@ const Search = ({ onSearch, value }: SearchProps) => {
         </WithTooltip>
       }
     >
-      <div className="input input-wrapper">
+      <FormInputWrapper>
         <Icon name="solid-search" />
-        <input
+        <FormInput
           ref={searchInputRef}
           value={value}
           autoFocus
@@ -209,7 +210,7 @@ const Search = ({ onSearch, value }: SearchProps) => {
           placeholder="Search"
           onChange={(e) => onSearch(e.target.value)}
         />
-      </div>
+      </FormInputWrapper>
     </Popover>
   );
 };

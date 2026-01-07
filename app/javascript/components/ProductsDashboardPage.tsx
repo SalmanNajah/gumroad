@@ -8,6 +8,7 @@ import { PaginationProps } from "$app/components/Pagination";
 import { Popover } from "$app/components/Popover";
 import { ProductsLayout } from "$app/components/ProductsLayout";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import ProductsPage from "./ProductsPage";
@@ -60,16 +61,16 @@ export const ProductsDashboardPage = ({
                 </WithTooltip>
               }
             >
-              <div className="input">
+              <FormInputWrapper>
                 <Icon name="solid-search" />
-                <input
+                <FormInput
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search products"
                   value={query ?? ""}
                   onChange={(evt) => setQuery(evt.target.value)}
                 />
-              </div>
+              </FormInputWrapper>
             </Popover>
           ) : null}
 

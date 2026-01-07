@@ -8,6 +8,7 @@ import { PaginationProps } from "$app/components/Pagination";
 import { Popover } from "$app/components/Popover";
 import { ProductsLayout } from "$app/components/ProductsLayout";
 import ProductsPage from "$app/components/ProductsPage";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 export type ArchivedProductsPageProps = {
@@ -52,16 +53,16 @@ export const ArchivedProductsPage = ({
               </WithTooltip>
             }
           >
-            <div className="input">
+            <FormInputWrapper>
               <Icon name="solid-search" />
-              <input
+              <FormInput
                 ref={searchInputRef}
                 type="text"
                 placeholder="Search products"
                 value={query ?? ""}
                 onChange={(evt) => setQuery(evt.target.value)}
               />
-            </div>
+            </FormInputWrapper>
           </Popover>
           <NavigationButtonInertia href={Routes.new_product_path()} disabled={!canCreateProduct} color="accent">
             New product

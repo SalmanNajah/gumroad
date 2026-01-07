@@ -24,6 +24,7 @@ import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { Tabs, Tab } from "$app/components/ui/Tabs";
+import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useLocalPagination } from "$app/components/useLocalPagination";
 import { useUserAgentInfo } from "$app/components/UserAgent";
@@ -93,9 +94,9 @@ const SearchBoxPopover = ({ initialQuery, onSearch }: { initialQuery: string; on
         </WithTooltip>
       }
     >
-      <div className="input input-wrapper">
+      <FormInputWrapper>
         <Icon name="solid-search" />
-        <input
+        <FormInput
           ref={searchInputRef}
           value={inputValue}
           autoFocus
@@ -104,7 +105,7 @@ const SearchBoxPopover = ({ initialQuery, onSearch }: { initialQuery: string; on
           aria-label="Search"
           onChange={handleChange}
         />
-      </div>
+      </FormInputWrapper>
     </Popover>
   );
 };
