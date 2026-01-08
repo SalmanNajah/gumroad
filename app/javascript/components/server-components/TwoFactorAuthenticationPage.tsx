@@ -65,7 +65,7 @@ export const TwoFactorAuthenticationPage = ({
       }
     >
       <form onSubmit={(e) => void handleSubmit(e)}>
-        <section>
+        <section className="grid gap-8 pb-12">
           {loginState.type === "error" ? <Alert variant="danger">{loginState.message}</Alert> : null}
           <FormFieldset>
             <FormLegend>

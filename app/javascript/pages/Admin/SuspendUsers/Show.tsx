@@ -1,8 +1,8 @@
 import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
-import { FormLabel, FormSelect, FormTextarea } from "$app/components/ui/form";
 import CodeSnippet from "$app/components/ui/CodeSnippet";
+import { FormLabel, FormSection, FormSelect, FormTextarea } from "$app/components/ui/form";
 
 type PageProps = {
   authenticity_token: string;
@@ -43,12 +43,16 @@ const SuspendUsers = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <section className="grid gap-8 p-4 md:p-8">
+      <FormSection
+        className="p-4 md:p-8"
+        header={
+          <>
+            To suspend users for terms of service violations, please enter IDs of those users separated by comma or
+            newline.
+          </>
+        }
+      >
         <input type="hidden" name="authenticity_token" value={form.data.authenticity_token} />
-        <header>
-          To suspend users for terms of service violations, please enter IDs of those users separated by comma or
-          newline.
-        </header>
 
         <CodeSnippet caption="Example with comma-separated items">3322133, 3738461, 4724778</CodeSnippet>
 
@@ -98,7 +102,7 @@ const SuspendUsers = () => {
         <button type="submit" className="button primary">
           Suspend users
         </button>
-      </section>
+      </FormSection>
     </form>
   );
 };

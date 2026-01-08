@@ -4,7 +4,7 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import Errors from "$app/components/Admin/Form/Errors";
-import { FormInput, FormLabel, FormSelect } from "$app/components/ui/form";
+import { FormInput, FormLabel, FormSection, FormSelect } from "$app/components/ui/form";
 
 type Props = {
   countries: [string, string][];
@@ -49,9 +49,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
 
   return (
     <form onSubmit={handleSubmit}>
-      <section className="grid gap-8 p-4 md:p-8">
-        <header>Generate sales report with custom date ranges</header>
-
+      <FormSection className="p-4 md:p-8" header="Generate sales report with custom date ranges">
         <div className="grid grid-rows-[auto_1fr] gap-3">
           <FormLabel htmlFor="country_code">Country</FormLabel>
           <FormSelect
@@ -130,7 +128,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
         </button>
 
         <input type="hidden" name="authenticity_token" value={form.data.authenticity_token} />
-      </section>
+      </FormSection>
     </form>
   );
 };

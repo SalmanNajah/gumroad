@@ -36,7 +36,7 @@ export const ForgotPasswordForm = ({ onClose }: { onClose: () => void }) => {
       <Separator>
         <span>or</span>
       </Separator>
-      <section>
+      <section className="grid gap-8 py-12">
         {saveState.type === "error" ? <Alert variant="danger">{saveState.message}</Alert> : null}
         <FormFieldset>
           <FormLegend>

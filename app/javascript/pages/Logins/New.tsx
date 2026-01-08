@@ -71,7 +71,7 @@ function LoginPage() {
           <Separator>
             <span>or</span>
           </Separator>
-          <section>
+          <section className="grid gap-8 py-12">
             <WarningFlash />
             <FormFieldset>
               <FormLegend>

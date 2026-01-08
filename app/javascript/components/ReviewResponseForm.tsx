@@ -7,6 +7,7 @@ import { Button } from "$app/components/Button";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormTextarea } from "$app/components/ui/FormTextarea";
 
 export const ReviewResponseForm = ({
   message: originalMessage,
@@ -64,7 +65,7 @@ export const ReviewResponseForm = ({
     <section>
       {isEditing ? (
         <form onSubmit={(event) => void respondToReview(event)} className="grid gap-3">
-          <textarea
+          <FormTextarea
             value={message}
             placeholder="Add a response to the review"
             onChange={(event) => setMessage(event.target.value)}

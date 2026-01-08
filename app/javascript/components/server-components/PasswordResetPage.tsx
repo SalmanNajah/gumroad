@@ -47,7 +47,7 @@ export const PasswordResetPage = ({ reset_password_token }: { reset_password_tok
   return (
     <Layout header={<h1>Reset your password</h1>} headerActions={<a href={Routes.login_path()}>Log in</a>}>
       <form onSubmit={(e) => void handleSubmit(e)}>
-        <section>
+        <section className="grid gap-8 pb-12">
           <FormFieldset>
             <FormLegend>
               <FormLabel htmlFor={`${uid}-password`}>Enter a new password</FormLabel>

@@ -13,6 +13,7 @@ import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Layout } from "$app/components/Profile/Layout";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 
 type FormStatus =
@@ -59,7 +60,7 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
         className="mx-auto w-full max-w-6xl border-0 lg:px-0"
       />
       <form className="border-y border-border px-4 pt-8 lg:px-0">
-        <section className="mx-auto w-full max-w-6xl">
+        <section className="mx-auto w-full max-w-6xl grid gap-8 py-12">
           <header>
             <div className="flex flex-col gap-4">
               <p>
@@ -88,45 +89,45 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
           ) : (
             <>
               {loggedInUser?.name ? null : (
-                <fieldset>
-                  <legend>
-                    <label htmlFor={nameUID}>Name</label>
-                  </legend>
-                  <input
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={nameUID}>Name</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={nameUID}
                     type="text"
                     placeholder="Name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
                   />
-                </fieldset>
+                </FormFieldset>
               )}
               {loggedInUser?.email ? null : (
-                <fieldset>
-                  <legend>
-                    <label htmlFor={emailUID}>Email</label>
-                  </legend>
-                  <input
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={emailUID}>Email</FormLabel>
+                  </FormLegend>
+                  <FormInput
                     id={emailUID}
                     type="text"
                     placeholder="Email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                   />
-                </fieldset>
+                </FormFieldset>
               )}
-              <fieldset>
-                <legend>
-                  <label htmlFor={promotionUID}>Promotion</label>
-                </legend>
-                <textarea
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={promotionUID}>Promotion</FormLabel>
+                </FormLegend>
+                <FormTextarea
                   id={promotionUID}
                   rows={5}
                   placeholder="How do you intend to promote their products? How big is your audience?"
                   value={promotionText}
                   onChange={(event) => setPromotionText(event.target.value)}
                 />
-              </fieldset>
+              </FormFieldset>
               <Button color="accent" onClick={onSubmit} disabled={formStatus.type === "submitting"}>
                 {formStatus.type === "submitting" ? "Submitting..." : "Submit affiliate request"}
               </Button>
