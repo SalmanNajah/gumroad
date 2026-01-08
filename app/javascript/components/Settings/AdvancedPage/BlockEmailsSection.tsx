@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { isValidEmail } from "$app/utils/email";
-import { FormFieldset, FormLabel, FormLegend, FormSmall, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormSection, FormSmall, FormTextarea } from "$app/components/ui/form";
 
 type Props = {
   blockedEmails: string;
@@ -40,13 +40,17 @@ const BlockEmailsSection = ({ blockedEmails, setBlockedEmails }: Props) => {
   };
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Mass-block emails</h2>
-        <a href="/help/article/329-customer-moderation" target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
+    <FormSection
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Mass-block emails</h2>
+          <a href="/help/article/329-customer-moderation" target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
       <FormFieldset>
         <FormLegend>
           <FormLabel htmlFor={uid}>Block emails from purchasing</FormLabel>
@@ -61,7 +65,7 @@ const BlockEmailsSection = ({ blockedEmails, setBlockedEmails }: Props) => {
         />
         <FormSmall>Please enter each email address on a new line.</FormSmall>
       </FormFieldset>
-    </section>
+    </FormSection>
   );
 };
 

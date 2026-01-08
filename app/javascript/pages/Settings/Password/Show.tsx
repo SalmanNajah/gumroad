@@ -8,7 +8,7 @@ import { Button } from "$app/components/Button";
 import { PasswordInput } from "$app/components/PasswordInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
-import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormSection } from "$app/components/ui/form";
 
 const MIN_PASSWORD_LENGTH = 4;
 const MAX_PASSWORD_LENGTH = 128;
@@ -55,10 +55,7 @@ export default function PasswordPage() {
   return (
     <SettingsLayout currentPage="password" pages={props.settings_pages}>
       <form onSubmit={handleSubmit}>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Change password</h2>
-          </header>
+        <FormSection className="p-4! md:p-8!" header={<h2>Change password</h2>}>
           {requireOldPassword ? (
             <FormFieldset>
               <FormLegend>
@@ -94,7 +91,7 @@ export default function PasswordPage() {
               </Button>
             </div>
           </FormFieldset>
-        </section>
+        </FormSection>
       </form>
     </SettingsLayout>
   );

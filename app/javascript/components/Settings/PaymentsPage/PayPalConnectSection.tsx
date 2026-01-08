@@ -8,7 +8,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSection } from "$app/components/ui/form";
 
 export type PayPalConnect = {
   email: string | null;
@@ -47,13 +47,17 @@ const PayPalConnectSection = ({
   });
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>PayPal</h2>
-        <a href="/help/article/275-paypal-connect" target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
+    <FormSection
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>PayPal</h2>
+          <a href="/help/article/275-paypal-connect" target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
       <div className="flex flex-col gap-4">
         {!paypalConnect.charge_processor_merchant_id ? (
           <>
@@ -160,7 +164,7 @@ const PayPalConnectSection = ({
           </>
         )}
       </div>
-    </section>
+    </FormSection>
   );
 };
 export default PayPalConnectSection;

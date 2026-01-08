@@ -8,7 +8,15 @@ import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Pill } from "$app/components/ui/Pill";
 import { WithTooltip } from "$app/components/WithTooltip";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
+import {
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormLegend,
+  FormSection,
+  FormSmall,
+} from "$app/components/ui/form";
 
 const NotificationEndpointSection = ({
   pingEndpoint,
@@ -49,13 +57,17 @@ const NotificationEndpointSection = ({
   });
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Ping</h2>
-        <a href={Routes.ping_path()} target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
+    <FormSection
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Ping</h2>
+          <a href={Routes.ping_path()} target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
       <FormFieldset>
         <FormLegend>
           <FormLabel htmlFor={uid}>Ping endpoint</FormLabel>
@@ -79,7 +91,7 @@ const NotificationEndpointSection = ({
         </FormInputWrapper>
         <FormSmall>For external services, your `seller_id` is {userId}</FormSmall>
       </FormFieldset>
-    </section>
+    </FormSection>
   );
 };
 

@@ -28,7 +28,7 @@ import { Option, Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection } from "$app/components/ui/form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { WithTooltip } from "$app/components/WithTooltip";
 
@@ -129,14 +129,18 @@ const AddTeamMembersSection = ({
   });
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Add team members</h2>
-        <div>Invite as many team members as you need to help run this account.</div>
-        <a href="/help/article/326-teams-and-roles" target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
+    <FormSection
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Add team members</h2>
+          <div>Invite as many team members as you need to help run this account.</div>
+          <a href="/help/article/326-teams-and-roles" target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
       <div
         style={{
           display: "grid",
@@ -192,7 +196,7 @@ const AddTeamMembersSection = ({
           "Send invitation"
         )}
       </Button>
-    </section>
+    </FormSection>
   );
 };
 
@@ -259,10 +263,7 @@ const TeamMembersSection = ({
   };
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2 ref={ref}>Team members</h2>
-      </header>
+    <FormSection className="p-4! md:p-8!" header={<h2 ref={ref}>Team members</h2>}>
       {deletedMember ? (
         <Alert variant="success">
           <div className="flex flex-col justify-between sm:flex-row">
@@ -389,6 +390,6 @@ const TeamMembersSection = ({
           have access.
         </Modal>
       ) : null}
-    </section>
+    </FormSection>
   );
 };

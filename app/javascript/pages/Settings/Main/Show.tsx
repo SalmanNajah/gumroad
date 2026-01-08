@@ -22,6 +22,7 @@ import {
   FormInputWrapper,
   FormLabel,
   FormLegend,
+  FormSection,
   FormSelect,
   FormSmall,
   FormTextarea,
@@ -124,10 +125,7 @@ export default function MainPage() {
   return (
     <Layout currentPage="main" pages={props.settings_pages} onSave={onSave} canUpdate={!isFormDisabled}>
       <form ref={formRef}>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>User details</h2>
-          </header>
+        <FormSection className="p-4! md:p-8!" header={<h2>User details</h2>}>
           <FormFieldset>
             <FormLegend>
               <FormLabel htmlFor={`${uid}-email`}>Email</FormLabel>
@@ -157,23 +155,27 @@ export default function MainPage() {
               </FormSmall>
             ) : null}
           </FormFieldset>
-        </section>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Notifications</h2>
-            <div>
-              Depending on your preferences, you can choose whether to receive mobile notifications or email
-              notifications. If you want to get notifications on a mobile device, install the Gumroad app over on the{" "}
-              <a href={props.ios_app_store_url} target="_blank" rel="noopener noreferrer">
-                App Store
-              </a>{" "}
-              or{" "}
-              <a href={props.android_app_store_url} target="_blank" rel="noopener noreferrer">
-                Play Store
-              </a>
-              .
-            </div>
-          </header>
+        </FormSection>
+        <FormSection
+          className="p-4! md:p-8!"
+          header={
+            <>
+              <h2>Notifications</h2>
+              <div>
+                Depending on your preferences, you can choose whether to receive mobile notifications or email
+                notifications. If you want to get notifications on a mobile device, install the Gumroad app over on the{" "}
+                <a href={props.ios_app_store_url} target="_blank" rel="noopener noreferrer">
+                  App Store
+                </a>{" "}
+                or{" "}
+                <a href={props.android_app_store_url} target="_blank" rel="noopener noreferrer">
+                  Play Store
+                </a>
+                .
+              </div>
+            </>
+          }
+        >
           <FormFieldset>
             <Table>
               <TableHeader>
@@ -276,11 +278,8 @@ export default function MainPage() {
               </TableBody>
             </Table>
           </FormFieldset>
-        </section>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Support</h2>
-          </header>
+        </FormSection>
+        <FormSection className="p-4! md:p-8!" header={<h2>Support</h2>}>
           <FormFieldset>
             <FormLegend>
               <FormLabel htmlFor={`${uid}-support-email`}>Email</FormLabel>
@@ -303,13 +302,17 @@ export default function MainPage() {
               onChange={handleProductLevelSupportEmailsChange}
             />
           )}
-        </section>
+        </FormSection>
         {props.user.seller_refund_policy.enabled ? (
-          <section className="p-4! md:p-8!">
-            <header>
-              <h2>Refund policy</h2>
-              <div>Choose how refunds will be handled for your products.</div>
-            </header>
+          <FormSection
+            className="p-4! md:p-8!"
+            header={
+              <>
+                <h2>Refund policy</h2>
+                <div>Choose how refunds will be handled for your products.</div>
+              </>
+            }
+          >
             <FormFieldset>
               <FormLegend>
                 <FormLabel htmlFor="max-refund-period-in-days">Refund period</FormLabel>
@@ -376,12 +379,9 @@ export default function MainPage() {
                 }
               />
             </FormFieldset>
-          </section>
+          </FormSection>
         ) : null}
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Local</h2>
-          </header>
+        <FormSection className="p-4! md:p-8!" header={<h2>Local</h2>}>
           <FormFieldset>
             <FormLegend>
               <FormLabel htmlFor={`${uid}-timezone`}>Time zone</FormLabel>
@@ -509,11 +509,8 @@ export default function MainPage() {
               </a>
             </FormSmall>
           </FormFieldset>
-        </section>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Adult content</h2>
-          </header>
+        </FormSection>
+        <FormSection className="p-4! md:p-8!" header={<h2>Adult content</h2>}>
           <FormFieldset>
             <ToggleSettingRow
               value={form.data.user.show_nsfw_products}
@@ -522,11 +519,8 @@ export default function MainPage() {
               label="Show adult content in recommendations and search results"
             />
           </FormFieldset>
-        </section>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Affiliates</h2>
-          </header>
+        </FormSection>
+        <FormSection className="p-4! md:p-8!" header={<h2>Affiliates</h2>}>
           <FormFieldset>
             <ToggleSettingRow
               value={form.data.user.disable_affiliate_requests}
@@ -538,7 +532,7 @@ export default function MainPage() {
               When enabled, other users cannot add you as an affiliate or request to become your affiliate.
             </FormSmall>
           </FormFieldset>
-        </section>
+        </FormSection>
         {props.invalidate_active_sessions ? <InvalidateActiveSessionsSection /> : null}
       </form>
     </Layout>
@@ -566,7 +560,7 @@ const InvalidateActiveSessionsSection = () => {
   });
 
   return (
-    <section className="p-4! md:p-8!">
+    <FormSection className="p-4! md:p-8!">
       <FormFieldset>
         <button className="underline" type="button" onClick={() => setIsConfirmationDialogOpen(true)}>
           Sign out from all active sessions
@@ -593,6 +587,6 @@ const InvalidateActiveSessionsSection = () => {
           session as well.
         </Modal>
       ) : null}
-    </section>
+    </FormSection>
   );
 };

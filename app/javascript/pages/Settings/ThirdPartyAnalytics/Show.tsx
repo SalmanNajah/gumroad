@@ -17,6 +17,7 @@ import {
   FormInput,
   FormLabel,
   FormLegend,
+  FormSection,
   FormSmall,
   FormSwitch,
   FormTextarea,
@@ -89,16 +90,20 @@ export default function ThirdPartyAnalyticsPage() {
       canUpdate={Boolean(loggedInUser?.policies.settings_third_party_analytics_user.update) && !form.processing}
     >
       <form>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Third-party analytics</h2>
-            <a href="/help/article/174-third-party-analytics" target="_blank" rel="noreferrer">
-              Learn more
-            </a>
-            <div>
-              You can add a Facebook tracking pixel and link your Google Analytics properties to track your visitors.
-            </div>
-          </header>
+        <FormSection
+          className="p-4! md:p-8!"
+          header={
+            <>
+              <h2>Third-party analytics</h2>
+              <a href="/help/article/174-third-party-analytics" target="_blank" rel="noreferrer">
+                Learn more
+              </a>
+              <div>
+                You can add a Facebook tracking pixel and link your Google Analytics properties to track your visitors.
+              </div>
+            </>
+          }
+        >
           <Details
             className="toggle"
             open={!thirdPartyAnalytics.disable_third_party_analytics}
@@ -150,11 +155,8 @@ export default function ThirdPartyAnalyticsPage() {
               </FormLabel>
             </div>
           </Details>
-        </section>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Domain verification</h2>
-          </header>
+        </FormSection>
+        <FormSection className="p-4! md:p-8!" header={<h2>Domain verification</h2>}>
           <Details
             className="toggle"
             open={thirdPartyAnalytics.enable_verify_domain_third_party_services}
@@ -186,15 +188,19 @@ export default function ThirdPartyAnalyticsPage() {
               </FormFieldset>
             </div>
           </Details>
-        </section>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Snippets</h2>
-            <div>Add custom JavaScript to pages in the checkout flow.</div>
-            <a href="/help/article/174-third-party-analytics" target="_blank" rel="noreferrer">
-              Learn more
-            </a>
-          </header>
+        </FormSection>
+        <FormSection
+          className="p-4! md:p-8!"
+          header={
+            <>
+              <h2>Snippets</h2>
+              <div>Add custom JavaScript to pages in the checkout flow.</div>
+              <a href="/help/article/174-third-party-analytics" target="_blank" rel="noreferrer">
+                Learn more
+              </a>
+            </>
+          }
+        >
           {thirdPartyAnalytics.snippets.length > 0 ? (
             <>
               <Rows role="list">
@@ -213,7 +219,7 @@ export default function ThirdPartyAnalyticsPage() {
           ) : (
             <Placeholder>{addSnippetButton}</Placeholder>
           )}
-        </section>
+        </FormSection>
       </form>
     </SettingsLayout>
   );

@@ -37,7 +37,7 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import logo from "$assets/images/logo-g.svg";
-import { FormFieldset, FormSmall, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormSection, FormSmall, FormLabel } from "$app/components/ui/form";
 
 const PAYOUT_FREQUENCIES = ["daily", "weekly", "monthly", "quarterly"] as const;
 type PayoutFrequency = (typeof PAYOUT_FREQUENCIES)[number];
@@ -791,10 +791,7 @@ export default function PaymentsPage() {
           </Alert>
         ) : null}
 
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Verification</h2>
-          </header>
+        <FormSection className="p-4! md:p-8!" header={<h2>Verification</h2>}>
           {props.show_verification_section ? (
             <StripeConnectEmbeddedNotificationBanner />
           ) : (
@@ -815,7 +812,7 @@ export default function PaymentsPage() {
               </div>
             </div>
           )}
-        </section>
+        </FormSection>
 
         {props.aus_backtax_details.show_au_backtax_prompt ? (
           <AusBackTaxesSection
@@ -845,10 +842,7 @@ export default function PaymentsPage() {
             </Alert>
           </div>
         ) : null}
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Payout schedule</h2>
-          </header>
+        <FormSection className="p-4! md:p-8!" header={<h2>Payout schedule</h2>}>
           <section className="flex flex-col gap-4">
             <FormFieldset>
               <FormLabel htmlFor="payout_frequency">Schedule</FormLabel>
@@ -925,17 +919,21 @@ export default function PaymentsPage() {
               payoutsPausedToggle
             )}
           </section>
-        </section>
+        </FormSection>
 
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Payout method</h2>
-            <div>
-              <a href="/help/article/260-your-payout-settings-page" target="_blank" rel="noreferrer">
-                Any questions about these payout settings?
-              </a>
-            </div>
-          </header>
+        <FormSection
+          className="p-4! md:p-8!"
+          header={
+            <>
+              <h2>Payout method</h2>
+              <div>
+                <a href="/help/article/260-your-payout-settings-page" target="_blank" rel="noreferrer">
+                  Any questions about these payout settings?
+                </a>
+              </div>
+            </>
+          }
+        >
           <section className="grid gap-8">
             <div
               className="grid gap-4"
@@ -1080,7 +1078,7 @@ export default function PaymentsPage() {
               />
             )}
           </section>
-        </section>
+        </FormSection>
         {props.paypal_connect.show_paypal_connect ? (
           <PayPalConnectSection
             paypalConnect={props.paypal_connect}

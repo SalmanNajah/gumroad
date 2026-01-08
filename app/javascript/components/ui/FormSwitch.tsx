@@ -7,13 +7,13 @@ export interface FormSwitchProps extends Omit<React.InputHTMLAttributes<HTMLInpu
 }
 
 const switchBaseStyles =
-  "cursor-pointer appearance-none text-[1rem] h-[1.25em] w-[calc(2.5em-0.375rem)] border border-border rounded-full bg-background relative transition-all duration-150 checked:bg-accent disabled:cursor-not-allowed disabled:opacity-30 after:content-[''] after:absolute after:top-[0.125rem] after:left-[0.1875rem] after:h-[calc(1.25em-0.375rem)] after:w-[calc(1.25em-0.375rem)] after:rounded-lg after:bg-foreground after:transition-all after:duration-150 checked:after:left-[calc(100%-1.25em+0.1875rem)] checked:after:bg-accent-foreground";
+  "cursor-pointer appearance-none h-5 min-h-5 w-[2.125rem] min-w-[2.125rem] border border-border rounded-full bg-background relative transition-all duration-150 checked:bg-accent disabled:cursor-not-allowed disabled:opacity-30 after:content-[''] after:absolute after:top-[0.125rem] after:left-[0.1875rem] after:size-[0.875rem] after:rounded-lg after:bg-foreground after:transition-all after:duration-150 checked:after:left-[calc(100%-1.0625rem)] checked:after:bg-accent-foreground";
 
 export const FormSwitch = React.forwardRef<HTMLInputElement, FormSwitchProps>(
   ({ className, label, disabled, ...props }, ref) => (
     <label
       className={classNames(
-        "inline-flex cursor-pointer items-center gap-2",
+        "inline-flex cursor-pointer gap-2",
         disabled && "cursor-not-allowed opacity-30",
       )}
     >

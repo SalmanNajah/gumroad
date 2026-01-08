@@ -89,11 +89,7 @@ const SelectInner = <IsMulti extends boolean>(
         ref={ref}
         isOptionDisabled={(option) => option.disabled ?? false}
         instanceId={props.inputId ?? menuListId}
-        className={classNames(
-          "relative",
-          "[&_[aria-expanded=true]]:rounded-b-none",
-          props.className,
-        )}
+        className={classNames("relative", "[&_[aria-expanded=true]]:rounded-b-none", props.className)}
         components={{
           ClearIndicator,
           Control,
@@ -203,7 +199,8 @@ const Control = <IsMulti extends boolean>(props: ControlProps<Option, IsMulti>) 
       "px-4 py-0",
       "min-h-[3.025rem]",
       "border border-border",
-      "rounded rounded-b-none",
+      "rounded",
+      props.menuIsOpen && "rounded-b-none",
       "bg-background text-foreground",
       "focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent",
       "[&>.icon]:text-muted",

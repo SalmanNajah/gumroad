@@ -8,7 +8,7 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormInputWrapper } from "$app/components/ui/form";
+import { FormInputWrapper, FormSection } from "$app/components/ui/form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 type Props = {
@@ -37,13 +37,17 @@ export const CreditCardForm = ({ card, can_remove, read_only }: Props) => {
   });
 
   return status === "removed" ? null : (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Saved credit card</h2>
-        <a href="/help/article/216-delete-credit-card-information" target="_blank" rel="noreferrer">
-          Learn more.
-        </a>
-      </header>
+    <FormSection
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Saved credit card</h2>
+          <a href="/help/article/216-delete-credit-card-information" target="_blank" rel="noreferrer">
+            Learn more.
+          </a>
+        </>
+      }
+    >
       <div className="flex flex-col gap-4">
         <FormInputWrapper readOnly aria-label="Saved credit card">
           <Icon name="outline-credit-card" />
@@ -65,7 +69,7 @@ export const CreditCardForm = ({ card, can_remove, read_only }: Props) => {
           </WithTooltip>
         )}
       </div>
-    </section>
+    </FormSection>
   );
 };
 

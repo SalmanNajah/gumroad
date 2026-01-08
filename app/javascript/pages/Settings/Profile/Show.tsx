@@ -111,8 +111,8 @@ export default function SettingsPage() {
       </Head>
       <WithPreviewSidebar>
         <form>
-          <section className="p-4! md:p-8!">
-            <header>
+          <section className="grid gap-8 p-4 md:p-8">
+            <header className="grid content-start gap-3">
               <h2>Profile</h2>
             </header>
             <FormFieldset>
@@ -190,8 +190,8 @@ export default function SettingsPage() {
               </FormFieldset>
             ) : null}
           </section>
-          <section className="p-4! md:p-8!">
-            <header>
+          <section className="grid gap-8 border-t border-border p-4 md:p-8">
+            <header className="grid content-start gap-3">
               <h2>Design</h2>
             </header>
             <FormFieldset>
