@@ -23,7 +23,7 @@ export const ProfileSectionsEditor = ({
   };
 
   return (
-    <section className="p-8!">
+    <section className="grid gap-8 border-t border-border p-4 md:p-8">
       <header>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <h2>Profile</h2>

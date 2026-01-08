@@ -87,7 +87,7 @@ export const ContentTab = () => {
       }
     >
       <form onSubmit={(evt) => evt.preventDefault()} ref={formRef}>
-        <section className="p-4! md:p-8!">
+        <section className="grid gap-8 p-4 md:p-8">
           {hasOutdatedPurchases ? <BundleContentUpdatedStatus /> : null}
           {isSelecting ? (
             <>

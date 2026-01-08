@@ -43,7 +43,7 @@ export const ImageUploader = ({
         </Placeholder>
       ) : imageUrl == null ? (
         <Placeholder className="aspect-square items-center" style={{ background }}>
-          <label className="button primary">
+          <label className="button primary relative">
             <input
               type="file"
               className="sr-only"

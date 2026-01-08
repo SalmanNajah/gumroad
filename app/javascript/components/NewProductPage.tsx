@@ -28,6 +28,7 @@ import {
   FormInputWrapper,
   FormLabel,
   FormLegend,
+  FormSection,
   FormTextarea,
 } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
@@ -290,8 +291,8 @@ const NewProductPage = ({
       <div>
         <div>
           <form id={`new-product-form-${formUID}`} className="row" onSubmit={(e) => void submit(e)}>
-            <section className="p-4! md:p-8!">
-              <header>
+            <FormSection className="p-4! md:p-8!"
+              header={
                 <p>
                   Turn your idea into a live product in minutes. No fuss, just a few quick selections and you're ready
                   to start selling. Whether it's digital downloads, online courses, or memberships — see what sticks.
@@ -301,8 +302,8 @@ const NewProductPage = ({
                     Need help adding a product?
                   </a>
                 </p>
-              </header>
-
+              }
+            >
               {ai_generation_enabled && aiPromoVisible ? (
                 <Alert className="gap-4 p-6" role="status" variant="accent">
                   <div className="flex items-center gap-4">
@@ -432,7 +433,7 @@ const NewProductPage = ({
                   ) : null}
                 </FormInputWrapper>
               </FormFieldset>
-            </section>
+            </FormSection>
           </form>
         </div>
       </div>

@@ -52,7 +52,7 @@ export const CoverEditor = ({
   };
 
   return (
-    <section className="p-4! md:p-8!">
+    <section className="grid gap-8 border-t border-border p-4 md:p-8">
       <header>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h2>Cover</h2>
@@ -159,7 +159,7 @@ const CoverUploader = ({
       <div style={{ width: "100%" }}>
         <Tabs variant="buttons">
           <Tab isSelected={false} asChild className="items-center">
-            <label>
+            <label className="relative">
               <input
                 type="file"
                 className="sr-only"

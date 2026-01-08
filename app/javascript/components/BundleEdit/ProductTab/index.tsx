@@ -49,7 +49,7 @@ export const ProductTab = () => {
   return (
     <Layout preview={<ProductPreview showRefundPolicyModal={showRefundPolicyPreview} />} isLoading={isUploading}>
       <form>
-        <section className="p-4! md:p-8!">
+        <section className="grid gap-8 p-4 md:p-8">
           <FormFieldset>
             <FormLabel htmlFor={`${uid}-name`}>Name</FormLabel>
             <FormInput
@@ -75,7 +75,7 @@ export const ProductTab = () => {
             url={url}
           />
         </section>
-        <section className="p-4! md:p-8!">
+        <section className="grid gap-8 border-t border-border p-4 md:p-8">
           <h2>Pricing</h2>
           <PriceEditor
             priceCents={bundle.price_cents}
@@ -115,7 +115,7 @@ export const ProductTab = () => {
           setCovers={(covers) => updateBundle({ covers })}
           permalink={uniquePermalink}
         />
-        <section className="p-4! md:p-8!">
+        <section className="grid gap-8 border-t border-border p-4 md:p-8">
           <h2>Product info</h2>
           <CustomButtonTextOptionInput
             value={bundle.custom_button_text_option}
@@ -131,7 +131,7 @@ export const ProductTab = () => {
             setCustomAttributes={(custom_attributes) => updateBundle({ custom_attributes })}
           />
         </section>
-        <section className="p-4! md:p-8!">
+        <section className="grid gap-8 border-t border-border p-4 md:p-8">
           <h2>Settings</h2>
           <FormFieldset>
             <MaxPurchaseCountToggle
