@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { NumberInput } from "$app/components/NumberInput";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormSwitch } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormSection, FormSwitch } from "$app/components/ui/form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 
 export type AffiliateProduct = {
@@ -48,12 +48,16 @@ export const AffiliateForm = ({
   onUpdateDestinationUrl,
   onUpdateProduct,
 }: Props) => (
-  <section className="p-4! md:p-8!">
-    <header
-      dangerouslySetInnerHTML={{
-        __html: `${headerText} <a href='/help/article/333-affiliates-on-gumroad' target='_blank' rel='noreferrer'>Learn more</a>`,
-      }}
-    />
+  <FormSection
+    className="p-4! md:p-8!"
+    header={
+      <span
+        dangerouslySetInnerHTML={{
+          __html: `${headerText} <a href='/help/article/333-affiliates-on-gumroad' target='_blank' rel='noreferrer'>Learn more</a>`,
+        }}
+      />
+    }
+  >
     {emailField}
     <Table>
       <TableHeader>
@@ -154,5 +158,5 @@ export const AffiliateForm = ({
         ))}
       </TableBody>
     </Table>
-  </section>
+  </FormSection>
 );

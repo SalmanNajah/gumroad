@@ -17,7 +17,7 @@ import { Tab, Tabs } from "$app/components/Developer/Tabs";
 import { useHasChanged } from "$app/components/Developer/useHasChanged";
 import { DomainSettingsProvider, useDomains } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection, FormSwitch, FormTextarea } from "$app/components/ui/form";
 
 type WidgetsPageProps = {
   default_product: Product;
@@ -55,29 +55,31 @@ export default function PublicWidgets() {
   return (
     <Layout currentPage="widgets">
       <form>
-        <section className="p-4! md:p-8!">
-          <header>
-            <h3>Share your product</h3>
-            <p>
-              You can easily bring the Gumroad purchase page right into your site, without directing your buyers
-              elsewhere.{" "}
-              <a href="/help/article/44-build-gumroad-into-your-website" target="_blank" rel="noreferrer">
-                Learn more
-              </a>
-            </p>
-          </header>
-          <div>
-            <Widgets
-              display_product_select={props.display_product_select}
-              products={props.products}
-              affiliated_products={props.affiliated_products}
-              default_product={props.default_product}
-            />
-          </div>
-        </section>
+        <FormSection className="p-4! md:p-8!"
+          header={
+            <>
+              <h3>Share your product</h3>
+              <p>
+                You can easily bring the Gumroad purchase page right into your site, without directing your buyers
+                elsewhere.{" "}
+                <a href="/help/article/44-build-gumroad-into-your-website" target="_blank" rel="noreferrer">
+                  Learn more
+                </a>
+              </p>
+            </>
+          }
+        >
+          <Widgets
+            display_product_select={props.display_product_select}
+            products={props.products}
+            affiliated_products={props.affiliated_products}
+            default_product={props.default_product}
+          />
+        </FormSection>
         {currentSeller ? (
-          <section className="p-4! md:p-8!">
-            <header>
+          <FormSection className="p-4! md:p-8!"
+          header={
+            <>
               <h3>Subscribe form</h3>
               <p>
                 Share your subscribe form on any website or blog using an embed or URL.{" "}
@@ -85,40 +87,42 @@ export default function PublicWidgets() {
                   Learn more
                 </a>
               </p>
-            </header>
-            <FormFieldset>
-              <FormLegend>
-                <FormLabel htmlFor={copyButtonUID}>Share your subscribe page and grow your audience</FormLabel>
-              </FormLegend>
-              <CopyToClipboard
-                text={Routes.custom_domain_subscribe_url({ host: currentSeller.subdomain })}
-                copyTooltip="Copy link"
-                tooltipPosition="bottom"
-              >
-                <Button id={copyButtonUID} color="primary">
-                  <Icon name="link" />
-                  Copy link
-                </Button>
+            </>
+          }
+        >
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={copyButtonUID}>Share your subscribe page and grow your audience</FormLabel>
+            </FormLegend>
+            <CopyToClipboard
+              text={Routes.custom_domain_subscribe_url({ host: currentSeller.subdomain })}
+              copyTooltip="Copy link"
+              tooltipPosition="bottom"
+            >
+              <Button id={copyButtonUID} color="primary">
+                <Icon name="link" />
+                Copy link
+              </Button>
+            </CopyToClipboard>
+          </FormFieldset>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={FOLLOW_FORM_EMBED_INPUT_ID}>Test your subscribe form with your email</FormLabel>
+            </FormLegend>
+            <FollowFormEmbed sellerId={currentSeller.id} preview />
+          </FormFieldset>
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={followFormEmbedUID}>Subscribe form embed code</FormLabel>
+              <CopyToClipboard text={followFormEmbedHTML} copyTooltip="Copy to Clipboard" tooltipPosition="top">
+                <button type="button" className="font-normal underline">
+                  Copy embed code
+                </button>
               </CopyToClipboard>
-            </FormFieldset>
-            <FormFieldset>
-              <FormLegend>
-                <FormLabel htmlFor={FOLLOW_FORM_EMBED_INPUT_ID}>Test your subscribe form with your email</FormLabel>
-              </FormLegend>
-              <FollowFormEmbed sellerId={currentSeller.id} preview />
-            </FormFieldset>
-            <FormFieldset>
-              <FormLegend>
-                <FormLabel htmlFor={followFormEmbedUID}>Subscribe form embed code</FormLabel>
-                <CopyToClipboard text={followFormEmbedHTML} copyTooltip="Copy to Clipboard" tooltipPosition="top">
-                  <button type="button" className="font-normal underline">
-                    Copy embed code
-                  </button>
-                </CopyToClipboard>
-              </FormLegend>
-              <FormTextarea id={followFormEmbedUID} value={followFormEmbedHTML} readOnly />
-            </FormFieldset>
-          </section>
+            </FormLegend>
+            <FormTextarea id={followFormEmbedUID} value={followFormEmbedHTML} readOnly />
+          </FormFieldset>
+        </FormSection>
         ) : null}
       </form>
     </Layout>
@@ -234,7 +238,7 @@ const OverlayPanel = ({ selectedProduct }: PanelProps) => {
       <CodeContainer codeToCopy={codeToCopy} />
       <FormFieldset className="grid gap-4">
         <FormLabel>
-          <FormCheckbox checked={isWanted} onChange={(e) => setIsWanted(e.target.checked)} role="switch" />
+          <FormSwitch checked={isWanted} onChange={(e) => setIsWanted(e.target.checked)} />
           Send directly to checkout page
         </FormLabel>
       </FormFieldset>

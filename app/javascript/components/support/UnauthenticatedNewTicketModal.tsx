@@ -6,6 +6,7 @@ import { Button } from "$app/components/Button";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
 import { useRecaptcha, RecaptchaCancelledError } from "$app/components/useRecaptcha";
+import { FormInput, FormLabel, FormTextarea } from "$app/components/ui/form";
 
 export function UnauthenticatedNewTicketModal({
   open,
@@ -91,8 +92,8 @@ export function UnauthenticatedNewTicketModal({
         }}
       >
         <div>
-          <label className="sr-only">Email address</label>
-          <input
+          <FormLabel className="sr-only">Email address</FormLabel>
+          <FormInput
             type="email"
             value={email}
             placeholder="Your email address"
@@ -101,12 +102,12 @@ export function UnauthenticatedNewTicketModal({
           />
         </div>
         <div>
-          <label className="sr-only">Subject</label>
-          <input value={subject} placeholder="Subject" onChange={(e) => setSubject(e.target.value)} required />
+          <FormLabel className="sr-only">Subject</FormLabel>
+          <FormInput value={subject} placeholder="Subject" onChange={(e) => setSubject(e.target.value)} required />
         </div>
         <div>
-          <label className="sr-only">Message</label>
-          <textarea
+          <FormLabel className="sr-only">Message</FormLabel>
+          <FormTextarea
             rows={6}
             value={message}
             onChange={(e) => setMessage(e.target.value)}

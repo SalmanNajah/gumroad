@@ -5,7 +5,7 @@ import { assertResponseError } from "$app/utils/request"
 
 import { showAlert } from "$app/components/server-components/Alert"
 import { Alert } from "$app/components/ui/Alert"
-import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form"
+import { FormFieldset, FormInput, FormLabel, FormSection } from "$app/components/ui/form"
 import { PageHeader } from "$app/components/ui/PageHeader"
 
 const LookupLayout = ({ children, title, type }: {
@@ -113,11 +113,15 @@ const LookupLayout = ({ children, title, type }: {
           evt.preventDefault();
           void handleCardLookup();
         }}>
-          <section className="p-4! md:p-8!">
-            <header>
-              <h2>{type === "charge" ? "What was I charged for?" : "Look up your license key"}</h2>
-              {type === "charge" ? "Fill out this form and we'll send you a receipt for your charge." : "We'll send you a receipt including your license key."}
-            </header>
+          <FormSection
+            className="p-4! md:p-8!"
+            header={
+              <>
+                <h2>{type === "charge" ? "What was I charged for?" : "Look up your license key"}</h2>
+                {type === "charge" ? "Fill out this form and we'll send you a receipt for your charge." : "We'll send you a receipt including your license key."}
+              </>
+            }
+          >
             <FormFieldset state={email.error ? "danger" : undefined}>
               <FormLabel htmlFor="email">What email address did you use?</FormLabel>
               <FormInput
@@ -150,17 +154,21 @@ const LookupLayout = ({ children, title, type }: {
             >
               {isCardLoading ? "Searching..." : "Search"}
             </button>
-          </section>
+          </FormSection>
         </form>
         <form onSubmit={(evt) => {
           evt.preventDefault();
           void handlePaypalLookup();
         }}>
-          <section className="p-4! md:p-8!">
-            <header>
-              <h2>Did you pay with PayPal?</h2>
-              Enter the invoice ID from PayPal's email receipt and we'll look it up.
-            </header>
+          <FormSection
+            className="border-t! p-4! md:p-8!"
+            header={
+              <>
+                <h2>Did you pay with PayPal?</h2>
+                Enter the invoice ID from PayPal's email receipt and we'll look it up.
+              </>
+            }
+          >
             <FormFieldset state={invoiceId.error ? "danger" : undefined}>
               <FormLabel htmlFor="invoice_id">PayPal Invoice ID</FormLabel>
               <FormInput
@@ -181,7 +189,7 @@ const LookupLayout = ({ children, title, type }: {
                 {isPaypalLoading ? "Searching..." : "Search"}
               </button>
             </FormFieldset>
-          </section>
+          </FormSection>
         </form>
         {children}
       </div>

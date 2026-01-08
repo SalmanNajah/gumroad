@@ -43,7 +43,7 @@ const SuspendUsers = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <section>
+      <section className="grid gap-8 p-4 md:p-8">
         <input type="hidden" name="authenticity_token" value={form.data.authenticity_token} />
         <header>
           To suspend users for terms of service violations, please enter IDs of those users separated by comma or

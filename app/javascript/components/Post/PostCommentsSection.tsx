@@ -24,6 +24,7 @@ import { UserAvatar } from "$app/components/server-components/CommunitiesPage/Us
 import { Pill } from "$app/components/ui/Pill";
 
 import defaultUserAvatar from "$assets/images/user-avatar.png";
+import { FormTextarea } from "$app/components/ui/FormTextarea";
 
 type CommentsMetadata = {
   seller_id: string;
@@ -374,7 +375,7 @@ const CommentTextarea = ({
         />
       ) : null}
       {loggedInUser || purchase_id ? (
-        <textarea ref={ref} rows={1} placeholder="Write a comment" {...props} />
+        <FormTextarea ref={ref} rows={1} placeholder="Write a comment" {...props} />
       ) : (
         <div>
           <a href={Routes.login_url({ host: appDomain })}>Log in</a> or{" "}

@@ -32,7 +32,7 @@ const Form = ({ action, header, buttonLabel }: Props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <section>
+      <section className="grid gap-8 p-4 md:p-8">
         <input type="hidden" name="authenticity_token" value={form.data.authenticity_token} />
 
         <header>{header}</header>

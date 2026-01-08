@@ -49,7 +49,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
 
   return (
     <form onSubmit={handleSubmit}>
-      <section>
+      <section className="grid gap-8 p-4 md:p-8">
         <header>Generate sales report with custom date ranges</header>
 
         <div className="grid grid-rows-[auto_1fr] gap-3">

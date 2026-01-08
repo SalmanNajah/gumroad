@@ -12,7 +12,15 @@ import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
+import {
+  FormFieldset,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormLegend,
+  FormSection,
+  FormSwitch,
+} from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
@@ -139,17 +147,21 @@ export default function AffiliatesOnboarding() {
         </section>
       ) : (
         <form onSubmit={handleSaveChanges}>
-          <section className="p-4! md:p-8!">
-            <header>
-              <h2>Affiliate link</h2>
-              <div>
-                Anyone can request to become your affiliate by using your affiliate link. Affiliates will earn a
-                commission on each sale they refer.
-              </div>
-              <a href="/help/article/249-affiliate-faq" target="_blank" rel="noreferrer">
-                Learn more
-              </a>
-            </header>
+          <FormSection
+            className="p-4! md:p-8!"
+            header={
+              <>
+                <h2>Affiliate link</h2>
+                <div>
+                  Anyone can request to become your affiliate by using your affiliate link. Affiliates will earn a
+                  commission on each sale they refer.
+                </div>
+                <a href="/help/article/249-affiliate-faq" target="_blank" rel="noreferrer">
+                  Learn more
+                </a>
+              </>
+            }
+          >
             <FormFieldset>
               <FormLegend>
                 <FormLabel htmlFor="affiliate-link">Your affiliate link</FormLabel>
@@ -177,12 +189,16 @@ export default function AffiliatesOnboarding() {
                 </div>
               )}
             </FormFieldset>
-          </section>
-          <section className="p-4! md:p-8!">
-            <header>
-              <h2>Affiliate products</h2>
-              <p>Enable specific products you want your affiliates to earn a commission with.</p>
-            </header>
+          </FormSection>
+          <FormSection
+            className="p-4! md:p-8!"
+            header={
+              <>
+                <h2>Affiliate products</h2>
+                <p>Enable specific products you want your affiliates to earn a commission with.</p>
+              </>
+            }
+          >
             <Table>
               <TableCaption>Enable specific products</TableCaption>
               <TableHeader>
@@ -204,18 +220,22 @@ export default function AffiliatesOnboarding() {
                 ))}
               </TableBody>
             </Table>
-          </section>
-          <section className="p-4! md:p-8!">
-            <header>
-              <h2>Gumroad Affiliate Program</h2>
-              <div>
-                Being part of Gumroad Affiliate Program enables other creators to share your products in exchange for a{" "}
-                {props.global_affiliate_percentage}% commission.
-              </div>
-              <a href="/help/article/249-affiliate-faq" target="_blank" rel="noreferrer">
-                Learn more
-              </a>
-            </header>
+          </FormSection>
+          <FormSection
+            className="p-4! md:p-8!"
+            header={
+              <>
+                <h2>Gumroad Affiliate Program</h2>
+                <div>
+                  Being part of Gumroad Affiliate Program enables other creators to share your products in exchange for
+                  a {props.global_affiliate_percentage}% commission.
+                </div>
+                <a href="/help/article/249-affiliate-faq" target="_blank" rel="noreferrer">
+                  Learn more
+                </a>
+              </>
+            }
+          >
             <FormFieldset>
               <ToggleSettingRow
                 label="Opt out of the Gumroad Affiliate Program"
@@ -223,7 +243,7 @@ export default function AffiliatesOnboarding() {
                 onChange={onToggleDisableGlobalAffiliate}
               />
             </FormFieldset>
-          </section>
+          </FormSection>
         </form>
       )}
     </div>
