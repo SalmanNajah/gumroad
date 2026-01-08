@@ -33,6 +33,7 @@ import { Select, Option } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Skeleton } from "$app/components/Skeleton";
 import { FormInputWrapper } from "$app/components/ui/form";
+import { FormSection } from "$app/components/ui/form";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
 import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
@@ -881,8 +882,9 @@ const Form = ({
         }
       />
       <form>
-        <section className="p-8!">
-          <header>
+        <FormSection
+          className="p-8!"
+          header={
             <div className="flex flex-col gap-4">
               <div>Create a discount code so your audience can buy your products at a reduced price.</div>
               <div>
@@ -895,7 +897,8 @@ const Form = ({
                 </a>
               </div>
             </div>
-          </header>
+          }
+        >
           <FormFieldset state={name.error ? "danger" : undefined}>
             <FormLegend>
               <FormLabel htmlFor={`${uid}name`}>Name</FormLabel>
@@ -1170,7 +1173,7 @@ const Form = ({
               </div>
             </Details>
           </FormFieldset>
-        </section>
+        </FormSection>
       </form>
     </div>
   );

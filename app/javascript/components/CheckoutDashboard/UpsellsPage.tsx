@@ -41,7 +41,18 @@ import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea, FormInputWrapper, FormRadio, FormSwitch } from "$app/components/ui/form";
+import {
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormLabel,
+  FormLegend,
+  FormTextarea,
+  FormInputWrapper,
+  FormRadio,
+  FormSwitch,
+  FormSmall,
+} from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { Sort, useSortingTableDriver } from "$app/components/useSortingTableDriver";
 
@@ -693,7 +704,7 @@ const Form = ({
       />
       <WithPreviewSidebar className="flex-1">
         <form>
-          <section className="p-8!">
+          <section className="grid gap-8 p-4 md:p-8">
             <p>
               When a customer clicks "Pay", offer a version upgrade or another product with or without a discount.{" "}
               <a href="/help/article/331-creating-upsells" target="_blank" rel="noreferrer">
@@ -747,7 +758,7 @@ const Form = ({
                 <FormRadio name="paused" value="true" checked={paused} onChange={handlePausedChange} />
                 Paused
               </FormLabel>
-              <small>Paused upsells will not appear at checkout. You can resume anytime.</small>
+              <FormSmall>Paused upsells will not appear at checkout. You can resume anytime.</FormSmall>
             </FormFieldset>
             <FormFieldset>
               <FormLegend>Type of offer</FormLegend>

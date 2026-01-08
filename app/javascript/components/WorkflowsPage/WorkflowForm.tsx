@@ -27,6 +27,7 @@ import {
   FormLegend,
   FormSelect,
   FormSmall,
+  FormSection,
 } from "$app/components/ui/form";
 import {
   Layout,
@@ -276,7 +277,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
   const abandonedCartButton = (
     <Button
       className={classNames(
-        "flex-col! items-start! transition-transform!",
+        "flex-col! items-start! gap-3! transition-transform!",
         "hover:translate-x-0! hover:translate-y-0!",
         formState.trigger === "abandoned_cart" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
       )}
@@ -326,8 +327,9 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
       }
     >
       <form className="space-y-4 p-4 md:p-8">
-        <section>
-          <header>Workflows allow you to send scheduled emails to a subset of your audience based on a trigger.</header>
+        <FormSection
+          header={<>Workflows allow you to send scheduled emails to a subset of your audience based on a trigger.</>}
+        >
           <FormFieldset state={invalidFields.has("name") ? "danger" : undefined}>
             <FormLegend>
               <FormLabel htmlFor="name">Name</FormLabel>
@@ -350,7 +352,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
               {workflow && workflow.workflow_type === "audience" ? (
                 <Button
                   className={classNames(
-                    "flex-col! items-start! transition-transform!",
+                    "flex-col! items-start! gap-3! transition-transform!",
                     "hover:translate-x-0! hover:translate-y-0!",
                     formState.trigger === "legacy_audience" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
                   )}
@@ -367,7 +369,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
               ) : null}
               <Button
                 className={classNames(
-                  "flex-col! items-start! transition-transform!",
+                  "flex-col! items-start! gap-3! transition-transform!",
                   "hover:translate-x-0! hover:translate-y-0!",
                   formState.trigger === "purchase" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
                 )}
@@ -383,7 +385,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
               </Button>
               <Button
                 className={classNames(
-                  "vertical flex-col! items-start! transition-transform!",
+                  "flex-col! items-start! gap-3! transition-transform!",
                   "hover:translate-x-0! hover:translate-y-0!",
                   formState.trigger === "new_subscriber" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
                 )}
@@ -399,7 +401,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
               </Button>
               <Button
                 className={classNames(
-                  "flex-col! items-start! transition-transform!",
+                  "flex-col! items-start! gap-3! transition-transform!",
                   "hover:translate-x-0! hover:translate-y-0!",
                   formState.trigger === "member_cancels" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
                 )}
@@ -421,7 +423,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
               </Button>
               <Button
                 className={classNames(
-                  "flex-col! items-start! transition-transform!",
+                  "flex-col! items-start! gap-3! transition-transform!",
                   "hover:translate-x-0! hover:translate-y-0!",
                   formState.trigger === "new_affiliate" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
                 )}
@@ -676,7 +678,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
               </FormSelect>
             </FormFieldset>
           ) : null}
-        </section>
+        </FormSection>
       </form>
     </Layout>
   );

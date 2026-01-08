@@ -20,6 +20,7 @@ import {
   FormInputWrapper,
   FormLabel,
   FormLegend,
+  FormSection,
   FormSmall,
   FormTextarea,
 } from "$app/components/ui/form";
@@ -277,14 +278,17 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
       }
     >
       <form onSubmit={handleSubmit}>
-        <section className="p-4! md:p-8!">
-          <header>
-            <p>Create UTM links to track where your traffic is coming from.</p>
-            <p>Once set up, simply share the links to see which sources are driving more conversions and revenue.</p>
-            <a href="/help/article/74-the-analytics-dashboard" target="_blank" rel="noreferrer">
-              Learn more
-            </a>
-          </header>
+        <FormSection className="p-4! md:p-8!"
+          header={
+            <>
+              <p>Create UTM links to track where your traffic is coming from.</p>
+              <p>Once set up, simply share the links to see which sources are driving more conversions and revenue.</p>
+              <a href="/help/article/74-the-analytics-dashboard" target="_blank" rel="noreferrer">
+                Learn more
+              </a>
+            </>
+          }
+        >
           <FormFieldset state={getFieldError("title") ? "danger" : undefined}>
             <FormLegend>
               <FormLabel htmlFor={`title-${uid}`}>Title</FormLabel>
@@ -481,7 +485,7 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               </FormInputWrapper>
             </FormFieldset>
           ) : null}
-        </section>
+        </FormSection>
       </form>
     </AnalyticsLayout>
   );
