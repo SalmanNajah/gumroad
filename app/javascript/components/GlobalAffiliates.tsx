@@ -10,7 +10,7 @@ import { useDomains, useDiscoverUrl } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormInputWrapper, FormLegend, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLegend, FormSection, FormSmall } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 const DiscoverLinkSection = ({
@@ -27,18 +27,22 @@ const DiscoverLinkSection = ({
   const baseDiscoverUrl = useDiscoverUrl();
   const discoverUrl = `${baseDiscoverUrl}?${affiliateQueryParam}=${globalAffiliateId}`;
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Affiliate link</h2>
-        <p>Earn 10% for each referral sale made by your link.</p>
-        <a href="/help/article/333-affiliates-on-gumroad" target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
+    <FormSection
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Affiliate link</h2>
+          <p>Earn 10% for each referral sale made by your link.</p>
+          <a href="/help/article/333-affiliates-on-gumroad" target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
       <FormFieldset>
         <FormLegend>Your Discover affiliate link</FormLegend>
         <FormInputWrapper>
-          <div className="input">{discoverUrl}</div>
+          <FormInputWrapper className="border-none px-0">{discoverUrl}</FormInputWrapper>
           <CopyToClipboard text={discoverUrl} tooltipPosition="bottom">
             <Pill asChild>
               <Button className="rounded-full! px-3! py-2!">Copy link</Button>
@@ -53,7 +57,7 @@ const DiscoverLinkSection = ({
           To date, you have made <strong>{totalSales}</strong> from Gumroad referrals.
         </FormSmall>
       </FormFieldset>
-    </section>
+    </FormSection>
   );
 };
 
@@ -70,17 +74,21 @@ const LinkGenerationSection = ({
   const [hasError, setHasError] = React.useState(false);
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Affiliate link generator</h2>
-        <p>
-          You can add{" "}
-          <strong>
-            ?{affiliateQueryParam}={globalAffiliateId}
-          </strong>{" "}
-          to the end of any link or use the generator to automatically add it for you.
-        </p>
-      </header>
+    <FormSection
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Affiliate link generator</h2>
+          <p>
+            You can add{" "}
+            <strong>
+              ?{affiliateQueryParam}={globalAffiliateId}
+            </strong>{" "}
+            to the end of any link or use the generator to automatically add it for you.
+          </p>
+        </>
+      }
+    >
       <FormFieldset state={hasError ? "danger" : undefined}>
         <FormLegend>Destination page URL</FormLegend>
         <FormInputWrapper>
@@ -130,7 +138,7 @@ const LinkGenerationSection = ({
         </FormInputWrapper>
         <FormSmall>Copy this affiliate link and share it with your audience</FormSmall>
       </FormFieldset>
-    </section>
+    </FormSection>
   );
 };
 
@@ -155,14 +163,17 @@ const ProductEligibilitySection = ({
   });
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>How to know if a product is eligible</h2>
-        <p>
-          All products published on Discover are part of this program. You can check if any specific product is on
-          Discover by entering the product URL here.
-        </p>
-      </header>
+    <FormSection className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>How to know if a product is eligible</h2>
+          <p>
+            All products published on Discover are part of this program. You can check if any specific product is on
+            Discover by entering the product URL here.
+          </p>
+        </>
+      }
+    >
       <FormFieldset>
         <FormLegend>Product URL</FormLegend>
         <FormInputWrapper>
@@ -247,7 +258,7 @@ const ProductEligibilitySection = ({
         </div>
       ) : null}
       {result.error ? <Alert variant={result.error.type}>{result.error.message}</Alert> : null}
-    </section>
+    </FormSection>
   );
 };
 
