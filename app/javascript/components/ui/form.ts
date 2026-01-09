@@ -5,7 +5,6 @@ export { FormLabel, type FormLabelProps } from "./FormLabel";
 export { FormInputWrapper, type FormInputWrapperProps } from "./FormInputWrapper";
 export { FormColorPicker, type FormColorPickerProps } from "./FormColorPicker";
 export { FormSwitch, type FormSwitchProps } from "./FormSwitch";
-export { FormRange, type FormRangeProps } from "./FormRange";
 export { FormSection, type FormSectionProps } from "./FormSection";
 export {
   FormCheckbox,
