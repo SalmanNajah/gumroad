@@ -13,7 +13,7 @@ import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Layout } from "$app/components/Profile/Layout";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection, FormTextarea } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 
 type FormStatus =
@@ -60,8 +60,9 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
         className="mx-auto w-full max-w-6xl border-0 lg:px-0"
       />
       <form className="border-y border-border px-4 pt-8 lg:px-0">
-        <section className="mx-auto w-full max-w-6xl grid gap-8 py-12">
-          <header>
+        <FormSection
+          className="mx-auto w-full max-w-6xl border-t-0 lg:pb-0"
+          header={
             <div className="flex flex-col gap-4">
               <p>
                 Applying to be an affiliate is easy. Fill out the form below and let {creator_profile.name} know how
@@ -72,7 +73,8 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
                 etc...
               </p>
             </div>
-          </header>
+          }
+        >
           {formStatus.type === "success" ? (
             <Alert variant="success">
               <div className="flex flex-col gap-4">
@@ -133,7 +135,7 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
               </Button>
             </>
           )}
-        </section>
+        </FormSection>
       </form>
     </Layout>
   );
