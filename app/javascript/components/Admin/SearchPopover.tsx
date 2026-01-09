@@ -105,6 +105,7 @@ const SearchPopover = () => {
           <FormInputWrapper>
             <Icon name="person" />
             <FormInput
+              className="border-none! outline-none!"
               autoFocus
               name="query"
               placeholder="Search users (email, name, ID)"
@@ -126,6 +127,7 @@ const SearchPopover = () => {
             <Icon name="solid-currency-dollar" />
             <FormInput
               name="query"
+              className="border-none! outline-none!"
               placeholder="Search purchases (email, IP, card, external ID)"
               type="text"
               value={data.purchase_query}
@@ -142,6 +144,7 @@ const SearchPopover = () => {
             <Icon name="people-fill" />
             <FormInput
               name="query"
+              className="border-none! outline-none!"
               placeholder="Search affiliates (email, name, ID)"
               type="text"
               value={data.affiliate_query}
@@ -171,6 +174,7 @@ const SearchPopover = () => {
             <Icon name="calendar-all" />
             <FormInput
               name="transaction_date"
+              className="border-none! outline-none!"
               placeholder="Date (02/22/2022)"
               type="text"
               value={data.transaction_date}
@@ -182,6 +186,7 @@ const SearchPopover = () => {
             <FormInput
               name="last_4"
               placeholder="Last 4 (7890)"
+              className="border-none! outline-none!"
               type="number"
               value={data.last_4}
               minLength={4}
@@ -194,16 +199,18 @@ const SearchPopover = () => {
             <FormInput
               name="expiry_date"
               placeholder="Expiry (02/22)"
+              className="border-none! outline-none!"
               type="text"
               value={data.expiry_date}
               onChange={(e) => setData("expiry_date", e.target.value)}
             />
           </FormInputWrapper>
           <FormInputWrapper>
-            <Pill className="-ml-2 shrink-0">$</Pill>
+            <Pill className="-ml-2 shrink-0 z-1">$</Pill>
             <FormInput
               name="price"
               placeholder="Price (9.99)"
+              className="border-none! outline-none!"
               type="number"
               step="0.01"
               value={data.price}

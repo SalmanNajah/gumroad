@@ -35,6 +35,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="person" />
             <FormInput
+              className="border-none! outline-none!"
               autoFocus
               name="query"
               placeholder="Search users (email, name, ID)"
@@ -50,6 +51,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="solid-currency-dollar" />
             <FormInput
+              className="border-none! outline-none!"
               name="query"
               placeholder="Search purchases (email, IP, card, external ID)"
               type="text"
@@ -64,6 +66,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="people-fill" />
             <FormInput
+              className="border-none! outline-none!"
               name="query"
               placeholder="Search affiliates (email, name, ID)"
               type="text"
@@ -87,6 +90,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="calendar-all" />
             <FormInput
+              className="border-none! outline-none!"
               name="transaction_date"
               placeholder="Date (02/22/2022)"
               type="text"
@@ -96,6 +100,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="lock-fill" />
             <FormInput
+              className="border-none! outline-none!"
               name="last_4"
               placeholder="Last 4 (7890)"
               type="text"
@@ -109,6 +114,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="outline-credit-card" />
             <FormInput
+              className="border-none! outline-none!"
               name="expiry_date"
               placeholder="Expiry (02/22)"
               type="text"
@@ -116,8 +122,9 @@ export const SearchPopover = ({ card_types }: Props) => {
             />
           </FormInputWrapper>
           <FormInputWrapper>
-            <Pill className="-ml-2 shrink-0">$</Pill>
+            <Pill className="-ml-2 shrink-0 z-1">$</Pill>
             <FormInput
+              className="border-none! outline-none!"
               name="price"
               placeholder="Price (9.99)"
               type="number"

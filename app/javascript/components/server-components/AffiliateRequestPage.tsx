@@ -130,7 +130,12 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
                   onChange={(event) => setPromotionText(event.target.value)}
                 />
               </FormFieldset>
-              <Button color="accent" onClick={onSubmit} disabled={formStatus.type === "submitting"}>
+              <Button
+                color="accent"
+                className="lg:mb-0!"
+                onClick={onSubmit}
+                disabled={formStatus.type === "submitting"}
+              >
                 {formStatus.type === "submitting" ? "Submitting..." : "Submit affiliate request"}
               </Button>
             </>
