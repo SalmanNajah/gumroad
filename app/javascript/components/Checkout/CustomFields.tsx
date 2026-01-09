@@ -1,4 +1,4 @@
-import uniqBy from "lodash/uniqBy";
+import { uniqBy } from "lodash-es";
 import * as React from "react";
 
 import { CustomFieldDescriptor } from "$app/parsers/product";

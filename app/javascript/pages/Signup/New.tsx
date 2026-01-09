@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { formatPrice } from "$app/utils/price";
 
+import { AuthAlert } from "$app/components/AuthAlert";
 import { Layout } from "$app/components/Authentication/Layout";
 import { SocialAuth } from "$app/components/Authentication/SocialAuth";
 import { Button } from "$app/components/Button";
@@ -10,7 +11,6 @@ import { PasswordInput } from "$app/components/PasswordInput";
 import { Separator } from "$app/components/Separator";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { RecaptchaCancelledError, useRecaptcha } from "$app/components/useRecaptcha";
-import { WarningFlash } from "$app/components/WarningFlashMessage";
 import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
@@ -85,7 +85,7 @@ function SignupPage() {
           <span>or</span>
         </Separator>
         <section className="grid gap-8 py-12">
-          <WarningFlash />
+          <AuthAlert />
           <FormFieldset>
             <FormLegend>
               <FormLabel htmlFor={`${uid}-email`}>Email</FormLabel>
