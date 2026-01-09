@@ -132,7 +132,6 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
               </FormFieldset>
               <Button
                 color="accent"
-                className="lg:mb-0!"
                 onClick={onSubmit}
                 disabled={formStatus.type === "submitting"}
               >
