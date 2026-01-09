@@ -5,6 +5,7 @@ import { AuthAlert } from "$app/components/AuthAlert";
 import { Layout } from "$app/components/Authentication/Layout";
 import { Button } from "$app/components/Button";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
+import { FormInput, FormLabel, FormFieldset, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
   user_id: string;
@@ -45,13 +46,13 @@ function TwoFactorAuthentication() {
       }
     >
       <form onSubmit={handleSubmit}>
-        <section>
+        <section className="grid gap-8 pb-12">
           <AuthAlert />
-          <fieldset>
-            <legend>
-              <label htmlFor={uid}>Authentication Token</label>
-            </legend>
-            <input
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={uid}>Authentication Token</FormLabel>
+            </FormLegend>
+            <FormInput
               id={uid}
               type="text"
               value={form.data.token}
@@ -59,7 +60,7 @@ function TwoFactorAuthentication() {
               required
               autoFocus
             />
-          </fieldset>
+          </FormFieldset>
           <Button color="primary" type="submit" disabled={form.processing}>
             {form.processing ? "Logging in..." : "Login"}
           </Button>

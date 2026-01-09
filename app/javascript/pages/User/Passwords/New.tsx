@@ -7,6 +7,7 @@ import { SocialAuth } from "$app/components/Authentication/SocialAuth";
 import { Button } from "$app/components/Button";
 import { Separator } from "$app/components/Separator";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
+import { FormLabel, FormInput, FormFieldset, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
   email: string | null;
@@ -41,13 +42,13 @@ function ForgotPasswordPage() {
         <Separator>
           <span>or</span>
         </Separator>
-        <section>
+        <section className="grid gap-8 py-12">
           <AuthAlert />
-          <fieldset>
-            <legend>
-              <label htmlFor={uid}>Email to send reset instructions to</label>
-            </legend>
-            <input
+          <FormFieldset>
+            <FormLegend>
+              <FormLabel htmlFor={uid}>Email to send reset instructions to</FormLabel>
+            </FormLegend>
+            <FormInput
               id={uid}
               type="email"
               value={form.data.user.email}
@@ -56,7 +57,7 @@ function ForgotPasswordPage() {
               autoFocus
               autoComplete="email"
             />
-          </fieldset>
+          </FormFieldset>
           <Button color="primary" type="submit" disabled={form.processing}>
             {form.processing ? "Sending..." : "Send"}
           </Button>
