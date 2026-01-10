@@ -43,10 +43,7 @@ export const FormLegend = React.forwardRef<HTMLLegendElement, FormLegendProps>(
     <legend
       ref={ref}
       className={classNames(
-        "relative flex items-center",
-        "font-bold",
-        "mb-2 w-full",
-        "text-base leading-[1.4]",
+        "relative flex items-center font-bold mb-2 w-full text-base leading-[1.4]",
         "[&_a]:font-normal [&_label]:font-normal",
         "[&>:last-child:not(:only-child)]:ml-auto",
         className,

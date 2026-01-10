@@ -1067,7 +1067,7 @@ export const ContentTab = () => {
                               ? `Editing: ${selectedVariant.name || "Untitled"}`
                               : "Editing: All versions"}
                           </span>
-                          <Icon name="outline-cheveron-down" />
+                          <Icon name="outline-cheveron-down" className="text-muted" />
                         </div>
                       )}
                       options={product.variants}

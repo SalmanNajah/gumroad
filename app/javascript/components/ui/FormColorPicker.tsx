@@ -10,11 +10,7 @@ export const FormColorPicker = React.forwardRef<HTMLInputElement, FormColorPicke
   ({ className, containerClassName, ...props }, ref) => (
     <div
       className={classNames(
-        "relative overflow-hidden",
-        "p-4",
-        "border border-border",
-        "rounded-full",
-        "max-w-fit",
+        "relative overflow-hidden p-4 border border-border rounded-full max-w-fit",
         containerClassName,
       )}
     >
@@ -22,12 +18,7 @@ export const FormColorPicker = React.forwardRef<HTMLInputElement, FormColorPicke
         ref={ref}
         type="color"
         className={classNames(
-          "absolute",
-          "h-[200%] w-[200%]",
-          "max-w-none",
-          "-top-1/2 -left-1/2",
-          "border-none",
-          "cursor-pointer",
+          "absolute h-[200%] w-[200%] max-w-none -top-1/2 -left-1/2 border-none cursor-pointer",
           className,
         )}
         {...props}

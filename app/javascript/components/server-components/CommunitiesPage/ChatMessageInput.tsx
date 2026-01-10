@@ -6,6 +6,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 
 import { MAX_MESSAGE_LENGTH } from "./CommunityView";
 import { CommunityDraft } from "./useCommunities";
+import { FormTextarea, FormInputWrapper } from "$app/components/ui/form";
 
 export const ChatMessageInput = React.forwardRef<
   HTMLTextAreaElement,
@@ -42,10 +43,10 @@ export const ChatMessageInput = React.forwardRef<
   React.useEffect(adjustTextareaHeight, [draft?.content, adjustTextareaHeight]);
 
   return (
-    <div className="input pr-2! dark:border-[rgb(var(--parent-color)/var(--border-alpha))]">
-      <textarea
+    <FormInputWrapper className="pr-2! dark:border-[rgb(var(--parent-color)/var(--border-alpha))]">
+      <FormTextarea
         ref={ref}
-        className="resize-none"
+        className="resize-none border-none outline-none"
         rows={1}
         placeholder="Type a message"
         value={draft?.content ?? ""}
@@ -71,7 +72,7 @@ export const ChatMessageInput = React.forwardRef<
       >
         <Icon name="solid-send" className="text-sm" />
       </button>
-    </div>
+    </FormInputWrapper>
   );
 });
 

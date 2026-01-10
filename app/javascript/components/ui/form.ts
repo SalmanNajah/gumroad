@@ -6,13 +6,12 @@ export { FormInputWrapper, type FormInputWrapperProps } from "./FormInputWrapper
 export { FormColorPicker, type FormColorPickerProps } from "./FormColorPicker";
 export { FormSwitch, type FormSwitchProps } from "./FormSwitch";
 export { FormSection, type FormSectionProps } from "./FormSection";
+export { FormRange, type FormRangeProps } from "./FormRange";
 export {
   FormCheckbox,
   type FormCheckboxProps,
   FormRadio,
-  type FormRadioProps,
-  FormRadioGroup,
-  type FormRadioGroupProps,
+  type FormRadioProps
 } from "./FormCheckbox";
 export {
   FormFieldset,

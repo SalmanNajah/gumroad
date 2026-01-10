@@ -1,5 +1,5 @@
 import { Channel } from "@anycable/web";
-import cx from "classnames";
+import { classNames } from "$app/utils/classNames";
 import { debounce } from "lodash-es";
 import * as React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -596,7 +596,7 @@ export const CommunityView = () => {
         ) : selectedCommunity ? (
           <div className="flex flex-1 overflow-hidden">
             <div
-              className={cx("flex shrink-0 flex-col overflow-hidden", {
+              className={classNames("flex shrink-0 flex-col overflow-hidden", {
                 "relative w-72 border-r dark:border-[rgb(var(--parent-color)/var(--border-alpha))]": isAboveBreakpoint,
                 "absolute inset-0 top-12 z-30 bg-gray dark:bg-dark-gray": !isAboveBreakpoint && sidebarOpen,
                 "w-0 overflow-hidden": !isAboveBreakpoint && !sidebarOpen,
@@ -655,7 +655,7 @@ export const CommunityView = () => {
 
                 <button
                   onClick={() => setSidebarOpen(false)}
-                  className={cx("flex h-8 w-8 justify-center", {
+                  className={classNames("flex h-8 w-8 justify-center", {
                     hidden: isAboveBreakpoint,
                   })}
                   aria-label="Close sidebar"
@@ -682,7 +682,7 @@ export const CommunityView = () => {
               <div className="flex flex-1 overflow-auto">
                 <div ref={chatContainerRef} className="relative flex-1 overflow-y-auto">
                   <div
-                    className={cx("sticky top-0 z-20 flex justify-center transition-opacity duration-300", {
+                    className={classNames("sticky top-0 z-20 flex justify-center transition-opacity duration-300", {
                       "opacity-100": stickyDate,
                       "opacity-0": !stickyDate,
                     })}
@@ -783,26 +783,33 @@ const NotificationsSettingsModal = ({
         value={updatedSettings.recap_frequency !== null}
         onChange={(newValue) => setUpdatedSettings({ ...updatedSettings, recap_frequency: newValue ? "weekly" : null })}
         dropdown={
-          <div className="radio-buttons flex! flex-col!" role="radiogroup">
+          <div className="grid gap-4" role="radiogroup">
             <Button
               role="radio"
               aria-checked={updatedSettings.recap_frequency === "daily"}
               onClick={() => setUpdatedSettings({ ...updatedSettings, recap_frequency: "daily" })}
+              className={classNames(
+                "flex-col items-start! justify-start! gap-1! text-left transition-transform!",
+                "hover:translate-x-0! hover:translate-y-0!",
+                updatedSettings.recap_frequency === "daily" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+              )}
             >
-              <div>
-                <h4>Daily</h4>
-                <p>Get a summary of activity every day</p>
-              </div>
+              <h4 className="font-bold">Daily</h4>
+              <p>Get a summary of activity every day</p>
             </Button>
             <Button
               role="radio"
               aria-checked={updatedSettings.recap_frequency === "weekly"}
               onClick={() => setUpdatedSettings({ ...updatedSettings, recap_frequency: "weekly" })}
+              className={classNames(
+                "flex-col items-start! justify-start! gap-1! text-left transition-transform!",
+                "hover:translate-x-0! hover:translate-y-0!",
+                updatedSettings.recap_frequency === "weekly" &&
+                  "-translate-x-1! -translate-y-1! bg-background! shadow!",
+              )}
             >
-              <div>
-                <h4>Weekly</h4>
-                <p>Receive a weekly summary every Sunday</p>
-              </div>
+              <h4 className="font-bold">Weekly</h4>
+              <p>Receive a weekly summary every Sunday</p>
             </Button>
           </div>
         }
@@ -825,7 +832,7 @@ const CommunityChatHeader = ({
     aria-label="Community chat header"
   >
     <button
-      className={cx("shrink-0", { hidden: isAboveBreakpoint })}
+      className={classNames("shrink-0", { hidden: isAboveBreakpoint })}
       aria-label="Open sidebar"
       onClick={() => setSidebarOpen(true)}
     >

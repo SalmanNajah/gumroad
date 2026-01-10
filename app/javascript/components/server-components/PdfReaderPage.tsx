@@ -8,6 +8,7 @@ import { register } from "$app/utils/serverComponentUtil";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
+import { FormFieldset, FormLegend, FormRange } from "$app/components/ui/form";
 import { useRunOnce } from "$app/components/useRunOnce";
 import { WithTooltip } from "$app/components/WithTooltip";
 
@@ -204,8 +205,8 @@ export const PdfReaderPage = ({
               </div>
             }
           >
-            <fieldset>
-              <legend>Appearance</legend>
+            <FormFieldset>
+              <FormLegend>Appearance</FormLegend>
               <div>
                 <Button className="mr-2" onClick={zoomOut}>
                   <Icon name="zoom-out" />
@@ -214,7 +215,7 @@ export const PdfReaderPage = ({
                   <Icon name="zoom-in" />
                 </Button>
               </div>
-            </fieldset>
+            </FormFieldset>
           </Popover>
           <div className="flex items-center gap-1 p-4 whitespace-nowrap tabular-nums">
             <div className="pagination">
@@ -249,13 +250,12 @@ export const PdfReaderPage = ({
           }}
           onMouseLeave={() => setPageTooltip(null)}
         >
-          <input
-            type="range"
+          <FormRange
             min={1}
             max={pageCount}
             value={pageNumber}
             onChange={(e) => updatePage(parseInt(e.target.value, 10))}
-            style={{ "--progress": `${((pageNumber - 1) / (pageCount - 1)) * 100}%` }}
+            progress={((pageNumber - 1) / (pageCount - 1)) * 100}
           />
         </WithTooltip>
 

@@ -5,18 +5,9 @@ import { classNames } from "$app/utils/classNames";
 
 const inputWrapperVariants = cva(
   [
-    "inline-flex items-center w-full",
-    "gap-2",
-    "relative",
-    "py-0 px-4",
-    "min-h-[3.025rem]",
-    "border border-border",
-    "rounded",
-    "bg-background text-foreground",
-    "focus-within:outline-2 focus-within:outline-accent focus-within:outline-offset-0",
+    "inline-flex items-center w-full gap-2 relative py-0 px-4 min-h-[3.025rem] border border-border rounded bg-background text-foreground focus-within:outline-2 focus-within:outline-accent focus-within:outline-offset-0",
+    "[&_input]:border-none [&_input]:flex-1 [&_input]:bg-transparent [&_input]:shadow-none [&_input]:outline-none [&_input]:-mx-4 [&_input]:max-w-none",
     "[&>.icon]:text-muted",
-    "[&_input]:border-none [&_input]:flex-1 [&_input]:bg-transparent [&_input]:shadow-none [&_input]:outline-none [&_input]:-mx-4",
-    "[&_input]:max-w-none",
   ],
   {
     variants: {

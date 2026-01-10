@@ -10,6 +10,7 @@ import { ConfigurationSelector, PriceSelection } from "$app/components/Product/C
 import { CtaButton, getCtaName } from "$app/components/Product/CtaButton";
 import { Layout as ProfileLayout } from "$app/components/Profile/Layout";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset } from "$app/components/ui/form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -97,14 +98,14 @@ export const CoffeeProduct = ({
         }}
       >
         {product.options.length === 1 ? (
-          <fieldset
+          <FormFieldset
             style={{
               display: "grid",
               gridTemplateColumns: "1fr auto",
             }}
           >
             {configurationSelector}
-          </fieldset>
+          </FormFieldset>
         ) : (
           <section className="flex flex-col gap-4">{configurationSelector}</section>
         )}

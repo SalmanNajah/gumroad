@@ -11,9 +11,7 @@ export const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
     <label
       ref={ref}
       className={classNames(
-        "inline-flex gap-2",
-        "cursor-pointer",
-        "has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-30",
+        "inline-flex gap-2 cursor-pointer has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-30",
         className,
       )}
       {...props}

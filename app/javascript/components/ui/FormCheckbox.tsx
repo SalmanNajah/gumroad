@@ -29,14 +29,3 @@ export const FormRadio = React.forwardRef<HTMLInputElement, FormRadioProps>(({ c
   <input ref={ref} type="radio" className={classNames(radioBaseStyles, className)} {...props} />
 ));
 FormRadio.displayName = "FormRadio";
-
-export interface FormRadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export const FormRadioGroup = React.forwardRef<HTMLDivElement, FormRadioGroupProps>(
-  ({ className, children, ...props }, ref) => (
-    <div ref={ref} role="radiogroup" className={classNames("grid gap-4", className)} {...props}>
-      {children}
-    </div>
-  ),
-);
-FormRadioGroup.displayName = "FormRadioGroup";
