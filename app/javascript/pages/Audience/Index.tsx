@@ -16,6 +16,7 @@ import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Popover } from "$app/components/Popover";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
+import { FormInputWrapper } from "$app/components/ui/form";
 import { useOnChange } from "$app/components/useOnChange";
 import { WithTooltip } from "$app/components/WithTooltip";
 
@@ -71,10 +72,10 @@ function Audience() {
           <Deferred
             data={["audience_data"]}
             fallback={
-              <div className="input">
+              <FormInputWrapper>
                 <LoadingSpinner />
                 Loading charts...
-              </div>
+              </FormInputWrapper>
             }
           >
             {audience_data ? <AudienceChart data={audience_data} /> : null}

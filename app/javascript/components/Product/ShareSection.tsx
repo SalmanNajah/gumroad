@@ -151,7 +151,6 @@ export const ShareSection = ({
                   placeholder="Wishlist name"
                   value={dropdownState.newWishlistName}
                   onChange={(e) => setDropdownState({ state: "creating", newWishlistName: e.target.value })}
-                  className="input"
                   aria-label="Wishlist name"
                 />
                 <Button type="submit" aria-label="Create wishlist" color="primary">

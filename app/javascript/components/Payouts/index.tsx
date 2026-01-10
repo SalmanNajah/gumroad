@@ -23,7 +23,7 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholder from "$assets/images/placeholders/payouts.png";
-import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 
 const INSTANT_PAYOUT_FEE_PERCENTAGE = 0.03;
 const MINIMUM_INSTANT_PAYOUT_AMOUNT_CENTS = 1000;
@@ -794,12 +794,13 @@ const Payouts = ({
 
               <FormFieldset>
                 <FormLabel htmlFor="instant-payout-date">Pay out balance up to</FormLabel>
-                <div className="input cursor-pointer">
+                <FormInputWrapper className="cursor-pointer pr-0">
                   <Icon name="calendar-all" />
                   <FormSelect
                     id="instant-payout-date"
                     value={instantPayoutId}
                     onChange={(e) => setInstantPayoutId(e.target.value)}
+                    className="border-none outline-none"
                   >
                     {instant_payout.payable_balances.map((balance) => (
                       <option key={balance.id} value={balance.id}>
@@ -811,8 +812,7 @@ const Payouts = ({
                       </option>
                     ))}
                   </FormSelect>
-                  <Icon name="outline-cheveron-down" />
-                </div>
+                </FormInputWrapper>
               </FormFieldset>
               <FormFieldset>
                 <FormLegend>Payout details</FormLegend>

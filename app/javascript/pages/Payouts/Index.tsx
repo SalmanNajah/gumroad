@@ -20,7 +20,7 @@ import {
 } from "$app/components/Payouts";
 import { ExportPayoutsPopover } from "$app/components/Payouts/ExportPayoutsPopover";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -587,12 +587,13 @@ export default function PayoutsIndex() {
               </p>
               <FormFieldset>
                 <FormLabel htmlFor="instant-payout-date">Pay out balance up to</FormLabel>
-                <div className="input cursor-pointer">
+                <FormInputWrapper className="cursor-pointer pr-0">
                   <Icon name="calendar-all" />
                   <FormSelect
                     id="instant-payout-date"
                     value={instantPayoutId}
                     onChange={(e) => setInstantPayoutId(e.target.value)}
+                    className="border-none outline-none"
                   >
                     {instant_payout.payable_balances.map((balance) => (
                       <option key={balance.id} value={balance.id}>
@@ -604,8 +605,7 @@ export default function PayoutsIndex() {
                       </option>
                     ))}
                   </FormSelect>
-                  <Icon name="outline-cheveron-down" />
-                </div>
+                </FormInputWrapper>
               </FormFieldset>
               <FormFieldset>
                 <FormLegend>Payout details</FormLegend>
