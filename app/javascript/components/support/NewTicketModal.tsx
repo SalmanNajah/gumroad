@@ -10,6 +10,7 @@ import { Icon } from "$app/components/Icons";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ALLOWED_ATTACHMENT_MIMETYPES } from "$app/components/support/ConversationDetail";
+import { FormInput, FormTextarea } from "$app/components/ui/form";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
 
 export function NewTicketModal({
@@ -78,9 +79,9 @@ export function NewTicketModal({
         }}
       >
         <label className="sr-only">Subject</label>
-        <input value={subject} placeholder="Subject" onChange={(e) => setSubject(e.target.value)} />
+        <FormInput value={subject} placeholder="Subject" onChange={(e) => setSubject(e.target.value)} />
         <label className="sr-only">Message</label>
-        <textarea
+        <FormTextarea
           rows={6}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -91,6 +92,7 @@ export function NewTicketModal({
           type="file"
           multiple
           accept={ALLOWED_ATTACHMENT_MIMETYPES}
+          className="sr-only"
           onChange={(e) => {
             const files = Array.from(e.target.files ?? []);
             if (files.length === 0) return;

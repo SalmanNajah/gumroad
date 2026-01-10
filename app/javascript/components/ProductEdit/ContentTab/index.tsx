@@ -67,7 +67,7 @@ import { WithTooltip } from "$app/components/WithTooltip";
 
 import { FileEmbed, FileEmbedConfig } from "./FileEmbed";
 import { Page, PageTab, titleWithFallback } from "./PageTab";
-import { FormCheckbox, FormInput } from "$app/components/ui/form";
+import { FormCheckbox, FormInput, FormLabel } from "$app/components/ui/form";
 
 declare global {
   interface Window {
@@ -573,15 +573,14 @@ const ContentTabContent = ({ selectedVariantId }: { selectedVariantId: string | 
                         ) : (
                           filteredExistingFiles.map((file) => (
                             <Row key={file.id} role="option" className="cursor-pointer" asChild>
-                              <label>
+                              <FormLabel>
                                 <RowContent>
                                   <FileKindIcon extension={file.extension} />
-                                  <div>
+                                  <div className="flex-1">
                                     <h4>{file.display_name}</h4>
                                     <span>{`${file.attached_product_name || "N/A"} (${FileUtils.getFullFileSizeString(file.file_size ?? 0)})`}</span>
                                   </div>
-                                  <input
-                                    type="checkbox"
+                                  <FormCheckbox
                                     checked={selectingExistingFiles.selected.includes(file)}
                                     onChange={() => {
                                       setSelectingExistingFiles({
@@ -591,10 +590,10 @@ const ContentTabContent = ({ selectedVariantId }: { selectedVariantId: string | 
                                           : [...selectingExistingFiles.selected, file],
                                       });
                                     }}
-                                    style={{ marginLeft: "auto" }}
+                                    className="ml-auto"
                                   />
                                 </RowContent>
-                              </label>
+                              </FormLabel>
                             </Row>
                           ))
                         )}
