@@ -22,6 +22,7 @@ import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormLabel, FormLegend, FormRadio, FormTextarea } from "$app/components/ui/form";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
@@ -201,14 +202,13 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
             </Alert>
           </div>
           <div>
-            <fieldset>
-              <legend>
-                <label htmlFor={reasonForWinningUID}>Why should you win this dispute?</label>
-              </legend>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel htmlFor={reasonForWinningUID}>Why should you win this dispute?</FormLabel>
+              </FormLegend>
               {disputeReason.reasonsForWinning.map((option) => (
-                <label key={option}>
-                  <input
-                    type="radio"
+                <FormLabel key={option}>
+                  <FormRadio
                     name="reasonForWinning"
                     value={option}
                     onChange={(evt) =>
@@ -218,10 +218,10 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                     }
                   />
                   {reasonForWinningOptions[option]}
-                </label>
+                </FormLabel>
               ))}
               {sellerDisputeEvidence.reasonForWinningOption === "other" ? (
-                <textarea
+                <FormTextarea
                   id={reasonForWinningUID}
                   maxLength={TEXTAREA_MAX_LENGTH}
                   rows={TEXTAREA_ROWS}
@@ -229,18 +229,19 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                   onChange={(evt) => updateSellerDisputeEvidence({ reasonForWinning: evt.target.value })}
                 />
               ) : null}
-            </fieldset>
+            </FormFieldset>
           </div>
           {disputable.is_subscription && dispute_evidence.dispute_reason === "subscription_canceled" ? (
             <div>
-              <fieldset>
-                <legend>
-                  <label htmlFor={cancellationRebuttalUID}>Why was the customer's subscription not canceled?</label>
-                </legend>
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={cancellationRebuttalUID}>
+                    Why was the customer's subscription not canceled?
+                  </FormLabel>
+                </FormLegend>
                 {Object.entries(cancellationRebuttalOptions).map(([option, message]) => (
-                  <label key={option}>
-                    <input
-                      type="radio"
+                  <FormLabel key={option}>
+                    <FormRadio
                       name="cancellationRebuttal"
                       value={option}
                       onChange={(evt) =>
@@ -251,10 +252,10 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                     />
 
                     {message}
-                  </label>
+                  </FormLabel>
                 ))}
                 {sellerDisputeEvidence.cancellationRebuttalOption === "other" ? (
-                  <textarea
+                  <FormTextarea
                     id={cancellationRebuttalUID}
                     maxLength={TEXTAREA_MAX_LENGTH}
                     rows={TEXTAREA_ROWS}
@@ -262,30 +263,32 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                     onChange={(evt) => updateSellerDisputeEvidence({ cancellationRebuttal: evt.target.value })}
                   />
                 ) : null}
-              </fieldset>
+              </FormFieldset>
             </div>
           ) : null}
           {"refusalRequiresExplanation" in disputeReason ? (
             <div>
-              <fieldset>
-                <legend>
-                  <label htmlFor={refundRefusalExplanationUID}>Why is the customer not entitled to a refund?</label>
-                </legend>
-                <textarea
+              <FormFieldset>
+                <FormLegend>
+                  <FormLabel htmlFor={refundRefusalExplanationUID}>
+                    Why is the customer not entitled to a refund?
+                  </FormLabel>
+                </FormLegend>
+                <FormTextarea
                   id={refundRefusalExplanationUID}
                   maxLength={TEXTAREA_MAX_LENGTH}
                   rows={TEXTAREA_ROWS}
                   value={sellerDisputeEvidence.refundRefusalExplanation}
                   onChange={(evt) => updateSellerDisputeEvidence({ refundRefusalExplanation: evt.target.value })}
                 />
-              </fieldset>
+              </FormFieldset>
             </div>
           ) : null}
           <div>
-            <fieldset>
-              <legend>
-                <label>Do you have additional evidence you'd like to provide?</label>
-              </legend>
+            <FormFieldset>
+              <FormLegend>
+                <FormLabel>Do you have additional evidence you'd like to provide?</FormLabel>
+              </FormLegend>
 
               <Files
                 blobs={dispute_evidence.blobs}
@@ -298,6 +301,7 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                   <input
                     ref={fileInputRef}
                     type="file"
+                    className="sr-only"
                     accept={ALLOWED_EXTENSIONS.map((ext) => `.${ext}`).join(",")}
                     tabIndex={-1}
                     onChange={handleFileUpload}
@@ -322,7 +326,7 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                   </p>
                 </>
               ) : null}
-            </fieldset>
+            </FormFieldset>
           </div>
           <div>
             <Button color="primary" disabled={!isInfoProvided || isSubmitting} onClick={handleSubmit}>

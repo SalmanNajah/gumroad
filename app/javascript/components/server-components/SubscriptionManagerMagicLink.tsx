@@ -9,7 +9,7 @@ import { Layout } from "$app/components/Authentication/Layout";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormRadio } from "$app/components/ui/form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 
 type UserEmail = { email: string; source: string };
@@ -70,7 +70,7 @@ const SubscriptionManagerMagicLink = ({
       headerActions={<a href={Routes.login_path()}>Log in</a>}
     >
       <form>
-        <section>
+        <section className="grid gap-8">
           {hasSentEmail ? (
             <>
               <Button color="primary" onClick={() => void handleSendMagicLink()} disabled={loading}>
@@ -97,16 +97,15 @@ const SubscriptionManagerMagicLink = ({
                 <FormFieldset>
                   <FormLegend>Choose an email</FormLegend>
                   {user_emails.map((userEmail) => (
-                    <label key={userEmail.source}>
-                      <input
-                        type="radio"
+                    <FormLabel key={userEmail.source}>
+                      <FormRadio
                         name="email_source"
                         value={userEmail.source}
                         onChange={() => setSelectedUserEmail(userEmail)}
                         checked={userEmail === selectedUserEmail}
                       />
                       {userEmail.email}
-                    </label>
+                    </FormLabel>
                   ))}
                 </FormFieldset>
               ) : null}

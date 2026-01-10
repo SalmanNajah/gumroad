@@ -4,6 +4,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormCheckbox, FormFieldset, FormLabel } from "$app/components/ui/form";
 
 type Props = {
   taxForms: Record<number, string>;
@@ -63,13 +64,12 @@ export const DownloadTaxFormsPopover = ({ taxForms }: Props) => {
               </header>
 
               <section className="relative -mx-4 max-h-[300px] max-w-none overflow-y-auto border-b p-4">
-                <fieldset>
+                <FormFieldset>
                   {Object.keys(taxForms)
                     .sort((a, b) => Number(b) - Number(a))
                     .map((year) => (
-                      <label key={year}>
-                        <input
-                          type="checkbox"
+                      <FormLabel key={year}>
+                        <FormCheckbox
                           checked={selectedYears.has(year)}
                           onChange={(event) => {
                             const newSelectedYears = new Set(selectedYears);
@@ -82,9 +82,9 @@ export const DownloadTaxFormsPopover = ({ taxForms }: Props) => {
                           }}
                         />
                         {year}
-                      </label>
+                      </FormLabel>
                     ))}
-                </fieldset>
+                </FormFieldset>
               </section>
 
               <footer className="flex gap-4">

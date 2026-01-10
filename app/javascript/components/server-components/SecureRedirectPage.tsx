@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormInput, FormLabel } from "$app/components/ui/form";
 
 type SecureRedirectPageProps = {
   message: string;
@@ -91,10 +92,10 @@ const SecureRedirectPage = ({
           void handleSubmit(e);
         }}
       >
-        <label htmlFor="confirmation_text" className="form-label">
+        <FormLabel htmlFor="confirmation_text" className="form-label">
           {field_name}
-        </label>
-        <input
+        </FormLabel>
+        <FormInput
           id="confirmation_text"
           name="confirmation_text"
           type="text"
