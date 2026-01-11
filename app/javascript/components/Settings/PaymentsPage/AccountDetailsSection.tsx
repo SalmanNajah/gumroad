@@ -7,7 +7,7 @@ import { classNames } from "$app/utils/classNames";
 
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 
 const AccountDetailsSection = ({
   user,
@@ -632,9 +632,8 @@ const AccountDetailsSection = ({
           <FormFieldset>
             <FormLegend>
               <FormLabel htmlFor={`${uid}-personal-address-is-business-address`}>
-                <FormInput
+                <FormCheckbox
                   id={`${uid}-personal-address-is-business-address`}
-                  type="checkbox"
                   disabled={isFormDisabled}
                   onChange={(e) =>
                     e.target.checked &&
