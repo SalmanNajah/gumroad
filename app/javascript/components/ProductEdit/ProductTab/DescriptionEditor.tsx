@@ -19,7 +19,7 @@ import {
 import { showAlert } from "$app/components/server-components/Alert";
 import { MoveNode } from "$app/components/TiptapExtensions/MoveNode";
 import { PublicFileEmbed } from "$app/components/TiptapExtensions/PublicFileEmbed";
-import { FormFieldset, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormLabel } from "$app/components/ui/Form";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 const MAX_ALLOWED_PUBLIC_FILE_SIZE_IN_BYTES = 5 * 1024 * 1024; // 5MB

@@ -5,7 +5,7 @@ import { createCast } from "ts-safe-cast";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { NavigationButton } from "$app/components/Button";
-import { FormInput } from "$app/components/ui/FormInput";
+import { FormInput } from "$app/components/ui/Form";
 
 interface Article {
   title: string;

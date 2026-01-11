@@ -1,5 +1,6 @@
-import { FormSwitch } from "$app/components/ui/form";
 import * as React from "react";
+
+import { FormSwitch } from "$app/components/ui/Form";
 
 export const Toggle = ({
   value,

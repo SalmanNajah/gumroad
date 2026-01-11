@@ -9,7 +9,7 @@ import {
 
 import { Icon } from "$app/components/Icons";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
-import { FormInput, FormInputWrapper } from "$app/components/ui/form";
+import { FormInput, FormInputWrapper } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 
 export const PriceInput = React.forwardRef<
@@ -63,7 +63,7 @@ export const PriceInput = React.forwardRef<
     return (
       <FormInputWrapper disabled={disabled}>
         {currencyCodeSelector ? (
-          <Pill className="relative -ml-2 shrink-0 cursor-pointer z-1">
+          <Pill className="relative z-1 -ml-2 shrink-0 cursor-pointer">
             {getLongCurrencySymbol(currencyCode)}
             <TypeSafeOptionSelect
               name="Currency"
@@ -78,7 +78,7 @@ export const PriceInput = React.forwardRef<
             <Icon name="outline-cheveron-down" className="ml-auto" />
           </Pill>
         ) : (
-          <Pill className="-ml-2 shrink-0 z-1">{getLongCurrencySymbol(currencyCode)}</Pill>
+          <Pill className="z-1 -ml-2 shrink-0">{getLongCurrencySymbol(currencyCode)}</Pill>
         )}
         <FormInput
           type="text"

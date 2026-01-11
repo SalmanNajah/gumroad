@@ -12,7 +12,7 @@ import AdminResendReceiptForm from "$app/components/Admin/Purchases/ResendReceip
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormInput } from "$app/components/ui/form";
+import { FormInput } from "$app/components/ui/Form";
 
 import { type RefundPolicy, RefundPolicyTitle } from "./RefundPolicy";
 import { type PurchaseStatesInfo, PurchaseStates } from "./States";

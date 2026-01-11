@@ -1,4 +1,3 @@
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormRadio, FormSwitch } from "$app/components/ui/form";
 import * as React from "react";
 
 import { CustomField, updateCheckoutForm } from "$app/data/checkout_form";
@@ -20,6 +19,15 @@ import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
+import {
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormLabel,
+  FormLegend,
+  FormRadio,
+  FormSwitch,
+} from "$app/components/ui/Form";
 
 export type SimpleProduct = { id: string; name: string; archived: boolean };
 

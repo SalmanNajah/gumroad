@@ -15,8 +15,8 @@ import { ExportSubscribersPopover } from "$app/components/Followers/ExportSubscr
 import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Popover } from "$app/components/Popover";
+import { FormInputWrapper } from "$app/components/ui/Form";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
-import { FormInputWrapper } from "$app/components/ui/form";
 import { useOnChange } from "$app/components/useOnChange";
 import { WithTooltip } from "$app/components/WithTooltip";
 

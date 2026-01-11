@@ -9,7 +9,7 @@ import { Modal } from "$app/components/Modal";
 import { PaginationProps } from "$app/components/Pagination";
 import { Review } from "$app/components/Review";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormCheckbox, FormLabel } from "$app/components/ui/form";
+import { FormCheckbox, FormLabel } from "$app/components/ui/Form";
 
 export const TestimonialSelectModal = ({
   isOpen,

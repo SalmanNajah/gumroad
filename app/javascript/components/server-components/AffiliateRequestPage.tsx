@@ -13,7 +13,7 @@ import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Layout } from "$app/components/Profile/Layout";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection, FormTextarea } from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 
 type FormStatus =

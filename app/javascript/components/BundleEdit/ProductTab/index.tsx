@@ -16,8 +16,8 @@ import { MaxPurchaseCountToggle } from "$app/components/ProductEdit/ProductTab/M
 import { PriceEditor } from "$app/components/ProductEdit/ProductTab/PriceEditor";
 import { ThumbnailEditor } from "$app/components/ProductEdit/ProductTab/ThumbnailEditor";
 import { RefundPolicySelector } from "$app/components/ProductEdit/RefundPolicy";
-import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
 import { Toggle } from "$app/components/Toggle";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/Form";
 
 export const ProductTab = () => {
   const {

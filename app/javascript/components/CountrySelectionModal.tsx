@@ -7,7 +7,7 @@ import { assertResponseError, request } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Modal } from "$app/components/Modal";
-import { FormCheckbox, FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 
 type Props = {
   country: string | null;

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormSelect } from "$app/components/ui/FormSelect";
+import { FormSelect } from "$app/components/ui/Form";
 
 type AdminSuspendForTosFormProps = {
   user_id: number;

@@ -25,11 +25,11 @@ import {
   useMediaUrls,
   usePurchaseInfo,
 } from "$app/components/server-components/DownloadPage/WithContent";
+import { FormFieldset, FormInput } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useOnOutsideClick } from "$app/components/useOnOutsideClick";
 import { useRefToLatest } from "$app/components/useRefToLatest";
 import { WithTooltip } from "$app/components/WithTooltip";
-import { FormFieldset, FormInput } from "$app/components/ui/form";
 
 import { NativeAppLink, TrackClick } from "./Interactions";
 

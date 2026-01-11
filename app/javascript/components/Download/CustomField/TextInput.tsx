@@ -5,7 +5,7 @@ import { request } from "$app/utils/request";
 
 import { showAlert } from "$app/components/server-components/Alert";
 import { usePurchaseCustomFields, usePurchaseInfo } from "$app/components/server-components/DownloadPage/WithContent";
-import { FormInput, FormLabel, FormTextarea } from "$app/components/ui/form";
+import { FormInput, FormLabel, FormTextarea } from "$app/components/ui/Form";
 
 export const TextInput = ({
   customFieldId,

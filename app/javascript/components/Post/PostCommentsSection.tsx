@@ -21,10 +21,10 @@ import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { UserAvatar } from "$app/components/server-components/CommunitiesPage/UserAvatar";
+import { FormTextarea } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 
 import defaultUserAvatar from "$assets/images/user-avatar.png";
-import { FormTextarea } from "$app/components/ui/FormTextarea";
 
 type CommentsMetadata = {
   seller_id: string;

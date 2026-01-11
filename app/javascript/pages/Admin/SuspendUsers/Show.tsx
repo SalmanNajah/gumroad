@@ -2,7 +2,7 @@ import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
 import CodeSnippet from "$app/components/ui/CodeSnippet";
-import { FormLabel, FormSection, FormSelect, FormTextarea } from "$app/components/ui/form";
+import { FormLabel, FormSection, FormSelect, FormTextarea } from "$app/components/ui/Form";
 
 type PageProps = {
   authenticity_token: string;

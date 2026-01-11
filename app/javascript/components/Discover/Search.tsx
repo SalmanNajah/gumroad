@@ -9,7 +9,7 @@ import { assertResponseError } from "$app/utils/request";
 import { ComboBox } from "$app/components/ComboBox";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormInput, FormInputWrapper } from "$app/components/ui/form";
+import { FormInput, FormInputWrapper } from "$app/components/ui/Form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange } from "$app/components/useOnChange";
 

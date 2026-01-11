@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { FormFieldset, FormLabel, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormTextarea } from "$app/components/ui/Form";
 
 export const CustomReceiptTextInput = ({
   value,

@@ -5,7 +5,7 @@ import { AuthAlert } from "$app/components/AuthAlert";
 import { Layout } from "$app/components/Authentication/Layout";
 import { Button } from "$app/components/Button";
 import { PasswordInput } from "$app/components/PasswordInput";
-import { FormLabel, FormFieldset, FormLegend } from "$app/components/ui/form";
+import { FormLabel, FormFieldset, FormLegend } from "$app/components/ui/Form";
 
 type PageProps = {
   reset_password_token: string;

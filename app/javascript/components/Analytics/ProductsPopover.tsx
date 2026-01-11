@@ -4,7 +4,7 @@ import { type Product } from "$app/components/Analytics";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
-import { FormCheckbox, FormFieldset, FormInputWrapper, FormLabel } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormInputWrapper, FormLabel } from "$app/components/ui/Form";
 
 export type ProductOption = Product & { selected: boolean };
 

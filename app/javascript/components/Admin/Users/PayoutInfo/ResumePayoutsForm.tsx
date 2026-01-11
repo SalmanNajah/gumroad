@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
-import { FormFieldset } from "$app/components/ui/FormFieldset";
+import { FormFieldset } from "$app/components/ui/Form";
 
 const AdminResumePayoutsForm = ({
   user_id,

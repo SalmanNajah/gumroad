@@ -12,7 +12,7 @@ import { Drawer } from "$app/components/SortableList";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
 import { Toggle } from "$app/components/Toggle";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
 
 declare module "@tiptap/core" {

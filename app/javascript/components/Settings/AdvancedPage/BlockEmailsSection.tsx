@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import { isValidEmail } from "$app/utils/email";
-import { FormFieldset, FormLabel, FormLegend, FormSection, FormTextarea } from "$app/components/ui/form";
+
+import { FormFieldset, FormLabel, FormLegend, FormSection, FormTextarea } from "$app/components/ui/Form";
 
 type Props = {
   blockedEmails: string;

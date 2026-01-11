@@ -12,9 +12,9 @@ import { Icon } from "$app/components/Icons";
 import { ProfileSectionsEditor } from "$app/components/ProductEdit/ShareTab/ProfileSectionsEditor";
 import { TagSelector } from "$app/components/ProductEdit/ShareTab/TagSelector";
 import { TaxonomyEditor } from "$app/components/ProductEdit/ShareTab/TaxonomyEditor";
-import { FormFieldset } from "$app/components/ui/form";
 import { Toggle } from "$app/components/Toggle";
 import { TwitterShareButton } from "$app/components/TwitterShareButton";
+import { FormFieldset } from "$app/components/ui/Form";
 
 export const ShareTab = () => {
   const { bundle, updateBundle, taxonomies, profileSections } = useBundleEditContext();

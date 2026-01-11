@@ -8,9 +8,9 @@ import { type RefundPolicy, RefundPolicyTitle } from "$app/components/Admin/Purc
 import { PurchaseStates } from "$app/components/Admin/Purchases/States";
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { Icon } from "$app/components/Icons";
+import { FormInput, FormSelect } from "$app/components/ui/Form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
-import { FormInput, FormSelect } from "$app/components/ui/form";
 
 type Purchase = {
   external_id: string;

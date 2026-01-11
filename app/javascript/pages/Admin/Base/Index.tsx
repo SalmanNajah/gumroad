@@ -1,5 +1,6 @@
-import { FormInput } from "$app/components/ui/FormInput";
 import React from "react";
+
+import { FormInput } from "$app/components/ui/Form";
 
 const AdminDashboard = () => {
   const [userIdentifier, setUserIdentifier] = React.useState("");

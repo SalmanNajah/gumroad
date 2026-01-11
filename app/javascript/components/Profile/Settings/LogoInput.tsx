@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { ImageUploader } from "$app/components/ImageUploader";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 const ALLOWED_EXTENSIONS = ["jpeg", "jpg", "png"];
 

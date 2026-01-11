@@ -1,5 +1,6 @@
 import * as React from "react";
-import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+
+import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 
 export type Product = {
   name: string;

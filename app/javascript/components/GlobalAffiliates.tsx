@@ -10,7 +10,7 @@ import { useDomains, useDiscoverUrl } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormInputWrapper, FormLegend, FormSection } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLegend, FormSection } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 
 const DiscoverLinkSection = ({

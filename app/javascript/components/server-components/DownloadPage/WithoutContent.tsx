@@ -4,7 +4,7 @@ import { createCast } from "ts-safe-cast";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
-import { FormInput } from "$app/components/ui/form";
+import { FormInput } from "$app/components/ui/Form";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 
 import { Layout, LayoutProps } from "./Layout";

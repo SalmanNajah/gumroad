@@ -3,7 +3,7 @@ import * as React from "react";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { ToggleSettingRow } from "$app/components/SettingRow";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
-import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 const PERMITTED_DURATIONS = ["week", "month"] as const;
 const DEFAULT_DURATION = 1;

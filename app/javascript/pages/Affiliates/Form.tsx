@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { NumberInput } from "$app/components/NumberInput";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormSection, FormSwitch } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormSection, FormSwitch } from "$app/components/ui/Form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 
 export type AffiliateProduct = {

@@ -20,7 +20,7 @@ import {
   FormSection,
   FormLegend,
   FormSwitch,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -178,7 +178,8 @@ const CollaboratorForm = ({
       }
     >
       <form>
-        <FormSection className="p-8!"
+        <FormSection
+          className="p-8!"
           header={
             <>
               {isEditPage ? <h2>Products</h2> : null}
@@ -202,9 +203,9 @@ const CollaboratorForm = ({
                 value={form.data.email}
                 placeholder="Collaborator's Gumroad account email"
                 onChange={(evt) => {
-                    form.setData("email", evt.target.value.trim());
-                    form.clearErrors("email");
-                  }}
+                  form.setData("email", evt.target.value.trim());
+                  form.clearErrors("email");
+                }}
               />
             </FormFieldset>
           ) : null}
@@ -311,7 +312,9 @@ const CollaboratorForm = ({
                         ) : null}
                       </TableCell>
                       <TableCell>
-                        <FormFieldset state={form.errors[`products.${index}.percent_commission`] ? "danger" : undefined}>
+                        <FormFieldset
+                          state={form.errors[`products.${index}.percent_commission`] ? "danger" : undefined}
+                        >
                           <NumberInput
                             value={product.percent_commission}
                             onChange={(value) => {

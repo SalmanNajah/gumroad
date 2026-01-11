@@ -6,7 +6,7 @@ import { request } from "$app/utils/request";
 
 import type { CommentProps } from "$app/components/Admin/Commentable/Comment";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormTextarea } from "$app/components/ui/Form";
 
 type AdminCommentableFormProps = {
   endpoint: string;

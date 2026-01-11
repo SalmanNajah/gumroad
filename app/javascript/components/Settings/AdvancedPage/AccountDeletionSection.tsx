@@ -6,7 +6,7 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 import { Button } from "$app/components/Button";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormSection } from "$app/components/ui/form";
+import { FormSection } from "$app/components/ui/Form";
 
 type Props = {
   formatted_balance_to_forfeit_on_account_deletion: string | null;

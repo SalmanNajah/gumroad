@@ -15,6 +15,7 @@ import { Pagination, PaginationProps } from "$app/components/Pagination";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Skeleton } from "$app/components/Skeleton";
+import { FormInput, FormInputWrapper } from "$app/components/ui/Form";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
@@ -26,7 +27,6 @@ import { WithTooltip } from "$app/components/WithTooltip";
 
 import noLinksYetPlaceholder from "$assets/images/placeholders/utm_links_empty.png";
 import noLinksFoundPlaceholder from "$assets/images/placeholders/utm_links_not_found.png";
-import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 
 type UtmLinksIndexProps = {
   utm_links: SavedUtmLink[];

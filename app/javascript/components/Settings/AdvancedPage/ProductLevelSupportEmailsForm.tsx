@@ -3,9 +3,9 @@ import * as React from "react";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { TagInput } from "$app/components/TagInput";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 type ProductLevelSupportEmail = {
   email: string;

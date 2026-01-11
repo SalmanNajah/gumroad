@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
-import { FormFieldset, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormTextarea } from "$app/components/ui/Form";
 
 const AdminPausePayoutsForm = ({ user_id, onSuccess }: { user_id: number; onSuccess: (reason: string) => void }) => {
   const [reason, setReason] = React.useState("");

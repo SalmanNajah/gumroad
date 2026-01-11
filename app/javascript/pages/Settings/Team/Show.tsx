@@ -28,7 +28,7 @@ import { Option, Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection } from "$app/components/ui/Form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { WithTooltip } from "$app/components/WithTooltip";
 

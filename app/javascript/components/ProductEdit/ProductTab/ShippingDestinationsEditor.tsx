@@ -4,7 +4,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { PriceInput } from "$app/components/PriceInput";
 import { ShippingDestination, useProductEditContext } from "$app/components/ProductEdit/state";
-import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { WithTooltip } from "$app/components/WithTooltip";
 

@@ -7,9 +7,9 @@ import { SocialAuth } from "$app/components/Authentication/SocialAuth";
 import { Button } from "$app/components/Button";
 import { PasswordInput } from "$app/components/PasswordInput";
 import { Separator } from "$app/components/Separator";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { RecaptchaCancelledError, useRecaptcha } from "$app/components/useRecaptcha";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
   email: string | null;

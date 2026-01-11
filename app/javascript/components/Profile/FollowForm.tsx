@@ -9,7 +9,7 @@ import { Button } from "$app/components/Button";
 import { ButtonColor } from "$app/components/design";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/Form";
 
 export const FollowForm = ({
   creatorProfile,

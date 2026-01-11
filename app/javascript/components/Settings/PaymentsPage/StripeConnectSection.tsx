@@ -9,7 +9,7 @@ import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
 import { SocialAuthButton } from "$app/components/SocialAuthButton";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 export type StripeConnect = {
   has_connected_stripe: boolean;

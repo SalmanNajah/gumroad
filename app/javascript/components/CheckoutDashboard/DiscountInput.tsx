@@ -4,7 +4,7 @@ import { CurrencyCode } from "$app/utils/currency";
 
 import { NumberInput } from "$app/components/NumberInput";
 import { PriceInput } from "$app/components/PriceInput";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormRadio } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormRadio } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { WithTooltip } from "$app/components/WithTooltip";
 

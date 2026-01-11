@@ -18,7 +18,7 @@ import {
   FormLabel,
   FormLegend,
   FormRadio,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";

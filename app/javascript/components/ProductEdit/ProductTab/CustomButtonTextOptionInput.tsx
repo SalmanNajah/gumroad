@@ -4,7 +4,7 @@ import { CustomButtonTextOption } from "$app/parsers/product";
 
 import { getCtaName } from "$app/components/Product/CtaButton";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
-import { FormFieldset, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormLabel } from "$app/components/ui/Form";
 
 export const CustomButtonTextOptionInput = <T extends CustomButtonTextOption>({
   value,

@@ -37,10 +37,6 @@ import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { CrossSellModal, UpsellModal } from "$app/components/server-components/CheckoutPage";
 import { Skeleton } from "$app/components/Skeleton";
-import { PageHeader } from "$app/components/ui/PageHeader";
-import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
-import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import {
   FormCheckbox,
   FormFieldset,
@@ -51,7 +47,11 @@ import {
   FormInputWrapper,
   FormRadio,
   FormSwitch,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
+import { PageHeader } from "$app/components/ui/PageHeader";
+import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
+import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { Sort, useSortingTableDriver } from "$app/components/useSortingTableDriver";
 
@@ -304,7 +304,9 @@ const UpsellsPage = (props: UpsellsPageProps) => {
                           <div>
                             <b>{upsell.name}</b>
                           </div>
-                          <small className="text-muted">{formatOfferedProductName(upsell.product.name, upsell.product.variant?.name)}</small>
+                          <small className="text-muted">
+                            {formatOfferedProductName(upsell.product.name, upsell.product.variant?.name)}
+                          </small>
                         </div>
                       </TableCell>
                       <TableCell aria-busy={!statistics}>

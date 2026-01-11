@@ -4,7 +4,7 @@ import { Button } from "$app/components/Button";
 import { useState, getErrors } from "$app/components/Checkout/payment";
 import { Modal } from "$app/components/Modal";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch, FormTextarea } from "$app/components/ui/Form";
 
 export const GiftForm = ({ isMembership }: { isMembership: boolean }) => {
   const giftEmailUID = React.useId();

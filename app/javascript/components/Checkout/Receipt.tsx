@@ -13,7 +13,7 @@ import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 export const LineItem = ({
   name,

@@ -1,5 +1,4 @@
 import { Channel } from "@anycable/web";
-import { classNames } from "$app/utils/classNames";
 import { debounce } from "lodash-es";
 import * as React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -19,6 +18,7 @@ import {
   updateCommunityNotificationSettings,
 } from "$app/data/communities";
 import { assertDefined } from "$app/utils/assert";
+import { classNames } from "$app/utils/classNames";
 import { asyncVoid } from "$app/utils/promise";
 import { AbortError } from "$app/utils/request";
 

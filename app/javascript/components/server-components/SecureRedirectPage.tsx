@@ -5,7 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormInput, FormLabel } from "$app/components/ui/form";
+import { FormInput, FormLabel } from "$app/components/ui/Form";
 
 type SecureRedirectPageProps = {
   message: string;

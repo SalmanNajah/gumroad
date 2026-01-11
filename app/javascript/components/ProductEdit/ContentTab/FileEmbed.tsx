@@ -36,10 +36,10 @@ import { SubtitleList } from "$app/components/SubtitleList";
 import { SubtitleFile } from "$app/components/SubtitleList/Row";
 import { SubtitleUploadBox } from "$app/components/SubtitleUploadBox";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch, FormTextarea } from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
 import { WithTooltip } from "$app/components/WithTooltip";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch, FormTextarea } from "$app/components/ui/form";
 
 export const getDownloadUrl = (productId: string, file: FileEntry) =>
   file.extension === "URL" || file.status.type === "removed"

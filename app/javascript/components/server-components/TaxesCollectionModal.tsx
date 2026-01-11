@@ -7,7 +7,7 @@ import { register } from "$app/utils/serverComponentUtil";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Modal } from "$app/components/Modal";
-import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/Form";
 
 type Props = {
   taxesOwed: string | null;

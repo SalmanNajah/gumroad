@@ -4,8 +4,8 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 
 import { type AnalyticsReferrerTotals } from "$app/components/Analytics";
 import { Button } from "$app/components/Button";
+import { FormInputWrapper } from "$app/components/ui/Form";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
-import { FormInputWrapper } from "$app/components/ui/form";
 import { useClientSortingTableDriver } from "$app/components/useSortingTableDriver";
 
 const ROWS_PER_PAGE = 10;

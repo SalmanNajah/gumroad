@@ -8,7 +8,7 @@ import { getAppliedStyles } from "$app/utils/styles";
 import { Button } from "$app/components/Button";
 import { useAppDomain } from "$app/components/DomainSettings";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormInput } from "$app/components/ui/FormInput";
+import { FormInput } from "$app/components/ui/Form";
 
 export const FOLLOW_FORM_EMBED_INPUT_ID = "gumroad-follow-form-embed-input";
 

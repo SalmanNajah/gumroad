@@ -6,8 +6,8 @@ import { Layout } from "$app/components/Authentication/Layout";
 import { SocialAuth } from "$app/components/Authentication/SocialAuth";
 import { Button } from "$app/components/Button";
 import { Separator } from "$app/components/Separator";
+import { FormLabel, FormInput, FormFieldset, FormLegend } from "$app/components/ui/Form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
-import { FormLabel, FormInput, FormFieldset, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
   email: string | null;

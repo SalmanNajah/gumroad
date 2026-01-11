@@ -1,5 +1,6 @@
-import { FormCheckbox } from "$app/components/ui/FormCheckbox";
 import React from "react";
+
+import { FormCheckbox } from "$app/components/ui/Form";
 
 export type ProductPurchase = {
   email: string;

@@ -18,9 +18,9 @@ import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
+import { FormInput } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useRunOnce } from "$app/components/useRunOnce";
-import { FormInput } from "$app/components/ui/FormInput";
 
 type FileEntry = {
   id: string;

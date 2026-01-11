@@ -13,7 +13,7 @@ import { useDomains } from "$app/components/DomainSettings";
 import { FileRowContent } from "$app/components/FileRowContent";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormLabel, FormTextarea } from "$app/components/ui/form";
+import { FormLabel, FormTextarea } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 
 export const ALLOWED_ATTACHMENT_MIMETYPES = "image/png,image/jpeg,image/gif,image/webp,application/pdf";

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { NumberInput } from "$app/components/NumberInput";
 import { ToggleSettingRow } from "$app/components/SettingRow";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/Form";
 
 const DEFAULT_NUMBER_OF_INSTALLMENTS = 2;
 

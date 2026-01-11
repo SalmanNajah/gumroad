@@ -2,7 +2,7 @@ import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
 import CodeSnippet from "$app/components/ui/CodeSnippet";
-import { FormSection, FormTextarea } from "$app/components/ui/form";
+import { FormSection, FormTextarea } from "$app/components/ui/Form";
 
 export type Props = {
   action: string;

@@ -21,7 +21,7 @@ import { useAnalyticsDateRange } from "$app/components/Analytics/useAnalyticsDat
 import { DateRangePicker } from "$app/components/DateRangePicker";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormInputWrapper, FormSelect } from "$app/components/ui/form";
+import { FormInputWrapper, FormSelect } from "$app/components/ui/Form";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 
 import placeholder from "$assets/images/placeholders/sales.png";

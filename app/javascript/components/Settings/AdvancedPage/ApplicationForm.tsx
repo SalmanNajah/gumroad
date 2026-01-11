@@ -11,8 +11,8 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { WithTooltip } from "$app/components/WithTooltip";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 export type Application = {
   id: string;

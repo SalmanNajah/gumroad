@@ -4,7 +4,7 @@ import { asyncVoid } from "$app/utils/promise";
 
 import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
-import { FormRange } from "$app/components/ui/form";
+import { FormRange } from "$app/components/ui/Form";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
 type Props = {

@@ -22,6 +22,15 @@ import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import {
+  FormCheckbox,
+  FormInput,
+  FormInputWrapper,
+  FormLabel,
+  FormFieldset,
+  FormLegend,
+  FormSelect,
+} from "$app/components/ui/Form";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardFooter } from "$app/components/ui/ProductCard";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
@@ -32,15 +41,6 @@ import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 import placeholder from "$assets/images/placeholders/library.png";
-import {
-  FormCheckbox,
-  FormInput,
-  FormInputWrapper,
-  FormLabel,
-  FormFieldset,
-  FormLegend,
-  FormSelect,
-} from "$app/components/ui/form";
 
 export type Result = {
   product: {

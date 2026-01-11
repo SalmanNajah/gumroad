@@ -8,7 +8,7 @@ import { PaginationProps } from "$app/components/Pagination";
 import { Popover } from "$app/components/Popover";
 import { ProductsLayout } from "$app/components/ProductsLayout";
 import ProductsPage from "$app/components/ProductsPage";
-import { FormInput, FormInputWrapper } from "$app/components/ui/form";
+import { FormInput, FormInputWrapper } from "$app/components/ui/Form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 export type ArchivedProductsPageProps = {

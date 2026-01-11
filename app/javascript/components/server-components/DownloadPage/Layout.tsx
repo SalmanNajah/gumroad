@@ -16,7 +16,7 @@ import { PurchaseArchiveButton } from "$app/components/PurchaseArchiveButton";
 import { Review, ReviewForm } from "$app/components/ReviewForm";
 import { showAlert } from "$app/components/server-components/Alert";
 import { PurchaseCustomField } from "$app/components/server-components/DownloadPage/WithContent";
-import { FormFieldset, FormInput } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 

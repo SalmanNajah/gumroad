@@ -10,7 +10,7 @@ import { ConfigurationSelector, PriceSelection } from "$app/components/Product/C
 import { CtaButton, getCtaName } from "$app/components/Product/CtaButton";
 import { Layout as ProfileLayout } from "$app/components/Profile/Layout";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset } from "$app/components/ui/form";
+import { FormFieldset } from "$app/components/ui/Form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { useRunOnce } from "$app/components/useRunOnce";
 

@@ -22,7 +22,7 @@ import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormLabel, FormLegend, FormRadio, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormRadio, FormTextarea } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 

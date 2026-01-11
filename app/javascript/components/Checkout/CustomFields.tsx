@@ -5,7 +5,7 @@ import { CustomFieldDescriptor } from "$app/parsers/product";
 
 import { Creator } from "$app/components/Checkout/cartState";
 import { Product, getCustomFieldKey, getErrors, isProcessing, useState } from "$app/components/Checkout/payment";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 const CustomField = ({ field, fieldKey }: { field: CustomFieldDescriptor; fieldKey: string }) => {
   const [state, dispatch] = useState();

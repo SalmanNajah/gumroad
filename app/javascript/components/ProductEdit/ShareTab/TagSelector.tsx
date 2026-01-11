@@ -5,7 +5,7 @@ import { assertResponseError } from "$app/utils/request";
 
 import { showAlert } from "$app/components/server-components/Alert";
 import { TagInput } from "$app/components/TagInput";
-import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange } from "$app/components/useOnChange";
 

@@ -21,7 +21,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { Profile, Props as ProfileProps } from "$app/components/server-components/Profile";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { SocialAuthButton } from "$app/components/SocialAuthButton";
-import { FormColorPicker, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
+import { FormColorPicker, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/Form";
 
 type ProfilePageProps = {
   profile_settings: ProfileSettings;

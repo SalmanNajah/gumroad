@@ -6,16 +6,9 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend, FormSection } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { WithTooltip } from "$app/components/WithTooltip";
-import {
-  FormFieldset,
-  FormInput,
-  FormInputWrapper,
-  FormLabel,
-  FormLegend,
-  FormSection,
-} from "$app/components/ui/form";
 
 const NotificationEndpointSection = ({
   pingEndpoint,

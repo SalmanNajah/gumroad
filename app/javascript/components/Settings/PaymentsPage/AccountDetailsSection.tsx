@@ -1,13 +1,13 @@
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 import parsePhoneNumberFromString, { CountryCode } from "libphonenumber-js";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import type { ComplianceInfo, FormFieldName, User } from "$app/types/payments";
+import { classNames } from "$app/utils/classNames";
 
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
-import { classNames } from "$app/utils/classNames";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 
 const AccountDetailsSection = ({
   user,

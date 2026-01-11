@@ -3,7 +3,7 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import { TextInput } from "$app/components/Download/CustomField/TextInput";
-import { FormFieldset, FormInput, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormTextarea } from "$app/components/ui/Form";
 
 export const TextInputNodeView = ({ editor, node, updateAttributes }: NodeViewProps) => {
   const label = cast<string | null>(node.attrs.label);

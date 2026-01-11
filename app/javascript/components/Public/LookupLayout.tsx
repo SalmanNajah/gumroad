@@ -5,7 +5,7 @@ import { assertResponseError } from "$app/utils/request"
 
 import { showAlert } from "$app/components/server-components/Alert"
 import { Alert } from "$app/components/ui/Alert"
-import { FormFieldset, FormInput, FormLabel, FormSection } from "$app/components/ui/form"
+import { FormFieldset, FormInput, FormLabel, FormSection } from "$app/components/ui/Form"
 import { PageHeader } from "$app/components/ui/PageHeader"
 
 const LookupLayout = ({ children, title, type }: {

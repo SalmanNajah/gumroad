@@ -15,7 +15,7 @@ import { Modal } from "$app/components/Modal";
 import { MenuItem } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
 import { createInsertCommand } from "$app/components/TiptapExtensions/utils";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
 
 declare module "@tiptap/core" {

@@ -5,7 +5,7 @@ import * as React from "react";
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
 import ApplicationForm from "$app/components/Settings/AdvancedPage/ApplicationForm";
-import { FormSection } from "$app/components/ui/form";
+import { FormSection } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
 
 export type Application = {

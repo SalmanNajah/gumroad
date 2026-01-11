@@ -6,7 +6,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
 import { Toggle } from "$app/components/Toggle";
-import { FormFieldset } from "$app/components/ui/form";
+import { FormFieldset } from "$app/components/ui/Form";
 
 type PublishButtonProps = {
   isPublished: boolean;

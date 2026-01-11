@@ -5,7 +5,7 @@ import type { FormFieldName, User } from "$app/types/payments";
 
 import { Button } from "$app/components/Button";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 
 export type BankAccount =
   | {

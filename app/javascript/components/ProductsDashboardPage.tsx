@@ -7,8 +7,8 @@ import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { PaginationProps } from "$app/components/Pagination";
 import { Popover } from "$app/components/Popover";
 import { ProductsLayout } from "$app/components/ProductsLayout";
+import { FormInput, FormInputWrapper } from "$app/components/ui/Form";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
-import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import ProductsPage from "./ProductsPage";

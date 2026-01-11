@@ -4,7 +4,7 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormLabel, FormFieldset } from "$app/components/ui/form";
+import { FormLabel, FormFieldset } from "$app/components/ui/Form";
 
 export const AdminManualPayoutForm = ({
   user_id,

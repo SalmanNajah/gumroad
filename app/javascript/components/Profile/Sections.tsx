@@ -1,7 +1,6 @@
 import { EditorContent } from "@tiptap/react";
 import classNames from "classnames";
 import * as React from "react";
-import { FormInput } from "$app/components/ui/form";
 
 import {
   FeaturedProductSection as SavedFeaturedProductSection,
@@ -23,6 +22,7 @@ import { FollowForm } from "$app/components/Profile/FollowForm";
 import { useRichTextEditor } from "$app/components/RichTextEditor";
 import { CoffeeProduct } from "$app/components/server-components/Profile/CoffeePage";
 import { formatPostDate } from "$app/components/server-components/Profile/PostPage";
+import { FormInput } from "$app/components/ui/Form";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 import { Card as WishlistCard, CardGrid as WishlistCardGrid, CardWishlist } from "$app/components/Wishlist/Card";
 

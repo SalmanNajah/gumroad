@@ -9,7 +9,7 @@ import { Layout } from "$app/components/Authentication/Layout";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormLabel, FormLegend, FormRadio } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormRadio } from "$app/components/ui/Form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 
 type UserEmail = { email: string; source: string };

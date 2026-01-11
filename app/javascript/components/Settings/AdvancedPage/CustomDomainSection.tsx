@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import CustomDomain from "$app/components/CustomDomain";
-import { FormSection } from "$app/components/ui/form";
+import { FormSection } from "$app/components/ui/Form";
 
 const CustomDomainSection = ({
   verificationStatus,

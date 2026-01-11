@@ -20,7 +20,7 @@ import {
   FormSection,
   FormSwitch,
   FormTextarea,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 

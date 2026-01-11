@@ -8,7 +8,7 @@ import { Button } from "$app/components/Button";
 import { PasswordInput } from "$app/components/PasswordInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
-import { FormFieldset, FormLabel, FormLegend, FormSection } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormSection } from "$app/components/ui/Form";
 
 const MIN_PASSWORD_LENGTH = 4;
 const MAX_PASSWORD_LENGTH = 128;

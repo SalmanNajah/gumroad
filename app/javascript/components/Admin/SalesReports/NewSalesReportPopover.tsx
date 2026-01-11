@@ -5,7 +5,7 @@ import { cast } from "ts-safe-cast";
 
 import Errors from "$app/components/Admin/Form/Errors";
 import { Popover } from "$app/components/Popover";
-import { FormInput, FormLabel, FormSelect } from "$app/components/ui/form";
+import { FormInput, FormLabel, FormSelect } from "$app/components/ui/Form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 type Errors = {

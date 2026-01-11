@@ -4,7 +4,7 @@ import { InputtedDiscount, DiscountInput } from "$app/components/CheckoutDashboa
 import { NumberInput } from "$app/components/NumberInput";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { ToggleSettingRow } from "$app/components/SettingRow";
-import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/Form";
 
 export const CancellationDiscountSelector = () => {
   const { product, updateProduct, currencyType } = useProductEditContext();

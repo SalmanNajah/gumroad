@@ -32,11 +32,18 @@ import { PriceInput } from "$app/components/PriceInput";
 import { Select, Option } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Skeleton } from "$app/components/Skeleton";
-import { FormInputWrapper } from "$app/components/ui/form";
-import { FormSection } from "$app/components/ui/form";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
+import {
+  FormInputWrapper,
+  FormSection,
+  FormCheckbox,
+  FormFieldset,
+  FormInput,
+  FormLabel,
+  FormLegend,
+  FormSwitch,
+} from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";

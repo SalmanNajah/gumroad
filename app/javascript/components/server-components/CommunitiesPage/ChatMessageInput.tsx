@@ -3,10 +3,10 @@ import * as React from "react";
 
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormTextarea, FormInputWrapper } from "$app/components/ui/Form";
 
 import { MAX_MESSAGE_LENGTH } from "./CommunityView";
 import { CommunityDraft } from "./useCommunities";
-import { FormTextarea, FormInputWrapper } from "$app/components/ui/form";
 
 export const ChatMessageInput = React.forwardRef<
   HTMLTextAreaElement,

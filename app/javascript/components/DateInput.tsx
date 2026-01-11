@@ -3,7 +3,7 @@ import { formatInTimeZone, fromZonedTime } from "date-fns-tz";
 import * as React from "react";
 
 import { useCurrentSeller } from "$app/components/CurrentSeller";
-import { FormInputWrapper } from "$app/components/ui/form";
+import { FormInputWrapper } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 
 type Props = {

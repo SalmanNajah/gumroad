@@ -5,7 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormSelect } from "$app/components/ui/form";
+import { FormSelect } from "$app/components/ui/Form";
 
 export const AdminSuspendForTosForm = ({
   product_id,

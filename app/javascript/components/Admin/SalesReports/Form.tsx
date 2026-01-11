@@ -4,7 +4,7 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import Errors from "$app/components/Admin/Form/Errors";
-import { FormInput, FormLabel, FormSection, FormSelect } from "$app/components/ui/form";
+import { FormInput, FormLabel, FormSection, FormSelect } from "$app/components/ui/Form";
 
 type Props = {
   countries: [string, string][];

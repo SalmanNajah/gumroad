@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Button } from "$app/components/Button";
 import { Modal } from "$app/components/Modal";
-import { FormInput, FormLabel } from "$app/components/ui/form";
+import { FormInput, FormLabel } from "$app/components/ui/Form";
 
 type Props = {
   country: string;

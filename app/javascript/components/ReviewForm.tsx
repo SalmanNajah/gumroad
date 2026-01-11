@@ -17,7 +17,7 @@ import { VideoState, ReviewVideoRecorderUiState } from "$app/components/ReviewFo
 import { useReviewVideoUploader } from "$app/components/ReviewForm/useReviewVideoUploader";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormLabel, FormTextarea } from "$app/components/ui/form";
+import { FormLabel, FormTextarea } from "$app/components/ui/Form";
 
 export type Review = {
   rating: number;

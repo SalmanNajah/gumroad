@@ -3,7 +3,7 @@ import * as React from "react";
 import { Details } from "$app/components/Details";
 import { NumberInput } from "$app/components/NumberInput";
 import { Toggle } from "$app/components/Toggle";
-import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/Form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 export const MaxPurchaseCountToggle = ({

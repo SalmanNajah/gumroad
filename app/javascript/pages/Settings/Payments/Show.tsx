@@ -7,6 +7,7 @@ import { CardPayoutError, prepareCardTokenForPayouts, type CardPayoutToken } fro
 import { SavedCreditCard } from "$app/parsers/card";
 import { SettingPage } from "$app/parsers/settings";
 import type { ComplianceInfo, PayoutMethod, FormFieldName, User, PayoutDebitCardData } from "$app/types/payments";
+import { classNames } from "$app/utils/classNames";
 import { formatPriceCentsWithCurrencySymbol, formatPriceCentsWithoutCurrencySymbol } from "$app/utils/currency";
 import { asyncVoid } from "$app/utils/promise";
 
@@ -14,7 +15,6 @@ import { Button } from "$app/components/Button";
 import { ConfirmBalanceForfeitOnPayoutMethodChangeModal } from "$app/components/ConfirmBalanceForfeitOnPayoutMethodChangeModal";
 import { CountrySelectionModal } from "$app/components/CountrySelectionModal";
 import { Icon } from "$app/components/Icons";
-import { classNames } from "$app/utils/classNames";
 import { StripeConnectEmbeddedNotificationBanner } from "$app/components/PayoutPage/StripeConnectEmbeddedNotificationBanner";
 import { PriceInput } from "$app/components/PriceInput";
 import { CreditCardForm } from "$app/components/Settings/AdvancedPage/CreditCardForm";
@@ -32,12 +32,12 @@ import StripeConnectSection, { StripeConnect } from "$app/components/Settings/Pa
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormSection, FormLabel } from "$app/components/ui/Form";
 import { UpdateCountryConfirmationModal } from "$app/components/UpdateCountryConfirmationModal";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import logo from "$assets/images/logo-g.svg";
-import { FormFieldset, FormSection, FormLabel } from "$app/components/ui/form";
 
 const PAYOUT_FREQUENCIES = ["daily", "weekly", "monthly", "quarterly"] as const;
 type PayoutFrequency = (typeof PAYOUT_FREQUENCIES)[number];

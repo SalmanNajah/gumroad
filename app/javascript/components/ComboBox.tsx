@@ -1,8 +1,9 @@
 import * as React from "react";
 
+import { classNames } from "$app/utils/classNames";
+
 import { useGlobalEventListener } from "$app/components/useGlobalEventListener";
 import { useOnOutsideClick } from "$app/components/useOnOutsideClick";
-import { classNames } from "$app/utils/classNames";
 
 type Props<Option> = {
   input: (props: React.HTMLAttributes<HTMLElement>) => React.ReactElement;

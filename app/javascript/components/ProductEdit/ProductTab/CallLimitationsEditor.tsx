@@ -4,7 +4,7 @@ import { Icon } from "$app/components/Icons";
 import { NumberInput } from "$app/components/NumberInput";
 import { CallLimitationInfo } from "$app/components/ProductEdit/state";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { useOnChange } from "$app/components/useOnChange";
 import { useOnOutsideClick } from "$app/components/useOnOutsideClick";

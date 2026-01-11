@@ -9,7 +9,7 @@ import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
-import { FormInput, FormLabel, FormSelect } from "$app/components/ui/form";
+import { FormInput, FormLabel, FormSelect } from "$app/components/ui/Form";
 
 export type GoogleCalendarIntegration = {
   integration_details: {

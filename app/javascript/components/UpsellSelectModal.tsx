@@ -12,7 +12,7 @@ import { Modal } from "$app/components/Modal";
 import { RecurrencePriceValue } from "$app/components/ProductEdit/state";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/Form";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 export type ProductOption = {

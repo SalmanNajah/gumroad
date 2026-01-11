@@ -9,7 +9,7 @@ import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { Select } from "$app/components/Select";
 import { Toggle } from "$app/components/Toggle";
-import { FormFieldset, FormLabel, FormLegend, FormSelect, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormSelect, FormTextarea } from "$app/components/ui/Form";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
 export type RefundPolicy = {

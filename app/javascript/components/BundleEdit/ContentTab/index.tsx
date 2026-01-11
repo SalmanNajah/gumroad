@@ -14,7 +14,7 @@ import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Card } from "$app/components/Product/Card";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormCheckbox, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/form";
+import { FormCheckbox, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";

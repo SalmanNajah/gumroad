@@ -8,7 +8,7 @@ import { register } from "$app/utils/serverComponentUtil";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
-import { FormFieldset, FormLegend, FormRange } from "$app/components/ui/form";
+import { FormFieldset, FormLegend, FormRange } from "$app/components/ui/Form";
 import { useRunOnce } from "$app/components/useRunOnce";
 import { WithTooltip } from "$app/components/WithTooltip";
 

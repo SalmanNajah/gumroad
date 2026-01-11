@@ -7,7 +7,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
 import { Separator } from "$app/components/Separator";
-import { FormInput, FormInputWrapper, FormSelect } from "$app/components/ui/form";
+import { FormInput, FormInputWrapper, FormSelect } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -122,7 +122,7 @@ export const SearchPopover = ({ card_types }: Props) => {
             />
           </FormInputWrapper>
           <FormInputWrapper>
-            <Pill className="-ml-2 shrink-0 z-1">$</Pill>
+            <Pill className="z-1 -ml-2 shrink-0">$</Pill>
             <FormInput
               className="border-none! outline-none!"
               name="price"

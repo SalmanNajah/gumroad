@@ -39,6 +39,7 @@ import {
 import { Thumbnail } from "$app/components/Product/Thumbnail";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormInput } from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -59,7 +60,6 @@ import {
 import { computeTip, computeTipForPrice, getTotalPrice, isProcessing, useState } from "./payment";
 
 import placeholder from "$assets/images/placeholders/checkout.png";
-import { FormInput } from "$app/components/ui/FormInput";
 
 function formatPrice(price: number) {
   return formatUSDCentsWithExpandedCurrencySymbol(Math.floor(price));

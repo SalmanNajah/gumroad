@@ -1,6 +1,5 @@
 import { Link, useForm } from "@inertiajs/react";
 import * as React from "react";
-import { classNames } from "$app/utils/classNames";
 
 import {
   WorkflowFormContext,
@@ -11,13 +10,12 @@ import {
   ProductOption,
   VariantOption,
 } from "$app/types/workflow";
+import { classNames } from "$app/utils/classNames";
 
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { NumberInput } from "$app/components/NumberInput";
 import { TagInput } from "$app/components/TagInput";
-import { Pill } from "$app/components/ui/Pill";
-import { WithTooltip } from "$app/components/WithTooltip";
 import {
   FormCheckbox,
   FormFieldset,
@@ -27,7 +25,9 @@ import {
   FormLegend,
   FormSelect,
   FormSection,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
+import { Pill } from "$app/components/ui/Pill";
+import { WithTooltip } from "$app/components/WithTooltip";
 import {
   Layout,
   EditPageNavigation,

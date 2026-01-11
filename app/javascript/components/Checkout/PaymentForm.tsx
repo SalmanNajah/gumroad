@@ -56,7 +56,7 @@ import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { PriceInput } from "$app/components/PriceInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 import { Tab, Tabs } from "$app/components/ui/Tabs";
 import { useIsDarkTheme } from "$app/components/useIsDarkTheme";
 import { useOnChangeSync } from "$app/components/useOnChange";

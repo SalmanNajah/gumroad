@@ -20,7 +20,7 @@ import {
 } from "$app/components/Payouts";
 import { ExportPayoutsPopover } from "$app/components/Payouts/ExportPayoutsPopover";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";

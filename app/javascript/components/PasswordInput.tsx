@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import { FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { classNames } from "$app/utils/classNames";
+
+import { FormInput, FormInputWrapper } from "$app/components/ui/Form";
 
 type PasswordInputProps = Omit<React.ComponentPropsWithoutRef<"input">, "type"> & {
   value: string;

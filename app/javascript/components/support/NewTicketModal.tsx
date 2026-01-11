@@ -10,7 +10,7 @@ import { Icon } from "$app/components/Icons";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ALLOWED_ATTACHMENT_MIMETYPES } from "$app/components/support/ConversationDetail";
-import { FormInput, FormTextarea } from "$app/components/ui/form";
+import { FormInput, FormTextarea } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
 
 export function NewTicketModal({

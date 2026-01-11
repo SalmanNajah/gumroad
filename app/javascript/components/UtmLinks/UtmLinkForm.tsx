@@ -12,8 +12,6 @@ import { Icon } from "$app/components/Icons";
 import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
-import { Pill } from "$app/components/ui/Pill";
-import { WithTooltip } from "$app/components/WithTooltip";
 import {
   FormFieldset,
   FormInput,
@@ -22,7 +20,9 @@ import {
   FormLegend,
   FormSection,
   FormTextarea,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
+import { Pill } from "$app/components/ui/Pill";
+import { WithTooltip } from "$app/components/WithTooltip";
 
 type UtmLinkFormData = {
   utm_link: {

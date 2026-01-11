@@ -1,4 +1,3 @@
-import { classNames } from "$app/utils/classNames";
 import * as React from "react";
 import ReactSelect, {
   components,
@@ -15,6 +14,7 @@ import ReactSelect, {
 } from "react-select";
 
 import { escapeRegExp } from "$app/utils";
+import { classNames } from "$app/utils/classNames";
 
 import { Icon } from "$app/components/Icons";
 import { Pill } from "$app/components/ui/Pill";

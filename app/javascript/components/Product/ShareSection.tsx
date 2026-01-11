@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import { Wishlist, addToWishlist, createWishlist } from "$app/data/wishlists";
-import { assertResponseError } from "$app/utils/request";
 import { classNames } from "$app/utils/classNames";
+import { assertResponseError } from "$app/utils/request";
 
 import { Button } from "$app/components/Button";
 import { ComboBox } from "$app/components/ComboBox";
@@ -17,8 +17,8 @@ import { PriceSelection } from "$app/components/Product/ConfigurationSelector";
 import { showAlert } from "$app/components/server-components/Alert";
 import { TwitterShareButton } from "$app/components/TwitterShareButton";
 import { Alert } from "$app/components/ui/Alert";
+import { FormInput } from "$app/components/ui/Form";
 import { WithTooltip } from "$app/components/WithTooltip";
-import { FormInput } from "$app/components/ui/FormInput";
 
 type SuccessState = { newlyCreated: boolean; wishlist: Wishlist };
 

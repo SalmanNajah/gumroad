@@ -20,7 +20,7 @@ import {
   FormLegend,
   FormSection,
   FormSwitch,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";

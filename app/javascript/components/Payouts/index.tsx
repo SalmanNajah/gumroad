@@ -15,6 +15,7 @@ import { PaginationProps } from "$app/components/Pagination";
 import { ExportPayoutsPopover } from "$app/components/Payouts/ExportPayoutsPopover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -23,7 +24,6 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholder from "$assets/images/placeholders/payouts.png";
-import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 
 const INSTANT_PAYOUT_FEE_PERCENTAGE = 0.03;
 const MINIMUM_INSTANT_PAYOUT_AMOUNT_CENTS = 1000;

@@ -6,7 +6,7 @@ import { assertResponseError } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormLabel, FormCheckbox } from "$app/components/ui/form";
+import { FormLabel, FormCheckbox } from "$app/components/ui/Form";
 
 export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () => void }) => {
   const [loading, setLoading] = React.useState(false);
@@ -55,21 +55,27 @@ export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () =>
           All Subscribers
         </FormLabel>
         <FormLabel>
-          <FormCheckbox checked={followers} onChange={(evt) => {
+          <FormCheckbox
+            checked={followers}
+            onChange={(evt) => {
               setFollowers(evt.target.checked);
             }}
           />
           Followers
         </FormLabel>
         <FormLabel>
-          <FormCheckbox checked={customers} onChange={(evt) => {
+          <FormCheckbox
+            checked={customers}
+            onChange={(evt) => {
               setCustomers(evt.target.checked);
             }}
           />
           Customers
         </FormLabel>
         <FormLabel>
-          <FormCheckbox checked={affiliates} onChange={(evt) => {
+          <FormCheckbox
+            checked={affiliates}
+            onChange={(evt) => {
               setAffiliates(evt.target.checked);
             }}
           />

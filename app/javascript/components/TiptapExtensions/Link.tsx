@@ -13,7 +13,7 @@ import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { MenuItem, validateUrl } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/Form";
 
 export const WithDialog = ({
   editor,

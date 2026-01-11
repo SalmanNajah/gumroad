@@ -4,7 +4,7 @@ import * as React from "react";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
-import { FormInput, FormInputWrapper, FormSelect } from "$app/components/ui/form";
+import { FormInput, FormInputWrapper, FormSelect } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -206,7 +206,7 @@ const SearchPopover = () => {
             />
           </FormInputWrapper>
           <FormInputWrapper>
-            <Pill className="-ml-2 shrink-0 z-1">$</Pill>
+            <Pill className="z-1 -ml-2 shrink-0">$</Pill>
             <FormInput
               name="price"
               placeholder="Price (9.99)"

@@ -6,7 +6,7 @@ import { Details } from "$app/components/Details";
 import { PriceInput } from "$app/components/PriceInput";
 import { InstallmentPlanEditor } from "$app/components/ProductEdit/ProductTab/InstallmentPlanEditor";
 import { Toggle } from "$app/components/Toggle";
-import { FormFieldset, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormLabel } from "$app/components/ui/Form";
 
 export const PriceEditor = ({
   priceCents,

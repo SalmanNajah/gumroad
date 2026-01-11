@@ -11,7 +11,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Toggle } from "$app/components/Toggle";
 import { Alert } from "$app/components/ui/Alert";
-import { FormCheckbox, FormLabel } from "$app/components/ui/form";
+import { FormCheckbox, FormLabel } from "$app/components/ui/Form";
 
 export type DiscordIntegration = {
   keep_inactive_members: boolean;

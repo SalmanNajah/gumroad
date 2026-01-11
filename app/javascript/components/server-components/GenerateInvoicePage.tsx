@@ -8,7 +8,7 @@ import { register } from "$app/utils/serverComponentUtil";
 import { Button } from "$app/components/Button";
 import { PoweredByFooter } from "$app/components/PoweredByFooter";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormLabel, FormLegend, FormInput, FormSelect, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormInput, FormSelect, FormTextarea } from "$app/components/ui/Form";
 
 type FieldState = { value: string; error?: boolean };
 

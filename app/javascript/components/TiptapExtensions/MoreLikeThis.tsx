@@ -10,9 +10,9 @@ import { CardProduct } from "$app/parsers/product";
 import { Icon } from "$app/components/Icons";
 import { Card } from "$app/components/Product/Card";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
+import { FormRadio, FormLabel } from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
-import { FormRadio, FormLabel } from "$app/components/ui/form";
 
 export const MoreLikeThis = TiptapNode.create<{ productId: string }>({
   name: "moreLikeThis",

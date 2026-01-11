@@ -6,7 +6,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormCheckbox, FormFieldset, FormLabel } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormLabel } from "$app/components/ui/Form";
 
 export const AdminManualPayoutForm = ({
   user_id,

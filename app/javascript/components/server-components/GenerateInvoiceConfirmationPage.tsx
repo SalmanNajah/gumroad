@@ -4,7 +4,7 @@ import { createCast } from "ts-safe-cast";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
-import { FormInput } from "$app/components/ui/form";
+import { FormInput } from "$app/components/ui/Form";
 
 type EmailConfirmationProps = {
   invoice_url: string;

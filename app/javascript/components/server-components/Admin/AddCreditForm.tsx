@@ -5,7 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormInputWrapper } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 
 export const AdminAddCreditForm = ({ user_id }: { user_id: number }) => (

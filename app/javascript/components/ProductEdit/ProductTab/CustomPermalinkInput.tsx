@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { useCurrentSeller } from "$app/components/CurrentSeller";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 
 export const CustomPermalinkInput = ({

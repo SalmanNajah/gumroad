@@ -5,7 +5,7 @@ import { assertResponseError } from "$app/utils/request";
 
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/Form";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 
 export const WishlistEditor = ({

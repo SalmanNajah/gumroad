@@ -3,7 +3,7 @@ import * as React from "react";
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { ProfileSection } from "$app/components/ProductEdit/state";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormLabel, FormSwitch } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormSwitch } from "$app/components/ui/Form";
 
 export const ProfileSectionsEditor = ({
   sectionIds,

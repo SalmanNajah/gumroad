@@ -13,7 +13,7 @@ import { Icon } from "$app/components/Icons";
 import { usePublicFilesSettings } from "$app/components/ProductEdit/ProductTab/DescriptionEditor";
 import { MenuItem } from "$app/components/RichTextEditor";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
 
 const NodeView = ({ editor, node }: NodeViewProps) => {

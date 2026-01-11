@@ -4,7 +4,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { PriceInput } from "$app/components/PriceInput";
 import { Version, useProductEditContext } from "$app/components/ProductEdit/state";
-import { FormFieldset, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormLegend } from "$app/components/ui/Form";
 
 let newVersionId = 0;
 

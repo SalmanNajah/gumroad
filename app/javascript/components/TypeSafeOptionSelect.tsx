@@ -1,5 +1,6 @@
-import { FormSelect } from "$app/components/ui/FormSelect";
 import * as React from "react";
+
+import { FormSelect } from "$app/components/ui/Form";
 
 type Props<OptionId extends string> = {
   value: OptionId;

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { TaxesCollectionModal } from "$app/components/server-components/TaxesCollectionModal";
 import { Alert } from "$app/components/ui/Alert";
-import { FormSection } from "$app/components/ui/form";
+import { FormSection } from "$app/components/ui/Form";
 
 export type AusBacktaxDetails = {
   total_amount_to_au: string;

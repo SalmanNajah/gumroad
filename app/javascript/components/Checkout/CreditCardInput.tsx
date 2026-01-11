@@ -8,7 +8,7 @@ import { getCssVariable } from "$app/utils/styles";
 
 import { useFont } from "$app/components/DesignSettings";
 import { Icon } from "$app/components/Icons";
-import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 export const CreditCardInput = ({
   disabled,

@@ -5,7 +5,7 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 import { computeStandalonePrice, useBundleEditContext } from "$app/components/BundleEdit/state";
 import { NavigationButton } from "$app/components/Button";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormLabel, FormRadio } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormRadio } from "$app/components/ui/Form";
 
 export const MarketingEmailStatus = () => {
   const { bundle, uniquePermalink, currencyType } = useBundleEditContext();
@@ -35,17 +35,11 @@ export const MarketingEmailStatus = () => {
         </strong>
         <FormFieldset>
           <FormLabel>
-            <FormRadio
-              checked={!sendToAllCustomers}
-              onChange={(evt) => setSendToAllCustomers(!evt.target.checked)}
-            />
+            <FormRadio checked={!sendToAllCustomers} onChange={(evt) => setSendToAllCustomers(!evt.target.checked)} />
             Customers who have purchased at least one product in the bundle
           </FormLabel>
           <FormLabel>
-            <FormRadio
-              checked={sendToAllCustomers}
-              onChange={(evt) => setSendToAllCustomers(evt.target.checked)}
-            />
+            <FormRadio checked={sendToAllCustomers} onChange={(evt) => setSendToAllCustomers(evt.target.checked)} />
             All customers
           </FormLabel>
         </FormFieldset>

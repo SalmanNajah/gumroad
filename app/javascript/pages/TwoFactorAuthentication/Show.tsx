@@ -4,8 +4,8 @@ import * as React from "react";
 import { AuthAlert } from "$app/components/AuthAlert";
 import { Layout } from "$app/components/Authentication/Layout";
 import { Button } from "$app/components/Button";
+import { FormInput, FormLabel, FormFieldset, FormLegend } from "$app/components/ui/Form";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
-import { FormInput, FormLabel, FormFieldset, FormLegend } from "$app/components/ui/form";
 
 type PageProps = {
   user_id: string;

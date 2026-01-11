@@ -4,7 +4,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormCheckbox, FormFieldset, FormLabel } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormLabel } from "$app/components/ui/Form";
 
 type Props = {
   taxForms: Record<number, string>;

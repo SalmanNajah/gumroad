@@ -25,7 +25,7 @@ import {
   FormSection,
   FormSelect,
   FormTextarea,
-} from "$app/components/ui/form";
+} from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 

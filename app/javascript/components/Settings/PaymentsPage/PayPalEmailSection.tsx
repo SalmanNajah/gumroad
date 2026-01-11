@@ -3,7 +3,7 @@ import * as React from "react";
 import type { FormFieldName, PayoutMethod } from "$app/types/payments";
 
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 const PayPalEmailSection = ({
   countrySupportsNativePayouts,

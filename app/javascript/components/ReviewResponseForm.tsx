@@ -7,7 +7,7 @@ import { Button } from "$app/components/Button";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormTextarea } from "$app/components/ui/FormTextarea";
+import { FormTextarea } from "$app/components/ui/Form";
 
 export const ReviewResponseForm = ({
   message: originalMessage,

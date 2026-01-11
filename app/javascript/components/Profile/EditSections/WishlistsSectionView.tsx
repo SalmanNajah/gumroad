@@ -9,8 +9,8 @@ import { assertResponseError } from "$app/utils/request";
 import { useReducer, EditorSubmenu, SectionLayout, ProductList } from "$app/components/Profile/EditSections";
 import { WishlistsView } from "$app/components/Profile/Sections";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormCheckbox, FormLabel } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDragHandle } from "$app/components/ui/Rows";
-import { FormCheckbox, FormLabel } from "$app/components/ui/form";
 import { CardWishlist, DummyCardGrid } from "$app/components/Wishlist/Card";
 
 export const WishlistsSectionView = ({ section }: { section: WishlistsSection }) => {

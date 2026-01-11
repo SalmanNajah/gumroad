@@ -10,7 +10,7 @@ import {
   CartItemFooter,
 } from "$app/components/CartItemList";
 import { Thumbnail } from "$app/components/Product/Thumbnail";
-import { FormCheckbox } from "$app/components/ui/FormCheckbox";
+import { FormCheckbox } from "$app/components/ui/Form";
 
 export const BundleProductSelector = ({
   bundleProduct,

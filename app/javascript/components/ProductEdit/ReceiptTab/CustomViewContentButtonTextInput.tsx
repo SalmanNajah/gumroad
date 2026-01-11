@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/Form";
 
 export const CustomViewContentButtonTextInput = ({
   value,

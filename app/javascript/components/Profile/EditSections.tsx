@@ -31,8 +31,8 @@ import { RichTextEditorToolbar, useImageUploadSettings, useRichTextEditor } from
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/Form";
 import { Row, RowActions, RowContent, RowDragHandle, Rows } from "$app/components/ui/Rows";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSwitch } from "$app/components/ui/form";
 import { useOnChange } from "$app/components/useOnChange";
 import { useRefToLatest } from "$app/components/useRefToLatest";
 

@@ -18,6 +18,7 @@ import * as React from "react";
 import { CallAvailability, getRemainingCallAvailabilities } from "$app/data/call_availabilities";
 import { Discount } from "$app/parsers/checkout";
 import { ProductNativeType } from "$app/parsers/product";
+import { classNames } from "$app/utils/classNames";
 import {
   CurrencyCode,
   formatPriceCentsWithCurrencySymbol,
@@ -26,7 +27,6 @@ import {
   getMinPriceCents,
 } from "$app/utils/currency";
 import { formatCallDate } from "$app/utils/date";
-import { classNames } from "$app/utils/classNames";
 import { applyOfferCodeToCents } from "$app/utils/offer-code";
 import { formatInstallmentPaymentSchedule } from "$app/utils/price";
 import { recurrenceNames, recurrenceLabels, RecurrenceId } from "$app/utils/recurringPricing";
@@ -39,7 +39,7 @@ import { PriceInput } from "$app/components/PriceInput";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
 import { Calendar } from "$app/components/ui/Calendar";
-import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -775,7 +775,9 @@ export const ConfigurationSelector = React.forwardRef<
             <FormLabel htmlFor={quantityInputUID}>{product.is_multiseat_license ? "Seats" : "Quantity"}</FormLabel>
           </FormLegend>
           <NumberInput onChange={(quantity) => update({ quantity: quantity ?? 0 })} value={selection.quantity}>
-            {(props) => <FormInput type="number" id={quantityInputUID} {...props} min={1} max={maxQuantity ?? undefined} />}
+            {(props) => (
+              <FormInput type="number" id={quantityInputUID} {...props} min={1} max={maxQuantity ?? undefined} />
+            )}
           </NumberInput>
         </FormFieldset>
       ) : null}

@@ -9,11 +9,11 @@ import { NavigationButton } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormSelect } from "$app/components/ui/Form";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { Tab, Tabs } from "$app/components/ui/Tabs";
-import { FormSelect } from "$app/components/ui/FormSelect";
 
 type TaxDocument = {
   document: string;

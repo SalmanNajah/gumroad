@@ -5,8 +5,8 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 import { Button } from "$app/components/Button";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
+import { FormInput, FormLabel, FormTextarea } from "$app/components/ui/Form";
 import { useRecaptcha, RecaptchaCancelledError } from "$app/components/useRecaptcha";
-import { FormInput, FormLabel, FormTextarea } from "$app/components/ui/form";
 
 export function UnauthenticatedNewTicketModal({
   open,

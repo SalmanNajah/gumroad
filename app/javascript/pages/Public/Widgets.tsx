@@ -17,7 +17,7 @@ import { Tab, Tabs } from "$app/components/Developer/Tabs";
 import { useHasChanged } from "$app/components/Developer/useHasChanged";
 import { DomainSettingsProvider, useDomains } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection, FormSwitch, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSection, FormSwitch, FormTextarea } from "$app/components/ui/Form";
 
 type WidgetsPageProps = {
   default_product: Product;

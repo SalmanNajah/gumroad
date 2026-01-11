@@ -8,7 +8,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSection } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSection } from "$app/components/ui/Form";
 
 export type PayPalConnect = {
   email: string | null;

@@ -42,12 +42,12 @@ import { ImageUploadSettingsContext, RichTextEditor, useRichTextEditor } from "$
 import { S3UploadConfigProvider } from "$app/components/S3UploadConfig";
 import { Separator } from "$app/components/Separator";
 import { InvalidNameForEmailDeliveryWarning } from "$app/components/server-components/InvalidNameForEmailDeliveryWarning";
+import { FormFieldset, FormInput, FormSelect } from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useConfigureEvaporate } from "$app/components/useConfigureEvaporate";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { WithTooltip } from "$app/components/WithTooltip";
-import { FormFieldset, FormInput, FormSelect } from "$app/components/ui/form";
 import {
   Layout,
   EditPageNavigation,
@@ -531,7 +531,7 @@ const EmailRow = ({
             </FormFieldset>
             <RichTextEditor
               id={email.id}
-              className="textarea px-4 py-3 border border-border rounded block w-full bg-filled text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
+              className="textarea bg-filled block w-full rounded border border-border px-4 py-3 text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
               ariaLabel="Email message"
               placeholder="Write a personalized message..."
               extensions={[...(isAbandonedCartWorkflow ? [AbandonedCartProductList] : [])]}

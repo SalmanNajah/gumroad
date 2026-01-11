@@ -6,7 +6,7 @@ import { SettingPage } from "$app/parsers/settings";
 
 import ApplicationForm from "$app/components/Settings/AdvancedPage/ApplicationForm";
 import { Layout } from "$app/components/Settings/Layout";
-import { FormSection } from "$app/components/ui/form";
+import { FormSection } from "$app/components/ui/Form";
 
 type Application = {
   id: string;

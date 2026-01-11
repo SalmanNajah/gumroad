@@ -3,7 +3,7 @@ import * as React from "react";
 import { Form } from "$app/components/Admin/Form";
 import type { User } from "$app/components/Admin/Users/User";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormInputWrapper } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper } from "$app/components/ui/Form";
 import { Pill } from "$app/components/ui/Pill";
 
 type AdminUserAddCreditProps = {

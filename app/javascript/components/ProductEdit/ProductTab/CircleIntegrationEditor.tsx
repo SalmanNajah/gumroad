@@ -10,7 +10,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Toggle } from "$app/components/Toggle";
 import { Alert } from "$app/components/ui/Alert";
-import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 export type CircleIntegration = {

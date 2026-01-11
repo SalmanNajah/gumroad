@@ -16,7 +16,7 @@ import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { Toggle } from "$app/components/Toggle";
 import { TwitterShareButton } from "$app/components/TwitterShareButton";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset } from "$app/components/ui/form";
+import { FormFieldset } from "$app/components/ui/Form";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 export const ShareTab = () => {

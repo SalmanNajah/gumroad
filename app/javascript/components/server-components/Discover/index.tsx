@@ -20,7 +20,7 @@ import { Icon } from "$app/components/Icons";
 import { HorizontalCard } from "$app/components/Product/Card";
 import { CardGrid, useSearchReducer } from "$app/components/Product/CardGrid";
 import { RatingStars } from "$app/components/RatingStars";
-import { FormFieldset, FormLabel, FormRadio } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormRadio } from "$app/components/ui/Form";
 import { Tabs, Tab } from "$app/components/ui/Tabs";
 import { useOnChange } from "$app/components/useOnChange";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";

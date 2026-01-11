@@ -39,7 +39,7 @@ import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/Form";
 
 export const ProductTab = () => {
   const uid = React.useId();

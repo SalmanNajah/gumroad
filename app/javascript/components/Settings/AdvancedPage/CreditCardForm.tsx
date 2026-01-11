@@ -8,7 +8,7 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormInputWrapper, FormSection } from "$app/components/ui/form";
+import { FormInputWrapper, FormSection } from "$app/components/ui/Form";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 type Props = {

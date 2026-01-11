@@ -57,6 +57,7 @@ import { MoveNode } from "$app/components/TiptapExtensions/MoveNode";
 import { Posts, PostsProvider } from "$app/components/TiptapExtensions/Posts";
 import { ShortAnswer } from "$app/components/TiptapExtensions/ShortAnswer";
 import { UpsellCard } from "$app/components/TiptapExtensions/UpsellCard";
+import { FormCheckbox, FormInput, FormLabel } from "$app/components/ui/Form";
 import { Row, RowContent, Rows } from "$app/components/ui/Rows";
 import { Tabs, Tab } from "$app/components/ui/Tabs";
 import { UpsellSelectModal, Product, ProductOption } from "$app/components/UpsellSelectModal";
@@ -67,7 +68,6 @@ import { WithTooltip } from "$app/components/WithTooltip";
 
 import { FileEmbed, FileEmbedConfig } from "./FileEmbed";
 import { Page, PageTab, titleWithFallback } from "./PageTab";
-import { FormCheckbox, FormInput, FormLabel } from "$app/components/ui/form";
 
 declare global {
   interface Window {

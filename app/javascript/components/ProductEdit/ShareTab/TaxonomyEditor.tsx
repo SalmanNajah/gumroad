@@ -3,7 +3,7 @@ import * as React from "react";
 import { Taxonomy } from "$app/utils/discover";
 
 import { Select } from "$app/components/Select";
-import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/Form";
 
 export const TaxonomyEditor = ({
   taxonomyId,

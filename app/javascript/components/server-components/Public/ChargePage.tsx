@@ -1,7 +1,7 @@
 import React from "react"
 
 import LookupLayout from "$app/components/Public/LookupLayout"
-import { FormSection } from "$app/components/ui/form"
+import { FormSection } from "$app/components/ui/Form"
 
 const ChargePage = () => (
   <LookupLayout

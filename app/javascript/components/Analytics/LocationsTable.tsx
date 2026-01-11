@@ -3,8 +3,8 @@ import * as React from "react";
 import { AnalyticsDataByState, LocationDataValue } from "$app/data/analytics";
 import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 
+import { FormInputWrapper, FormSelect } from "$app/components/ui/Form";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
-import { FormInputWrapper, FormSelect } from "$app/components/ui/form";
 import { useClientSortingTableDriver } from "$app/components/useSortingTableDriver";
 
 type TableEntry = {
