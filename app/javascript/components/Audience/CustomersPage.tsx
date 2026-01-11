@@ -7,7 +7,6 @@ import {
   FormLegend,
   FormLabel,
   FormSelect,
-  FormSmall,
   FormCheckbox,
 } from "$app/components/ui/form";
 import { lightFormat, subMonths } from "date-fns";
@@ -368,7 +367,7 @@ const CustomersPage = ({
                         onChange={(createdAfter) => updateQuery({ createdAfter })}
                         max={createdBefore || undefined}
                       />
-                      <FormSmall suppressHydrationWarning>{`00:00  ${timeZoneAbbreviation}`}</FormSmall>
+                      <small className="text-muted" suppressHydrationWarning>{`00:00  ${timeZoneAbbreviation}`}</small>
                     </FormFieldset>
                     <FormFieldset>
                       <FormLabel htmlFor={`${uid}-before-date`}>Before</FormLabel>
@@ -378,7 +377,7 @@ const CustomersPage = ({
                         onChange={(createdBefore) => updateQuery({ createdBefore })}
                         min={createdAfter || undefined}
                       />
-                      <FormSmall suppressHydrationWarning>{`11:59 ${timeZoneAbbreviation}`}</FormSmall>
+                      <small className="text-muted" suppressHydrationWarning>{`11:59 ${timeZoneAbbreviation}`}</small>
                     </FormFieldset>
                   </div>
                 </div>
@@ -1224,7 +1223,7 @@ const CustomerDrawer = ({
                         {post.name}
                       </a>
                     </h5>
-                    <small>{`Originally sent on ${formatDateWithoutTime(new Date(post.published_at))}`}</small>
+                    <small className="text-muted">{`Originally sent on ${formatDateWithoutTime(new Date(post.published_at))}`}</small>
                   </div>
                   <Button
                     color="primary"
@@ -1273,7 +1272,7 @@ const CustomerDrawer = ({
                         email.name
                       )}
                     </h5>
-                    <small>{`${email.state} ${formatDateWithoutTime(new Date(email.state_at))}`}</small>
+                    <small className="text-muted">{`${email.state} ${formatDateWithoutTime(new Date(email.state_at))}`}</small>
                   </div>
                   {email.type === "receipt" ? (
                     <Button
@@ -1611,10 +1610,10 @@ const EmailSection = ({
               Edit
             </button>
           ) : (
-            <FormSmall>
+            <small className="text-muted">
               You cannot change the email of this purchase, because it was made by an existing user. Please ask them to
               go to gumroad.com/settings to update their email.
-            </FormSmall>
+            </small>
           )}
         </section>
       )}

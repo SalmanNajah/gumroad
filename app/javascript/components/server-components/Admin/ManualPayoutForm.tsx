@@ -6,7 +6,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormCheckbox, FormFieldset, FormLabel, FormSmall } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormLabel } from "$app/components/ui/form";
 
 export const AdminManualPayoutForm = ({
   user_id,
@@ -68,10 +68,10 @@ export const AdminManualPayoutForm = ({
             {isLoading ? "Issuing Payout..." : "Issue Payout"}
           </button>
         </div>
-        <FormSmall>
+        <small className="text-muted">
           Balance that will be paid by clicking this button:{" "}
           {formatPriceCentsWithCurrencySymbol("usd", unpaid_balance_up_to_date, { symbolFormat: "short" })}
-        </FormSmall>
+        </small>
       </FormFieldset>
     )}
   </Form>

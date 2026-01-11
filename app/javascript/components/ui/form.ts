@@ -7,17 +7,5 @@ export { FormColorPicker, type FormColorPickerProps } from "./FormColorPicker";
 export { FormSwitch, type FormSwitchProps } from "./FormSwitch";
 export { FormSection, type FormSectionProps } from "./FormSection";
 export { FormRange, type FormRangeProps } from "./FormRange";
-export {
-  FormCheckbox,
-  type FormCheckboxProps,
-  FormRadio,
-  type FormRadioProps
-} from "./FormCheckbox";
-export {
-  FormFieldset,
-  type FormFieldsetProps,
-  FormLegend,
-  type FormLegendProps,
-  FormSmall,
-  type FormSmallProps,
-} from "./FormFieldset";
+export { FormCheckbox, type FormCheckboxProps, FormRadio, type FormRadioProps } from "./FormCheckbox";
+export { FormFieldset, type FormFieldsetProps, FormLegend, type FormLegendProps } from "./FormFieldset";

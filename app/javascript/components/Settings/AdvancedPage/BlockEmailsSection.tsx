@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { isValidEmail } from "$app/utils/email";
-import { FormFieldset, FormLabel, FormLegend, FormSection, FormSmall, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormSection, FormTextarea } from "$app/components/ui/form";
 
 type Props = {
   blockedEmails: string;
@@ -63,7 +63,7 @@ const BlockEmailsSection = ({ blockedEmails, setBlockedEmails }: Props) => {
           onChange={(e) => setBlockedEmails(e.target.value)}
           onBlur={sanitizeBlockedEmails}
         />
-        <FormSmall>Please enter each email address on a new line.</FormSmall>
+        <small className="text-muted">Please enter each email address on a new line.</small>
       </FormFieldset>
     </FormSection>
   );

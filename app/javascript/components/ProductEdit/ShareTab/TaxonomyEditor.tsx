@@ -3,7 +3,7 @@ import * as React from "react";
 import { Taxonomy } from "$app/utils/discover";
 
 import { Select } from "$app/components/Select";
-import { FormFieldset, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend } from "$app/components/ui/form";
 
 export const TaxonomyEditor = ({
   taxonomyId,
@@ -39,7 +39,7 @@ export const TaxonomyEditor = ({
         isClearable
         value={options.find(({ id }) => id === taxonomyId) ?? null}
       />
-      <FormSmall>Select a category to show your product on Gumroad Discover.</FormSmall>
+      <small className="text-muted">Select a category to show your product on Gumroad Discover.</small>
     </FormFieldset>
   );
 };

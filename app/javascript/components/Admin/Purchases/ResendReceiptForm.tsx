@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/form";
 
 type AdminResendReceiptFormProps = {
   purchase_external_id: string;
@@ -24,7 +24,7 @@ export const AdminResendReceiptForm = ({ purchase_external_id, email }: AdminRes
             {isLoading ? "Sending..." : "Send"}
           </button>
         </div>
-        <FormSmall>This will update the purchase email to this new one!</FormSmall>
+        <small className="text-muted">This will update the purchase email to this new one!</small>
       </FormFieldset>
     )}
   </Form>

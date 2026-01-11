@@ -19,7 +19,6 @@ import {
   FormLabel,
   FormSection,
   FormLegend,
-  FormSmall,
   FormSwitch,
 } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
@@ -304,11 +303,11 @@ const CollaboratorForm = ({
                       <TableCell>
                         <FormLabel htmlFor={`enable-product-${product.id}`}>{product.name}</FormLabel>
                         {product.has_another_collaborator || product.has_affiliates ? (
-                          <FormSmall>
+                          <small className="text-muted">
                             {product.has_another_collaborator
                               ? "Already has a collaborator"
                               : "Selecting this product will remove all its affiliates."}
-                          </FormSmall>
+                          </small>
                         ) : null}
                       </TableCell>
                       <TableCell>

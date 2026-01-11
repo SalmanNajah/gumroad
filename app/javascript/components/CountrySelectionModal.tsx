@@ -7,7 +7,7 @@ import { assertResponseError, request } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Modal } from "$app/components/Modal";
-import { FormCheckbox, FormFieldset, FormLabel, FormLegend, FormSelect, FormSmall } from "$app/components/ui/form";
+import { FormCheckbox, FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 
 type Props = {
   country: string | null;
@@ -82,7 +82,7 @@ export const CountrySelectionModal = ({ country: initialCountry, countries }: Pr
                 </option>
               ))}
             </FormSelect>
-            {error ? <FormSmall>{error}</FormSmall> : null}
+            {error ? <small className="text-muted">{error}</small> : null}
           </FormFieldset>
           <FormFieldset>
             <FormLegend>To ensure prompt payouts, please check off each item:</FormLegend>

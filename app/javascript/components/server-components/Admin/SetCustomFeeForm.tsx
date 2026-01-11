@@ -5,7 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/form";
 
 export const AdminSetCustomFeeForm = ({
   user_id,
@@ -37,10 +37,10 @@ export const AdminSetCustomFeeForm = ({
             {isLoading ? "Submitting..." : "Submit"}
           </button>
         </div>
-        <FormSmall>
+        <small className="text-muted">
           Note: Updated custom fee will apply to new direct (non-discover) sales of the user, but not to future charges
           of their existing memberships.
-        </FormSmall>
+        </small>
       </FormFieldset>
     )}
   </Form>

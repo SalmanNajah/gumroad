@@ -33,7 +33,6 @@ import {
   FormInputWrapper,
   FormLabel,
   FormLegend,
-  FormSmall,
   FormSwitch,
   FormTextarea,
 } from "$app/components/ui/form";
@@ -505,7 +504,9 @@ You can modify or cancel your membership at any time.`;
               }}
             />
 
-            {effectiveDate.error ? <FormSmall>The effective date must be at least 7 days from today</FormSmall> : null}
+            {effectiveDate.error ? (
+              <small className="text-muted">The effective date must be at least 7 days from today</small>
+            ) : null}
           </FormFieldset>
           <FormFieldset>
             <FormLegend>

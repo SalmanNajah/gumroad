@@ -26,7 +26,6 @@ import {
   FormLabel,
   FormLegend,
   FormSelect,
-  FormSmall,
   FormSection,
 } from "$app/components/ui/form";
 import {
@@ -523,7 +522,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
                 onChangeTagIds={(bought) => updateFormState({ bought })}
               />
               {formState.trigger === "abandoned_cart" ? (
-                <FormSmall>Leave this field blank to include all products</FormSmall>
+                <small className="text-muted">Leave this field blank to include all products</small>
               ) : null}
             </FormFieldset>
           ) : null}
@@ -633,7 +632,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
                   value={formState.afterDate}
                   onChange={(e) => updateFormState({ afterDate: e.target.value })}
                 />
-                <FormSmall>00:00 {context.timezone}</FormSmall>
+                <small className="text-muted">00:00 {context.timezone}</small>
               </FormFieldset>
               <FormFieldset state={invalidFields.has("beforeDate") ? "danger" : undefined}>
                 <FormLegend>
@@ -654,7 +653,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
                   value={formState.beforeDate}
                   onChange={(e) => updateFormState({ beforeDate: e.target.value })}
                 />
-                <FormSmall>11:59 {context.timezone}</FormSmall>
+                <small className="text-muted">11:59 {context.timezone}</small>
               </FormFieldset>
             </div>
           ) : null}

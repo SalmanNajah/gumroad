@@ -15,7 +15,7 @@ import * as React from "react";
 import { DateInput } from "$app/components/DateInput";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
-import { FormFieldset, FormInputWrapper, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
 export const DateRangePicker = ({
@@ -79,7 +79,7 @@ export const DateRangePicker = ({
               }}
               aria-invalid={to < from}
             />
-            {to < from ? <FormSmall>Must be after from date</FormSmall> : null}
+            {to < from ? <small className="text-muted">Must be after from date</small> : null}
           </FormFieldset>
         </div>
       ) : (

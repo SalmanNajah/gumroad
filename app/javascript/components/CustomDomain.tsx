@@ -5,7 +5,7 @@ import { asyncVoid } from "$app/utils/promise";
 import { assertResponseError, request, ResponseError } from "$app/utils/request";
 
 import { Button } from "$app/components/Button";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormLegend } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 type VerificationState = "initial" | "verifying" | "success" | "failure";
@@ -82,7 +82,7 @@ const CustomDomain = ({
       </FormLegend>
       <FormInputWrapper>
         <FormInput
-        className="border-none!"
+          className="border-none!"
           id={uid}
           placeholder="yourdomain.com"
           type="text"
@@ -113,7 +113,7 @@ const CustomDomain = ({
           </Pill>
         ) : null}
       </FormInputWrapper>
-      <FormSmall>{verificationInfo.message}</FormSmall>
+      <small className="text-muted">{verificationInfo.message}</small>
     </FormFieldset>
   );
 };

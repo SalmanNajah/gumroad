@@ -10,7 +10,7 @@ import { useDomains, useDiscoverUrl } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormInputWrapper, FormLegend, FormSection, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLegend, FormSection } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 const DiscoverLinkSection = ({
@@ -49,13 +49,13 @@ const DiscoverLinkSection = ({
             </Pill>
           </CopyToClipboard>
         </FormInputWrapper>
-        <FormSmall>
+        <small className="text-muted">
           You will be attributed any sales you referred within {cookieExpiryDays} days, even if they're for different
           products you linked to.
-        </FormSmall>
-        <FormSmall>
+        </small>
+        <small className="text-muted">
           To date, you have made <strong>{totalSales}</strong> from Gumroad referrals.
-        </FormSmall>
+        </small>
       </FormFieldset>
     </FormSection>
   );
@@ -136,7 +136,7 @@ const LinkGenerationSection = ({
             </Pill>
           </CopyToClipboard>
         </FormInputWrapper>
-        <FormSmall>Copy this affiliate link and share it with your audience</FormSmall>
+        <small className="text-muted">Copy this affiliate link and share it with your audience</small>
       </FormFieldset>
     </FormSection>
   );
@@ -163,7 +163,8 @@ const ProductEligibilitySection = ({
   });
 
   return (
-    <FormSection className="p-4! md:p-8!"
+    <FormSection
+      className="p-4! md:p-8!"
       header={
         <>
           <h2>How to know if a product is eligible</h2>

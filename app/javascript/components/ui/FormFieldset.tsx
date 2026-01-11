@@ -43,7 +43,7 @@ export const FormLegend = React.forwardRef<HTMLLegendElement, FormLegendProps>(
     <legend
       ref={ref}
       className={classNames(
-        "relative flex items-center font-bold mb-2 w-full text-base leading-[1.4]",
+        "relative mb-2 flex w-full items-center text-base leading-[1.4] font-bold",
         "[&_a]:font-normal [&_label]:font-normal",
         "[&>:last-child:not(:only-child)]:ml-auto",
         className,
@@ -55,14 +55,3 @@ export const FormLegend = React.forwardRef<HTMLLegendElement, FormLegendProps>(
   ),
 );
 FormLegend.displayName = "FormLegend";
-
-export interface FormSmallProps extends React.HTMLAttributes<HTMLElement> {
-  children: React.ReactNode;
-}
-
-export const FormSmall = React.forwardRef<HTMLElement, FormSmallProps>(({ className, children, ...props }, ref) => (
-  <small ref={ref} className={classNames("text-muted", className)} {...props}>
-    {children}
-  </small>
-));
-FormSmall.displayName = "FormSmall";

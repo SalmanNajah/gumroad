@@ -51,7 +51,6 @@ import {
   FormInputWrapper,
   FormRadio,
   FormSwitch,
-  FormSmall,
 } from "$app/components/ui/form";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { Sort, useSortingTableDriver } from "$app/components/useSortingTableDriver";
@@ -305,7 +304,7 @@ const UpsellsPage = (props: UpsellsPageProps) => {
                           <div>
                             <b>{upsell.name}</b>
                           </div>
-                          <small>{formatOfferedProductName(upsell.product.name, upsell.product.variant?.name)}</small>
+                          <small className="text-muted">{formatOfferedProductName(upsell.product.name, upsell.product.variant?.name)}</small>
                         </div>
                       </TableCell>
                       <TableCell aria-busy={!statistics}>
@@ -758,7 +757,7 @@ const Form = ({
                 <FormRadio name="paused" value="true" checked={paused} onChange={handlePausedChange} />
                 Paused
               </FormLabel>
-              <FormSmall>Paused upsells will not appear at checkout. You can resume anytime.</FormSmall>
+              <small className="text-muted">Paused upsells will not appear at checkout. You can resume anytime.</small>
             </FormFieldset>
             <FormFieldset>
               <FormLegend>Type of offer</FormLegend>

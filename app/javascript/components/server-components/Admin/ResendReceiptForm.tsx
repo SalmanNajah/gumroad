@@ -5,7 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/form";
 
 export const AdminResendReceiptForm = ({ purchase_id, email }: { purchase_id: number; email: string }) => (
   <Form
@@ -22,7 +22,7 @@ export const AdminResendReceiptForm = ({ purchase_id, email }: { purchase_id: nu
             {isLoading ? "Sending..." : "Send"}
           </button>
         </div>
-        <FormSmall>This will update the purchase email to this new one!</FormSmall>
+        <small className="text-muted">This will update the purchase email to this new one!</small>
       </FormFieldset>
     )}
   </Form>

@@ -163,7 +163,7 @@ export const CtaButton = React.forwardRef<HTMLAnchorElement, Props>(
               Pay in {product.installment_plan.number_of_installments} installments
             </NavigationButton>
             {showInstallmentPlanNotes ? (
-              <small className="text-center">
+              <small className="text-center text-muted">
                 {formatInstallmentPaymentSchedule(
                   discountedPriceCents,
                   product.currency_code,

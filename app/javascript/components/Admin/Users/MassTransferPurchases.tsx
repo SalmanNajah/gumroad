@@ -3,7 +3,7 @@ import * as React from "react";
 import { Form } from "$app/components/Admin/Form";
 import type { User } from "$app/components/Admin/Users/User";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/form";
 
 type AdminUserMassTransferPurchasesProps = {
   user: User;
@@ -30,7 +30,7 @@ const AdminUserMassTransferPurchases = ({ user }: AdminUserMassTransferPurchases
                 {isLoading ? "Transferring..." : "Transfer"}
               </button>
             </div>
-            <FormSmall>Are you sure you want to Mass Transfer purchases for this user?</FormSmall>
+            <small className="text-muted">Are you sure you want to Mass Transfer purchases for this user?</small>
           </FormFieldset>
         )}
       </Form>

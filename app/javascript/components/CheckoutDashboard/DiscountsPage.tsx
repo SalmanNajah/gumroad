@@ -400,7 +400,7 @@ const DiscountsPage = ({
                             </Pill>
                             <b>{offerCode.name}</b>
                           </div>
-                          <small>
+                          <small className="text-muted">
                             {formatAmount(offerCode)} off of {formatProducts(offerCode)}
                           </small>
                         </div>

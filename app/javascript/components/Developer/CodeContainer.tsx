@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
-import { FormFieldset, FormLabel, FormLegend, FormSmall, FormTextarea } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
 
 export const CodeContainer = ({ codeToCopy }: { codeToCopy: string }) => {
   const uid = React.useId();
@@ -24,7 +24,7 @@ export const CodeContainer = ({ codeToCopy }: { codeToCopy: string }) => {
         </CopyToClipboard>
       </FormLegend>
       <FormTextarea id={uid} ref={textAreaRef} aria-label="Widget code" readOnly value={codeToCopy} />
-      <FormSmall>We highly recommend you have an SSL certificate to increase buyer confidence.</FormSmall>
+      <small className="text-muted">We highly recommend you have an SSL certificate to increase buyer confidence.</small>
     </FormFieldset>
   );
 };

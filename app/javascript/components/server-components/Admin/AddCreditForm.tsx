@@ -5,7 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormInputWrapper, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 
 export const AdminAddCreditForm = ({ user_id }: { user_id: number }) => (
@@ -26,7 +26,7 @@ export const AdminAddCreditForm = ({ user_id }: { user_id: number }) => (
             {isLoading ? "Saving..." : "Add credits"}
           </button>
         </div>
-        <FormSmall>Subtract credits by providing a negative value</FormSmall>
+        <small className="text-muted">Subtract credits by providing a negative value</small>
       </FormFieldset>
     )}
   </Form>

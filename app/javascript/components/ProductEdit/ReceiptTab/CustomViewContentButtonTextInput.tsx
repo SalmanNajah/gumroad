@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { FormFieldset, FormInput, FormLabel, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel } from "$app/components/ui/form";
 
 export const CustomViewContentButtonTextInput = ({
   value,
@@ -23,9 +23,9 @@ export const CustomViewContentButtonTextInput = ({
         onChange={(evt) => onChange(evt.target.value)}
         maxLength={maxLength}
       />
-      <FormSmall>
+      <small className="text-muted">
         Customize the download button text on receipts and product pages (max {maxLength} characters).
-      </FormSmall>
+      </small>
     </FormFieldset>
   );
 };

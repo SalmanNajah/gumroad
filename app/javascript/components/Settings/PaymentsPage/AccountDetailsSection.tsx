@@ -1,4 +1,4 @@
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 import parsePhoneNumberFromString, { CountryCode } from "libphonenumber-js";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
@@ -668,7 +668,7 @@ const AccountDetailsSection = ({
               required
               onChange={(evt) => updateComplianceInfo({ first_name: evt.target.value })}
             />
-            <FormSmall>Include your middle name if it appears on your ID.</FormSmall>
+            <small className="text-muted">Include your middle name if it appears on your ID.</small>
           </FormFieldset>
           <FormFieldset state={errorFieldNames.has("last_name") ? "danger" : undefined}>
             <FormLegend>

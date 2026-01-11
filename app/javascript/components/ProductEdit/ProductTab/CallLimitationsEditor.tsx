@@ -4,7 +4,7 @@ import { Icon } from "$app/components/Icons";
 import { NumberInput } from "$app/components/NumberInput";
 import { CallLimitationInfo } from "$app/components/ProductEdit/state";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
-import { FormFieldset, FormInput, FormInputWrapper, FormLabel, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormInputWrapper, FormLabel } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
 import { useOnChange } from "$app/components/useOnChange";
 import { useOnOutsideClick } from "$app/components/useOnOutsideClick";
@@ -80,7 +80,7 @@ export const CallLimitationsEditor = ({
             </FormInputWrapper>
           )}
         </NumberInput>
-        <FormSmall>Minimum notice time required when booking a call</FormSmall>
+        <small className="text-muted">Minimum notice time required when booking a call</small>
       </FormFieldset>
       <FormFieldset>
         <FormLabel htmlFor={`${uid}-daily-limit`}>Daily limit</FormLabel>
@@ -90,7 +90,7 @@ export const CallLimitationsEditor = ({
         >
           {(props) => <FormInput id={`${uid}-daily-limit`} placeholder="2" {...props} />}
         </NumberInput>
-        <FormSmall>Maximum calls allowed per day</FormSmall>
+        <small className="text-muted">Maximum calls allowed per day</small>
       </FormFieldset>
     </>
   );

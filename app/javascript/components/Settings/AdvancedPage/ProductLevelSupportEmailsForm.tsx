@@ -5,7 +5,7 @@ import { Icon } from "$app/components/Icons";
 import { TagInput } from "$app/components/TagInput";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 type ProductLevelSupportEmail = {
   email: string;
@@ -87,7 +87,7 @@ const ProductLevelSupportEmailRow = React.memo(
                 required={supportEmail.product_ids.length > 0}
                 onChange={handleEmailChange}
               />
-              <FormSmall>This reply-to email will appear on receipts for selected products.</FormSmall>
+              <small className="text-muted">This reply-to email will appear on receipts for selected products.</small>
             </FormFieldset>
             <FormFieldset>
               <FormLegend>

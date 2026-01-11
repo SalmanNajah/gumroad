@@ -15,7 +15,6 @@ import {
   FormLabel,
   FormLegend,
   FormSection,
-  FormSmall,
 } from "$app/components/ui/form";
 
 const NotificationEndpointSection = ({
@@ -89,7 +88,7 @@ const NotificationEndpointSection = ({
             </Pill>
           </WithTooltip>
         </FormInputWrapper>
-        <FormSmall>For external services, your `seller_id` is {userId}</FormSmall>
+        <small className="text-muted">For external services, your `seller_id` is {userId}</small>
       </FormFieldset>
     </FormSection>
   );

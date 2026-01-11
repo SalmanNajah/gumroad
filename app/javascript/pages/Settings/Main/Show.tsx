@@ -24,7 +24,6 @@ import {
   FormLegend,
   FormSection,
   FormSelect,
-  FormSmall,
   FormTextarea,
 } from "$app/components/ui/form";
 import { Pill } from "$app/components/ui/Pill";
@@ -139,7 +138,7 @@ export default function MainPage() {
               onChange={(e) => updateUserSettings({ email: e.target.value })}
             />
             {props.user.has_unconfirmed_email && !props.is_form_disabled ? (
-              <FormSmall>
+              <small className="text-muted">
                 This email address has not been confirmed yet.{" "}
                 {resentConfirmationEmail ? null : (
                   <button
@@ -152,7 +151,7 @@ export default function MainPage() {
                     {resendConfirmationEmailForm.processing ? "Resending..." : "Resend confirmation?"}
                   </button>
                 )}
-              </FormSmall>
+              </small>
             ) : null}
           </FormFieldset>
         </FormSection>
@@ -292,7 +291,7 @@ export default function MainPage() {
               disabled={isFormDisabled}
               onChange={(e) => updateUserSettings({ support_email: e.target.value })}
             />
-            <FormSmall>This email is listed on the receipt of every sale.</FormSmall>
+            <small className="text-muted">This email is listed on the receipt of every sale.</small>
           </FormFieldset>
           {props.user.product_level_support_emails !== null && (
             <ProductLevelSupportEmailsForm
@@ -415,11 +414,11 @@ export default function MainPage() {
                 </option>
               ))}
             </FormSelect>
-            <FormSmall>Applies only to new products.</FormSmall>
-            <FormSmall>
+            <small className="text-muted">Applies only to new products.</small>
+            <small className="text-muted">
               Charges will happen in USD, using an up-to-date exchange rate. Customers may incur an additional foreign
               transaction fee according to their cardmember agreement.
-            </FormSmall>
+            </small>
           </FormFieldset>
           <FormFieldset>
             <ToggleSettingRow
@@ -502,12 +501,12 @@ export default function MainPage() {
                 </div>
               }
             />
-            <FormSmall>
+            <small className="text-muted">
               Charge customers different amounts depending on the cost of living in their country.{" "}
               <a href="/help/article/327-purchasing-power-parity" target="_blank" rel="noreferrer">
                 Learn more
               </a>
-            </FormSmall>
+            </small>
           </FormFieldset>
         </FormSection>
         <FormSection className="p-4! md:p-8!" header={<h2>Adult content</h2>}>
@@ -528,9 +527,9 @@ export default function MainPage() {
               disabled={isFormDisabled}
               label="Prevent others from adding me as an affiliate"
             />
-            <FormSmall>
+            <small className="text-muted">
               When enabled, other users cannot add you as an affiliate or request to become your affiliate.
-            </FormSmall>
+            </small>
           </FormFieldset>
         </FormSection>
         {props.invalidate_active_sessions ? <InvalidateActiveSessionsSection /> : null}

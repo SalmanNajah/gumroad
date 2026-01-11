@@ -21,15 +21,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { Profile, Props as ProfileProps } from "$app/components/server-components/Profile";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { SocialAuthButton } from "$app/components/SocialAuthButton";
-import {
-  FormColorPicker,
-  FormFieldset,
-  FormInput,
-  FormLabel,
-  FormLegend,
-  FormSmall,
-  FormTextarea,
-} from "$app/components/ui/form";
+import { FormColorPicker, FormFieldset, FormInput, FormLabel, FormLegend, FormTextarea } from "$app/components/ui/form";
 
 type ProfilePageProps = {
   profile_settings: ProfileSettings;
@@ -128,9 +120,9 @@ export default function SettingsPage() {
                   updateProfileSettings({ username: evt.target.value.replace(/[^a-z0-9]/giu, "").toLowerCase() })
                 }
               />
-              <FormSmall>
+              <small className="text-muted">
                 View your profile at: <a href={`${scheme}://${subdomain}`}>{subdomain}</a>
-              </FormSmall>
+              </small>
             </FormFieldset>
             <FormFieldset>
               <FormLegend>

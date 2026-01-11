@@ -5,7 +5,7 @@ import type { FormFieldName, User } from "$app/types/payments";
 
 import { Button } from "$app/components/Button";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend, FormSelect } from "$app/components/ui/form";
 
 export type BankAccount =
   | {
@@ -945,7 +945,7 @@ const BankAccountSection = ({
             aria-invalid={errorFieldNames.has("account_holder_full_name")}
             onChange={(evt) => updateBankAccount({ account_holder_full_name: evt.target.value })}
           />
-          <FormSmall>Must exactly match the name on your bank account</FormSmall>
+          <small className="text-muted">Must exactly match the name on your bank account</small>
         </FormFieldset>
         <div className="grid gap-2">
           {showNewBankAccount ? (

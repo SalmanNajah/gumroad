@@ -4,7 +4,7 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormLabel, FormFieldset, FormSmall } from "$app/components/ui/form";
+import { FormLabel, FormFieldset } from "$app/components/ui/form";
 
 export const AdminManualPayoutForm = ({
   user_id,
@@ -67,10 +67,10 @@ export const AdminManualPayoutForm = ({
             {isLoading ? "Issuing Payout..." : "Issue Payout"}
           </button>
         </div>
-        <FormSmall>
+        <small className="text-muted">
           Balance that will be paid by clicking this button:{" "}
           {formatPriceCentsWithCurrencySymbol("usd", unpaid_balance_up_to_date, { symbolFormat: "short" })}
-        </FormSmall>
+        </small>
       </FormFieldset>
     )}
   </Form>

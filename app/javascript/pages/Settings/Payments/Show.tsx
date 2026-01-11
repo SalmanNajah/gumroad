@@ -37,7 +37,7 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import logo from "$assets/images/logo-g.svg";
-import { FormFieldset, FormSection, FormSmall, FormLabel } from "$app/components/ui/form";
+import { FormFieldset, FormSection, FormLabel } from "$app/components/ui/form";
 
 const PAYOUT_FREQUENCIES = ["daily", "weekly", "monthly", "quarterly"] as const;
 type PayoutFrequency = (typeof PAYOUT_FREQUENCIES)[number];
@@ -733,10 +733,10 @@ export default function PaymentsPage() {
       >
         Pause payouts
       </Toggle>
-      <FormSmall>
+      <small className="text-muted">
         By pausing payouts, they won't be processed until you decide to resume them, and your balance will remain in
         your account until then.
-      </FormSmall>
+      </small>
     </FormFieldset>
   );
 
@@ -857,10 +857,10 @@ export default function PaymentsPage() {
                   disabled: frequency === "daily" && !props.payout_frequency_daily_supported,
                 }))}
               />
-              <FormSmall>
+              <small className="text-muted">
                 Daily payouts are only available for US users with eligible bank accounts and more than 4 previous
                 payouts.
-              </FormSmall>
+              </small>
             </FormFieldset>
             {form.data.payout_frequency === "daily" && props.payout_frequency_daily_supported ? (
               <Alert role="status" className="info">
@@ -890,15 +890,15 @@ export default function PaymentsPage() {
                 hasError={!!payoutThresholdError}
               />
               {payoutThresholdError ? (
-                <FormSmall>
+                <small className="text-muted">
                   Your payout threshold must be at least{" "}
                   {formatPriceCentsWithCurrencySymbol("usd", props.minimum_payout_threshold_cents, {
                     symbolFormat: "long",
                   })}
                   .
-                </FormSmall>
+                </small>
               ) : (
-                <FormSmall>Payouts will only be issued once your balance reaches this amount.</FormSmall>
+                <small className="text-muted">Payouts will only be issued once your balance reaches this amount.</small>
               )}
             </FormFieldset>
             {props.payouts_paused_internally ? (

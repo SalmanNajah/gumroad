@@ -10,7 +10,6 @@ import {
   FormLegend,
   FormRadio,
   FormSelect,
-  FormSmall,
   FormSwitch,
 } from "$app/components/ui/form";
 import { addHours, format, startOfDay, startOfHour } from "date-fns";
@@ -1076,7 +1075,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                         markFieldAsValid("beforeDate");
                       }}
                     />
-                    <FormSmall>00:00 {context.timezone}</FormSmall>
+                    <small className="text-muted">00:00 {context.timezone}</small>
                   </FormFieldset>
                   <FormFieldset state={invalidFields.has("beforeDate") ? "danger" : undefined}>
                     <FormLegend>
@@ -1093,7 +1092,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                         markFieldAsValid("afterDate");
                       }}
                     />
-                    <FormSmall>11:59 {context.timezone}</FormSmall>
+                    <small className="text-muted">11:59 {context.timezone}</small>
                   </FormFieldset>
                 </div>
               </div>
@@ -1168,7 +1167,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                 ) : null}
                 <ImageUploadSettingsContext.Provider value={imageSettings}>
                   <RichTextEditor
-                    className="textarea px-4 py-3 border border-border rounded block w-full bg-filled text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
+                    className="textarea bg-filled block w-full rounded border border-border px-4 py-3 text-foreground placeholder:text-muted focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent"
                     ariaLabel="Email message"
                     placeholder="Write a personalized message..."
                     initialValue={initialMessageValue}

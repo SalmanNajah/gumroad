@@ -3,7 +3,7 @@ import * as React from "react";
 import { Form } from "$app/components/Admin/Form";
 import type { User } from "$app/components/Admin/Users/User";
 import { showAlert } from "$app/components/server-components/Alert";
-import { FormFieldset, FormInput, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput } from "$app/components/ui/form";
 
 type AdminUserChangeEmailProps = {
   user: User;
@@ -30,7 +30,7 @@ const AdminUserChangeEmail = ({ user }: AdminUserChangeEmailProps) => (
                 {isLoading ? "Updating..." : "Update email"}
               </button>
             </div>
-            <FormSmall>This will update the user's email to this new one!</FormSmall>
+            <small className="text-muted">This will update the user's email to this new one!</small>
           </FormFieldset>
         )}
       </Form>

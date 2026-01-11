@@ -18,7 +18,6 @@ import {
   FormLabel,
   FormLegend,
   FormSection,
-  FormSmall,
   FormSwitch,
   FormTextarea,
 } from "$app/components/ui/form";
@@ -184,7 +183,7 @@ export default function ThirdPartyAnalyticsPage() {
                   value={thirdPartyAnalytics.facebook_meta_tag}
                   onChange={(evt) => updateThirdPartyAnalytics({ facebook_meta_tag: evt.target.value })}
                 />
-                <FormSmall>Enter meta tag containing the Facebook domain verification code.</FormSmall>
+                <small className="text-muted">Enter meta tag containing the Facebook domain verification code.</small>
               </FormFieldset>
             </div>
           </Details>

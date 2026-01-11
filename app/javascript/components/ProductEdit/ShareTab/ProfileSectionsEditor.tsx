@@ -3,7 +3,7 @@ import * as React from "react";
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { ProfileSection } from "$app/components/ProductEdit/state";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormLabel, FormSmall, FormSwitch } from "$app/components/ui/form";
+import { FormFieldset, FormLabel, FormSwitch } from "$app/components/ui/form";
 
 export const ProfileSectionsEditor = ({
   sectionIds,
@@ -50,11 +50,11 @@ export const ProfileSectionsEditor = ({
                 <div>
                   {sectionName(section)}
                   <br />
-                  <FormSmall>
+                  <small className="text-muted">
                     {section.product_names.length > 2
                       ? `${items}, and ${section.product_names.length - 2} ${section.product_names.length - 2 === 1 ? " other" : " others"}`
                       : items}
-                  </FormSmall>
+                  </small>
                 </div>
               </FormLabel>
             );

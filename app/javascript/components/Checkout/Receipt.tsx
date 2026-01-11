@@ -13,7 +13,7 @@ import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
-import { FormFieldset, FormInput, FormLabel, FormLegend, FormSmall } from "$app/components/ui/form";
+import { FormFieldset, FormInput, FormLabel, FormLegend } from "$app/components/ui/form";
 
 export const LineItem = ({
   name,
@@ -232,9 +232,9 @@ export const CreateAccountForm = ({
               onChange={(evt) => setPassword(evt.target.value)}
               id={`${uid}password`}
             />
-            <FormSmall>
+            <small className="text-muted">
               You agree to our <a href="https://gumroad.com/terms">Terms Of Use</a>.
-            </FormSmall>
+            </small>
           </FormFieldset>
 
           <Button type="submit" color="primary" disabled={status === "processing"}>

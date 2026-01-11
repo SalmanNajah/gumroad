@@ -21,7 +21,6 @@ import {
   FormLabel,
   FormLegend,
   FormSection,
-  FormSmall,
   FormTextarea,
 } from "$app/components/ui/form";
 
@@ -278,7 +277,8 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
       }
     >
       <form onSubmit={handleSubmit}>
-        <FormSection className="p-4! md:p-8!"
+        <FormSection
+          className="p-4! md:p-8!"
           header={
             <>
               <p>Create UTM links to track where your traffic is coming from.</p>
@@ -301,7 +301,7 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               ref={titleRef}
               onChange={(e) => setData("utm_link.title", e.target.value)}
             />
-            {getFieldError("title") ? <FormSmall>{getFieldError("title")}</FormSmall> : null}
+            {getFieldError("title") ? <small className="text-muted">{getFieldError("title")}</small> : null}
           </FormFieldset>
           <FormFieldset
             state={getFieldError("target_resource_id") || getFieldError("target_resource_type") ? "danger" : undefined}
@@ -325,7 +325,9 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               }}
             />
             {getFieldError("target_resource_id") || getFieldError("target_resource_type") ? (
-              <FormSmall>{getFieldError("target_resource_id") || getFieldError("target_resource_type")}</FormSmall>
+              <small className="text-muted">
+                {getFieldError("target_resource_id") || getFieldError("target_resource_type")}
+              </small>
             ) : null}
           </FormFieldset>
           <FormFieldset state={getFieldError("permalink") ? "danger" : undefined}>
@@ -366,9 +368,9 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               </div>
             </div>
             {getFieldError("permalink") ? (
-              <FormSmall>{getFieldError("permalink")}</FormSmall>
+              <small className="text-muted">{getFieldError("permalink")}</small>
             ) : (
-              <FormSmall>This is your short UTM link to share</FormSmall>
+              <small className="text-muted">This is your short UTM link to share</small>
             )}
           </FormFieldset>
           <div
@@ -390,9 +392,9 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
                 onChange={(value) => setData("utm_link.utm_source", value)}
               />
               {getFieldError("utm_source") ? (
-                <FormSmall>{getFieldError("utm_source")}</FormSmall>
+                <small className="text-muted">{getFieldError("utm_source")}</small>
               ) : (
-                <FormSmall>Where the traffic comes from e.g Twitter, Instagram</FormSmall>
+                <small className="text-muted">Where the traffic comes from e.g Twitter, Instagram</small>
               )}
             </FormFieldset>
             <FormFieldset state={getFieldError("utm_medium") ? "danger" : undefined}>
@@ -407,9 +409,9 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
                 onChange={(value) => setData("utm_link.utm_medium", value)}
               />
               {getFieldError("utm_medium") ? (
-                <FormSmall>{getFieldError("utm_medium")}</FormSmall>
+                <small className="text-muted">{getFieldError("utm_medium")}</small>
               ) : (
-                <FormSmall>Medium by which the traffic arrived e.g. email, ads, story</FormSmall>
+                <small className="text-muted">Medium by which the traffic arrived e.g. email, ads, story</small>
               )}
             </FormFieldset>
           </div>
@@ -425,9 +427,9 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               onChange={(value) => setData("utm_link.utm_campaign", value)}
             />
             {getFieldError("utm_campaign") ? (
-              <FormSmall>{getFieldError("utm_campaign")}</FormSmall>
+              <small className="text-muted">{getFieldError("utm_campaign")}</small>
             ) : (
-              <FormSmall>Name of the campaign</FormSmall>
+              <small className="text-muted">Name of the campaign</small>
             )}
           </FormFieldset>
           <FormFieldset state={getFieldError("utm_term") ? "danger" : undefined}>
@@ -442,9 +444,9 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               onChange={(value) => setData("utm_link.utm_term", value)}
             />
             {getFieldError("utm_term") ? (
-              <FormSmall>{getFieldError("utm_term")}</FormSmall>
+              <small className="text-muted">{getFieldError("utm_term")}</small>
             ) : (
-              <FormSmall>Keywords used in ads</FormSmall>
+              <small className="text-muted">Keywords used in ads</small>
             )}
           </FormFieldset>
           <FormFieldset state={getFieldError("utm_content") ? "danger" : undefined}>
@@ -459,9 +461,9 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               onChange={(value) => setData("utm_link.utm_content", value)}
             />
             {getFieldError("utm_content") ? (
-              <FormSmall>{getFieldError("utm_content")}</FormSmall>
+              <small className="text-muted">{getFieldError("utm_content")}</small>
             ) : (
-              <FormSmall>Use to differentiate ads</FormSmall>
+              <small className="text-muted">Use to differentiate ads</small>
             )}
           </FormFieldset>
           {finalUrl ? (
