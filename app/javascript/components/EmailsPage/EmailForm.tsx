@@ -8,6 +8,7 @@ import { cast } from "ts-safe-cast";
 import { AudienceType, getRecipientCount, InstallmentFormContext, Installment } from "$app/data/installments";
 import { type EmailTab, TYPE_TO_TAB } from "$app/data/installments";
 import { assertDefined } from "$app/utils/assert";
+import { classNames } from "$app/utils/classNames";
 import Countdown from "$app/utils/countdown";
 import { ALLOWED_EXTENSIONS } from "$app/utils/file";
 import { asyncVoid } from "$app/utils/promise";
@@ -38,6 +39,7 @@ import { InvalidNameForEmailDeliveryWarning } from "$app/components/server-compo
 import { TagInput } from "$app/components/TagInput";
 import { UpsellCard } from "$app/components/TiptapExtensions/UpsellCard";
 import { Alert } from "$app/components/ui/Alert";
+import { Card, CardContent } from "$app/components/ui/Card";
 import {
   FormCheckbox,
   FormFieldset,
@@ -804,9 +806,9 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
         {currentSeller.isNameInvalidForEmailDelivery && channel.email ? <InvalidNameForEmailDeliveryWarning /> : null}
 
         <div className="grid grid-cols-1 items-start gap-x-16 gap-y-8 lg:grid-cols-[var(--grid-cols-sidebar)]">
-          <div className="stack">
-            <div>
-              <FormFieldset role="group">
+          <Card>
+            <CardContent>
+              <FormFieldset className="grow basis-0" role="group">
                 <FormLegend>
                   <div>Audience</div>
                   {hasAudience ? (
@@ -862,8 +864,8 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   </FormLabel>
                 ) : null}
               </FormFieldset>
-            </div>
-            <div>
+            </CardContent>
+            <CardContent>
               <FormFieldset role="group" state={invalidFields.has("channel") ? "danger" : undefined}>
                 <FormLegend>Channel</FormLegend>
                 {hasAudience ? (
@@ -939,10 +941,10 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   )
                 ) : null}
               </FormFieldset>
-            </div>
+            </CardContent>
             {audienceType === "affiliates" ? (
-              <div>
-                <FormFieldset role="group">
+              <CardContent>
+                <FormFieldset className="grow basis-0" role="group">
                   <FormLegend>Affiliated products</FormLegend>
                   <FormLabel htmlFor={`${uid}-all_affiliated_products`}>
                     All products
@@ -964,11 +966,11 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     isDisabled={isPublished}
                   />
                 </FormFieldset>
-              </div>
+              </CardContent>
             ) : null}
             {audienceType === "customers" || audienceType === "followers" ? (
-              <div>
-                <FormFieldset>
+              <CardContent>
+                <FormFieldset className="grow basis-0">
                   <FormLegend>
                     <FormLabel htmlFor={`${uid}-bought`}>Bought</FormLabel>
                   </FormLegend>
@@ -981,11 +983,11 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     isDisabled={isPublished}
                   />
                 </FormFieldset>
-              </div>
+              </CardContent>
             ) : null}
             {hasAudience && audienceType !== "affiliates" ? (
-              <div>
-                <FormFieldset>
+              <CardContent>
+                <FormFieldset className="grow basis-0">
                   <FormLegend>
                     <FormLabel htmlFor={`${uid}-not_bought`}>Has not yet bought</FormLabel>
                   </FormLegend>
@@ -1000,16 +1002,17 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     maxTags={1}
                   />
                 </FormFieldset>
-              </div>
+              </CardContent>
             ) : null}
             {audienceType === "customers" ? (
-              <div>
+              <CardContent>
                 <div
                   style={{
                     display: "grid",
                     gap: "var(--spacer-4)",
                     gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr)",
                   }}
+                  className="grow"
                 >
                   <FormFieldset state={invalidFields.has("paidMoreThan") ? "danger" : undefined}>
                     <FormLegend>
@@ -1047,16 +1050,17 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     />
                   </FormFieldset>
                 </div>
-              </div>
+              </CardContent>
             ) : null}
             {hasAudience ? (
-              <div>
+              <CardContent>
                 <div
                   style={{
                     display: "grid",
                     gap: "var(--spacer-4)",
                     gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
                   }}
+                  className="grow"
                 >
                   <FormFieldset state={invalidFields.has("afterDate") ? "danger" : undefined}>
                     <FormLegend>
@@ -1094,11 +1098,11 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     <small className="text-muted">11:59 {context.timezone}</small>
                   </FormFieldset>
                 </div>
-              </div>
+              </CardContent>
             ) : null}
             {audienceType === "customers" ? (
-              <div>
-                <FormFieldset>
+              <CardContent>
+                <FormFieldset className="grow basis-0">
                   <FormLegend>
                     <FormLabel htmlFor={`${uid}-from_country`}>From</FormLabel>
                   </FormLegend>
@@ -1116,10 +1120,10 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     ))}
                   </FormSelect>
                 </FormFieldset>
-              </div>
+              </CardContent>
             ) : null}
-            <div>
-              <FormFieldset role="group">
+            <CardContent>
+              <FormFieldset className="grow basis-0" role="group">
                 <FormLegend>Engagement</FormLegend>
                 <FormLabel htmlFor={`${uid}-allow_comments`}>
                   Allow comments
@@ -1130,8 +1134,8 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   />
                 </FormLabel>
               </FormFieldset>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
           <S3UploadConfigProvider value={s3UploadConfig}>
             <EvaporateUploaderProvider value={evaporateUploader}>
               <div className="grid gap-6">

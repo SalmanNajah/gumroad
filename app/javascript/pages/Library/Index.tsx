@@ -31,6 +31,7 @@ import {
   FormLegend,
   FormSelect,
 } from "$app/components/ui/Form";
+import { Card as UICard, CardContent } from "$app/components/ui/Card";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { ProductCard, ProductCardFigure, ProductCardHeader, ProductCardFooter } from "$app/components/ui/ProductCard";
 import { ProductCardGrid } from "$app/components/ui/ProductCardGrid";
@@ -405,26 +406,25 @@ export default function LibraryPage() {
           )}
         >
           {shouldShowFilter ? (
-            <div
-              className="stack overflow-y-auto lg:sticky lg:inset-y-4 lg:max-h-[calc(100vh-2rem)]"
-              aria-label="Filters"
-            >
-              <header>
-                <div>
-                  {filteredResults.length
-                    ? `Showing 1-${Math.min(filteredResults.length, resultsLimit)} of ${filteredResults.length} products`
-                    : "No products found"}
-                </div>
-                {isDesktop ? null : (
-                  <button className="underline" onClick={() => setMobileFiltersExpanded(!mobileFiltersExpanded)}>
-                    Filter
-                  </button>
-                )}
-              </header>
+            <UICard className="overflow-y-auto lg:sticky lg:inset-y-4 lg:max-h-[calc(100vh-2rem)]" aria-label="Filters">
+              <CardContent asChild>
+                <header>
+                  <div className="grow">
+                    {filteredResults.length
+                      ? `Showing 1-${Math.min(filteredResults.length, resultsLimit)} of ${filteredResults.length} products`
+                      : "No products found"}
+                  </div>
+                  {isDesktop ? null : (
+                    <button className="underline" onClick={() => setMobileFiltersExpanded(!mobileFiltersExpanded)}>
+                      Filter
+                    </button>
+                  )}
+                </header>
+              </CardContent>
               {isDesktop || mobileFiltersExpanded ? (
                 <>
-                  <div>
-                    <FormInputWrapper>
+                  <CardContent>
+                    <FormInputWrapper className="grow">
                       <Icon name="solid-search" />
                       <FormInput
                         className="search-products"
@@ -435,9 +435,9 @@ export default function LibraryPage() {
                         onKeyDown={handleSearchKeyDown}
                       />
                     </FormInputWrapper>
-                  </div>
-                  <div className="sort">
-                    <FormFieldset>
+                  </CardContent>
+                  <CardContent className="sort">
+                    <FormFieldset className="grow basis-0">
                       <FormLegend>
                         <FormLabel className="filter-header" htmlFor={sortUid}>
                           Sort by
@@ -457,10 +457,10 @@ export default function LibraryPage() {
                         <option value="purchase_date">Purchase Date</option>
                       </FormSelect>
                     </FormFieldset>
-                  </div>
+                  </CardContent>
                   {bundles.length > 0 ? (
-                    <div>
-                      <FormFieldset>
+                    <CardContent>
+                      <FormFieldset className="grow basis-0">
                         <FormLegend>
                           <FormLabel htmlFor={bundlesUid}>Bundles</FormLabel>
                         </FormLegend>
@@ -479,10 +479,10 @@ export default function LibraryPage() {
                           isClearable
                         />
                       </FormFieldset>
-                    </div>
+                    </CardContent>
                   ) : null}
-                  <div className="creator">
-                    <FormFieldset role="group">
+                  <CardContent className="creator">
+                    <FormFieldset role="group" className="grow basis-0">
                       <FormLegend className="filter-header">Creator</FormLegend>
                       <FormLabel>
                         All Creators
@@ -520,10 +520,10 @@ export default function LibraryPage() {
                         ) : null}
                       </div>
                     </FormFieldset>
-                  </div>
+                  </CardContent>
                   {archivedCount > 0 ? (
-                    <div className="archived">
-                      <FormFieldset role="group">
+                    <CardContent className="archived">
+                      <FormFieldset role="group" className="grow basis-0">
                         <FormLabel className="filter-archived">
                           Show archived only
                           <FormCheckbox
@@ -538,11 +538,11 @@ export default function LibraryPage() {
                           />
                         </FormLabel>
                       </FormFieldset>
-                    </div>
+                    </CardContent>
                   ) : null}
                 </>
               ) : null}
-            </div>
+            </UICard>
           ) : null}
           <ProductCardGrid>
             {filteredResults.slice(0, resultsLimit).map((result) => (

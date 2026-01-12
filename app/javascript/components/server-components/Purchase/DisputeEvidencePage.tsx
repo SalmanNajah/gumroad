@@ -23,6 +23,7 @@ import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
 import { FormFieldset, FormLabel, FormLegend, FormRadio, FormTextarea } from "$app/components/ui/Form";
+import { Card, CardContent } from "$app/components/ui/Card";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
@@ -149,18 +150,20 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
   const disputeReason = disputeReasons[dispute_evidence.dispute_reason];
 
   return (
-    <div className="stack mx-auto my-8 max-w-2xl">
-      <header>
-        Dispute evidence
-        <h2>Submit additional information</h2>
-      </header>
+    <Card className="mx-auto my-8 max-w-2xl">
+      <CardContent asChild>
+        <header>
+          Dispute evidence
+          <h2 className="grow">Submit additional information</h2>
+        </header>
+      </CardContent>
       {formSubmitted ? (
-        <div>Thank you!</div>
+        <CardContent>Thank you!</CardContent>
       ) : (
         <>
-          <div>
+          <CardContent>
             {products.length > 1 ? (
-              <div>
+              <div className="grow">
                 <p>
                   A customer of yours ({dispute_evidence.customer_email}) has disputed their purchase made on{" "}
                   {purchaseDate} of the following {products.length} items for {disputable.formatted_display_price}.
@@ -177,7 +180,7 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                 </ul>
               </div>
             ) : (
-              <p>
+              <p className="grow">
                 A customer of yours ({dispute_evidence.customer_email}) has disputed their purchase made on{" "}
                 {purchaseDate} of{" "}
                 <a href={products[0]?.url} target="_blank" rel="noreferrer">
@@ -200,9 +203,9 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
               supporting files to our payment processor. You can't edit the response or submit additional information,
               so make sure you've assembled all of your evidence before you submit.
             </Alert>
-          </div>
-          <div>
-            <FormFieldset>
+          </CardContent>
+          <CardContent>
+            <FormFieldset className="grow basis-0">
               <FormLegend>
                 <FormLabel htmlFor={reasonForWinningUID}>Why should you win this dispute?</FormLabel>
               </FormLegend>
@@ -230,10 +233,10 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                 />
               ) : null}
             </FormFieldset>
-          </div>
+          </CardContent>
           {disputable.is_subscription && dispute_evidence.dispute_reason === "subscription_canceled" ? (
-            <div>
-              <FormFieldset>
+            <CardContent>
+              <FormFieldset className="grow basis-0">
                 <FormLegend>
                   <FormLabel htmlFor={cancellationRebuttalUID}>
                     Why was the customer's subscription not canceled?
@@ -264,11 +267,11 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                   />
                 ) : null}
               </FormFieldset>
-            </div>
+            </CardContent>
           ) : null}
           {"refusalRequiresExplanation" in disputeReason ? (
-            <div>
-              <FormFieldset>
+            <CardContent>
+              <FormFieldset className="grow basis-0">
                 <FormLegend>
                   <FormLabel htmlFor={refundRefusalExplanationUID}>
                     Why is the customer not entitled to a refund?
@@ -282,10 +285,10 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                   onChange={(evt) => updateSellerDisputeEvidence({ refundRefusalExplanation: evt.target.value })}
                 />
               </FormFieldset>
-            </div>
+            </CardContent>
           ) : null}
-          <div>
-            <FormFieldset>
+          <CardContent>
+            <FormFieldset className="grow basis-0">
               <FormLegend>
                 <FormLabel>Do you have additional evidence you'd like to provide?</FormLabel>
               </FormLegend>
@@ -327,9 +330,14 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                 </>
               ) : null}
             </FormFieldset>
-          </div>
-          <div>
-            <Button color="primary" disabled={!isInfoProvided || isSubmitting} onClick={handleSubmit}>
+          </CardContent>
+          <CardContent>
+            <Button
+              color="primary"
+              disabled={!isInfoProvided || isSubmitting}
+              onClick={handleSubmit}
+              className="grow basis-0"
+            >
               {isSubmitting ? (
                 <>
                   <LoadingSpinner /> Submitting...
@@ -338,10 +346,10 @@ const DisputeEvidencePage = ({ dispute_evidence, disputable, products }: Props) 
                 "Submit"
               )}
             </Button>
-          </div>
+          </CardContent>
         </>
       )}
-    </div>
+    </Card>
   );
 };
 

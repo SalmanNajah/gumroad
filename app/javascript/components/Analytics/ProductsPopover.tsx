@@ -5,6 +5,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
 import { FormCheckbox, FormFieldset, FormInputWrapper, FormLabel } from "$app/components/ui/Form";
+import { Card, CardContent } from "$app/components/ui/Card";
 
 export type ProductOption = Product & { selected: boolean };
 
@@ -16,6 +17,7 @@ export const ProductsPopover = ({
   setProducts: React.Dispatch<React.SetStateAction<ProductOption[]>>;
 }) => (
   <Popover
+    dropdownClassName="p-0!"
     trigger={
       <FormInputWrapper>
         <div className="flex-1">Select products...</div>
@@ -23,9 +25,9 @@ export const ProductsPopover = ({
       </FormInputWrapper>
     }
   >
-    <div className="stack">
-      <div>
-        <FormFieldset>
+    <Card className="border-none shadow-none">
+      <CardContent>
+        <FormFieldset className="grow basis-0">
           <FormLabel>
             <FormCheckbox
               checked={products.filter((product) => product.selected).length === products.length}
@@ -55,16 +57,17 @@ export const ProductsPopover = ({
             </FormLabel>
           ))}
         </FormFieldset>
-      </div>
-      <div>
+      </CardContent>
+      <CardContent>
         <Button
           onClick={() =>
             setProducts((prevProducts) => prevProducts.map((product) => ({ ...product, selected: !product.selected })))
           }
+          className="grow basis-0"
         >
           Toggle selected
         </Button>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   </Popover>
 );

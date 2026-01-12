@@ -19,6 +19,7 @@ import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
+import { Card, CardContent } from "$app/components/ui/Card";
 import {
   FormCheckbox,
   FormFieldset,
@@ -131,10 +132,10 @@ const FormPage = ({
               name or more specific instructions.
             </div>
             {customFields.length > 0 ? (
-              <div className="stack">
+              <Card>
                 {customFields.map((field, i) => (
-                  <div key={field.key}>
-                    <div className="flex flex-col gap-4">
+                  <CardContent key={field.key}>
+                    <div className="flex grow flex-col gap-4">
                       <FormFieldset>
                         <FormLegend>
                           <FormLabel htmlFor={`${uid}-${field.key}-type`}>Type of field</FormLabel>
@@ -227,9 +228,9 @@ const FormPage = ({
                         ) : null}
                       </FormFieldset>
                     </div>
-                  </div>
+                  </CardContent>
                 ))}
-              </div>
+              </Card>
             ) : null}
             <div>
               <Button

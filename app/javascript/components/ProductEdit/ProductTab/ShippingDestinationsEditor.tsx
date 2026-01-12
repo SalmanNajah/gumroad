@@ -4,6 +4,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { PriceInput } from "$app/components/PriceInput";
 import { ShippingDestination, useProductEditContext } from "$app/components/ProductEdit/state";
+import { Card, CardContent } from "$app/components/ui/Card";
 import { FormFieldset, FormLabel, FormLegend, FormSelect } from "$app/components/ui/Form";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -35,7 +36,7 @@ export const ShippingDestinationsEditor = ({
         <h2>Shipping destinations</h2>
       </header>
       {shippingDestinations.length > 0 ? (
-        <div className="stack">
+        <Card>
           {shippingDestinations.map((shippingDestination, index) => (
             <ShippingDestinationRow
               shippingDestination={shippingDestination}
@@ -50,13 +51,13 @@ export const ShippingDestinationsEditor = ({
               key={index}
             />
           ))}
-          <div>
-            <Button onClick={addShippingDestination}>
+          <CardContent>
+            <Button onClick={addShippingDestination} className="grow basis-0">
               <Icon name="plus" />
               Add shipping destination
             </Button>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       ) : (
         <Placeholder>
           <h2>Add shipping destinations</h2>
@@ -88,8 +89,8 @@ const ShippingDestinationRow = ({
   const updateDestination = (update: Partial<ShippingDestination>) => onChange({ ...shippingDestination, ...update });
 
   return (
-    <div aria-label="Shipping destination">
-      <FormFieldset>
+    <CardContent aria-label="Shipping destination">
+      <FormFieldset className="grow basis-0">
         <FormLegend>
           <FormLabel htmlFor={`${uid}-country`}>Country</FormLabel>
         </FormLegend>
@@ -145,6 +146,6 @@ const ShippingDestinationRow = ({
           />
         </FormFieldset>
       </div>
-    </div>
+    </CardContent>
   );
 };

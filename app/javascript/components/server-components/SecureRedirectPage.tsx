@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Card, CardContent } from "$app/components/ui/Card";
 import { FormInput, FormLabel } from "$app/components/ui/Form";
 
 type SecureRedirectPageProps = {
@@ -81,35 +82,39 @@ const SecureRedirectPage = ({
   };
 
   return (
-    <div className="stack single-page-form horizontal-form">
-      <header>
-        <h2>Confirm access</h2>
-        <p>{message}</p>
-      </header>
-      <div className="mini-rule legacy-only"></div>
-      <form
-        onSubmit={(e) => {
-          void handleSubmit(e);
-        }}
-      >
-        <FormLabel htmlFor="confirmation_text" className="form-label">
-          {field_name}
-        </FormLabel>
-        <FormInput
-          id="confirmation_text"
-          name="confirmation_text"
-          type="text"
-          placeholder={field_name}
-          required
-          value={confirmationText}
-          onChange={(e) => setConfirmationText(e.target.value)}
-          disabled={isSubmitting}
-        />
-        <Button type="submit" color="primary" disabled={isSubmitting}>
-          {isSubmitting ? "Processing..." : "Continue"}
-        </Button>
-      </form>
-    </div>
+    <Card className="single-page-form horizontal-form">
+      <CardContent asChild>
+        <header>
+          <h2 className="grow">Confirm access</h2>
+          <p>{message}</p>
+        </header>
+      </CardContent>
+      <CardContent className="mini-rule legacy-only"></CardContent>
+      <CardContent asChild>
+        <form
+          onSubmit={(e) => {
+            void handleSubmit(e);
+          }}
+        >
+          <FormLabel htmlFor="confirmation_text" className="form-label grow">
+            {field_name}
+          </FormLabel>
+          <FormInput
+            id="confirmation_text"
+            name="confirmation_text"
+            type="text"
+            placeholder={field_name}
+            required
+            value={confirmationText}
+            onChange={(e) => setConfirmationText(e.target.value)}
+            disabled={isSubmitting}
+          />
+          <Button type="submit" color="primary" disabled={isSubmitting}>
+            {isSubmitting ? "Processing..." : "Continue"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 

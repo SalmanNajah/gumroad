@@ -10,6 +10,7 @@ import { AbortError, assertResponseError } from "$app/utils/request";
 import { Icon } from "$app/components/Icons";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Card as UICard, CardContent } from "$app/components/ui/Card";
 import {
   FormCheckbox,
   FormFieldset,
@@ -241,122 +242,132 @@ export const CardGrid = ({
       )}
     >
       {hideFilters ? null : (
-        <div className="stack overflow-y-auto lg:sticky lg:inset-y-4 lg:max-h-[calc(100vh-2rem)]" aria-label="Filters">
-          <header>
-            {title ?? "Filters"}
-            {anyFilters ? (
-              <div className="text-right">
-                <button className="underline" onClick={resetFilters}>
-                  Clear
-                </button>
-              </div>
-            ) : null}
-          </header>
+        <UICard className="overflow-y-auto lg:sticky lg:inset-y-4 lg:max-h-[calc(100vh-2rem)]" aria-label="Filters">
+          <CardContent asChild>
+            <header>
+              {title ?? "Filters"}
+              {anyFilters ? (
+                <div className="grow text-right">
+                  <button className="underline" onClick={resetFilters}>
+                    Clear
+                  </button>
+                </div>
+              ) : null}
+            </header>
+          </CardContent>
           {prependFilters}
           {hideSort ? null : (
-            <details>
-              <summary>Sort by</summary>
-              <FormFieldset role="group">
-                {(onProfile ? PROFILE_SORT_KEYS : SORT_KEYS).map((key) => (
-                  <FormLabel key={key}>
-                    {SORT_BY_LABELS[key]}
-                    <FormRadio
-                      disabled={disableFilters}
-                      name={`${uid}-sortBy`}
-                      checked={(searchParams.sort ?? defaults.sort) === key}
-                      onChange={() => updateParams({ sort: key })}
-                    />
-                  </FormLabel>
-                ))}
-              </FormFieldset>
-            </details>
+            <CardContent asChild details>
+              <details>
+                <summary className="grow grid-flow-col grid-cols-[1fr_auto] before:col-start-2">Sort by</summary>
+                <FormFieldset role="group">
+                  {(onProfile ? PROFILE_SORT_KEYS : SORT_KEYS).map((key) => (
+                    <FormLabel key={key}>
+                      {SORT_BY_LABELS[key]}
+                      <FormRadio
+                        disabled={disableFilters}
+                        name={`${uid}-sortBy`}
+                        checked={(searchParams.sort ?? defaults.sort) === key}
+                        onChange={() => updateParams({ sort: key })}
+                      />
+                    </FormLabel>
+                  ))}
+                </FormFieldset>
+              </details>
+            </CardContent>
           )}
           {results?.tags_data.length || searchParams.tags?.length || tagsOpen ? (
-            <details onToggle={() => setTagsOpen(!tagsOpen)}>
-              <summary>Tags</summary>
-              <FormFieldset role="group">
-                <FormLabel>
-                  All Products
-                  <FormCheckbox
-                    checked={!searchParams.tags?.length}
-                    disabled={disableFilters || !searchParams.tags?.length}
-                    onChange={() => updateParams({ tags: undefined })}
-                  />
-                </FormLabel>
-                {results ? (
-                  <FilterCheckboxes
-                    filters={concatFoundAndNotFound(results.tags_data, searchParams.tags)}
-                    selection={searchParams.tags ?? []}
-                    setSelection={(tags) => updateParams({ tags })}
-                    disabled={disableFilters ?? false}
-                  />
-                ) : null}
-              </FormFieldset>
-            </details>
+            <CardContent asChild details>
+              <details onToggle={() => setTagsOpen(!tagsOpen)}>
+                <summary className="grow grid-flow-col grid-cols-[1fr_auto] before:col-start-2">Tags</summary>
+                <FormFieldset role="group">
+                  <FormLabel>
+                    All Products
+                    <FormCheckbox
+                      checked={!searchParams.tags?.length}
+                      disabled={disableFilters || !searchParams.tags?.length}
+                      onChange={() => updateParams({ tags: undefined })}
+                    />
+                  </FormLabel>
+                  {results ? (
+                    <FilterCheckboxes
+                      filters={concatFoundAndNotFound(results.tags_data, searchParams.tags)}
+                      selection={searchParams.tags ?? []}
+                      setSelection={(tags) => updateParams({ tags })}
+                      disabled={disableFilters ?? false}
+                    />
+                  ) : null}
+                </FormFieldset>
+              </details>
+            </CardContent>
           ) : null}
           {results?.filetypes_data.length || searchParams.filetypes?.length || filetypesOpen ? (
-            <details onToggle={() => setFiletypesOpen(!filetypesOpen)}>
-              <summary>Contains</summary>
-              <FormFieldset role="group">
-                {results ? (
-                  <FilterCheckboxes
-                    filters={concatFoundAndNotFound(results.filetypes_data, searchParams.filetypes)}
-                    selection={searchParams.filetypes ?? []}
-                    setSelection={(filetypes) => updateParams({ filetypes })}
-                    disabled={disableFilters ?? false}
-                  />
-                ) : null}
-              </FormFieldset>
-            </details>
+            <CardContent asChild details>
+              <details onToggle={() => setFiletypesOpen(!filetypesOpen)}>
+                <summary className="grow grid-flow-col grid-cols-[1fr_auto] before:col-start-2">Contains</summary>
+                <FormFieldset role="group">
+                  {results ? (
+                    <FilterCheckboxes
+                      filters={concatFoundAndNotFound(results.filetypes_data, searchParams.filetypes)}
+                      selection={searchParams.filetypes ?? []}
+                      setSelection={(filetypes) => updateParams({ filetypes })}
+                      disabled={disableFilters ?? false}
+                    />
+                  ) : null}
+                </FormFieldset>
+              </details>
+            </CardContent>
           ) : null}
-          <details>
-            <summary>Price</summary>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
-                gridAutoFlow: "row",
-                gap: "var(--spacer-3)",
-              }}
-            >
-              <FormFieldset>
-                <FormLegend>
-                  <FormLabel htmlFor={minPriceUid}>Minimum price</FormLabel>
-                </FormLegend>
-                <FormInputWrapper>
-                  <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>
-                  <NumberInput
-                    onChange={(value) => {
-                      setEnteredMinPrice(value);
-                      debouncedTrySetPrice(value, enteredMaxPrice);
-                    }}
-                    value={enteredMinPrice ?? null}
-                  >
-                    {(props) => <FormInput id={minPriceUid} placeholder="0" disabled={disableFilters} {...props} />}
-                  </NumberInput>
-                </FormInputWrapper>
-              </FormFieldset>
-              <FormFieldset>
-                <FormLegend>
-                  <FormLabel htmlFor={maxPriceUid}>Maximum price</FormLabel>
-                </FormLegend>
-                <FormInputWrapper>
-                  <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>
-                  <NumberInput
-                    onChange={(value) => {
-                      setEnteredMaxPrice(value);
-                      debouncedTrySetPrice(enteredMinPrice, value);
-                    }}
-                    value={enteredMaxPrice ?? null}
-                  >
-                    {(props) => <FormInput id={maxPriceUid} placeholder="∞" disabled={disableFilters} {...props} />}
-                  </NumberInput>
-                </FormInputWrapper>
-              </FormFieldset>
-            </div>
-          </details>
+          <CardContent asChild details>
+            <details>
+              <summary className="grow grid-flow-col grid-cols-[1fr_auto] before:col-start-2">Price</summary>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(var(--dynamic-grid), 1fr))",
+                  gridAutoFlow: "row",
+                  gap: "var(--spacer-3)",
+                }}
+              >
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={minPriceUid}>Minimum price</FormLabel>
+                  </FormLegend>
+                  <FormInputWrapper>
+                    <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>
+                    <NumberInput
+                      onChange={(value) => {
+                        setEnteredMinPrice(value);
+                        debouncedTrySetPrice(value, enteredMaxPrice);
+                      }}
+                      value={enteredMinPrice ?? null}
+                    >
+                      {(props) => <FormInput id={minPriceUid} placeholder="0" disabled={disableFilters} {...props} />}
+                    </NumberInput>
+                  </FormInputWrapper>
+                </FormFieldset>
+                <FormFieldset>
+                  <FormLegend>
+                    <FormLabel htmlFor={maxPriceUid}>Maximum price</FormLabel>
+                  </FormLegend>
+                  <FormInputWrapper>
+                    <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>
+                    <NumberInput
+                      onChange={(value) => {
+                        setEnteredMaxPrice(value);
+                        debouncedTrySetPrice(enteredMinPrice, value);
+                      }}
+                      value={enteredMaxPrice ?? null}
+                    >
+                      {(props) => <FormInput id={maxPriceUid} placeholder="∞" disabled={disableFilters} {...props} />}
+                    </NumberInput>
+                  </FormInputWrapper>
+                </FormFieldset>
+              </div>
+            </details>
+          </CardContent>
           {appendFilters}
-        </div>
+        </UICard>
       )}
       {results?.products.length === 0 ? (
         <Placeholder>
