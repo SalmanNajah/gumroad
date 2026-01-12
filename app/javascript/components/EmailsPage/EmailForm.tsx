@@ -8,7 +8,6 @@ import { cast } from "ts-safe-cast";
 import { AudienceType, getRecipientCount, InstallmentFormContext, Installment } from "$app/data/installments";
 import { type EmailTab, TYPE_TO_TAB } from "$app/data/installments";
 import { assertDefined } from "$app/utils/assert";
-import { classNames } from "$app/utils/classNames";
 import Countdown from "$app/utils/countdown";
 import { ALLOWED_EXTENSIONS } from "$app/utils/file";
 import { asyncVoid } from "$app/utils/promise";

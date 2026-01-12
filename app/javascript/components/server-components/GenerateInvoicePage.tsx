@@ -2,7 +2,6 @@ import * as React from "react";
 import { createCast } from "ts-safe-cast";
 
 import { sendInvoice } from "$app/data/invoice";
-import { classNames } from "$app/utils/classNames";
 import { assertResponseError } from "$app/utils/request";
 import { register } from "$app/utils/serverComponentUtil";
 
@@ -191,7 +190,7 @@ const GenerateInvoicePage = ({
               </FormFieldset>
               <FormFieldset state={additionalNotes.error ? "danger" : undefined}>
                 <FormLabel htmlFor="additional_notes">Additional notes</FormLabel>
-                <textarea
+                <FormTextarea
                   id="additional_notes"
                   name="additional_notes"
                   placeholder="Enter anything else you'd like to appear on your invoice (Optional)"
