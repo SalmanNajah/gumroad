@@ -484,7 +484,7 @@ export default function LibraryPage() {
                   <CardContent className="creator">
                     <FormFieldset role="group" className="grow basis-0">
                       <FormLegend className="filter-header">Creator</FormLegend>
-                      <FormLabel>
+                      <FormLabel className="w-full">
                         All Creators
                         <FormCheckbox
                           checked={state.search.creators.length === 0}
@@ -493,7 +493,7 @@ export default function LibraryPage() {
                         />
                       </FormLabel>
                       {(showingAllCreators ? creators : creators.slice(0, 5)).map((creator) => (
-                        <FormLabel key={creator.id}>
+                        <FormLabel key={creator.id} className="w-full">
                           {creator.name}
                           <span className="shrink-0 text-muted">{`(${creator.count})`}</span>
                           <FormCheckbox
@@ -524,7 +524,7 @@ export default function LibraryPage() {
                   {archivedCount > 0 ? (
                     <CardContent className="archived">
                       <FormFieldset role="group" className="grow basis-0">
-                        <FormLabel className="filter-archived">
+                        <FormLabel className="filter-archived w-full">
                           Show archived only
                           <FormCheckbox
                             checked={state.search.showArchivedOnly}

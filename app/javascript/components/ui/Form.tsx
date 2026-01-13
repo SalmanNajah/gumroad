@@ -252,7 +252,7 @@ export const FormRadio = React.forwardRef<HTMLInputElement, Omit<React.InputHTML
 FormRadio.displayName = "FormRadio";
 
 const fieldsetVariants = cva(
-  "flex flex-col border-none gap-2 [&[role=group]_label]:w-full [&[role=group]_label_input]:ml-auto [&[role=group]_label>span:last-child]:ml-auto",
+  "flex flex-col border-none gap-2 [&[role=group]_label_input]:ml-auto [&[role=group]_label>span:last-child]:ml-auto",
   {
     variants: {
       state: {

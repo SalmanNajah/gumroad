@@ -439,7 +439,7 @@ const Discover = (props: Props) => {
                     <summary className="grow grid-flow-col grid-cols-[1fr_auto] before:col-start-2">Rating</summary>
                     <FormFieldset role="group">
                       {range(4, 0).map((number) => (
-                        <FormLabel key={number}>
+                        <FormLabel key={number} className="w-full">
                           <span className="flex shrink-0 items-center gap-1">
                             <RatingStars rating={number} />
                             and up

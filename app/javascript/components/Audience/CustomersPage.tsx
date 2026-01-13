@@ -1704,7 +1704,7 @@ const EmailSection = ({
           <CardContent asChild>
             <section>
               <FormFieldset role="group" className="grow basis-0">
-                <FormLabel>
+                <FormLabel className="w-full">
                   Receives emails
                   <FormCheckbox
                     checked={canContact}

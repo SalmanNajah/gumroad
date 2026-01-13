@@ -136,7 +136,7 @@ const FilterCheckboxes = ({
   return (
     <>
       {(showingAll ? filters : filters.slice(0, 5)).map((option) => (
-        <FormLabel key={option.key}>
+        <FormLabel key={option.key} className="w-full">
           {option.key} ({option.doc_count})
           <FormCheckbox
             checked={selection.includes(option.key)}
@@ -262,7 +262,7 @@ export const CardGrid = ({
                 <summary className="grow grid-flow-col grid-cols-[1fr_auto] before:col-start-2">Sort by</summary>
                 <FormFieldset role="group">
                   {(onProfile ? PROFILE_SORT_KEYS : SORT_KEYS).map((key) => (
-                    <FormLabel key={key}>
+                    <FormLabel key={key} className="w-full">
                       {SORT_BY_LABELS[key]}
                       <FormRadio
                         disabled={disableFilters}
@@ -281,7 +281,7 @@ export const CardGrid = ({
               <details onToggle={() => setTagsOpen(!tagsOpen)}>
                 <summary className="grow grid-flow-col grid-cols-[1fr_auto] before:col-start-2">Tags</summary>
                 <FormFieldset role="group">
-                  <FormLabel>
+                  <FormLabel className="w-full">
                     All Products
                     <FormCheckbox
                       checked={!searchParams.tags?.length}

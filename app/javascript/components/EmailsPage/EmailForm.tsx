@@ -820,7 +820,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     )
                   ) : null}
                 </FormLegend>
-                <FormLabel htmlFor={`${uid}-recipient_everyone`}>
+                <FormLabel htmlFor={`${uid}-recipient_everyone`} className="w-full">
                   Everyone
                   <FormRadio
                     id={`${uid}-recipient_everyone`}
@@ -830,7 +830,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   />
                 </FormLabel>
                 {context.audience_types.includes("followers") ? (
-                  <FormLabel htmlFor={`${uid}-recipient_followers_only`}>
+                  <FormLabel htmlFor={`${uid}-recipient_followers_only`} className="w-full">
                     Followers only
                     <FormRadio
                       id={`${uid}-recipient_followers_only`}
@@ -841,7 +841,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   </FormLabel>
                 ) : null}
                 {context.audience_types.includes("customers") ? (
-                  <FormLabel htmlFor={`${uid}-recipient_customers_only`}>
+                  <FormLabel htmlFor={`${uid}-recipient_customers_only`} className="w-full">
                     Customers only
                     <FormRadio
                       id={`${uid}-recipient_customers_only`}
@@ -852,7 +852,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   </FormLabel>
                 ) : null}
                 {context.audience_types.includes("affiliates") ? (
-                  <FormLabel htmlFor={`${uid}-recipient_affiliates_only`}>
+                  <FormLabel htmlFor={`${uid}-recipient_affiliates_only`} className="w-full">
                     Affiliates only
                     <FormRadio
                       id={`${uid}-recipient_affiliates_only`}
@@ -868,7 +868,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
               <FormFieldset role="group" state={invalidFields.has("channel") ? "danger" : undefined}>
                 <FormLegend>Channel</FormLegend>
                 {hasAudience ? (
-                  <FormLabel htmlFor={`${uid}-channel_email`}>
+                  <FormLabel htmlFor={`${uid}-channel_email`} className="w-full">
                     Send email
                     <FormCheckbox
                       id={`${uid}-channel_email`}
@@ -882,7 +882,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     />
                   </FormLabel>
                 ) : null}
-                <FormLabel htmlFor={`${uid}-channel_profile`}>
+                <FormLabel htmlFor={`${uid}-channel_profile`} className="w-full">
                   Post to profile
                   <WithTooltip
                     tip={
@@ -911,7 +911,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   context.profile_sections.length > 0 ? (
                     <>
                       {context.profile_sections.map((section) => (
-                        <FormLabel key={section.id} className="w-fit">
+                        <FormLabel key={section.id}>
                           <FormSwitch
                             checked={shownInProfileSections.includes(section.id)}
                             onChange={() => {
@@ -945,7 +945,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
               <CardContent>
                 <FormFieldset className="grow basis-0" role="group">
                   <FormLegend>Affiliated products</FormLegend>
-                  <FormLabel htmlFor={`${uid}-all_affiliated_products`}>
+                  <FormLabel htmlFor={`${uid}-all_affiliated_products`} className="w-full">
                     All products
                     <FormCheckbox
                       id={`${uid}-all_affiliated_products`}
@@ -1124,7 +1124,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
             <CardContent>
               <FormFieldset className="grow basis-0" role="group">
                 <FormLegend>Engagement</FormLegend>
-                <FormLabel htmlFor={`${uid}-allow_comments`}>
+                <FormLabel htmlFor={`${uid}-allow_comments`} className="w-full">
                   Allow comments
                   <FormCheckbox
                     id={`${uid}-allow_comments`}
