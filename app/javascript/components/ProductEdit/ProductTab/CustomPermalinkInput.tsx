@@ -34,6 +34,7 @@ export const CustomPermalinkInput = ({
       <FormInputWrapper>
         <Pill className="-ml-2 shrink-0">{`${currentSeller.subdomain}/l/`}</Pill>
         <FormInput
+          asChild
           id={uid}
           type="text"
           placeholder={uniquePermalink}

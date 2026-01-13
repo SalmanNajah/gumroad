@@ -49,6 +49,7 @@ export const EmailsLayout = ({ selectedTab, children, hasPosts, query, onQueryCh
                 <FormInputWrapper>
                   <Icon name="solid-search" />
                   <FormInput
+                    asChild
                     ref={searchInputRef}
                     type="text"
                     placeholder="Search emails"

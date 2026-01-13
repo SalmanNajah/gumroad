@@ -257,6 +257,7 @@ const UpsellsPage = (props: UpsellsPageProps) => {
               <FormInputWrapper>
                 <Icon name="solid-search" />
                 <FormInput
+                  asChild
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search"

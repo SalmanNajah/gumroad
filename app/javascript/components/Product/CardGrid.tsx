@@ -342,7 +342,9 @@ export const CardGrid = ({
                       }}
                       value={enteredMinPrice ?? null}
                     >
-                      {(props) => <FormInput id={minPriceUid} placeholder="0" disabled={disableFilters} {...props} />}
+                      {(props) => (
+                        <FormInput asChild id={minPriceUid} placeholder="0" disabled={disableFilters} {...props} />
+                      )}
                     </NumberInput>
                   </FormInputWrapper>
                 </FormFieldset>
@@ -359,7 +361,9 @@ export const CardGrid = ({
                       }}
                       value={enteredMaxPrice ?? null}
                     >
-                      {(props) => <FormInput id={maxPriceUid} placeholder="∞" disabled={disableFilters} {...props} />}
+                      {(props) => (
+                        <FormInput asChild id={maxPriceUid} placeholder="∞" disabled={disableFilters} {...props} />
+                      )}
                     </NumberInput>
                   </FormInputWrapper>
                 </FormFieldset>

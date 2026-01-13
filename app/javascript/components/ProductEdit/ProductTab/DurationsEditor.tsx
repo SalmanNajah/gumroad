@@ -168,7 +168,7 @@ const DurationEditor = ({
                     })
                   }
                 >
-                  {(props) => <FormInput id={`${uid}-duration`} {...props} />}
+                  {(props) => <FormInput asChild id={`${uid}-duration`} {...props} />}
                 </NumberInput>
                 <Pill className="-mr-2 shrink-0">minutes</Pill>
               </FormInputWrapper>

@@ -162,6 +162,7 @@ const VersionEditor = ({
               <FormLabel htmlFor={`${uid}-name`}>Name</FormLabel>
               <FormInputWrapper>
                 <FormInput
+                  asChild
                   id={`${uid}-name`}
                   type="text"
                   value={version.name}

@@ -80,9 +80,9 @@ export const DiscountInput = ({
             >
               {(props) => (
                 <FormInput
+                  asChild
                   type="text"
                   placeholder="0"
-                  className="border-none! outline-none!"
                   disabled={discount.type !== "percent"}
                   aria-label="Percentage"
                   aria-invalid={discount.error}

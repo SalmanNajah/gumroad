@@ -143,6 +143,7 @@ export const ContentTab = () => {
                 <FormInputWrapper>
                   <Icon name="solid-search" />
                   <FormInput
+                    asChild
                     type="text"
                     value={query}
                     onChange={(evt) => setQuery(evt.target.value)}
