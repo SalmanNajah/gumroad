@@ -11,39 +11,22 @@ declare module "react" {
   }
 }
 
-const inputVariants = cva(
-  [
-    "font-[inherit] py-3 px-4 text-base leading-[1.4]",
-    "border border-border rounded block w-full bg-background text-foreground placeholder:text-muted focus:outline-2 focus:outline-accent focus:outline-offset-0",
-    "disabled:cursor-not-allowed disabled:opacity-30",
-  ],
-  {
-    variants: {
-      state: {
-        default: "",
-        success: "border-success",
-        danger: "border-danger",
-        warning: "border-warning",
-        info: "border-info",
-      },
-    },
-    defaultVariants: {
-      state: "default",
-    },
-  },
+const inputStyles = classNames(
+  "font-[inherit] py-3 px-4 text-base leading-[1.4]",
+  "border border-border rounded block w-full bg-background text-foreground placeholder:text-muted focus:outline-2 focus:outline-accent focus:outline-offset-0",
+  "disabled:cursor-not-allowed disabled:opacity-30",
 );
 
-export const FormInput = React.forwardRef<
-  HTMLInputElement,
-  React.InputHTMLAttributes<HTMLInputElement> & VariantProps<typeof inputVariants>
->(({ className, state, readOnly, ...props }, ref) => (
-  <input
-    ref={ref}
-    readOnly={readOnly}
-    className={classNames(inputVariants({ state }), readOnly && "cursor-default bg-body focus:outline-none", className)}
-    {...props}
-  />
-));
+export const FormInput = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ className, readOnly, ...props }, ref) => (
+    <input
+      ref={ref}
+      readOnly={readOnly}
+      className={classNames(inputStyles, readOnly && "cursor-default bg-body focus:outline-none", className)}
+      {...props}
+    />
+  ),
+);
 FormInput.displayName = "FormInput";
 
 const textareaBaseStyles =
@@ -137,14 +120,9 @@ FormInputWrapper.displayName = "FormInputWrapper";
 
 export const FormColorPicker = React.forwardRef<
   HTMLInputElement,
-  { containerClassName?: string } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">
->(({ className, containerClassName, ...props }, ref) => (
-  <div
-    className={classNames(
-      "relative max-w-fit overflow-hidden rounded-full border border-border p-4",
-      containerClassName,
-    )}
-  >
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">
+>(({ className, ...props }, ref) => (
+  <div className="relative max-w-fit overflow-hidden rounded-full border border-border p-4">
     <input
       ref={ref}
       type="color"
