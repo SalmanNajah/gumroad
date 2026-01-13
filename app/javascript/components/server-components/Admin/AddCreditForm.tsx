@@ -20,7 +20,14 @@ export const AdminAddCreditForm = ({ user_id }: { user_id: number }) => (
         <div className="input-with-button">
           <FormInputWrapper>
             <Pill className="-ml-2 shrink-0">$</Pill>
-            <FormInput type="text" name="credit[credit_amount]" placeholder="10.25" inputMode="decimal" required />
+            <FormInput
+              asChild
+              type="text"
+              name="credit[credit_amount]"
+              placeholder="10.25"
+              inputMode="decimal"
+              required
+            />
           </FormInputWrapper>
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Saving..." : "Add credits"}

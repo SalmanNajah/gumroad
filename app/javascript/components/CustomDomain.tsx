@@ -82,7 +82,7 @@ const CustomDomain = ({
       </FormLegend>
       <FormInputWrapper>
         <FormInput
-          className="border-none!"
+          asChild
           id={uid}
           placeholder="yourdomain.com"
           type="text"

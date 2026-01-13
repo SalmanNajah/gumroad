@@ -35,6 +35,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="person" />
             <FormInput
+              asChild
               className="border-none! outline-none!"
               autoFocus
               name="query"
@@ -51,6 +52,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="solid-currency-dollar" />
             <FormInput
+              asChild
               className="border-none! outline-none!"
               name="query"
               placeholder="Search purchases (email, IP, card, external ID)"
@@ -66,6 +68,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="people-fill" />
             <FormInput
+              asChild
               className="border-none! outline-none!"
               name="query"
               placeholder="Search affiliates (email, name, ID)"
@@ -90,6 +93,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="calendar-all" />
             <FormInput
+              asChild
               className="border-none! outline-none!"
               name="transaction_date"
               placeholder="Date (02/22/2022)"
@@ -100,6 +104,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="lock-fill" />
             <FormInput
+              asChild
               className="border-none! outline-none!"
               name="last_4"
               placeholder="Last 4 (7890)"
@@ -114,6 +119,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Icon name="outline-credit-card" />
             <FormInput
+              asChild
               className="border-none! outline-none!"
               name="expiry_date"
               placeholder="Expiry (02/22)"
@@ -124,6 +130,7 @@ export const SearchPopover = ({ card_types }: Props) => {
           <FormInputWrapper>
             <Pill className="z-1 -ml-2 shrink-0">$</Pill>
             <FormInput
+              asChild
               className="border-none! outline-none!"
               name="price"
               placeholder="Price (9.99)"

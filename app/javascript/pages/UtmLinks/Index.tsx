@@ -383,6 +383,7 @@ const SearchBoxPopover = ({ initialQuery, onSearch }: { initialQuery: string; on
       <FormInputWrapper>
         <Icon name="solid-search" />
         <FormInput
+          asChild
           ref={searchInputRef}
           type="text"
           placeholder="Search"

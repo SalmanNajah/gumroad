@@ -254,6 +254,7 @@ const CollaboratorForm = ({
                         {(inputProps) => (
                           <FormInputWrapper disabled={!form.data.apply_to_all_products}>
                             <FormInput
+                              asChild
                               type="text"
                               disabled={!form.data.apply_to_all_products}
                               placeholder={`${form.data.percent_commission || pageMetadata.default_percent_commission}`}
@@ -325,6 +326,7 @@ const CollaboratorForm = ({
                             {(inputProps) => (
                               <FormInputWrapper disabled={disabled}>
                                 <FormInput
+                                  asChild
                                   disabled={disabled}
                                   type="text"
                                   placeholder={`${product.percent_commission || pageMetadata.default_percent_commission}`}

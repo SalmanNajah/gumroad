@@ -63,7 +63,7 @@ export const CallLimitationsEditor = ({
         <NumberInput value={minimumNotice.value} onChange={(value) => setMinimumNotice({ ...minimumNotice, value })}>
           {(props) => (
             <FormInputWrapper ref={inputRef}>
-              <FormInput id={`${uid}-notice-period`} placeholder="15" {...props} />
+              <FormInput asChild id={`${uid}-notice-period`} placeholder="15" {...props} />
               <Pill asChild className="relative -mr-2 shrink-0 cursor-pointer">
                 <FormLabel>
                   <span>{minimumNotice.unit}</span>

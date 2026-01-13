@@ -427,6 +427,7 @@ export default function LibraryPage() {
                     <FormInputWrapper className="grow">
                       <Icon name="solid-search" />
                       <FormInput
+                        asChild
                         className="search-products"
                         placeholder="Search products"
                         value={enteredQuery}

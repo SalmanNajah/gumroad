@@ -394,6 +394,7 @@ const NewProductPage = ({
                   </Pill>
 
                   <FormInput
+                    asChild
                     ref={priceInputRef}
                     id={`price-${formUID}`}
                     type="text"

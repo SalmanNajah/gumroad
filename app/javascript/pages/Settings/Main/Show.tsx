@@ -443,6 +443,7 @@ export default function MainPage() {
                       >
                         {(inputProps) => (
                           <FormInput
+                            asChild
                             id={`${uid}-ppp-discount-percentage`}
                             type="text"
                             placeholder="60"

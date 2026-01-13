@@ -71,6 +71,7 @@ export const Search = ({ query, setQuery }: { query?: string | undefined; setQue
           <Icon name="solid-search" />
           <FormInput
             {...props}
+            asChild
             type="search"
             className="cursor-text! appearance-none"
             placeholder="Search products"

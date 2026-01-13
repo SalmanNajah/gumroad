@@ -168,6 +168,7 @@ export default function AffiliatesOnboarding() {
               </FormLegend>
               <FormInputWrapper>
                 <FormInput
+                  asChild
                   type="text"
                   id="affiliate-link"
                   readOnly
@@ -280,6 +281,7 @@ const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => {
             {(inputProps) => (
               <FormInputWrapper disabled={disabled || !product.enabled}>
                 <FormInput
+                  asChild
                   type="text"
                   autoComplete="off"
                   placeholder="Commission"

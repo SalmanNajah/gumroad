@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { classNames } from "$app/utils/classNames";
-
 import { FormInput, FormInputWrapper } from "$app/components/ui/Form";
 
 type PasswordInputProps = Omit<React.ComponentPropsWithoutRef<"input">, "type"> & {
@@ -56,9 +54,10 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
   return (
     <FormInputWrapper>
       <FormInput
+        asChild
         ref={ref}
         type={showPassword ? "text" : "password"}
-        className={classNames("border-none! outline-none!", className)}
+        className={className}
         {...props}
       />
       <IconComponent

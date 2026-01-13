@@ -203,6 +203,7 @@ const Search = ({ onSearch, value }: SearchProps) => {
       <FormInputWrapper>
         <Icon name="solid-search" />
         <FormInput
+          asChild
           ref={searchInputRef}
           value={value}
           autoFocus

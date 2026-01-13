@@ -66,6 +66,7 @@ const NotificationEndpointSection = ({
         </FormLegend>
         <FormInputWrapper>
           <FormInput
+            asChild
             className="border-none! focus:outline-none!"
             placeholder="Ping endpoint"
             type="url"

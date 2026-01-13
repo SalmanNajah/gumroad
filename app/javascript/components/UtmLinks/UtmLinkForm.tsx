@@ -338,6 +338,7 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
               <FormInputWrapper disabled={isEditing}>
                 <Pill className="-ml-2 shrink-0">{shortUrlPrefix}</Pill>
                 <FormInput
+                  asChild
                   type="text"
                   id={`${uid}-link-text`}
                   value={isEditing ? permalink : data.utm_link.permalink}

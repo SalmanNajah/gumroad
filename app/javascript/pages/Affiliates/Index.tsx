@@ -96,6 +96,7 @@ const SearchBoxPopover = ({ initialQuery, onSearch }: { initialQuery: string; on
       <FormInputWrapper>
         <Icon name="solid-search" />
         <FormInput
+          asChild
           ref={searchInputRef}
           value={inputValue}
           autoFocus

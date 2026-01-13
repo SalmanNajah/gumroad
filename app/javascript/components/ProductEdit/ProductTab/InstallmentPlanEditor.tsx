@@ -44,7 +44,7 @@ export const InstallmentPlanEditor = ({
           <NumberInput value={numberOfInstallments} onChange={(value) => onNumberOfInstallmentsChange(value || 0)}>
             {(props) => (
               <FormInputWrapper>
-                <FormInput {...props} type="number" min={2} aria-label="Number of installments" />
+                <FormInput asChild {...props} type="number" min={2} aria-label="Number of installments" />
                 <FormLabel>
                   <span>equal monthly payments</span>
                 </FormLabel>

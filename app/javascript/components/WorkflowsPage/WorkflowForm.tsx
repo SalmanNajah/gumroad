@@ -567,6 +567,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
                     <FormInputWrapper disabled={wasPublishedPreviously}>
                       <Pill className="-ml-2 shrink-0">{context.currency_symbol}</Pill>
                       <FormInput
+                        asChild
                         id="paid_more_than"
                         type="text"
                         disabled={wasPublishedPreviously}
@@ -591,6 +592,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
                     <FormInputWrapper disabled={wasPublishedPreviously}>
                       <Pill className="-ml-2 shrink-0">{context.currency_symbol}</Pill>
                       <FormInput
+                        asChild
                         id="paid_less_than"
                         type="text"
                         disabled={wasPublishedPreviously}

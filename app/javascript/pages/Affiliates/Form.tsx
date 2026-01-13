@@ -91,6 +91,7 @@ export const AffiliateForm = ({
                 {(inputProps) => (
                   <FormInputWrapper disabled={processing || !applyToAllProducts}>
                     <FormInput
+                      asChild
                       type="text"
                       autoComplete="off"
                       placeholder="Commission"
@@ -134,6 +135,7 @@ export const AffiliateForm = ({
                 {(inputProps) => (
                   <FormInputWrapper disabled={processing || !product.enabled}>
                     <FormInput
+                      asChild
                       type="text"
                       autoComplete="off"
                       placeholder="Commission"

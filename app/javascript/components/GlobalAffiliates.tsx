@@ -94,6 +94,7 @@ const LinkGenerationSection = ({
         <FormLegend>Destination page URL</FormLegend>
         <FormInputWrapper>
           <FormInput
+            asChild
             placeholder="Paste a destination page URL"
             value={inputLink}
             onChange={(evt) => setInputLink(evt.target.value)}
@@ -180,6 +181,7 @@ const ProductEligibilitySection = ({
         <FormLegend>Product URL</FormLegend>
         <FormInputWrapper>
           <FormInput
+            asChild
             placeholder="Paste a product URL"
             value={query}
             onChange={(e) => {

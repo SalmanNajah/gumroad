@@ -17,16 +17,24 @@ const inputStyles = classNames(
   "disabled:cursor-not-allowed disabled:opacity-30",
 );
 
-export const FormInput = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
-  ({ className, readOnly, ...props }, ref) => (
-    <input
-      ref={ref}
-      readOnly={readOnly}
-      className={classNames(inputStyles, readOnly && "cursor-default bg-body focus:outline-none", className)}
-      {...props}
-    />
-  ),
-);
+const inputWrapperChildStyles = "border-none flex-1 bg-transparent shadow-none outline-none -mx-4 max-w-none";
+
+export const FormInput = React.forwardRef<
+  HTMLInputElement,
+  { asChild?: boolean } & React.InputHTMLAttributes<HTMLInputElement>
+>(({ className, readOnly, asChild, ...props }, ref) => (
+  <input
+    ref={ref}
+    readOnly={readOnly}
+    className={classNames(
+      inputStyles,
+      readOnly && "cursor-default bg-body focus:outline-none",
+      asChild && inputWrapperChildStyles,
+      className,
+    )}
+    {...props}
+  />
+));
 FormInput.displayName = "FormInput";
 
 const textareaBaseStyles =
@@ -87,7 +95,6 @@ FormLabel.displayName = "FormLabel";
 const inputWrapperVariants = cva(
   [
     "inline-flex items-center w-full gap-2 relative py-0 px-4 min-h-[3.025rem] border border-border rounded bg-background text-foreground focus-within:outline-2 focus-within:outline-accent focus-within:outline-offset-0",
-    "[&_input]:border-none [&_input]:flex-1 [&_input]:bg-transparent [&_input]:shadow-none [&_input]:outline-none [&_input]:-mx-4 [&_input]:max-w-none",
     "[&>.icon]:text-muted",
   ],
   {
