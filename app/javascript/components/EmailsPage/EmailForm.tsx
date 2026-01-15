@@ -911,20 +911,18 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   context.profile_sections.length > 0 ? (
                     <>
                       {context.profile_sections.map((section) => (
-                        <FormLabel key={section.id}>
-                          <FormSwitch
-                            checked={shownInProfileSections.includes(section.id)}
-                            onChange={() => {
-                              setShownInProfileSections((prevSections) =>
-                                prevSections.includes(section.id)
-                                  ? prevSections.filter((id) => id !== section.id)
-                                  : [...prevSections, section.id],
-                              );
-                            }}
-                          />
-
-                          {section.name || "Unnamed section"}
-                        </FormLabel>
+                        <FormSwitch
+                          key={section.id}
+                          checked={shownInProfileSections.includes(section.id)}
+                          onChange={() => {
+                            setShownInProfileSections((prevSections) =>
+                              prevSections.includes(section.id)
+                                ? prevSections.filter((id) => id !== section.id)
+                                : [...prevSections, section.id],
+                            );
+                          }}
+                          label={section.name || "Unnamed section"}
+                        />
                       ))}
                       {installment?.published_at ? null : (
                         <Alert role="status" variant="info">

@@ -270,13 +270,11 @@ export const SectionLayout = ({
                 onChange={(e) => updateSection({ header: e.target.value })}
               />
             </FormFieldset>
-            <FormLabel>
-              <FormSwitch
-                checked={!section.hide_header}
-                onChange={() => updateSection({ hide_header: !section.hide_header })}
-              />
-              Display above section
-            </FormLabel>
+            <FormSwitch
+              checked={!section.hide_header}
+              onChange={() => updateSection({ hide_header: !section.hide_header })}
+              label="Display above section"
+            />
           </EditorSubmenu>
           {menuItems}
           <CardContent asChild>
@@ -359,20 +357,16 @@ const ProductsSettings = ({ section }: { section: ProductsSection }) => {
           }))}
         />
       </FormFieldset>
-      <FormLabel>
-        <FormSwitch
-          checked={section.show_filters}
-          onChange={() => updateSection({ show_filters: !section.show_filters })}
-        />
-        Show product filters
-      </FormLabel>
-      <FormLabel>
-        <FormSwitch
-          checked={section.add_new_products}
-          onChange={() => updateSection({ add_new_products: !section.add_new_products })}
-        />
-        Add new products by default
-      </FormLabel>
+      <FormSwitch
+        checked={section.show_filters}
+        onChange={() => updateSection({ show_filters: !section.show_filters })}
+        label="Show product filters"
+      />
+      <FormSwitch
+        checked={section.add_new_products}
+        onChange={() => updateSection({ add_new_products: !section.add_new_products })}
+        label="Add new products by default"
+      />
       {products.length > 0 ? (
         <Sortable list={products} setList={setProducts} tag={ProductList} handle="[aria-grabbed]">
           {products.map((product) => {

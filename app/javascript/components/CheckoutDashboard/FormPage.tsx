@@ -161,13 +161,11 @@ const FormPage = ({
                           </Button>
                         </div>
                         {field.type !== "terms" ? (
-                          <FormLabel>
-                            <FormSwitch
-                              checked={field.required}
-                              onChange={(e) => updateCustomField(i, { required: e.target.checked })}
-                            />
-                            Required
-                          </FormLabel>
+                          <FormSwitch
+                            checked={field.required}
+                            onChange={(e) => updateCustomField(i, { required: e.target.checked })}
+                            label="Required"
+                          />
                         ) : null}
                       </FormFieldset>
                       <FormFieldset state={errors.get(field.key)?.has("name") ? "danger" : undefined}>
