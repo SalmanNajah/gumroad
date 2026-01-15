@@ -1,14 +1,12 @@
 import React from "react";
 
 import LookupLayout from "$app/components/Public/LookupLayout";
+import { FormSection } from "$app/components/ui/Form";
 
 const Charge = () => (
   <LookupLayout title="Why is there a charge on my account?" type="charge">
     <form>
-      <section className="p-4! md:p-8!">
-        <header>
-          <h2>Who/what is Gumroad?</h2>
-        </header>
+      <FormSection className="border-t! p-4! md:p-8!" header={<h2>Who/what is Gumroad?</h2>}>
         <div className="flex flex-col gap-4">
           <p>
             We are a service that lets creators sell their stuff directly to you. We help thousands of musicians, artists,
@@ -19,18 +17,17 @@ const Charge = () => (
             and Accel Partners, the lead early investor in Facebook.
           </p>
         </div>
-      </section>
-    </form>
-    <form>
-      <section className="p-4! md:p-8!">
-        <header>
+      </FormSection>
+      <FormSection
+        className="p-4! md:p-8!"
+        header={
           <h2>
             <a href="/help/article/214-why-was-i-charged-by-gumroad" target="_blank" rel="noreferrer">
               Can I get a refund?
             </a>
           </h2>
-        </header>
-      </section>
+        }
+      />
     </form>
   </LookupLayout>
 );

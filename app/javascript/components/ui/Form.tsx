@@ -170,7 +170,7 @@ export const FormSection = ({
   className,
 }: {
   header?: React.ReactNode;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }) => (
   <section
