@@ -214,9 +214,9 @@ const checkboxBaseStyles =
 
 export const FormCheckbox = React.forwardRef<
   HTMLInputElement,
-  Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">
->(({ className, ...props }, ref) => (
-  <span className="relative inline-flex shrink-0 items-center justify-center">
+  { wrapperClassName?: string } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">
+>(({ className, wrapperClassName, ...props }, ref) => (
+  <span className={classNames("relative inline-flex shrink-0 items-center justify-center", wrapperClassName)}>
     <input ref={ref} type="checkbox" className={classNames(checkboxBaseStyles, className)} {...props} />
     <Icon
       name="outline-check"
@@ -236,23 +236,20 @@ export const FormRadio = React.forwardRef<HTMLInputElement, Omit<React.InputHTML
 );
 FormRadio.displayName = "FormRadio";
 
-const fieldsetVariants = cva(
-  "flex flex-col border-none gap-2 [&[role=group]_label_input]:ml-auto [&[role=group]_label>span:last-child]:ml-auto",
-  {
-    variants: {
-      state: {
-        default: "",
-        success: "[&_input]:border-success [&_select]:border-success [&_small]:text-success",
-        danger: "[&_input]:border-danger [&_select]:border-danger [&_small]:text-danger",
-        warning: "[&_input]:border-warning [&_select]:border-warning [&_small]:text-warning",
-        info: "[&_input]:border-info [&_select]:border-info [&_small]:text-info",
-      },
-    },
-    defaultVariants: {
-      state: "default",
+const fieldsetVariants = cva("flex flex-col border-none gap-2 [&[role=group]_label_input]:ml-auto", {
+  variants: {
+    state: {
+      default: "",
+      success: "[&_input]:border-success [&_select]:border-success [&_small]:text-success",
+      danger: "[&_input]:border-danger [&_select]:border-danger [&_small]:text-danger",
+      warning: "[&_input]:border-warning [&_select]:border-warning [&_small]:text-warning",
+      info: "[&_input]:border-info [&_select]:border-info [&_small]:text-info",
     },
   },
-);
+  defaultVariants: {
+    state: "default",
+  },
+});
 
 export const FormFieldset = React.forwardRef<
   HTMLFieldSetElement,

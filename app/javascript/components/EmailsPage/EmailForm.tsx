@@ -865,12 +865,17 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
               </FormFieldset>
             </CardContent>
             <CardContent>
-              <FormFieldset role="group" state={invalidFields.has("channel") ? "danger" : undefined}>
+              <FormFieldset
+                className="grow basis-0"
+                role="group"
+                state={invalidFields.has("channel") ? "danger" : undefined}
+              >
                 <FormLegend>Channel</FormLegend>
                 {hasAudience ? (
-                  <FormLabel htmlFor={`${uid}-channel_email`} className="w-full">
+                  <FormLabel htmlFor={`${uid}-channel_email`} className="flex! w-full">
                     Send email
                     <FormCheckbox
+                      wrapperClassName="ml-auto"
                       id={`${uid}-channel_email`}
                       ref={sendEmailRef}
                       checked={channel.email}
@@ -882,7 +887,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     />
                   </FormLabel>
                 ) : null}
-                <FormLabel htmlFor={`${uid}-channel_profile`} className="w-full">
+                <FormLabel htmlFor={`${uid}-channel_profile`} className="flex! w-full">
                   Post to profile
                   <WithTooltip
                     tip={
@@ -899,6 +904,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     (?)
                   </WithTooltip>
                   <FormCheckbox
+                    wrapperClassName="ml-auto"
                     id={`${uid}-channel_profile`}
                     checked={channel.profile}
                     onChange={(event) => {
@@ -946,6 +952,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                   <FormLabel htmlFor={`${uid}-all_affiliated_products`} className="w-full">
                     All products
                     <FormCheckbox
+                      wrapperClassName="ml-auto"
                       id={`${uid}-all_affiliated_products`}
                       checked={affiliatedProducts.length === affiliateProductOptions.length}
                       disabled={isPublished}
@@ -1125,6 +1132,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                 <FormLabel htmlFor={`${uid}-allow_comments`} className="w-full">
                   Allow comments
                   <FormCheckbox
+                    wrapperClassName="ml-auto"
                     id={`${uid}-allow_comments`}
                     checked={allowComments}
                     onChange={(event) => setAllowComments(event.target.checked)}

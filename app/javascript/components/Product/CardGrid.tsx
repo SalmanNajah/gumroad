@@ -139,6 +139,7 @@ const FilterCheckboxes = ({
         <FormLabel key={option.key} className="w-full">
           {option.key} ({option.doc_count})
           <FormCheckbox
+            wrapperClassName="ml-auto"
             checked={selection.includes(option.key)}
             disabled={disabled}
             onChange={() =>
@@ -284,6 +285,7 @@ export const CardGrid = ({
                   <FormLabel className="w-full">
                     All Products
                     <FormCheckbox
+                      wrapperClassName="ml-auto"
                       checked={!searchParams.tags?.length}
                       disabled={disableFilters || !searchParams.tags?.length}
                       onChange={() => updateParams({ tags: undefined })}

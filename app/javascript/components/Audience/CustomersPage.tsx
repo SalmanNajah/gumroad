@@ -1708,6 +1708,7 @@ const EmailSection = ({
                 <FormLabel className="w-full">
                   Receives emails
                   <FormCheckbox
+                    wrapperClassName="ml-auto"
                     checked={canContact}
                     onChange={(evt) => {
                       setIsLoading(true);

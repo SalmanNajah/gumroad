@@ -488,6 +488,7 @@ export default function LibraryPage() {
                       <FormLabel className="w-full">
                         All Creators
                         <FormCheckbox
+                          wrapperClassName="ml-auto"
                           checked={state.search.creators.length === 0}
                           onClick={() => dispatch({ type: "update-search", search: { creators: [] } })}
                           readOnly
@@ -498,6 +499,7 @@ export default function LibraryPage() {
                           {creator.name}
                           <span className="shrink-0 text-muted">{`(${creator.count})`}</span>
                           <FormCheckbox
+                            wrapperClassName="ml-auto"
                             checked={state.search.creators.includes(creator.id)}
                             onClick={() =>
                               dispatch({
@@ -528,6 +530,7 @@ export default function LibraryPage() {
                         <FormLabel className="filter-archived w-full">
                           Show archived only
                           <FormCheckbox
+                            wrapperClassName="ml-auto"
                             checked={state.search.showArchivedOnly}
                             readOnly
                             onClick={() =>
