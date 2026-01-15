@@ -872,7 +872,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
               >
                 <FormLegend>Channel</FormLegend>
                 {hasAudience ? (
-                  <FormLabel htmlFor={`${uid}-channel_email`} className="flex! w-full">
+                  <FormLabel htmlFor={`${uid}-channel_email`} className="w-full">
                     Send email
                     <FormCheckbox
                       wrapperClassName="ml-auto"
@@ -887,7 +887,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     />
                   </FormLabel>
                 ) : null}
-                <FormLabel htmlFor={`${uid}-channel_profile`} className="flex! w-full">
+                <FormLabel htmlFor={`${uid}-channel_profile`} className="w-full">
                   Post to profile
                   <WithTooltip
                     tip={
