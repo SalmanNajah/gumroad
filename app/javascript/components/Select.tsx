@@ -193,19 +193,11 @@ const DropdownIndicator = <IsMulti extends boolean>(props: DropdownIndicatorProp
 const Control = <IsMulti extends boolean>(props: ControlProps<Option, IsMulti>) => (
   <components.Control
     className={classNames(
-      "inline-flex w-full items-center",
-      "gap-2",
-      "relative",
-      "px-4 py-0",
-      "min-h-[3.025rem]",
-      "border border-border",
-      "rounded",
+      "relative inline-flex min-h-[3.025rem] w-full items-center gap-2 rounded border border-border px-4 py-0",
       props.menuIsOpen && "rounded-b-none",
       "bg-background text-foreground",
       "focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-accent",
       "[&>.icon]:text-muted",
-      "[&_input]:-mx-4 [&_input]:flex-1 [&_input]:border-none [&_input]:bg-transparent [&_input]:shadow-none [&_input]:outline-none",
-      "[&_input]:max-w-none",
       props.isDisabled && "cursor-not-allowed opacity-30 [&_input]:opacity-100",
     )}
     {...props}
@@ -224,16 +216,7 @@ const MenuList = <IsMulti extends boolean>(props: MenuListProps<Option, IsMulti>
       style={{ maxHeight: props.maxHeight }}
       id={menuListId ?? undefined}
       className={classNames(
-        "block",
-        "bg-background",
-        "border border-border",
-        "w-full",
-        "overflow-auto",
-        "absolute top-full left-0",
-        "rounded-b",
-        "shadow",
-        "z-1",
-        "py-2",
+        "absolute top-full left-0 z-10 block w-full overflow-auto rounded-b border border-border bg-background py-2 shadow",
       )}
     >
       {props.children}
@@ -259,6 +242,7 @@ const Input = <IsMulti extends boolean>(props: InputProps<Option, IsMulti>) => {
   return (
     <components.Input
       {...props}
+      className="-mx-4 max-w-none flex-1 border-none bg-transparent shadow-none outline-none"
       aria-owns={customProps.menuListId ?? undefined}
       aria-controls={customProps.menuListId ?? undefined}
       aria-haspopup="listbox"
