@@ -51,6 +51,7 @@ export const CreditCardInput = ({
         <FormInputWrapper disabled={disabled} aria-label="Card information" aria-invalid={invalid}>
           {baseStripeStyle == null ? (
             <input
+              className="font-[inherit]"
               ref={(el) => {
                 if (el == null) return;
                 const inputStyle = window.getComputedStyle(el);
