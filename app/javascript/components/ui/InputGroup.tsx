@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { classNames } from "$app/utils/classNames";
 
-const inputWrapperVariants = cva(
+const inputGroupVariants = cva(
   [
     "inline-flex items-center w-full gap-2 relative py-0 px-4 min-h-[3.025rem] border border-border rounded bg-background text-foreground focus-within:outline-2 focus-within:outline-accent focus-within:outline-offset-0",
     "[&>.icon]:text-muted",
@@ -28,9 +28,9 @@ const inputWrapperVariants = cva(
 
 export const InputGroup = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof inputWrapperVariants>
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof inputGroupVariants>
 >(({ className, disabled, readOnly, children, ...props }, ref) => (
-  <div ref={ref} className={classNames(inputWrapperVariants({ disabled, readOnly }), className)} {...props}>
+  <div ref={ref} className={classNames(inputGroupVariants({ disabled, readOnly }), className)} {...props}>
     {children}
   </div>
 ));
