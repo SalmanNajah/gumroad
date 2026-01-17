@@ -7,6 +7,9 @@ import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
+import { Input } from "$app/components/ui/Input";
+import { Label } from "$app/components/ui/Label";
+import { Select } from "$app/components/ui/Select";
 
 type JobHistoryItem = {
   job_id: string;
@@ -59,31 +62,31 @@ const AdminSalesReportsPage = ({ countries, sales_types, job_history, form_actio
           <section>
             <header>Generate sales report with custom date ranges</header>
 
-            <label htmlFor="country_code">Country</label>
-            <select name="sales_report[country_code]" id="country_code" required>
+            <Label htmlFor="country_code">Country</Label>
+            <Select name="sales_report[country_code]" id="country_code" required>
               <option value="">Select country</option>
               {countries.map(([name, code]) => (
                 <option key={code} value={code}>
                   {name}
                 </option>
               ))}
-            </select>
+            </Select>
 
-            <label htmlFor="start_date">Start date</label>
-            <input name="sales_report[start_date]" id="start_date" type="date" required />
+            <Label htmlFor="start_date">Start date</Label>
+            <Input name="sales_report[start_date]" id="start_date" type="date" required />
 
-            <label htmlFor="end_date">End date</label>
-            <input name="sales_report[end_date]" id="end_date" type="date" required />
+            <Label htmlFor="end_date">End date</Label>
+            <Input name="sales_report[end_date]" id="end_date" type="date" required />
 
-            <label htmlFor="sales_type">Type of sales</label>
-            <select name="sales_report[sales_type]" id="sales_type" required>
+            <Label htmlFor="sales_type">Type of sales</Label>
+            <Select name="sales_report[sales_type]" id="sales_type" required>
               <option value="">Select sales type</option>
               {sales_types.map(([code, name]) => (
                 <option key={code} value={code}>
                   {name}
                 </option>
               ))}
-            </select>
+            </Select>
 
             <button type="submit" className="button primary" disabled={isLoading}>
               {isLoading ? "Generating..." : "Generate report"}

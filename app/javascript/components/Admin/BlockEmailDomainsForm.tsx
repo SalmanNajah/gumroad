@@ -2,6 +2,8 @@ import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
 import CodeSnippet from "$app/components/ui/CodeSnippet";
+import { Section } from "$app/components/ui/Section";
+import { Textarea } from "$app/components/ui/Textarea";
 
 export type Props = {
   action: string;
@@ -31,15 +33,19 @@ const Form = ({ action, header, buttonLabel }: Props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <section>
+      <Section
+        className="p-4 md:p-8"
+        header={
+          <>
+            <p>{header}</p>
+            <p>
+              For emails like <code>john@example.com</code>, <code>john@example.net</code>,{" "}
+              <code>john@list.example.org</code>, enter what is to the right of the <code>@</code> character.
+            </p>
+          </>
+        }
+      >
         <input type="hidden" name="authenticity_token" value={form.data.authenticity_token} />
-
-        <header>{header}</header>
-
-        <p>
-          For emails like <code>john@example.com</code>, <code>john@example.net</code>,{" "}
-          <code>john@list.example.org</code>, enter what is to the right of the <code>@</code> character.
-        </p>
 
         <CodeSnippet caption="Example with comma-separated items">
           example.com, example.net, list.example.org
@@ -53,7 +59,7 @@ const Form = ({ action, header, buttonLabel }: Props) => {
           list.example.org
         </CodeSnippet>
 
-        <textarea
+        <Textarea
           id="identifiers"
           name="email_domains[identifiers]"
           placeholder="Enter email domains here"
@@ -66,7 +72,7 @@ const Form = ({ action, header, buttonLabel }: Props) => {
         <button type="submit" className="button primary">
           {buttonLabel}
         </button>
-      </section>
+      </Section>
     </form>
   );
 };

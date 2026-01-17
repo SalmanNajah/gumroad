@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { Pill } from "$app/components/ui/Pill";
+import { InputGroup } from "$app/components/ui/InputGroup";
 
 type Props = {
   value: Date | null;
@@ -36,7 +37,7 @@ export const DateInput = ({
   const input = (
     <input
       ref={ref}
-      className="appearance-none"
+      className="flex-1 appearance-none border-none! bg-transparent py-3 font-[inherit] text-base leading-[1.4] outline-none!"
       type={withTime ? "datetime-local" : "date"}
       {...rest}
       defaultValue={formatDate(value)}
@@ -51,11 +52,11 @@ export const DateInput = ({
     />
   );
   return withTime && seller ? (
-    <div className="input">
+    <InputGroup>
       {input}
       <Pill className="-mr-2 shrink-0">{formatInTimeZone(value ?? new Date(), seller.timeZone.name, "z")}</Pill>
-    </div>
+    </InputGroup>
   ) : (
-    <div className="input">{input}</div>
+    <InputGroup>{input}</InputGroup>
   );
 };

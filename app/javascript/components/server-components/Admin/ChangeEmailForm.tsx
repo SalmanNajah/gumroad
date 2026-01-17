@@ -5,6 +5,8 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Fieldset } from "$app/components/ui/Fieldset";
+import { Input } from "$app/components/ui/Input";
 
 export const AdminChangeEmailForm = ({ user_id, current_email }: { user_id: number; current_email: string | null }) => (
   <Form
@@ -14,15 +16,15 @@ export const AdminChangeEmailForm = ({ user_id, current_email }: { user_id: numb
     onSuccess={() => showAlert("Successfully updated email address.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <Fieldset>
         <div style={{ display: "grid", gap: "var(--spacer-3)", gridTemplateColumns: "1fr auto" }}>
-          <input type="email" name="update_email[email_address]" placeholder={current_email ?? ""} required />
+          <Input type="email" name="update_email[email_address]" placeholder={current_email ?? ""} required />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Updating..." : "Update email"}
           </button>
         </div>
-        <small>This will update the user's email to this new one!</small>
-      </fieldset>
+        <small className="text-muted">This will update the user's email to this new one!</small>
+      </Fieldset>
     )}
   </Form>
 );

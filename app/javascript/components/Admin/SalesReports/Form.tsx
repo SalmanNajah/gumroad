@@ -4,6 +4,10 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import Errors from "$app/components/Admin/Form/Errors";
+import { Input } from "$app/components/ui/Input";
+import { Section } from "$app/components/ui/Section";
+import { Label } from "$app/components/ui/Label";
+import { Select } from "$app/components/ui/Select";
 
 type Props = {
   countries: [string, string][];
@@ -48,12 +52,10 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
 
   return (
     <form onSubmit={handleSubmit}>
-      <section>
-        <header>Generate sales report with custom date ranges</header>
-
+      <Section className="p-4 md:p-8" header="Generate sales report with custom date ranges">
         <div className="grid grid-rows-[auto_1fr] gap-3">
-          <label htmlFor="country_code">Country</label>
-          <select
+          <Label htmlFor="country_code">Country</Label>
+          <Select
             name="sales_report[country_code]"
             id="country_code"
             onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
@@ -68,14 +70,14 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
                 {name}
               </option>
             ))}
-          </select>
+          </Select>
           <Errors errors={errors.sales_report?.country_code} label="Country code" />
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="start_date">Start date</label>
-            <input
+            <Label htmlFor="start_date">Start date</Label>
+            <Input
               name="sales_report[start_date]"
               id="start_date"
               type="date"
@@ -89,8 +91,8 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
           </div>
 
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="end_date">End date</label>
-            <input
+            <Label htmlFor="end_date">End date</Label>
+            <Input
               name="sales_report[end_date]"
               id="end_date"
               type="date"
@@ -105,8 +107,8 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
         </div>
 
         <div className="grid grid-rows-[auto_1fr] gap-3">
-          <label htmlFor="sales_type">Type of sales</label>
-          <select
+          <Label htmlFor="sales_type">Type of sales</Label>
+          <Select
             name="sales_report[sales_type]"
             id="sales_type"
             onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
@@ -120,7 +122,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
                 {name}
               </option>
             ))}
-          </select>
+          </Select>
           <Errors errors={errors.sales_report?.sales_type} label="Type of sales" />
         </div>
 
@@ -129,7 +131,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
         </button>
 
         <input type="hidden" name="authenticity_token" value={form.data.authenticity_token} />
-      </section>
+      </Section>
     </form>
   );
 };

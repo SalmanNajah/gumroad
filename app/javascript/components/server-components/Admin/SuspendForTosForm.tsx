@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Select } from "$app/components/ui/Select";
 
 export const AdminSuspendForTosForm = ({
   product_id,
@@ -28,13 +29,13 @@ export const AdminSuspendForTosForm = ({
   >
     {(isLoading) => (
       <>
-        <select name="suspend_tos[reason]" defaultValue={default_reason}>
+        <Select name="suspend_tos[reason]" defaultValue={default_reason}>
           {Object.entries(reasons).map(([name, value]) => (
             <option key={value} value={value}>
               {name}
             </option>
           ))}
-        </select>
+        </Select>
         <button type="submit" className="button" disabled={isLoading}>
           {isLoading ? "Suspending..." : "Submit"}
         </button>

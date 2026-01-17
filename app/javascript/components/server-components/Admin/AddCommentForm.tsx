@@ -5,6 +5,8 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Fieldset } from "$app/components/ui/Fieldset";
+import { Textarea } from "$app/components/ui/Textarea";
 
 export const AdminAddCommentForm = ({
   commentable_id,
@@ -20,9 +22,9 @@ export const AdminAddCommentForm = ({
     onSuccess={() => showAlert("Successfully added comment.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <Fieldset>
         <div className="input-with-button">
-          <textarea name="comment[content]" rows={1} placeholder={`Comment on this ${commentable_type}`} required />
+          <Textarea name="comment[content]" rows={1} placeholder={`Comment on this ${commentable_type}`} required />
           <input type="hidden" name="comment[commentable_id]" value={commentable_id} />
           <input type="hidden" name="comment[commentable_type]" value={commentable_type} />
           <input type="hidden" name="comment[comment_type]" value="note" />
@@ -30,7 +32,7 @@ export const AdminAddCommentForm = ({
             {isLoading ? "Saving..." : "Add comment"}
           </button>
         </div>
-      </fieldset>
+      </Fieldset>
     )}
   </Form>
 );

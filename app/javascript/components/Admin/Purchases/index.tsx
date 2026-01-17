@@ -15,6 +15,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 
 import { type RefundPolicy, RefundPolicyTitle } from "./RefundPolicy";
 import { type PurchaseStatesInfo, PurchaseStates } from "./States";
+import { Input } from "$app/components/ui/Input";
 
 type UrlRedirect = {
   download_page_url: string;
@@ -502,7 +503,7 @@ const GiftInfo = ({ purchaseExternalId, gift }: { purchaseExternalId: string; gi
         >
           {(isLoading) => (
             <div className="flex gap-2">
-              <input type="text" className="flex-1" name="giftee_email" placeholder="Enter new giftee email" required />
+              <Input type="text" className="flex-1" name="giftee_email" placeholder="Enter new giftee email" required />
               <button type="submit" className="button" disabled={isLoading}>
                 {isLoading ? "Updating..." : "Update"}
               </button>

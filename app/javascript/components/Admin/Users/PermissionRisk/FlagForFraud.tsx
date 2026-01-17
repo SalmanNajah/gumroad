@@ -3,6 +3,8 @@ import * as React from "react";
 import { Form } from "$app/components/Admin/Form";
 import type { User } from "$app/components/Admin/Users/User";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Fieldset } from "$app/components/ui/Fieldset";
+import { Textarea } from "$app/components/ui/Textarea";
 
 type FlagForFraudProps = {
   user: User;
@@ -26,9 +28,9 @@ const FlagForFraud = ({ user }: FlagForFraudProps) => {
             onSuccess={() => showAlert("Flagged.", "success")}
           >
             {(isLoading) => (
-              <fieldset>
+              <Fieldset>
                 <div className="flex items-start gap-2">
-                  <textarea
+                  <Textarea
                     name="flag_for_fraud[flag_note]"
                     className="flex-1"
                     rows={3}
@@ -38,7 +40,7 @@ const FlagForFraud = ({ user }: FlagForFraudProps) => {
                     {isLoading ? "Submitting..." : "Submit"}
                   </button>
                 </div>
-              </fieldset>
+              </Fieldset>
             )}
           </Form>
         </details>

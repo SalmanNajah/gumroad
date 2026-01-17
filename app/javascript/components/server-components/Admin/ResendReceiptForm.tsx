@@ -5,6 +5,8 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Input } from "$app/components/ui/Input";
+import { Fieldset } from "$app/components/ui/Fieldset";
 
 export const AdminResendReceiptForm = ({ purchase_id, email }: { purchase_id: number; email: string }) => (
   <Form
@@ -14,15 +16,15 @@ export const AdminResendReceiptForm = ({ purchase_id, email }: { purchase_id: nu
     onSuccess={() => showAlert("Receipt sent successfully.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <Fieldset>
         <div className="input-with-button">
-          <input type="email" name="resend_receipt[email_address]" placeholder={email} />
+          <Input type="email" name="resend_receipt[email_address]" placeholder={email} />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Sending..." : "Send"}
           </button>
         </div>
-        <small>This will update the purchase email to this new one!</small>
-      </fieldset>
+        <small className="text-muted">This will update the purchase email to this new one!</small>
+      </Fieldset>
     )}
   </Form>
 );

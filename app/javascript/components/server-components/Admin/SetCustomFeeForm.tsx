@@ -5,6 +5,8 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Input } from "$app/components/ui/Input";
+import { Fieldset } from "$app/components/ui/Fieldset";
 
 export const AdminSetCustomFeeForm = ({
   user_id,
@@ -20,9 +22,9 @@ export const AdminSetCustomFeeForm = ({
     onSuccess={() => showAlert("Custom fee updated.", "success")}
   >
     {(isLoading) => (
-      <fieldset>
+      <Fieldset>
         <div className="input-with-button" style={{ alignItems: "start" }}>
-          <input
+          <Input
             name="custom_fee_percent"
             type="number"
             inputMode="decimal"
@@ -36,11 +38,11 @@ export const AdminSetCustomFeeForm = ({
             {isLoading ? "Submitting..." : "Submit"}
           </button>
         </div>
-        <small>
+        <small className="text-muted">
           Note: Updated custom fee will apply to new direct (non-discover) sales of the user, but not to future charges
           of their existing memberships.
         </small>
-      </fieldset>
+      </Fieldset>
     )}
   </Form>
 );
