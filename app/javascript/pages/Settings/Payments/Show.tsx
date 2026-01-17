@@ -1,5 +1,4 @@
 import { useForm, usePage } from "@inertiajs/react";
-import cx from "classnames";
 import parsePhoneNumberFromString, { CountryCode } from "libphonenumber-js";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
@@ -8,6 +7,7 @@ import { CardPayoutError, prepareCardTokenForPayouts, type CardPayoutToken } fro
 import { SavedCreditCard } from "$app/parsers/card";
 import { SettingPage } from "$app/parsers/settings";
 import type { ComplianceInfo, PayoutMethod, FormFieldName, User, PayoutDebitCardData } from "$app/types/payments";
+import { classNames } from "$app/utils/classNames";
 import { formatPriceCentsWithCurrencySymbol, formatPriceCentsWithoutCurrencySymbol } from "$app/utils/currency";
 import { asyncVoid } from "$app/utils/promise";
 
@@ -32,6 +32,9 @@ import StripeConnectSection, { StripeConnect } from "$app/components/Settings/Pa
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Alert } from "$app/components/ui/Alert";
+import { Fieldset } from "$app/components/ui/Fieldset";
+import { Label } from "$app/components/ui/Label";
+import { Section } from "$app/components/ui/Section";
 import { UpdateCountryConfirmationModal } from "$app/components/UpdateCountryConfirmationModal";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -723,7 +726,7 @@ export default function PaymentsPage() {
   const payoutThresholdError = form.data.payout_threshold_cents < props.minimum_payout_threshold_cents;
 
   const payoutsPausedToggle = (
-    <fieldset>
+    <Fieldset>
       <Toggle
         value={form.data.payouts_paused_by_user || props.payouts_paused_internally}
         onChange={(value) => form.setData("payouts_paused_by_user", value)}
@@ -732,11 +735,11 @@ export default function PaymentsPage() {
       >
         Pause payouts
       </Toggle>
-      <small>
+      <small className="text-muted">
         By pausing payouts, they won't be processed until you decide to resume them, and your balance will remain in
         your account until then.
       </small>
-    </fieldset>
+    </Fieldset>
   );
 
   return (
@@ -790,10 +793,7 @@ export default function PaymentsPage() {
           </Alert>
         ) : null}
 
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Verification</h2>
-          </header>
+        <Section className="p-4! md:p-8!" header={<h2>Verification</h2>}>
           {props.show_verification_section ? (
             <StripeConnectEmbeddedNotificationBanner />
           ) : (
@@ -814,7 +814,7 @@ export default function PaymentsPage() {
               </div>
             </div>
           )}
-        </section>
+        </Section>
 
         {props.aus_backtax_details.show_au_backtax_prompt ? (
           <AusBackTaxesSection
@@ -844,13 +844,10 @@ export default function PaymentsPage() {
             </Alert>
           </div>
         ) : null}
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Payout schedule</h2>
-          </header>
+        <Section className="p-4! md:p-8!" header={<h2>Payout schedule</h2>}>
           <section className="flex flex-col gap-4">
-            <fieldset>
-              <label htmlFor="payout_frequency">Schedule</label>
+            <Fieldset>
+              <Label htmlFor="payout_frequency">Schedule</Label>
               <TypeSafeOptionSelect
                 id="payout_frequency"
                 name="Schedule"
@@ -862,11 +859,11 @@ export default function PaymentsPage() {
                   disabled: frequency === "daily" && !props.payout_frequency_daily_supported,
                 }))}
               />
-              <small>
+              <small className="text-muted">
                 Daily payouts are only available for US users with eligible bank accounts and more than 4 previous
                 payouts.
               </small>
-            </fieldset>
+            </Fieldset>
             {form.data.payout_frequency === "daily" && props.payout_frequency_daily_supported ? (
               <Alert role="status" className="info">
                 <div>
@@ -880,8 +877,8 @@ export default function PaymentsPage() {
                 <div>Your account is no longer eligible for daily payouts. Please update your schedule.</div>
               </Alert>
             )}
-            <fieldset className={cx({ danger: payoutThresholdError })}>
-              <label htmlFor="payout_threshold_cents">Minimum payout threshold</label>
+            <Fieldset state={payoutThresholdError ? "danger" : undefined}>
+              <Label htmlFor="payout_threshold_cents">Minimum payout threshold</Label>
               <PriceInput
                 id="payout_threshold_cents"
                 currencyCode="usd"
@@ -895,7 +892,7 @@ export default function PaymentsPage() {
                 hasError={!!payoutThresholdError}
               />
               {payoutThresholdError ? (
-                <small>
+                <small className="text-muted">
                   Your payout threshold must be at least{" "}
                   {formatPriceCentsWithCurrencySymbol("usd", props.minimum_payout_threshold_cents, {
                     symbolFormat: "long",
@@ -903,9 +900,9 @@ export default function PaymentsPage() {
                   .
                 </small>
               ) : (
-                <small>Payouts will only be issued once your balance reaches this amount.</small>
+                <small className="text-muted">Payouts will only be issued once your balance reaches this amount.</small>
               )}
-            </fieldset>
+            </Fieldset>
             {props.payouts_paused_internally ? (
               <WithTooltip
                 tip={
@@ -924,19 +921,27 @@ export default function PaymentsPage() {
               payoutsPausedToggle
             )}
           </section>
-        </section>
+        </Section>
 
-        <section className="p-4! md:p-8!">
-          <header>
-            <h2>Payout method</h2>
-            <div>
-              <a href="/help/article/260-your-payout-settings-page" target="_blank" rel="noreferrer">
-                Any questions about these payout settings?
-              </a>
-            </div>
-          </header>
+        <Section
+          className="p-4! md:p-8!"
+          header={
+            <>
+              <h2>Payout method</h2>
+              <div>
+                <a href="/help/article/260-your-payout-settings-page" target="_blank" rel="noreferrer">
+                  Any questions about these payout settings?
+                </a>
+              </div>
+            </>
+          }
+        >
           <section className="grid gap-8">
-            <div className="radio-buttons" role="radiogroup">
+            <div
+              className="grid gap-4"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(15rem, 100%), 1fr))" }}
+              role="radiogroup"
+            >
               {props.bank_account_details.show_bank_account ? (
                 <>
                   <Button
@@ -945,6 +950,11 @@ export default function PaymentsPage() {
                     aria-checked={selectedPayoutMethod === "bank"}
                     onClick={() => updatePayoutMethod("bank")}
                     disabled={props.is_form_disabled}
+                    className={classNames(
+                      "items-start! justify-start! gap-3! text-left transition-transform!",
+                      "hover:translate-x-0! hover:translate-y-0!",
+                      selectedPayoutMethod === "bank" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                    )}
                   >
                     <Icon name="bank" />
                     <div>
@@ -958,6 +968,11 @@ export default function PaymentsPage() {
                       aria-checked={selectedPayoutMethod === "card"}
                       onClick={() => updatePayoutMethod("card")}
                       disabled={props.is_form_disabled}
+                      className={classNames(
+                        "items-start! justify-start! gap-3! text-left transition-transform!",
+                        "hover:translate-x-0! hover:translate-y-0!",
+                        selectedPayoutMethod === "card" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                      )}
                     >
                       <Icon name="card" />
                       <div>
@@ -974,6 +989,11 @@ export default function PaymentsPage() {
                   aria-checked={selectedPayoutMethod === "paypal"}
                   onClick={() => updatePayoutMethod("paypal")}
                   disabled={props.is_form_disabled}
+                  className={classNames(
+                    "items-start! justify-start! gap-3! text-left transition-transform!",
+                    "hover:translate-x-0! hover:translate-y-0!",
+                    selectedPayoutMethod === "paypal" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                  )}
                 >
                   <Icon name="shop-window" />
                   <div>
@@ -990,6 +1010,11 @@ export default function PaymentsPage() {
                   aria-checked={selectedPayoutMethod === "stripe"}
                   onClick={() => updatePayoutMethod("stripe")}
                   disabled={props.is_form_disabled}
+                  className={classNames(
+                    "items-start! justify-start! gap-3! text-left transition-transform!",
+                    "hover:translate-x-0! hover:translate-y-0!",
+                    selectedPayoutMethod === "stripe" && "-translate-x-1! -translate-y-1! bg-background! shadow!",
+                  )}
                 >
                   <Icon name="stripe" />
                   <div>
@@ -1055,7 +1080,7 @@ export default function PaymentsPage() {
               />
             )}
           </section>
-        </section>
+        </Section>
         {props.paypal_connect.show_paypal_connect ? (
           <PayPalConnectSection
             paypalConnect={props.paypal_connect}

@@ -8,6 +8,10 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
+import { Fieldset, Legend } from "$app/components/ui/Fieldset";
+import { InputGroup } from "$app/components/ui/InputGroup";
+import { Label } from "$app/components/ui/Label";
+import { Section } from "$app/components/ui/Section";
 
 export type PayPalConnect = {
   email: string | null;
@@ -46,13 +50,17 @@ const PayPalConnectSection = ({
   });
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>PayPal</h2>
-        <a href="/help/article/275-paypal-connect" target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
+    <Section
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>PayPal</h2>
+          <a href="/help/article/275-paypal-connect" target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
       <div className="flex flex-col gap-4">
         {!paypalConnect.charge_processor_merchant_id ? (
           <>
@@ -92,15 +100,15 @@ const PayPalConnectSection = ({
           <>
             <p>{connectAccountFeeInfoText}</p>
             <div className="grid gap-8">
-              <fieldset>
-                <legend>
-                  <label>PayPal account</label>
-                </legend>
-                <div className="input input-wrapper">
-                  <div className="fake-input">{paypalConnect.charge_processor_merchant_id}</div>
+              <Fieldset>
+                <Legend>
+                  <Label>PayPal account</Label>
+                </Legend>
+                <InputGroup readOnly>
+                  <span className="flex-1">{paypalConnect.charge_processor_merchant_id}</span>
                   <Icon name="solid-check-circle" className="text-success" />
-                </div>
-              </fieldset>
+                </InputGroup>
+              </Fieldset>
               {paypalConnect.show_paypal_connect ? (
                 <>
                   <p>
@@ -159,7 +167,7 @@ const PayPalConnectSection = ({
           </>
         )}
       </div>
-    </section>
+    </Section>
   );
 };
 export default PayPalConnectSection;

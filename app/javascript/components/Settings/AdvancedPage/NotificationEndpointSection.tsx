@@ -6,6 +6,11 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 
 import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Fieldset, Legend } from "$app/components/ui/Fieldset";
+import { Input } from "$app/components/ui/Input";
+import { InputGroup } from "$app/components/ui/InputGroup";
+import { Label } from "$app/components/ui/Label";
+import { Section } from "$app/components/ui/Section";
 import { Pill } from "$app/components/ui/Pill";
 import { WithTooltip } from "$app/components/WithTooltip";
 
@@ -48,19 +53,24 @@ const NotificationEndpointSection = ({
   });
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Ping</h2>
-        <a href={Routes.ping_path()} target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
-      <fieldset>
-        <legend>
-          <label htmlFor={uid}>Ping endpoint</label>
-        </legend>
-        <div className="input input-wrapper">
-          <input
+    <Section
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Ping</h2>
+          <a href={Routes.ping_path()} target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
+      <Fieldset>
+        <Legend>
+          <Label htmlFor={uid}>Ping endpoint</Label>
+        </Legend>
+        <InputGroup>
+          <Input
+            asChild
             placeholder="Ping endpoint"
             type="url"
             id={uid}
@@ -74,10 +84,10 @@ const NotificationEndpointSection = ({
               </Button>
             </Pill>
           </WithTooltip>
-        </div>
-        <small>For external services, your `seller_id` is {userId}</small>
-      </fieldset>
-    </section>
+        </InputGroup>
+        <small className="text-muted">For external services, your `seller_id` is {userId}</small>
+      </Fieldset>
+    </Section>
   );
 };
 

@@ -1,5 +1,4 @@
 import { usePage, router } from "@inertiajs/react";
-import { cx } from "class-variance-authority";
 import * as React from "react";
 import { GroupBase, SelectInstance } from "react-select";
 import { cast } from "ts-safe-cast";
@@ -31,6 +30,10 @@ import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
 import { Alert } from "$app/components/ui/Alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { Section } from "$app/components/ui/Section";
+import { Fieldset, Legend } from "$app/components/ui/Fieldset";
+import { Label } from "$app/components/ui/Label";
+import { Input } from "$app/components/ui/Input";
 
 const ROLE_TITLES: Record<Role, string> = {
   owner: "Owner",
@@ -129,14 +132,18 @@ const AddTeamMembersSection = ({
   });
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2>Add team members</h2>
-        <div>Invite as many team members as you need to help run this account.</div>
-        <a href="/help/article/326-teams-and-roles" target="_blank" rel="noreferrer">
-          Learn more
-        </a>
-      </header>
+    <Section
+      className="p-4! md:p-8!"
+      header={
+        <>
+          <h2>Add team members</h2>
+          <div>Invite as many team members as you need to help run this account.</div>
+          <a href="/help/article/326-teams-and-roles" target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        </>
+      }
+    >
       <div
         style={{
           display: "grid",
@@ -144,11 +151,11 @@ const AddTeamMembersSection = ({
           gridTemplateColumns: "repeat(auto-fit, max(var(--dynamic-grid), 50% - var(--spacer-3) / 2))",
         }}
       >
-        <fieldset className={cx({ danger: errors.has("email") })}>
-          <legend>
-            <label htmlFor={emailUID}>Email</label>
-          </legend>
-          <input
+        <Fieldset state={errors.has("email") ? "danger" : undefined}>
+          <Legend>
+            <Label htmlFor={emailUID}>Email</Label>
+          </Legend>
+          <Input
             id={emailUID}
             type="text"
             ref={emailFieldRef}
@@ -160,11 +167,11 @@ const AddTeamMembersSection = ({
               clearError("email");
             }}
           />
-        </fieldset>
-        <fieldset className={cx({ danger: errors.has("role") })}>
-          <legend>
-            <label htmlFor={roleUID}>Role</label>
-          </legend>
+        </Fieldset>
+        <Fieldset state={errors.has("role") ? "danger" : undefined}>
+          <Legend>
+            <Label htmlFor={roleUID}>Role</Label>
+          </Legend>
           <Select
             ref={roleFieldRef}
             inputId={roleUID}
@@ -181,7 +188,7 @@ const AddTeamMembersSection = ({
               }
             }}
           />
-        </fieldset>
+        </Fieldset>
       </div>
       <Button color="primary" className="w-fit" disabled={loading} onClick={onSubmit}>
         {loading ? (
@@ -192,7 +199,7 @@ const AddTeamMembersSection = ({
           "Send invitation"
         )}
       </Button>
-    </section>
+    </Section>
   );
 };
 
@@ -259,10 +266,7 @@ const TeamMembersSection = ({
   };
 
   return (
-    <section className="p-4! md:p-8!">
-      <header>
-        <h2 ref={ref}>Team members</h2>
-      </header>
+    <Section className="p-4! md:p-8!" header={<h2 ref={ref}>Team members</h2>}>
       {deletedMember ? (
         <Alert variant="success">
           <div className="flex flex-col justify-between sm:flex-row">
@@ -389,6 +393,6 @@ const TeamMembersSection = ({
           have access.
         </Modal>
       ) : null}
-    </section>
+    </Section>
   );
 };

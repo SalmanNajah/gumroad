@@ -1,6 +1,5 @@
 import { CardElement, Elements } from "@stripe/react-stripe-js";
 import { StripeCardElement, StripeElementStyleVariant, StripeCardElementChangeEvent } from "@stripe/stripe-js";
-import cx from "classnames";
 import * as React from "react";
 
 import { SavedCreditCard } from "$app/parsers/card";
@@ -9,6 +8,9 @@ import { getCssVariable } from "$app/utils/styles";
 
 import { useFont } from "$app/components/DesignSettings";
 import { Icon } from "$app/components/Icons";
+import { Fieldset, Legend } from "$app/components/ui/Fieldset";
+import { InputGroup } from "$app/components/ui/InputGroup";
+import { Label } from "$app/components/ui/Label";
 
 export const CreditCardInput = ({
   disabled,
@@ -32,25 +34,26 @@ export const CreditCardInput = ({
   const [baseStripeStyle, setBaseStripeStyle] = React.useState<null | StripeElementStyleVariant>(null);
 
   return (
-    <fieldset className={cx({ danger: invalid })}>
-      <legend>
-        <label>Card information</label>
+    <Fieldset state={invalid ? "danger" : undefined}>
+      <Legend>
+        <Label>Card information</Label>
         {savedCreditCard ? (
           <button className="font-normal underline" disabled={disabled} onClick={() => setUseSavedCard(!useSavedCard)}>
             {useSavedCard ? "Use a different card?" : "Use saved card"}
           </button>
         ) : null}
-      </legend>
+      </Legend>
       {savedCreditCard && useSavedCard ? (
-        <div className="input read-only" aria-label="Saved credit card">
+        <InputGroup readOnly aria-label="Saved credit card">
           <Icon name="outline-credit-card" />
           <span>{savedCreditCard.number}</span>
           <span style={{ marginLeft: "auto" }}>{savedCreditCard.expiration_date}</span>
-        </div>
+        </InputGroup>
       ) : (
-        <div className={cx("input", { disabled })} aria-label="Card information" aria-invalid={invalid}>
+        <InputGroup disabled={disabled} aria-label="Card information" aria-invalid={invalid}>
           {baseStripeStyle == null ? (
             <input
+              className="font-[inherit]"
               ref={(el) => {
                 if (el == null) return;
                 const inputStyle = window.getComputedStyle(el);
@@ -67,7 +70,7 @@ export const CreditCardInput = ({
           ) : null}
           <StripeElementsProvider>
             <CardElement
-              className="fake-input"
+              className="flex-1"
               options={{
                 style: { base: baseStripeStyle ?? {} },
                 hidePostalCode: true,
@@ -79,9 +82,9 @@ export const CreditCardInput = ({
               {...(onChange ? { onChange } : {})}
             />
           </StripeElementsProvider>
-        </div>
+        </InputGroup>
       )}
-    </fieldset>
+    </Fieldset>
   );
 };
 
