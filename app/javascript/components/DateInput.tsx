@@ -5,6 +5,7 @@ import * as React from "react";
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { Pill } from "$app/components/ui/Pill";
 import { InputGroup } from "$app/components/ui/InputGroup";
+import { Input } from "$app/components/ui/Input";
 
 type Props = {
   value: Date | null;
@@ -35,9 +36,9 @@ export const DateInput = ({
     ref.current.value = formatDate(value);
   }, [value]);
   const input = (
-    <input
+    <Input
       ref={ref}
-      className="flex-1 appearance-none border-none! bg-transparent py-3 font-[inherit] text-base leading-[1.4] outline-none!"
+      className="appearance-none"
       type={withTime ? "datetime-local" : "date"}
       {...rest}
       defaultValue={formatDate(value)}
