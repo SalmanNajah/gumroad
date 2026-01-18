@@ -30,14 +30,7 @@ const AdminUserAddCredit = ({ user }: AdminUserAddCreditProps) => (
             <div className="flex gap-2">
               <InputGroup className="flex-1">
                 <Pill className="-ml-2 shrink-0">$</Pill>
-                <Input
-                  asChild
-                  type="text"
-                  name="credit[credit_amount]"
-                  placeholder="10.25"
-                  inputMode="decimal"
-                  required
-                />
+                <Input type="text" name="credit[credit_amount]" placeholder="10.25" inputMode="decimal" required />
               </InputGroup>
 
               <button type="submit" className="button" disabled={isLoading}>

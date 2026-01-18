@@ -54,7 +54,7 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
 
   return (
     <InputGroup>
-      <Input asChild ref={ref} type={showPassword ? "text" : "password"} className={className} {...props} />
+      <Input ref={ref} type={showPassword ? "text" : "password"} className={className} {...props} />
       <IconComponent
         onClick={togglePasswordVisibility}
         role="button"

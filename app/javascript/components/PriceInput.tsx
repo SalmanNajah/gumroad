@@ -82,7 +82,6 @@ export const PriceInput = React.forwardRef<
           <Pill className="z-1 -ml-2 shrink-0">{getLongCurrencySymbol(currencyCode)}</Pill>
         )}
         <Input
-          asChild
           type="text"
           inputMode="decimal"
           id={id}

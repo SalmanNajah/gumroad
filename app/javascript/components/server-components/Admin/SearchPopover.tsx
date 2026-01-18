@@ -37,7 +37,6 @@ export const SearchPopover = ({ card_types }: Props) => {
           <InputGroup>
             <Icon name="person" />
             <Input
-              asChild
               autoFocus
               name="query"
               placeholder="Search users (email, name, ID)"
@@ -53,7 +52,6 @@ export const SearchPopover = ({ card_types }: Props) => {
           <InputGroup>
             <Icon name="solid-currency-dollar" />
             <Input
-              asChild
               name="query"
               placeholder="Search purchases (email, IP, card, external ID)"
               type="text"
@@ -68,7 +66,6 @@ export const SearchPopover = ({ card_types }: Props) => {
           <InputGroup>
             <Icon name="people-fill" />
             <Input
-              asChild
               name="query"
               placeholder="Search affiliates (email, name, ID)"
               type="text"
@@ -92,7 +89,6 @@ export const SearchPopover = ({ card_types }: Props) => {
           <InputGroup>
             <Icon name="calendar-all" />
             <Input
-              asChild
               name="transaction_date"
               placeholder="Date (02/22/2022)"
               type="text"
@@ -102,7 +98,6 @@ export const SearchPopover = ({ card_types }: Props) => {
           <InputGroup>
             <Icon name="lock-fill" />
             <Input
-              asChild
               name="last_4"
               placeholder="Last 4 (7890)"
               type="text"
@@ -116,7 +111,6 @@ export const SearchPopover = ({ card_types }: Props) => {
           <InputGroup>
             <Icon name="outline-credit-card" />
             <Input
-              asChild
               name="expiry_date"
               placeholder="Expiry (02/22)"
               type="text"
@@ -126,7 +120,6 @@ export const SearchPopover = ({ card_types }: Props) => {
           <InputGroup>
             <Pill className="z-1 -ml-2 shrink-0">$</Pill>
             <Input
-              asChild
               name="price"
               placeholder="Price (9.99)"
               type="number"
