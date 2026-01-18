@@ -118,7 +118,7 @@ export const SearchPopover = ({ card_types }: Props) => {
             />
           </InputGroup>
           <InputGroup>
-            <Pill className="z-1 -ml-2 shrink-0">$</Pill>
+            <Pill className="-ml-2 shrink-0">$</Pill>
             <Input
               name="price"
               placeholder="Price (9.99)"

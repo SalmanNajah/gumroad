@@ -64,7 +64,7 @@ export const PriceInput = React.forwardRef<
     return (
       <InputGroup disabled={disabled}>
         {currencyCodeSelector ? (
-          <Pill className="relative z-1 -ml-2 shrink-0 cursor-pointer">
+          <Pill className="relative -ml-2 shrink-0 cursor-pointer">
             {getLongCurrencySymbol(currencyCode)}
             <TypeSafeOptionSelect
               name="Currency"
@@ -79,7 +79,7 @@ export const PriceInput = React.forwardRef<
             <Icon name="outline-cheveron-down" className="ml-auto" />
           </Pill>
         ) : (
-          <Pill className="z-1 -ml-2 shrink-0">{getLongCurrencySymbol(currencyCode)}</Pill>
+          <Pill className="-ml-2 shrink-0">{getLongCurrencySymbol(currencyCode)}</Pill>
         )}
         <Input
           type="text"

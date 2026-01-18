@@ -202,7 +202,7 @@ const SearchPopover = () => {
             />
           </InputGroup>
           <InputGroup>
-            <Pill className="z-1 -ml-2 shrink-0">$</Pill>
+            <Pill className="-ml-2 shrink-0">$</Pill>
             <Input
               name="price"
               placeholder="Price (9.99)"
