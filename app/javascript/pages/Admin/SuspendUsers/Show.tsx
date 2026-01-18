@@ -1,6 +1,7 @@
 import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
+import { Button } from "$app/components/Button";
 import CodeSnippet from "$app/components/ui/CodeSnippet";
 import { Label } from "$app/components/ui/Label";
 import { Section } from "$app/components/ui/Section";
@@ -102,9 +103,9 @@ const SuspendUsers = () => {
           onChange={setAdditionalNotes}
         />
 
-        <button type="submit" className="button primary">
+        <Button type="submit" color="primary">
           Suspend users
-        </button>
+        </Button>
       </Section>
     </form>
   );

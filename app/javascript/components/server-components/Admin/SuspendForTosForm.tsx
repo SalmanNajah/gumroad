@@ -3,6 +3,7 @@ import { createCast } from "ts-safe-cast";
 
 import { register } from "$app/utils/serverComponentUtil";
 
+import { Button } from "$app/components/Button";
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Select } from "$app/components/ui/Select";
@@ -36,9 +37,9 @@ export const AdminSuspendForTosForm = ({
             </option>
           ))}
         </Select>
-        <button type="submit" className="button" disabled={isLoading}>
+        <Button type="submit" disabled={isLoading}>
           {isLoading ? "Suspending..." : "Submit"}
-        </button>
+        </Button>
       </>
     )}
   </Form>

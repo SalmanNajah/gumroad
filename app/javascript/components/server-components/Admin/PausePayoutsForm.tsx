@@ -3,6 +3,7 @@ import { createCast } from "ts-safe-cast";
 
 import { register } from "$app/utils/serverComponentUtil";
 
+import { Button } from "$app/components/Button";
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Fieldset } from "$app/components/ui/Fieldset";
@@ -49,7 +50,7 @@ export const AdminPausePayoutsForm = ({
                 />
               </div>
             )}
-            <button type="submit" className="button" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading}>
               {isLoading
                 ? admin_can_resume_payouts
                   ? "Resuming Payouts"
@@ -57,7 +58,7 @@ export const AdminPausePayoutsForm = ({
                 : admin_can_resume_payouts
                   ? "Resume Payouts"
                   : "Pause Payouts"}
-            </button>
+            </Button>
           </div>
         </Fieldset>
       )}

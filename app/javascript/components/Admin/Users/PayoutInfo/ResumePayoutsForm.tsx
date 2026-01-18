@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
 import { Fieldset } from "$app/components/ui/Fieldset";
+import { Button } from "$app/components/Button";
 
 const AdminResumePayoutsForm = ({
   user_external_id,
@@ -32,9 +33,9 @@ const AdminResumePayoutsForm = ({
           ) : payouts_paused_by === "user" ? (
             <p>Payouts are currently paused by the creator.</p>
           ) : null}
-          <button type="submit" className="button shrink-0" disabled={isLoading}>
+          <Button type="submit" className="shrink-0" disabled={isLoading}>
             {isLoading ? "Resuming Payouts" : "Resume Payouts"}
-          </button>
+          </Button>
         </div>
       </Fieldset>
     )}

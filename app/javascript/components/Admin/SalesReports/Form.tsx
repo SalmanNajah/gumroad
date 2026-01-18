@@ -8,6 +8,7 @@ import { Input } from "$app/components/ui/Input";
 import { Section } from "$app/components/ui/Section";
 import { Label } from "$app/components/ui/Label";
 import { Select } from "$app/components/ui/Select";
+import { Button } from "$app/components/Button";
 
 type Props = {
   countries: [string, string][];
@@ -126,9 +127,9 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
           <Errors errors={errors.sales_report?.sales_type} label="Type of sales" />
         </div>
 
-        <button type="submit" className="button primary" disabled={form.processing}>
+        <Button type="submit" color="primary" disabled={form.processing}>
           {form.processing ? "Generating..." : "Generate report"}
-        </button>
+        </Button>
 
         <input type="hidden" name="authenticity_token" value={form.data.authenticity_token} />
       </Section>

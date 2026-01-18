@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Form } from "$app/components/Admin/Form";
 import type { User } from "$app/components/Admin/Users/User";
+import { Button } from "$app/components/Button";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Input } from "$app/components/ui/Input";
 import { Fieldset } from "$app/components/ui/Fieldset";
@@ -27,9 +28,9 @@ const AdminUserChangeEmail = ({ user }: AdminUserChangeEmailProps) => (
           <Fieldset>
             <div className="grid grid-cols-[1fr_auto] gap-3">
               <Input type="email" name="update_email[email_address]" placeholder={user.email} required />
-              <button type="submit" className="button" disabled={isLoading}>
+              <Button type="submit" disabled={isLoading}>
                 {isLoading ? "Updating..." : "Update email"}
-              </button>
+              </Button>
             </div>
             <small className="text-muted">This will update the user's email to this new one!</small>
           </Fieldset>

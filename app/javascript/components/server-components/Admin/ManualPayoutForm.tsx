@@ -4,6 +4,7 @@ import { createCast } from "ts-safe-cast";
 import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 import { register } from "$app/utils/serverComponentUtil";
 
+import { Button } from "$app/components/Button";
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Checkbox } from "$app/components/ui/Checkbox";
@@ -65,10 +66,10 @@ export const AdminManualPayoutForm = ({
             )}
           </div>
         ) : null}
-        <div className="button-group">
-          <button type="submit" disabled={isLoading} className="button small">
+        <div className="flex gap-2">
+          <Button type="submit" disabled={isLoading} small>
             {isLoading ? "Issuing Payout..." : "Issue Payout"}
-          </button>
+          </Button>
         </div>
         <small className="text-muted">
           Balance that will be paid by clicking this button:{" "}

@@ -3,6 +3,7 @@ import { createCast } from "ts-safe-cast";
 
 import { register } from "$app/utils/serverComponentUtil";
 
+import { Button } from "$app/components/Button";
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Input } from "$app/components/ui/Input";
@@ -19,9 +20,9 @@ export const AdminResendReceiptForm = ({ purchase_id, email }: { purchase_id: nu
       <Fieldset>
         <div className="input-with-button">
           <Input type="email" name="resend_receipt[email_address]" placeholder={email} />
-          <button type="submit" className="button" disabled={isLoading}>
+          <Button type="submit" disabled={isLoading}>
             {isLoading ? "Sending..." : "Send"}
-          </button>
+          </Button>
         </div>
         <small className="text-muted">This will update the purchase email to this new one!</small>
       </Fieldset>
